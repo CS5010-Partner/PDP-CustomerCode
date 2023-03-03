@@ -12,7 +12,7 @@ public class ImageUtil {
   /**
    * Read an image file in the PPM format and print the colors.
    *
-   * @param filename the path of the file. 
+   * @param filename the path of the file. ksjgfd
    */
   public static void readPPM(String filename) {
     Scanner sc;
