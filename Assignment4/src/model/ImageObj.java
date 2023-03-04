@@ -1,5 +1,5 @@
 package model;
 
-public class ImageObj implements Image{
+public class ImageObj {
 
 }
