@@ -67,7 +67,7 @@ public class PPMFile implements IFile{
   public void fileWrite(String filePath, String content) {
     File file = new File(filePath);
 
-    try (FileOutputStream fop = new FileOutputStream(file)) {
+    try (FileOutputStream fos = new FileOutputStream(file)) {
 
       // if file doesn't exists, then create it
       if (!file.exists()) {
@@ -77,9 +77,9 @@ public class PPMFile implements IFile{
       // get the content in bytes
       byte[] contentInBytes = content.getBytes();
 
-      fop.write(contentInBytes);
-      fop.flush();
-      fop.close();
+      fos.write(contentInBytes);
+      fos.flush();
+      fos.close();
 
       System.out.println("Done");
 

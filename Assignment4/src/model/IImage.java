@@ -1,8 +1,8 @@
 package model;
 
 public interface IImage {
-  void load(String imagePath,String imageName);
-  void save(String imagePath,String imageName);
+  void load(IFile imagePath,String imageName);
+  void save(IFile imagePath,String imageName);
   void greyScaleRed(String imageName, String desImageName);
   void greyScaleGreen(String imageName, String desImageName);
   void greyScaleBlue(String imageName, String desImageName);
