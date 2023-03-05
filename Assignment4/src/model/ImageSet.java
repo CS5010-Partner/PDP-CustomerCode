@@ -1,5 +1,6 @@
 package model;
 
+import java.nio.file.NoSuchFileException;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 
@@ -14,8 +15,9 @@ public class ImageSet implements IImage {
   private void checkName(String[] inputNames, String[] destNames)
       throws NoSuchElementException, IllegalAccessException {
     for (String s:inputNames) {
-      if (!map.containsKey(s))
+      if (!map.containsKey(s)) {
         throw new NoSuchElementException("The image name does not exist.");
+      }
     }
 
     for (String s:destNames) {
@@ -25,9 +27,10 @@ public class ImageSet implements IImage {
   }
 
   @Override
-  public void load(IFile obj, String imageName) throws IllegalAccessException {
-    if (map.containsKey(imageName))
-      throw new IllegalAccessException("Image name already exists. Please choose a different name.");
+  public void load(IFile obj, String imageName)
+      throws IllegalAccessException, FileHandlingException {
+
+    checkName(new String[]{}, new String[]{imageName});
 
     String content=obj.fileRead();
     String[] token=content.split("\n");
@@ -48,15 +51,12 @@ public class ImageSet implements IImage {
         }
       }
     }
-
-//    System.out.println("load height : "+ image.length);
-//    System.out.println("load width : "+ image[0].length);
-
     map.put(imageName, new ImageObj(image,width,height,maxValue));
   }
 
   @Override
-  public void save(IFile format, String imageName) {
+  public void save(IFile format, String imageName) throws IllegalAccessException {
+    checkName(new String[]{imageName}, new String[]{});
     format.fileWrite(map.get(imageName).toString());
   }
 
