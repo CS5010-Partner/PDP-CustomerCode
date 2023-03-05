@@ -20,3 +20,9 @@ public interface IImage {
   void rgbCombine(String destImageName, String redImageName, String greenImageName, String blueImageName) throws NoSuchElementException, IllegalAccessException;
 
 }
+
+
+// 10 methods impl
+//public sb
+//sb.append(nameoffunctioncalled)
+//unit test return sb

@@ -49,8 +49,8 @@ public class ImageSet implements IImage {
       }
     }
 
-    System.out.println("load height : "+ image.length);
-    System.out.println("load width : "+ image[0].length);
+//    System.out.println("load height : "+ image.length);
+//    System.out.println("load width : "+ image[0].length);
 
     map.put(imageName, new ImageObj(image,width,height,maxValue));
   }
