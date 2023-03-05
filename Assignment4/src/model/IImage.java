@@ -1,19 +1,22 @@
 package model;
 
-public interface IImage {
-  void load(IFile imagePath,String imageName);
-  void save(IFile imagePath,String imageName);
-  void greyScaleRed(String imageName, String desImageName);
-  void greyScaleGreen(String imageName, String desImageName);
-  void greyScaleBlue(String imageName, String desImageName);
-  void greyScaleValue(String imageName, String desImageName);
-  void greyScaleIntensity(String imageName, String desImageName);
-  void greyScaleLuma(String imageName, String desImageName);
+import java.util.NoSuchElementException;
 
-  void horizontalFlip(String imageName, String desImageName);
-  void verticalFlip(String imageName,String desImageName);
-  void brighten(int increment, String imageName, String desImageName);
-  void rgbSplit(String imageName, String redDesImageName, String greenDesImageName, String blueDesImageName);
-  void rgbCombine(String imageName, String redImageName, String greenImageName, String blueImageName);
+public interface IImage {
+  void load(IFile imagePath,String imageName) throws IllegalAccessException;
+  void save(IFile imagePath,String imageName);
+  void greyScaleRed(String imageName, String desImageName)
+      throws NoSuchElementException, IllegalAccessException;
+  void greyScaleGreen(String imageName, String desImageName) throws NoSuchElementException, IllegalAccessException;
+  void greyScaleBlue(String imageName, String desImageName) throws NoSuchElementException, IllegalAccessException;
+  void greyScaleValue(String imageName, String desImageName) throws NoSuchElementException, IllegalAccessException;
+  void greyScaleIntensity(String imageName, String desImageName) throws NoSuchElementException, IllegalAccessException;
+  void greyScaleLuma(String imageName, String desImageName) throws NoSuchElementException, IllegalAccessException;
+
+  void horizontalFlip(String imageName, String desImageName) throws NoSuchElementException, IllegalAccessException;
+  void verticalFlip(String imageName,String desImageName) throws NoSuchElementException, IllegalAccessException;
+  void brighten(int increment, String imageName, String desImageName) throws NoSuchElementException, IllegalAccessException;
+  void rgbSplit(String imageName, String redDesImageName, String greenDesImageName, String blueDesImageName) throws NoSuchElementException, IllegalAccessException;
+  void rgbCombine(String destImageName, String redImageName, String greenImageName, String blueImageName) throws NoSuchElementException, IllegalAccessException;
 
 }

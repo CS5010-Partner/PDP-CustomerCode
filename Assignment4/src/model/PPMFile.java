@@ -8,16 +8,24 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class PPMFile implements IFile{
+  String filePath;
 
+  public PPMFile(String path) {
+    filePath = path;
+  }
+  public PPMFile()
+  {
+
+  }
   @Override
-  public String fileRead(String filePath) {
+  public String fileRead() {
     Scanner sc;
 
     try {
-      sc = new Scanner(new FileInputStream(filePath));
+      sc = new Scanner(new FileInputStream(this.filePath));
     }
     catch (FileNotFoundException e) {
-      System.out.println("File "+filePath+ " not found!");
+      System.out.println("File "+this.filePath+ " not found!");
       return null;
     }
     StringBuilder builder = new StringBuilder();
@@ -61,10 +69,11 @@ public class PPMFile implements IFile{
       }
     }
     return result.toString();
+//    return image;
   }
 
   @Override
-  public void fileWrite(String filePath, String content) {
+  public void fileWrite(String content) {
     File file = new File(filePath);
 
     try (FileOutputStream fos = new FileOutputStream(file)) {
@@ -75,6 +84,7 @@ public class PPMFile implements IFile{
       }
 
       // get the content in bytes
+
       byte[] contentInBytes = content.getBytes();
 
       fos.write(contentInBytes);
@@ -88,9 +98,9 @@ public class PPMFile implements IFile{
     }
   }
 
-  public static void main(String[] args) {
-    PPMFile obj=new PPMFile();
-    String content=(obj.fileRead("/Users/srinidhisunkara/Desktop/pdp/projects/Assignment4/PDP/Assignment4/code/Koala.ppm"));
-    obj.fileWrite("/Users/srinidhisunkara/Desktop/pdp/projects/Assignment4/PDP/Assignment4/code/KoalaNew.ppm",content);
-  }
+//  public static void main(String[] args) {
+//    PPMFile obj=new PPMFile();
+//    String content=(obj.fileRead("/Users/srinidhisunkara/Desktop/pdp/projects/Assignment4/PDP/Assignment4/code/Koala.ppm"));
+//    obj.fileWrite("/Users/srinidhisunkara/Desktop/pdp/projects/Assignment4/PDP/Assignment4/code/KoalaNew.ppm",content);
+//  }
 }

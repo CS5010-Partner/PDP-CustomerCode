@@ -1,14 +1,8 @@
 package model;
 
-import java.util.Arrays;
-
 public class ImageObj {
   private int[][][] image;
   private int width;
-
-  public int[][][] getImage() {
-    return image;
-  }
 
   private int height;
   private int maxValue;
@@ -31,24 +25,49 @@ public class ImageObj {
     return height;
   }
 
-  public ImageObj greyScaleRed(ImageObj obj)
+  public int[][][] getImage() {
+    return image;
+  }
+
+  public int getMaxValue() {
+    return maxValue;
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder s = new StringBuilder();
+    s.append("P3\n");
+    s.append(this.width+"\n");
+    s.append(this.height+"\n");
+    s.append(this.maxValue+"\n");
+    for (int i=0; i<this.height; i++) {
+      for (int j=0; j<this.width; j++) {
+        for (int k=0; k<3;k++) {
+          s.append(this.image[i][j][k] + "\n");
+        }
+      }
+    }
+    return s.toString();
+  }
+
+  public ImageObj greyScaleRed()
   {
     int[][][] image=new int[height][width][3];
     helperGrey(image,0);
-    return new ImageObj(image,this.height,this.width,this.maxValue);
+    return new ImageObj(image,this.width,this.height,this.maxValue);
   }
-  public ImageObj greyScaleGreen(ImageObj obj)
+  public ImageObj greyScaleGreen()
   {
     int[][][] image=new int[height][width][3];
     helperGrey(image,1);
-    return new ImageObj(image,this.height,this.width,this.maxValue);
+    return new ImageObj(image,this.width,this.height,this.maxValue);
   }
 
-  public ImageObj greyScaleBlue(ImageObj obj)
+  public ImageObj greyScaleBlue()
   {
     int[][][] image=new int[height][width][3];
     helperGrey(image,2);
-    return new ImageObj(image,this.height,this.width,this.maxValue);
+    return new ImageObj(image,this.width,this.height,this.maxValue);
   }
   private void helperGrey(int[][][] image,int index)
   {
@@ -57,13 +76,12 @@ public class ImageObj {
         for(int k=0;k<3;k++)
         {
           image[i][j][k]=this.image[i][j][index];
-          System.out.println(image[i][j][k]);
         }
       }
     }
   }
 
-  public ImageObj greyScaleValue(ImageObj obj)
+  public ImageObj greyScaleValue()
   {
     int[][][] image=new int[height][width][3];
     for (int i=0;i<height;i++) {
@@ -75,10 +93,10 @@ public class ImageObj {
         }
       }
     }
-    return new ImageObj(image,this.height,this.width,this.maxValue);
+    return new ImageObj(image,this.width,this.height,this.maxValue);
   }
 
-  public ImageObj greyScaleIntensity(ImageObj obj)
+  public ImageObj greyScaleIntensity()
   {
     int[][][] image=new int[height][width][3];
     for (int i=0;i<height;i++) {
@@ -90,10 +108,10 @@ public class ImageObj {
         }
       }
     }
-    return new ImageObj(image,this.height,this.width,this.maxValue);
+    return new ImageObj(image,this.width,this.height,this.maxValue);
   }
 
-  public ImageObj greyScaleLUMA(ImageObj obj)
+  public ImageObj greyScaleLUMA()
   {
     int[][][] image=new int[height][width][3];
     for (int i=0;i<height;i++) {
@@ -105,10 +123,10 @@ public class ImageObj {
         }
       }
     }
-    return new ImageObj(image,this.height,this.width,this.maxValue);
+    return new ImageObj(image,this.width,this.height,this.maxValue);
   }
 
-  public ImageObj brighten(ImageObj obj, int increment)
+  public ImageObj brighten(int increment)
   {
     int[][][] image=new int[height][width][3];
     for (int i=0;i<height;i++) {
@@ -122,59 +140,105 @@ public class ImageObj {
         }
       }
     }
-    return new ImageObj(image,this.height,this.width,this.maxValue);
+    return new ImageObj(image,this.width,this.height,this.maxValue);
   }
 
-  public ImageObj[] rgbSplit(ImageObj obj)
+  public ImageObj[] rgbSplit()
   {
     ImageObj[] result=new ImageObj[3];
-    result[0]=this.greyScaleRed(obj);
-    result[1]=this.greyScaleGreen(obj);
-    result[2]=this.greyScaleBlue(obj);
+    result[0]=this.greyScaleRed();
+    result[1]=this.greyScaleGreen();
+    result[2]=this.greyScaleBlue();
     return result;
   }
 
-  public ImageObj rgbCombine(ImageObj red,ImageObj green, ImageObj blue)
+  public ImageObj rgbCombine(ImageObj green, ImageObj blue)
   {
-    int[][][] image=new int[height][width][3];
+    int[][][] image=new int[this.height][this.width][3];
+
     for (int i=0;i<height;i++) {
       for (int j=0;j<width;j++) {
-
-        image[i][j][0]=red.getImage()[i][j][0];
-        image[i][j][1]=green.getImage()[i][j][1];
-        image[i][j][2]=blue.getImage()[i][j][2];
-
+        image[i][j][0] = this.image[i][j][0];
+        image[i][j][1] = green.getImage()[i][j][1];
+        image[i][j][2] = blue.getImage()[i][j][2];
       }
     }
-    return new ImageObj(image,this.height,this.width,this.maxValue);
+    return new ImageObj(image,this.width,this.height,this.maxValue);
+  }
+
+  private void swap(int[][][] imgArr, int i1, int j1, int i2, int j2) {
+
+    for (int k=0; k<3; k++) {
+      int temp = imgArr[i1][j1][k];
+      imgArr[i1][j1][k] = imgArr[i2][j2][k];
+      imgArr[i2][j2][k] = temp;
+    }
+
 
   }
-  public ImageObj _load(String filePath)
-  {
-    IFile obj=new PPMFile();
-    String content=obj.fileRead(filePath);
-    String[] token=content.split("\n");
-    int width=Integer.parseInt(token[1]);
-    int height=Integer.parseInt(token[2]);
-    int maxValue=Integer.parseInt(token[3]);
-    int t=4;
-    int[][][] image=new int[height][width][3];
-    for (int i=0;i<height;i++) {
-      for (int j=0;j<width;j++) {
-        for(int k=0;k<3;k++)
-        {
-          image[i][j][k]=Integer.parseInt(token[t]);
-          t++;
+
+  public ImageObj verticalFlip() {
+    int newImgArr[][][] = new int[this.height][this.width][3];
+
+    for (int i=0; i<this.height; i++) {
+      for (int j=0; j<this.width; j++) {
+        for (int k=0; k<3;k++) {
+            newImgArr[this.height - i - 1][j][k] = this.image[i][j][k];
         }
       }
     }
-    return new ImageObj(image,width,height,maxValue);
+    return new ImageObj(newImgArr, this.width, this.height, this.maxValue);
+  }
+  public ImageObj horizontalFlip() {
+    int newImgArr[][][] = new int[this.height][this.width][3];
+
+    for (int i=0; i<this.height; i++) {
+      for (int j=0; j<this.width; j++) {
+        for (int k=0; k<3;k++) {
+            newImgArr[i][this.width-j-1][k] = this.image[i][j][k];
+        }
+      }
+    }
+
+    return new ImageObj(newImgArr, this.width, this.height, this.maxValue);
   }
 
+//  public ImageObj _load(String filePath)
+//  {
+//    IFile obj=new PPMFile();
+//    String content=obj.fileRead(filePath);
+//    String[] token=content.split("\n");
+//    int width=Integer.parseInt(token[1]);
+//    int height=Integer.parseInt(token[2]);
+//    int maxValue=Integer.parseInt(token[3]);
+//    int t=4;
+//    int[][][] image=new int[height][width][3];
+//    for (int i=0;i<height;i++) {
+//      for (int j=0;j<width;j++) {
+//        for(int k=0;k<3;k++)
+//        {
+//          image[i][j][k]=Integer.parseInt(token[t]);
+//          t++;
+//        }
+//      }
+//    }
+//    return new ImageObj(image,width,height,maxValue);
+//  }
+
+
+
   public static void main(String[] args) {
-    ImageObj obj=new ImageObj();
-    obj=obj._load("/Users/srinidhisunkara/Desktop/pdp/projects/Assignment4/PDP/Assignment4/code/Koala.ppm");
-//    System.out.println((obj.toString()).substring(obj.toString().length()-20));
-    System.out.println((obj.greyScaleValue(obj)));
+//    ImageObj obj=new ImageObj();
+////    obj=obj._load("/Users/srinidhisunkara/Desktop/pdp/projects/Assignment4/PDP/Assignment4/code/Koala.ppm");
+////    System.out.println((obj.toString()).substring(obj.toString().length()-20));
+////    System.out.println((obj.greyScaleValue(obj)));
+////    ImageObj red=new ImageObj();
+////    red=obj._load("/Users/srinidhisunkara/Desktop/pdp/projects/Assignment4/PDP/Assignment4/code/KoalaNewGreyRed.ppm");
+////    ImageObj green=new ImageObj();
+////    green=obj._load("/Users/srinidhisunkara/Desktop/pdp/projects/Assignment4/PDP/Assignment4/code/KoalaNewGreyGreen.ppm");
+////    ImageObj blue=new ImageObj();
+////    blue=obj._load("/Users/srinidhisunkara/Desktop/pdp/projects/Assignment4/PDP/Assignment4/code/KoalaNewGreyBlue.ppm");
+//    PPMFile p=new PPMFile();
+//    p.fileWrite("/Users/srinidhisunkara/Desktop/pdp/projects/Assignment4/PDP/Assignment4/code/KoalaNewGreyHorizontalFlip.ppm",obj.horizontalFlip().toString());
   }
 }
