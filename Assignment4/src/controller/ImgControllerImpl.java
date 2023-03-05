@@ -27,6 +27,11 @@ public class ImgControllerImpl implements ImgController {
     return input;
   }
 
+  /***
+   * Whassu[
+   * @throws IllegalAccessException
+   */
+
   @Override
   public void go() throws IllegalAccessException {
     Scanner sc = new Scanner(this.in);
