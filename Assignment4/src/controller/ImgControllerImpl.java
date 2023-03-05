@@ -2,18 +2,16 @@ package controller;
 
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.HashMap;
 import java.util.Scanner;
-import java.util.SortedMap;
 import model.IFile;
 import model.IImage;
 import model.PPMFile;
 
-public class ImgControllerImpl implements ImgController{
+public class ImgControllerImpl implements ImgController {
+
   private IImage model;
   private InputStream in;
   private OutputStream out;
-
 
   public ImgControllerImpl(IImage model, InputStream in, OutputStream out) {
     this.model = model;
@@ -21,166 +19,162 @@ public class ImgControllerImpl implements ImgController{
     this.out = out;
   }
 
+  private String getInput(Scanner sc) throws IllegalStateException {
+    String input = sc.next();
+    if (input.equals("#")) {
+      throw new IllegalStateException("Quit command has been entered.");
+    }
+    return input;
+  }
 
+  @Override
   public void go() throws IllegalAccessException {
     Scanner sc = new Scanner(this.in);
     System.out.println("Enter the command");
-    boolean flag=true;
-    while (flag) {
-      String cmd=sc.next();
-      switch (cmd) {
-        case "load":
-          flag=loadHelper(sc);
-          break;
-        case "save":
-          flag=saveHelper(sc);
-          break;
-        case "greyscale":
-          flag=greyHelper(sc);
-          break;
-        case "brighten":
-          flag=brightenHelper(sc);
-          break;
-        case "vertical-flip":
-          flag=verticalFlipHelper(sc);
-          break;
-        case "horizontal-flip":
-          flag=horizontalFlipHelper(sc);
-          break;
-        case "rgb-split":
-          flag=rgbSplitHelper(sc);
-          break;
-        case "rgb-combine":
-          flag=rgbCombineHelper(sc);
-          break;
-        case "#":
-          flag=false;
-          break;
-        default:
-          System.out.println("Please Enter A Valid Input");
+    try {
+      while (true) {
+        String cmd = getInput(sc);
+        switch (cmd) {
+          case "load":
+            loadHelper(sc);
+            break;
+
+          case "save":
+            saveHelper(sc);
+            break;
+
+          case "greyscale":
+            greyHelper(sc);
+            break;
+
+          case "brighten":
+            brightenHelper(sc);
+            break;
+
+          case "vertical-flip":
+            verticalFlipHelper(sc);
+            break;
+
+          case "horizontal-flip":
+            horizontalFlipHelper(sc);
+            break;
+
+          case "rgb-split":
+            rgbSplitHelper(sc);
+            break;
+
+          case "rgb-combine":
+            rgbCombineHelper(sc);
+            break;
+          case "#":
+            rgbCombineHelper(sc);
+            break;
+          default:
+            System.out.println("Please Enter A Valid Input");
+        }
       }
+    } catch (IllegalStateException e) {
+      System.out.println("Program exited successfully");
     }
 
-  }
-  boolean loadHelper(Scanner sc) throws IllegalAccessException {
-    String imagePath=sc.next();
-    if(imagePath.equals("#")) return false;
-    String imageName=sc.next();
-    if(imageName.equals("#")) return false;
-    model.load(imagePathHelper(imagePath),imageName);
-    return true;
+
   }
 
-  boolean saveHelper(Scanner sc)
-  {
-    String imagePath=sc.next();
-    if(imagePath.equals("#")) return false;
-    String imageName=sc.next();
-    if(imageName.equals("#")) return false;
-    model.save(imagePathHelper(imagePath),imageName);
-    return true;
+  void loadHelper(Scanner sc) throws IllegalAccessException {
+    String imagePath = sc.next();
+    String imageName = sc.next();
+    model.load(imagePathHelper(imagePath), imageName);
   }
 
-  boolean brightenHelper(Scanner sc) throws IllegalAccessException {
-    int in=0;
-    while (true)
+  void saveHelper(Scanner sc) {
+    String imagePath = getInput(sc);
+    String imageName = getInput(sc);
+    model.save(imagePathHelper(imagePath), imageName);
+  }
+
+  void brightenHelper(Scanner sc) throws IllegalAccessException {
+    int in;
+    while (true) {
       try {
-        String increment = sc.next();
-        if (increment.equals("#"))
-          return false;
+        String increment = getInput(sc);
         in = Integer.parseInt(increment);
         break;
       } catch (NumberFormatException e) {
         System.out.println("Please Enter A Valid Integer");
       }
-    String sourceName=sc.next();
-    if(sourceName.equals("#")) return false;
-    String destName=sc.next();
-    if(destName.equals("#")) return false;
-    model.brighten(in,sourceName,destName);
-    return true;
-  }
-  boolean verticalFlipHelper(Scanner sc) throws IllegalAccessException {
-    String sourceName=sc.next();
-    if(sourceName.equals("#")) return false;
-    String destName=sc.next();
-    if(destName.equals("#")) return false;
-    model.verticalFlip(sourceName,destName);
-    return true;
+    }
+    String sourceName = getInput(sc);
+    String destName = getInput(sc);
+    model.brighten(in, sourceName, destName);
   }
 
-  boolean horizontalFlipHelper(Scanner sc) throws IllegalAccessException {
-    String sourceName=sc.next();
-    if(sourceName.equals("#")) return false;
-    String destName=sc.next();
-    if(destName.equals("#")) return false;
-    model.horizontalFlip(sourceName,destName);
-    return true;
+  void verticalFlipHelper(Scanner sc) throws IllegalAccessException {
+    String sourceName = getInput(sc);
+    String destName = getInput(sc);
+    model.verticalFlip(sourceName, destName);
   }
 
-  boolean rgbSplitHelper(Scanner sc) throws IllegalAccessException {
-    String imageName=sc.next();
-    if(imageName.equals("#")) return false;
-    String redImg=sc.next();
-    if(redImg.equals("#")) return false;
-    String greenImg=sc.next();
-    if(greenImg.equals("#")) return false;
-    String blueImg=sc.next();
-    if(blueImg.equals("#")) return false;
-    model.rgbSplit(imageName,redImg,greenImg,blueImg);
-    return true;
+  void horizontalFlipHelper(Scanner sc) throws IllegalAccessException {
+    String sourceName = getInput(sc);
+    String destName = getInput(sc);
+    model.horizontalFlip(sourceName, destName);
   }
 
-  boolean rgbCombineHelper(Scanner sc) throws IllegalAccessException {
-    String imageName=sc.next();
-    if(imageName.equals("#")) return false;
-    String redImg=sc.next();
-    if(redImg.equals("#")) return false;
-    String greenImg=sc.next();
-    if(greenImg.equals("#")) return false;
-    String blueImg=sc.next();
-    if(blueImg.equals("#")) return false;
-    model.rgbCombine(imageName,redImg,greenImg,blueImg);
-    return true;
+  void rgbSplitHelper(Scanner sc) throws IllegalAccessException {
+    String imageName = getInput(sc);
+    String redImg = getInput(sc);
+    String greenImg = getInput(sc);
+    String blueImg = getInput(sc);
+    model.rgbSplit(imageName, redImg, greenImg, blueImg);
+  }
+
+  void rgbCombineHelper(Scanner sc) throws IllegalAccessException {
+    String imageName = getInput(sc);
+    String redImg = getInput(sc);
+    String greenImg = getInput(sc);
+    String blueImg = getInput(sc);
+    model.rgbCombine(imageName, redImg, greenImg, blueImg);
   }
 
 
-  boolean greyHelper(Scanner sc) throws IllegalAccessException {
-    String value=sc.next().toLowerCase();
-    if (value.equals("#")) return false;
+  void greyHelper(Scanner sc) throws IllegalAccessException {
+    String value = getInput(sc).toLowerCase();
+    String sourceName = getInput(sc);
+    String destName = getInput(sc);
 
-//    if(value.equals("#") ||(!value.equals("red")&&!value.equals("green")&&!value.equals("blue"))) return false;
-    String sourceName=sc.next();
-    if(sourceName.equals("#")) return false;
-    String destName=sc.next();
-    if(destName.equals("#")) return false;
-    switch (value.toLowerCase()){
+    switch (value.toLowerCase()) {
       case "red":
-        model.greyScaleRed(sourceName,destName);
+        model.greyScaleRed(sourceName, destName);
         break;
+
       case "green":
-        model.greyScaleGreen(sourceName,destName);
+        model.greyScaleGreen(sourceName, destName);
         break;
+
       case "blue":
-        model.greyScaleBlue(sourceName,destName);
+        model.greyScaleBlue(sourceName, destName);
         break;
+
       case "value":
-        model.greyScaleValue(sourceName,destName);
+        model.greyScaleValue(sourceName, destName);
         break;
+
       case "intensity":
-        model.greyScaleIntensity(sourceName,destName);
+        model.greyScaleIntensity(sourceName, destName);
         break;
+
       case "luma":
-        model.greyScaleLuma(sourceName,destName);
+        model.greyScaleLuma(sourceName, destName);
         break;
+
       default:
         System.out.println("Please Enter the Command Again");
     }
-    return true;
   }
 
-  IFile imagePathHelper(String imagePath)
-  {
+  IFile imagePathHelper(String imagePath) {
     return new PPMFile(imagePath);
   }
 }
+
+// 
