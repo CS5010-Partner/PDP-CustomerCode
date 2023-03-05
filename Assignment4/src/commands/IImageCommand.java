@@ -1,5 +1,5 @@
 package commands;
 
 public interface IImageCommand {
-  void execute();
+  void execute() throws IllegalAccessException;
 }

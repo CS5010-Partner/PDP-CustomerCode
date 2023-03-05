@@ -1,20 +1,29 @@
 package controller;
 
+import commands.Brighten;
+import commands.GreyScale;
+import commands.HorizontalFlip;
+import commands.Load;
+import commands.RGBCombine;
+import commands.RGBSplit;
+import commands.Save;
+import commands.VerticalFlip;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Scanner;
-import model.IFile;
 import model.IImage;
-import model.PPMFile;
+import view.IView;
 
 public class ImgControllerImpl implements ImgController {
 
+  private final IView view;
   private IImage model;
   private InputStream in;
   private OutputStream out;
 
-  public ImgControllerImpl(IImage model, InputStream in, OutputStream out) {
+  public ImgControllerImpl(IImage model, IView view, InputStream in, OutputStream out) {
     this.model = model;
+    this.view = view;
     this.in = in;
     this.out = out;
   }
@@ -36,38 +45,47 @@ public class ImgControllerImpl implements ImgController {
         String cmd = getInput(sc);
         switch (cmd) {
           case "load":
-            loadHelper(sc);
+            Load load = new Load(model, view, sc);
+            load.execute();
+
             break;
 
           case "save":
-            saveHelper(sc);
+            Save save = new Save(model, view, sc);
+            save.execute();
             break;
 
           case "greyscale":
-            greyHelper(sc);
+            GreyScale greyScale = new GreyScale(model, view, sc);
+            greyScale.execute();
             break;
 
           case "brighten":
-            brightenHelper(sc);
+            Brighten brighten = new Brighten(model, view, sc);
+            brighten.execute();
             break;
 
           case "vertical-flip":
-            verticalFlipHelper(sc);
+            VerticalFlip verticalFlip = new VerticalFlip(model, view, sc);
+            verticalFlip.execute();
             break;
 
           case "horizontal-flip":
-            horizontalFlipHelper(sc);
+            HorizontalFlip horizontalFlip = new HorizontalFlip(model, view, sc);
+            horizontalFlip.execute();
             break;
 
           case "rgb-split":
-            rgbSplitHelper(sc);
+            RGBSplit rgbSplit = new RGBSplit(model, view, sc);
+            rgbSplit.execute();
             break;
 
           case "rgb-combine":
-            rgbCombineHelper(sc);
+            RGBCombine rgbCombine = new RGBCombine(model, view, sc);
+            rgbCombine.execute();
             break;
           case "#":
-            rgbCombineHelper(sc);
+            System.out.println("Program exited successfully");
             break;
           default:
             System.out.println("Please Enter A Valid Input");
@@ -79,102 +97,4 @@ public class ImgControllerImpl implements ImgController {
 
 
   }
-
-  void loadHelper(Scanner sc) throws IllegalAccessException {
-    String imagePath = sc.next();
-    String imageName = sc.next();
-    model.load(imagePathHelper(imagePath), imageName);
-  }
-
-  void saveHelper(Scanner sc) {
-    String imagePath = getInput(sc);
-    String imageName = getInput(sc);
-    model.save(imagePathHelper(imagePath), imageName);
-  }
-
-  void brightenHelper(Scanner sc) throws IllegalAccessException {
-    int in;
-    while (true) {
-      try {
-        String increment = getInput(sc);
-        in = Integer.parseInt(increment);
-        break;
-      } catch (NumberFormatException e) {
-        System.out.println("Please Enter A Valid Integer");
-      }
-    }
-    String sourceName = getInput(sc);
-    String destName = getInput(sc);
-    model.brighten(in, sourceName, destName);
-  }
-
-  void verticalFlipHelper(Scanner sc) throws IllegalAccessException {
-    String sourceName = getInput(sc);
-    String destName = getInput(sc);
-    model.verticalFlip(sourceName, destName);
-  }
-
-  void horizontalFlipHelper(Scanner sc) throws IllegalAccessException {
-    String sourceName = getInput(sc);
-    String destName = getInput(sc);
-    model.horizontalFlip(sourceName, destName);
-  }
-
-  void rgbSplitHelper(Scanner sc) throws IllegalAccessException {
-    String imageName = getInput(sc);
-    String redImg = getInput(sc);
-    String greenImg = getInput(sc);
-    String blueImg = getInput(sc);
-    model.rgbSplit(imageName, redImg, greenImg, blueImg);
-  }
-
-  void rgbCombineHelper(Scanner sc) throws IllegalAccessException {
-    String imageName = getInput(sc);
-    String redImg = getInput(sc);
-    String greenImg = getInput(sc);
-    String blueImg = getInput(sc);
-    model.rgbCombine(imageName, redImg, greenImg, blueImg);
-  }
-
-
-  void greyHelper(Scanner sc) throws IllegalAccessException {
-    String value = getInput(sc).toLowerCase();
-    String sourceName = getInput(sc);
-    String destName = getInput(sc);
-
-    switch (value.toLowerCase()) {
-      case "red":
-        model.greyScaleRed(sourceName, destName);
-        break;
-
-      case "green":
-        model.greyScaleGreen(sourceName, destName);
-        break;
-
-      case "blue":
-        model.greyScaleBlue(sourceName, destName);
-        break;
-
-      case "value":
-        model.greyScaleValue(sourceName, destName);
-        break;
-
-      case "intensity":
-        model.greyScaleIntensity(sourceName, destName);
-        break;
-
-      case "luma":
-        model.greyScaleLuma(sourceName, destName);
-        break;
-
-      default:
-        System.out.println("Please Enter the Command Again");
-    }
-  }
-
-  IFile imagePathHelper(String imagePath) {
-    return new PPMFile(imagePath);
-  }
 }
-
-// 

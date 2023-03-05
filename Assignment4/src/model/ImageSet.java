@@ -49,14 +49,12 @@ public class ImageSet implements IImage {
       }
     }
 
-//    System.out.println("load height : "+ image.length);
-//    System.out.println("load width : "+ image[0].length);
-
     map.put(imageName, new ImageObj(image,width,height,maxValue));
   }
 
   @Override
-  public void save(IFile format, String imageName) {
+  public void save(IFile format, String imageName) throws IllegalAccessException {
+    checkName(new String[]{imageName}, new String[]{});
     format.fileWrite(map.get(imageName).toString());
   }
 
