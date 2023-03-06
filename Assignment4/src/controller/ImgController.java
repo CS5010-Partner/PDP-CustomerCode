@@ -1,5 +1,5 @@
 package controller;
 
 public interface ImgController {
-  void go() throws IllegalAccessException;
+  void go() throws IllegalAccessException, CloseCmdLineException;
 }

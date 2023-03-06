@@ -18,15 +18,14 @@ public class PPMFile implements IFile{
 
   }
   @Override
-  public String fileRead() {
+  public String fileRead() throws FileHandlingException {
     Scanner sc;
 
     try {
       sc = new Scanner(new FileInputStream(this.filePath));
     }
     catch (FileNotFoundException e) {
-      System.out.println("File "+this.filePath+ " not found!");
-      return null;
+      throw new FileHandlingException("File " + this.filePath + " not found!");
     }
     StringBuilder builder = new StringBuilder();
     while (sc.hasNextLine()) {
@@ -41,11 +40,11 @@ public class PPMFile implements IFile{
 
     token = sc.next();
     if (!token.equals("P3")) {
-      System.out.println("Invalid PPM file: plain RAW file should begin with P3");
-      return null;
+      throw new FileHandlingException("Invalid PPM file: plain RAW file should begin with P3");
     }
     StringBuilder result=new StringBuilder();
     result.append("P3\n");
+
     int width = sc.nextInt();
     result.append(width+"\n");
     int height = sc.nextInt();
@@ -76,10 +75,6 @@ public class PPMFile implements IFile{
 
       fos.write(contentInBytes);
       fos.flush();
-      fos.close();
-
-      System.out.println("Done");
-
     } catch (IOException e) {
       e.printStackTrace();
     }

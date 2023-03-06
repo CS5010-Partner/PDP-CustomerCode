@@ -1,9 +1,10 @@
 package model;
 
+import java.nio.file.NoSuchFileException;
 import java.util.NoSuchElementException;
 
 public interface IImage {
-  void load(IFile imagePath,String imageName) throws IllegalAccessException;
+  void load(IFile imagePath,String imageName) throws IllegalAccessException, FileHandlingException;
   void save(IFile imagePath,String imageName) throws IllegalAccessException;
   void greyScaleRed(String imageName, String desImageName)
       throws NoSuchElementException, IllegalAccessException;
