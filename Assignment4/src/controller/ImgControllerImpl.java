@@ -79,7 +79,6 @@ public class ImgControllerImpl implements ImgController {
             RGBSplit rgbSplit = new RGBSplit(model, view, sc);
             rgbSplit.execute();
             break;
-
           case "rgb-combine":
             RGBCombine rgbCombine = new RGBCombine(model, view, sc);
             rgbCombine.execute();

@@ -29,15 +29,12 @@ public class PPMFile implements IFile{
       return null;
     }
     StringBuilder builder = new StringBuilder();
-    //read the file line by line, and populate a string. This will throw away any comment lines
     while (sc.hasNextLine()) {
       String s = sc.nextLine();
       if (s.charAt(0)!='#') {
         builder.append(s+System.lineSeparator());
       }
     }
-
-    //now set up the scanner to read from the string we just built
     sc = new Scanner(builder.toString());
 
     String token;
@@ -51,14 +48,10 @@ public class PPMFile implements IFile{
     result.append("P3\n");
     int width = sc.nextInt();
     result.append(width+"\n");
-    
-//    result.append("Width of image: "+width+"\n");
     int height = sc.nextInt();
     result.append(height+"\n");
-//    result.append("Height of image: "+height+"\n");
     int maxValue = sc.nextInt();
     result.append(maxValue+"\n");
-//    result.append("Max Value: "+maxValue+"\n");
 
     for (int i=0;i<height;i++) {
       for (int j=0;j<width;j++) {
@@ -66,11 +59,9 @@ public class PPMFile implements IFile{
         int g = sc.nextInt();
         int b = sc.nextInt();
         result.append(r+"\n"+g+"\n"+b+"\n");
-//        result.append("("+j+","+i+"): ("+ r+","+g+","+b+")\n");
       }
     }
     return result.toString();
-//    return image;
   }
 
   @Override
@@ -78,14 +69,9 @@ public class PPMFile implements IFile{
     File file = new File(filePath);
 
     try (FileOutputStream fos = new FileOutputStream(file)) {
-
-      // if file doesn't exists, then create it
       if (!file.exists()) {
         file.createNewFile();
       }
-
-      // get the content in bytes
-
       byte[] contentInBytes = content.getBytes();
 
       fos.write(contentInBytes);
@@ -99,9 +85,4 @@ public class PPMFile implements IFile{
     }
   }
 
-//  public static void main(String[] args) {
-//    PPMFile obj=new PPMFile();
-//    String content=(obj.fileRead("/Users/srinidhisunkara/Desktop/pdp/projects/Assignment4/PDP/Assignment4/code/Koala.ppm"));
-//    obj.fileWrite("/Users/srinidhisunkara/Desktop/pdp/projects/Assignment4/PDP/Assignment4/code/KoalaNew.ppm",content);
-//  }
 }
