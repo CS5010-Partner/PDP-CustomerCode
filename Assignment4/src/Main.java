@@ -1,6 +1,15 @@
+import controller.CloseCmdLineException;
+import controller.ImgControllerImpl;
+import model.ImageSet;
+import view.IView;
+import view.View;
+
 public class Main {
 
-  public static void main(String[] args) {
-    System.out.println("Hello world!");
+  public static void main(String[] args) throws CloseCmdLineException {
+    ImageSet model=new ImageSet();
+    IView view=new View();
+    ImgControllerImpl controller=new ImgControllerImpl(model, view, System.in,System.out);
+    controller.go();
   }
 }

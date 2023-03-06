@@ -1,4 +1,5 @@
 package view;
 
-public interface View {
+public class View implements IView{
+
 }
