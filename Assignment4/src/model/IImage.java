@@ -4,7 +4,7 @@ import java.util.NoSuchElementException;
 
 public interface IImage {
   void load(IFile imagePath,String imageName) throws IllegalAccessException;
-  void save(IFile imagePath,String imageName);
+  void save(IFile imagePath,String imageName) throws IllegalAccessException;
   void greyScaleRed(String imageName, String desImageName)
       throws NoSuchElementException, IllegalAccessException;
   void greyScaleGreen(String imageName, String desImageName) throws NoSuchElementException, IllegalAccessException;
