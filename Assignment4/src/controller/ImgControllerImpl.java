@@ -14,10 +14,6 @@ import java.util.Scanner;
 import model.IImage;
 import view.IView;
 
-/**
- * 
- */
-
 public class ImgControllerImpl implements ImgController {
 
   private final IView view;

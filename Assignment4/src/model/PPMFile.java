@@ -51,6 +51,7 @@ public class PPMFile implements IFile{
     result.append("P3\n");
     int width = sc.nextInt();
     result.append(width+"\n");
+    
 //    result.append("Width of image: "+width+"\n");
     int height = sc.nextInt();
     result.append(height+"\n");
