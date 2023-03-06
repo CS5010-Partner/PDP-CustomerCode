@@ -107,16 +107,16 @@ public class ImgControllerImpl implements ImgController {
   void brightenHelper(Scanner sc)
       throws CloseCmdLineException, IllegalAccessException, WrongCommandException {
     int in;
-
-      try {
-        String increment = getInput(sc);
-        in = Integer.parseInt(increment);
-      } catch (NumberFormatException e) {
-        throw new WrongCommandException("Please enter a valid Integer for increment value.");
-      }
-
+    String increment = getInput(sc);
     String sourceName = getInput(sc);
     String destName = getInput(sc);
+
+    try {
+      in = Integer.parseInt(increment);
+    } catch (NumberFormatException e) {
+      throw new WrongCommandException("Please enter a valid Integer for increment value.");
+    }
+
     model.brighten(in, sourceName, destName);
   }
 
