@@ -16,6 +16,7 @@ import java.util.Scanner;
 import model.FileHandlingException;
 import model.IFile;
 import model.IImage;
+import model.PPMFile;
 import view.IView;
 
 public class ImgControllerImpl implements ImgController {
@@ -120,101 +121,5 @@ public class ImgControllerImpl implements ImgController {
     }
   }
 
-  void loadHelper(Scanner sc)
-      throws CloseCmdLineException, IllegalAccessException, FileHandlingException {
-    String imagePath = sc.next();
-    String imageName = sc.next();
-    model.load(imagePathHelper(imagePath), imageName);
-  }
 
-  void saveHelper(Scanner sc) throws IllegalAccessException, CloseCmdLineException {
-    String imagePath = getInput(sc);
-    String imageName = getInput(sc);
-    model.save(imagePathHelper(imagePath), imageName);
-  }
-
-  void brightenHelper(Scanner sc)
-      throws CloseCmdLineException, IllegalAccessException, WrongCommandException {
-    int in;
-    String increment = getInput(sc);
-    String sourceName = getInput(sc);
-    String destName = getInput(sc);
-
-    try {
-      in = Integer.parseInt(increment);
-    } catch (NumberFormatException e) {
-      throw new WrongCommandException("Please enter a valid Integer for increment value.");
-    }
-
-    model.brighten(in, sourceName, destName);
-  }
-
-  void verticalFlipHelper(Scanner sc) throws CloseCmdLineException, IllegalAccessException {
-    String sourceName = getInput(sc);
-    String destName = getInput(sc);
-    model.verticalFlip(sourceName, destName);
-  }
-
-  void horizontalFlipHelper(Scanner sc) throws CloseCmdLineException, IllegalAccessException {
-    String sourceName = getInput(sc);
-    String destName = getInput(sc);
-    model.horizontalFlip(sourceName, destName);
-  }
-
-  void rgbSplitHelper(Scanner sc) throws CloseCmdLineException, IllegalAccessException {
-    String imageName = getInput(sc);
-    String redImg = getInput(sc);
-    String greenImg = getInput(sc);
-    String blueImg = getInput(sc);
-    model.rgbSplit(imageName, redImg, greenImg, blueImg);
-  }
-
-  void rgbCombineHelper(Scanner sc) throws CloseCmdLineException, IllegalAccessException {
-    String imageName = getInput(sc);
-    String redImg = getInput(sc);
-    String greenImg = getInput(sc);
-    String blueImg = getInput(sc);
-    model.rgbCombine(imageName, redImg, greenImg, blueImg);
-  }
-
-
-  void greyHelper(Scanner sc)
-      throws CloseCmdLineException, IllegalAccessException, NoSuchElementException, WrongCommandException {
-    String value = getInput(sc).toLowerCase();
-    String sourceName = getInput(sc);
-    String destName = getInput(sc);
-
-    switch (value) {
-      case "red":
-        model.greyScaleRed(sourceName, destName);
-        break;
-
-      case "green":
-        model.greyScaleGreen(sourceName, destName);
-        break;
-
-      case "blue":
-        model.greyScaleBlue(sourceName, destName);
-        break;
-
-      case "value":
-        model.greyScaleValue(sourceName, destName);
-        break;
-
-      case "intensity":
-        model.greyScaleIntensity(sourceName, destName);
-        break;
-
-      case "luma":
-        model.greyScaleLuma(sourceName, destName);
-        break;
-
-      default:
-        throw new WrongCommandException("Please enter a valid metric for greyscale conversion.");
-    }
-  }
-
-  IFile imagePathHelper(String imagePath) {
-    return new PPMFile(imagePath);
-  }
 }

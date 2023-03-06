@@ -1,5 +1,6 @@
 package commands;
 
+import controller.WrongCommandException;
 import java.io.InputStream;
 import java.util.Scanner;
 import model.IImage;
@@ -12,7 +13,7 @@ public class GreyScale extends ACommand{
   }
 
   @Override
-  public void execute() throws IllegalAccessException {
+  public void execute() throws IllegalAccessException,WrongCommandException {
     String value = getInput(in).toLowerCase();
     String sourceName = getInput(in);
     String destName = getInput(in);
@@ -43,7 +44,7 @@ public class GreyScale extends ACommand{
         break;
 
       default:
-        System.out.println("Please Enter the Command Again");
+        throw new WrongCommandException("Please enter a valid metric for greyscale conversion.");
     }
   }
 }
