@@ -203,42 +203,4 @@ public class ImageObj {
     return new ImageObj(newImgArr, this.width, this.height, this.maxValue);
   }
 
-//  public ImageObj _load(String filePath)
-//  {
-//    IFile obj=new PPMFile();
-//    String content=obj.fileRead(filePath);
-//    String[] token=content.split("\n");
-//    int width=Integer.parseInt(token[1]);
-//    int height=Integer.parseInt(token[2]);
-//    int maxValue=Integer.parseInt(token[3]);
-//    int t=4;
-//    int[][][] image=new int[height][width][3];
-//    for (int i=0;i<height;i++) {
-//      for (int j=0;j<width;j++) {
-//        for(int k=0;k<3;k++)
-//        {
-//          image[i][j][k]=Integer.parseInt(token[t]);
-//          t++;
-//        }
-//      }
-//    }
-//    return new ImageObj(image,width,height,maxValue);
-//  }
-
-
-
-  public static void main(String[] args) {
-//    ImageObj obj=new ImageObj();
-////    obj=obj._load("/Users/srinidhisunkara/Desktop/pdp/projects/Assignment4/PDP/Assignment4/code/Koala.ppm");
-////    System.out.println((obj.toString()).substring(obj.toString().length()-20));
-////    System.out.println((obj.greyScaleValue(obj)));
-////    ImageObj red=new ImageObj();
-////    red=obj._load("/Users/srinidhisunkara/Desktop/pdp/projects/Assignment4/PDP/Assignment4/code/KoalaNewGreyRed.ppm");
-////    ImageObj green=new ImageObj();
-////    green=obj._load("/Users/srinidhisunkara/Desktop/pdp/projects/Assignment4/PDP/Assignment4/code/KoalaNewGreyGreen.ppm");
-////    ImageObj blue=new ImageObj();
-////    blue=obj._load("/Users/srinidhisunkara/Desktop/pdp/projects/Assignment4/PDP/Assignment4/code/KoalaNewGreyBlue.ppm");
-//    PPMFile p=new PPMFile();
-//    p.fileWrite("/Users/srinidhisunkara/Desktop/pdp/projects/Assignment4/PDP/Assignment4/code/KoalaNewGreyHorizontalFlip.ppm",obj.horizontalFlip().toString());
-  }
 }
