@@ -95,9 +95,6 @@ public class ImgControllerImpl extends Helper implements ImgController {
             System.out.println("Image combined successfully.");
             break;
 
-//          case "#":
-//            System.out.println("Program exited successfully");
-//            break;
           default:
             System.out.println("Please Enter A Valid Input");
         }
