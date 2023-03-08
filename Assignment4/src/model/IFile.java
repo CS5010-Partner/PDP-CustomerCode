@@ -1,6 +1,6 @@
 package model;
 
-import java.nio.file.NoSuchFileException;
+import helper.FileHandlingException;
 
 public interface IFile {
   String fileRead() throws FileHandlingException;

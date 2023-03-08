@@ -1,5 +1,6 @@
 package commands;
 
+import helper.CloseCmdLineException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,7 +15,7 @@ public class VerticalFlip extends ACommand{
   }
 
   @Override
-  public void execute() throws IllegalAccessException, IOException {
+  public void execute() throws IllegalAccessException, IOException, CloseCmdLineException {
     String sourceName = getInput(in);
     String destName = getInput(in);
     model.verticalFlip(sourceName, destName);

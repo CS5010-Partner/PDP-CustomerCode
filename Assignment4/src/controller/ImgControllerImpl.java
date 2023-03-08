@@ -8,21 +8,18 @@ import commands.RGBCombine;
 import commands.RGBSplit;
 import commands.Save;
 import commands.VerticalFlip;
+import helper.CloseCmdLineException;
+import helper.Helper;
+import helper.WrongCommandException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.file.NoSuchFileException;
 import java.util.NoSuchElementException;
-import java.util.Scanner;
-import model.FileHandlingException;
-import model.IFile;
+import helper.FileHandlingException;
 import model.IImage;
-import model.PPMFile;
 import view.IView;
 
-public class ImgControllerImpl implements ImgController {
+public class ImgControllerImpl extends Helper implements ImgController {
 
   private final IView view;
   private IImage model;
@@ -36,18 +33,10 @@ public class ImgControllerImpl implements ImgController {
     this.out = out;
   }
 
-  private String getInput(BufferedReader sc) throws CloseCmdLineException, IOException {
-    String input = sc.readLine();
-    if (input.equals("#")) {
-      throw new CloseCmdLineException("Quit command has been entered.");
-    }
-    return input;
-  }
-
   @Override
   public void go() {
-//    BufferedReader sc = new BufferedReader(this.in);
     System.out.println("Enter the command");
+
     while (true) {
       try {
         String cmd = getInput(in);
@@ -56,7 +45,6 @@ public class ImgControllerImpl implements ImgController {
             Load load = new Load(model, view, in);
             load.execute();
             System.out.println("Image loaded sucessfully.");
-
 
             break;
 
@@ -105,12 +93,12 @@ public class ImgControllerImpl implements ImgController {
             RGBCombine rgbCombine = new RGBCombine(model, view, in);
             rgbCombine.execute();
             System.out.println("Image combined successfully.");
+            break;
 
-            break;
-          case "#":
-            System.out.println("Program exited successfully");
-            break;
-            default:
+//          case "#":
+//            System.out.println("Program exited successfully");
+//            break;
+          default:
             System.out.println("Please Enter A Valid Input");
         }
 
@@ -120,8 +108,7 @@ public class ImgControllerImpl implements ImgController {
       } catch (IllegalAccessException | NoSuchElementException | WrongCommandException |
                FileHandlingException e) {
         System.out.println(e.getMessage() + " Please enter the command again.");
-      }catch(IOException e)
-      {
+      } catch (IOException e) {
         System.out.println();
       }
     }

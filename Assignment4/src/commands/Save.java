@@ -1,5 +1,6 @@
 package commands;
 
+import helper.CloseCmdLineException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,8 +15,7 @@ public class Save extends ACommand{
   }
 
   @Override
-  public void execute() throws IllegalAccessException, IOException {
-
+  public void execute() throws IllegalAccessException, IOException, CloseCmdLineException {
     String imagePath = this.getInput(in);
     String imageName = this.getInput(in);
     model.save(imagePathHelper(imagePath), imageName);

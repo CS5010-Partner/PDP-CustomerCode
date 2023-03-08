@@ -1,6 +1,6 @@
 package model;
 
-import java.nio.file.NoSuchFileException;
+import helper.FileHandlingException;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 

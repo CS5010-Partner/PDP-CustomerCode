@@ -1,5 +1,6 @@
 package commands;
 
+import helper.CloseCmdLineException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,7 +16,7 @@ public class Brighten extends ACommand{
   }
 
   @Override
-  public void execute() throws IllegalAccessException, IOException {
+  public void execute() throws IllegalAccessException, IOException, CloseCmdLineException {
     int incrementValue=0;
     while (true) {
       try {
