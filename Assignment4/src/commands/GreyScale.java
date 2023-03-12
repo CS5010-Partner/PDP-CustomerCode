@@ -1,6 +1,7 @@
 package commands;
 
 import helper.CloseCmdLineException;
+import helper.ImageNameAlreadyExistsException;
 import helper.WrongCommandException;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,7 +15,8 @@ public class GreyScale extends ACommand{
   }
 
   @Override
-  public void execute() throws IllegalAccessException, WrongCommandException, IOException, CloseCmdLineException {
+  public void execute()
+      throws WrongCommandException, IOException, CloseCmdLineException, ImageNameAlreadyExistsException {
     String value = getInput(in).toLowerCase();
     String sourceName = getInput(in);
     String destName = getInput(in);

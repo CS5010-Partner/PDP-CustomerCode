@@ -1,6 +1,7 @@
 package commands;
 
 import helper.CloseCmdLineException;
+import helper.ImageNameAlreadyExistsException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import helper.FileHandlingException;
@@ -15,7 +16,7 @@ public class Load extends ACommand {
 
   @Override
   public void execute()
-      throws IllegalAccessException, IllegalStateException, FileHandlingException, IOException, CloseCmdLineException {
+      throws IllegalStateException, FileHandlingException, IOException, CloseCmdLineException, ImageNameAlreadyExistsException {
     String imagePath = this.getInput(in);
     String imageName = this.getInput(in);
     model.load(imagePathHelper(imagePath), imageName);

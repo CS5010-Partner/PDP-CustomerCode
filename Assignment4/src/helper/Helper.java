@@ -8,7 +8,8 @@ public abstract class Helper {
     StringBuffer input = new StringBuffer();
 
     while (true) {
-      String c = String.valueOf((char)sc.read());
+      char ch=(char)sc.read();
+      String c = String.valueOf(ch);
       if (input.length() == 0 && c.equals(" ")) {
         continue;
       }
