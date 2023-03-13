@@ -1,5 +1,7 @@
 package commands;
 
+import helper.CloseCmdLineException;
+import helper.ImageNameAlreadyExistsException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,7 +16,7 @@ public class RGBSplit extends ACommand{
   }
 
   @Override
-  public void execute() throws IllegalAccessException, IOException {
+  public void execute() throws IOException, CloseCmdLineException, ImageNameAlreadyExistsException {
     String imageName = getInput(in);
     String redImg = getInput(in);
     String greenImg = getInput(in);

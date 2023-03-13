@@ -1,9 +1,9 @@
 package commands;
 
+import helper.CloseCmdLineException;
+import helper.ImageNameAlreadyExistsException;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Scanner;
 import model.IImage;
 import view.IView;
 
@@ -14,7 +14,7 @@ public class HorizontalFlip extends ACommand{
   }
 
   @Override
-  public void execute() throws IllegalAccessException, IOException {
+  public void execute() throws IOException, CloseCmdLineException, ImageNameAlreadyExistsException {
     String sourceName = getInput(in);
     String destName = getInput(in);
     model.horizontalFlip(sourceName, destName);

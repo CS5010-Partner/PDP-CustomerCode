@@ -1,9 +1,9 @@
 package commands;
 
+import helper.CloseCmdLineException;
+import helper.ImageNameAlreadyExistsException;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Scanner;
 import model.IImage;
 import view.IView;
 
@@ -14,8 +14,8 @@ public class Save extends ACommand{
   }
 
   @Override
-  public void execute() throws IllegalAccessException, IOException {
-
+  public void execute()
+      throws IOException, CloseCmdLineException, ImageNameAlreadyExistsException {
     String imagePath = this.getInput(in);
     String imageName = this.getInput(in);
     model.save(imagePathHelper(imagePath), imageName);

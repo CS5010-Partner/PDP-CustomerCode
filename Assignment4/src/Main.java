@@ -1,11 +1,9 @@
-import controller.CloseCmdLineException;
+import helper.CloseCmdLineException;
 import controller.ImgController;
 import controller.ImgControllerImpl;
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import model.ImageSet;
 import view.IView;

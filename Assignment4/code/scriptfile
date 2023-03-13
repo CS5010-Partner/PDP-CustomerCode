@@ -1,0 +1,18 @@
+load 
+       code1/Koala.ppm        
+    koala
+save code1/Koala2.ppm koala
+greyscale red koala koala-red-grey
+greyscale green koala koala-green-grey
+greyscale blue koala koala-blue-grey
+rgb-combine koala1 koala-red-grey koala-green-grey koala-blue-grey
+save code1/Koala3.ppm koala1
+brighten 100 koala koala-b-100
+vertical-flip koala koala-vertical-flip
+horizontal-flip koala-vertical-flip koala-vertical-horizontal-flip
+rgb-combine koala2 koala-b-100 koala-vertical-flip koala-vertical-horizontal-flip
+save code1/Koala3.ppm koala2
+rgb-split koala2 koala2-red koala2-green koala2-blue
+save code1/Koala2red.ppm koala2-red
+save code1/Koala2green.ppm koala2-green
+save code1/Koala2blue.ppm koala2-blue

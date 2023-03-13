@@ -1,6 +1,7 @@
 package model;
 
-import java.nio.file.NoSuchFileException;
+import helper.FileHandlingException;
+import helper.ImageNameAlreadyExistsException;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 
@@ -13,7 +14,7 @@ public class ImageSet implements IImage {
   }
 
   private void checkName(String[] inputNames, String[] destNames)
-      throws NoSuchElementException, IllegalAccessException {
+      throws NoSuchElementException, ImageNameAlreadyExistsException {
     for (String s:inputNames) {
       if (!map.containsKey(s)) {
         throw new NoSuchElementException("The image name does not exist.");
@@ -22,13 +23,13 @@ public class ImageSet implements IImage {
 
     for (String s:destNames) {
       if (map.containsKey(s))
-        throw new IllegalAccessException("Image name already exists. Please choose a different name.");
+        throw new ImageNameAlreadyExistsException("Image name already exists.");
     }
   }
 
   @Override
   public void load(IFile obj, String imageName)
-      throws IllegalAccessException, FileHandlingException {
+      throws FileHandlingException, ImageNameAlreadyExistsException {
 
     checkName(new String[]{}, new String[]{imageName});
 
@@ -55,14 +56,14 @@ public class ImageSet implements IImage {
   }
 
   @Override
-  public void save(IFile format, String imageName) throws IllegalAccessException {
+  public void save(IFile format, String imageName) throws ImageNameAlreadyExistsException {
     checkName(new String[]{imageName}, new String[]{});
     format.fileWrite(map.get(imageName).toString());
   }
 
   @Override
   public void greyScaleRed(String imageName, String desImageName)
-      throws NoSuchElementException, IllegalAccessException {
+      throws NoSuchElementException, ImageNameAlreadyExistsException {
     checkName(new String[]{imageName}, new String[]{desImageName});
     ImageObj grey = map.get(imageName).greyScaleRed();
     map.put(desImageName, grey);
@@ -70,7 +71,7 @@ public class ImageSet implements IImage {
 
   @Override
   public void greyScaleGreen(String imageName, String desImageName)
-      throws NoSuchElementException, IllegalAccessException{
+      throws NoSuchElementException, ImageNameAlreadyExistsException {
     checkName(new String[]{imageName}, new String[]{desImageName});
     ImageObj grey = map.get(imageName).greyScaleGreen();
     map.put(desImageName, grey);
@@ -78,7 +79,7 @@ public class ImageSet implements IImage {
 
   @Override
   public void greyScaleBlue(String imageName, String desImageName)
-      throws NoSuchElementException, IllegalAccessException{
+      throws NoSuchElementException, ImageNameAlreadyExistsException {
     checkName(new String[]{imageName}, new String[]{desImageName});
     ImageObj grey = map.get(imageName).greyScaleBlue();
     map.put(desImageName, grey);
@@ -86,7 +87,7 @@ public class ImageSet implements IImage {
 
   @Override
   public void greyScaleValue(String imageName, String desImageName)
-      throws NoSuchElementException, IllegalAccessException{
+      throws NoSuchElementException, ImageNameAlreadyExistsException {
     checkName(new String[]{imageName}, new String[]{desImageName});
     ImageObj grey = map.get(imageName).greyScaleValue();
     map.put(desImageName, grey);
@@ -95,7 +96,7 @@ public class ImageSet implements IImage {
 
   @Override
   public void greyScaleIntensity(String imageName, String desImageName)
-      throws NoSuchElementException, IllegalAccessException{
+      throws NoSuchElementException, ImageNameAlreadyExistsException {
     checkName(new String[]{imageName}, new String[]{desImageName});
     ImageObj grey = map.get(imageName).greyScaleIntensity();
     map.put(desImageName, grey);
@@ -104,7 +105,7 @@ public class ImageSet implements IImage {
 
   @Override
   public void greyScaleLuma(String imageName, String desImageName)
-      throws NoSuchElementException, IllegalAccessException{
+      throws NoSuchElementException, ImageNameAlreadyExistsException {
     checkName(new String[]{imageName}, new String[]{desImageName});
     ImageObj grey = map.get(imageName).greyScaleLUMA();
     map.put(desImageName, grey);
@@ -113,7 +114,7 @@ public class ImageSet implements IImage {
 
   @Override
   public void horizontalFlip(String imageName, String desImageName)
-      throws NoSuchElementException, IllegalAccessException{
+      throws NoSuchElementException, ImageNameAlreadyExistsException {
     checkName(new String[]{imageName}, new String[]{desImageName});
     ImageObj horizontalFlip = map.get(imageName).horizontalFlip();
     map.put(desImageName, horizontalFlip);
@@ -121,7 +122,7 @@ public class ImageSet implements IImage {
 
   @Override
   public void verticalFlip(String imageName, String desImageName)
-      throws NoSuchElementException, IllegalAccessException{
+      throws NoSuchElementException, ImageNameAlreadyExistsException {
     checkName(new String[]{imageName}, new String[]{desImageName});
     ImageObj verticalFlip = map.get(imageName).verticalFlip();
     map.put(desImageName, verticalFlip);
@@ -129,7 +130,7 @@ public class ImageSet implements IImage {
 
   @Override
   public void brighten(int increment, String imageName, String desImageName)
-      throws NoSuchElementException, IllegalAccessException{
+      throws NoSuchElementException, ImageNameAlreadyExistsException {
     checkName(new String[]{imageName}, new String[]{desImageName});
     ImageObj brighten = map.get(imageName).brighten(increment);
     map.put(desImageName, brighten);
@@ -139,7 +140,7 @@ public class ImageSet implements IImage {
   @Override
   public void rgbSplit(String imageName, String redDesImageName, String greenDesImageName,
       String blueDesImageName)
-      throws NoSuchElementException, IllegalAccessException{
+      throws NoSuchElementException, ImageNameAlreadyExistsException {
     checkName(new String[]{imageName}, new String[]{redDesImageName, greenDesImageName, blueDesImageName});
     ImageObj[] rgbSplit = map.get(imageName).rgbSplit();
     map.put(redDesImageName, rgbSplit[0]);
@@ -149,7 +150,7 @@ public class ImageSet implements IImage {
 
   @Override
   public void rgbCombine(String destimageName, String redImageName, String greenImageName,
-      String blueImageName) throws NoSuchElementException, IllegalAccessException {
+      String blueImageName) throws NoSuchElementException, ImageNameAlreadyExistsException {
     checkName(new String[]{redImageName, greenImageName, blueImageName}, new String[]{destimageName});
     ImageObj redImage = map.get(redImageName);
     ImageObj greenImage = map.get(greenImageName);
