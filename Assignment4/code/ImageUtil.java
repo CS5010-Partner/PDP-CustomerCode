@@ -54,7 +54,7 @@ public class ImageUtil {
             int r = sc.nextInt();
             int g = sc.nextInt();
             int b = sc.nextInt();
-            System.out.println("Color of pixel ("+j+","+i+"): "+ r+","+g+","+b);
+//            System.out.println("Color of pixel ("+j+","+i+"): "+ r+","+g+","+b);
         }
     }
   }
@@ -67,7 +67,7 @@ public class ImageUtil {
           filename = args[0];
       }
       else {
-          filename = "sample.ppm";
+          filename = "/Users/srinidhisunkara/Desktop/pdp/projects/Assignment4/PDP/Assignment4/code/Koala.ppm";
       }
       
       ImageUtil.readPPM(filename);
