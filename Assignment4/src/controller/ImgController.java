@@ -8,5 +8,5 @@ public interface ImgController {
   /**
    * This method when called from the main class takes input from the user.
    */
-  void go();
+  void run();
 }

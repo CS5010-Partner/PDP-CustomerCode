@@ -1,7 +1,7 @@
 package model;
 
-import helper.FileHandlingException;
-import helper.ImageNameAlreadyExistsException;
+import controller.helper.FileHandlingException;
+import controller.helper.ImageNameAlreadyExistsException;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 
@@ -9,27 +9,28 @@ import java.util.NoSuchElementException;
  * ImageSet class implements the IImage interface, and it acts as a model.
  */
 public class ImageSet implements IImage {
-  HashMap<String,ImageObj> map;
+
+  HashMap<String, ImageObj> map;
 
   /**
    * Represents the empty constructor and initialises the data member which is the hashmap.
    */
-  public ImageSet()
-  {
-    map=new HashMap<>();
+  public ImageSet() {
+    map = new HashMap<>();
   }
 
   private void checkName(String[] inputNames, String[] destNames)
       throws NoSuchElementException, ImageNameAlreadyExistsException {
-    for (String s:inputNames) {
+    for (String s : inputNames) {
       if (!map.containsKey(s)) {
         throw new NoSuchElementException("The image name does not exist.");
       }
     }
 
-    for (String s:destNames) {
-      if (map.containsKey(s))
+    for (String s : destNames) {
+      if (map.containsKey(s)) {
         throw new ImageNameAlreadyExistsException("Image name already exists.");
+      }
     }
   }
 
@@ -39,26 +40,25 @@ public class ImageSet implements IImage {
 
     checkName(new String[]{}, new String[]{imageName});
 
-    String content=obj.fileRead();
-    String[] token=content.split("\n");
+    String content = obj.fileRead();
+    String[] token = content.split("\n");
 
-    int width=Integer.parseInt(token[1]);
-    int height=Integer.parseInt(token[2]);
-    int maxValue=Integer.parseInt(token[3]);
+    int width = Integer.parseInt(token[1]);
+    int height = Integer.parseInt(token[2]);
+    int maxValue = Integer.parseInt(token[3]);
 
-    int t=4;
-    int[][][] image=new int[height][width][3];
+    int t = 4;
+    int[][][] image = new int[height][width][3];
 
-    for (int i=0;i<height;i++) {
-      for (int j=0;j<width;j++) {
-        for(int k=0;k<3;k++)
-        {
-          image[i][j][k]=Integer.parseInt(token[t]);
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
+        for (int k = 0; k < 3; k++) {
+          image[i][j][k] = Integer.parseInt(token[t]);
           t++;
         }
       }
     }
-    ImageObj loadObj=new ImageObj(image,width,height,maxValue);
+    ImageObj loadObj = new ImageObj(image, width, height, maxValue);
     map.put(imageName, loadObj);
     return loadObj;
   }
@@ -113,7 +113,7 @@ public class ImageSet implements IImage {
     checkName(new String[]{imageName}, new String[]{desImageName});
     ImageObj grey = map.get(imageName).greyScaleIntensity();
     map.put(desImageName, grey);
-    return  grey;
+    return grey;
   }
 
   @Override
@@ -131,7 +131,7 @@ public class ImageSet implements IImage {
     checkName(new String[]{imageName}, new String[]{desImageName});
     ImageObj horizontalFlip = map.get(imageName).horizontalFlip();
     map.put(desImageName, horizontalFlip);
-    return  horizontalFlip;
+    return horizontalFlip;
   }
 
   @Override
@@ -154,9 +154,9 @@ public class ImageSet implements IImage {
 
   @Override
   public ImageObj[] rgbSplit(String imageName, String redDesImageName, String greenDesImageName,
-      String blueDesImageName)
-      throws NoSuchElementException, ImageNameAlreadyExistsException {
-    checkName(new String[]{imageName}, new String[]{redDesImageName, greenDesImageName, blueDesImageName});
+      String blueDesImageName) throws NoSuchElementException, ImageNameAlreadyExistsException {
+    checkName(new String[]{imageName},
+        new String[]{redDesImageName, greenDesImageName, blueDesImageName});
     ImageObj[] rgbSplit = map.get(imageName).rgbSplit();
     map.put(redDesImageName, rgbSplit[0]);
     map.put(greenDesImageName, rgbSplit[1]);
@@ -167,12 +167,13 @@ public class ImageSet implements IImage {
   @Override
   public ImageObj rgbCombine(String destimageName, String redImageName, String greenImageName,
       String blueImageName) throws NoSuchElementException, ImageNameAlreadyExistsException {
-    checkName(new String[]{redImageName, greenImageName, blueImageName}, new String[]{destimageName});
+    checkName(new String[]{redImageName, greenImageName, blueImageName},
+        new String[]{destimageName});
     ImageObj redImage = map.get(redImageName);
     ImageObj greenImage = map.get(greenImageName);
     ImageObj blueImage = map.get(blueImageName);
-    ImageObj combine=redImage.rgbCombine(greenImage, blueImage);
-    map.put(destimageName,combine);
+    ImageObj combine = redImage.rgbCombine(greenImage, blueImage);
+    map.put(destimageName, combine);
     return combine;
   }
 

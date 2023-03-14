@@ -5,7 +5,11 @@ import model.IFile;
 import model.IImage;
 import model.ImageObj;
 
+/**
+ * This class acts as a mock implementation to the model class.
+ */
 public class MockModel implements IImage {
+
   private StringBuffer sb = new StringBuffer();
 
   @Override
@@ -24,7 +28,7 @@ public class MockModel implements IImage {
 
   @Override
   public ImageObj save(IFile imagePath, String imageName) {
-     sb.append("save | " + imagePath + " | " + imageName + "\n");
+    sb.append("save | " + imagePath + " | " + imageName + "\n");
     return null;
   }
 
@@ -94,14 +98,18 @@ public class MockModel implements IImage {
   @Override
   public ImageObj[] rgbSplit(String imageName, String redDesImageName, String greenDesImageName,
       String blueDesImageName) throws NoSuchElementException {
-    sb.append("rgbSplit | " + imageName + " | " + redDesImageName + " | " + greenDesImageName + " | " + blueDesImageName + "\n");
+    sb.append(
+        "rgbSplit | " + imageName + " | " + redDesImageName + " | " + greenDesImageName + " | "
+            + blueDesImageName + "\n");
     return null;
   }
 
   @Override
   public ImageObj rgbCombine(String destImageName, String redImageName, String greenImageName,
       String blueImageName) throws NoSuchElementException {
-    sb.append("rgbCombine | " + destImageName + " | " + redImageName + " | " + greenImageName + " | " +blueImageName + "\n");
+    sb.append(
+        "rgbCombine | " + destImageName + " | " + redImageName + " | " + greenImageName + " " + "| "
+            + blueImageName + "\n");
     return null;
   }
 }
