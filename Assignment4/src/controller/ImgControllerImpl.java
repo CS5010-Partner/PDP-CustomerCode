@@ -58,6 +58,7 @@ public class ImgControllerImpl extends Helper implements ImgController {
     }
   }
 
+
   private void commandExecution() {
     while (true) {
       print("Enter the command", false);
