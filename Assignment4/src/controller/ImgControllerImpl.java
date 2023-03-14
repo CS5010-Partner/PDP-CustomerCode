@@ -57,6 +57,7 @@ public class ImgControllerImpl extends Helper implements ImgController {
   }
 
   private void commandExecution() {
+  
     while (true)
     {
 //      print("Enter the command", false);
@@ -89,7 +90,7 @@ public class ImgControllerImpl extends Helper implements ImgController {
         this.view.echoCloseCmd(true);
         break;
       } catch (IOException e) {
-//        print(e + "There is a problem with reading the input, please try again.", true);
+//        print(e + "There is a problem with reading the input, please try again.",true);
         this.view.echoIoError(e.toString(), true);
       } catch (WrongCommandException e) {
 //        print(e + " Please enter a valid command!", true);

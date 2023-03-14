@@ -440,5 +440,4 @@ public class ImgControllerImplTest extends Helper {
     assertEquals("load | code/koala.ppm | koala\n", modelRet);
   }
 
-
-}
+p
