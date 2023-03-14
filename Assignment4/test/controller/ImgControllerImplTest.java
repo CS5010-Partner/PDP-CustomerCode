@@ -2,7 +2,7 @@ package controller;
 
 import static org.junit.Assert.assertEquals;
 
-import helper.Helper;
+import controller.helper.Helper;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.OutputStreamWriter;

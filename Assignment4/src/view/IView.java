@@ -1,6 +1,6 @@
 package view;
 
-import helper.FileHandlingException;
+import controller.helper.FileHandlingException;
 import java.io.IOException;
 
 public interface IView {
