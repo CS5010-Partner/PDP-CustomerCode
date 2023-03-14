@@ -5,32 +5,32 @@ import helper.ImageNameAlreadyExistsException;
 import java.util.NoSuchElementException;
 
 public interface IImage {
-  void load(IFile imagePath,String imageName)
+  ImageObj load(IFile imagePath,String imageName)
       throws FileHandlingException, ImageNameAlreadyExistsException;
-  void save(IFile imagePath,String imageName)
+  ImageObj save(IFile imagePath,String imageName)
       throws ImageNameAlreadyExistsException;
-  void greyScaleRed(String imageName, String desImageName)
+  ImageObj greyScaleRed(String imageName, String desImageName)
       throws NoSuchElementException, ImageNameAlreadyExistsException;
-  void greyScaleGreen(String imageName, String desImageName)
+  ImageObj greyScaleGreen(String imageName, String desImageName)
       throws NoSuchElementException, ImageNameAlreadyExistsException;
-  void greyScaleBlue(String imageName, String desImageName)
+  ImageObj greyScaleBlue(String imageName, String desImageName)
       throws NoSuchElementException, ImageNameAlreadyExistsException;
-  void greyScaleValue(String imageName, String desImageName)
+  ImageObj greyScaleValue(String imageName, String desImageName)
       throws NoSuchElementException, ImageNameAlreadyExistsException;
-  void greyScaleIntensity(String imageName, String desImageName)
+  ImageObj greyScaleIntensity(String imageName, String desImageName)
       throws NoSuchElementException, ImageNameAlreadyExistsException;
-  void greyScaleLuma(String imageName, String desImageName)
+  ImageObj greyScaleLuma(String imageName, String desImageName)
       throws NoSuchElementException, ImageNameAlreadyExistsException;
 
-  void horizontalFlip(String imageName, String desImageName)
+  ImageObj horizontalFlip(String imageName, String desImageName)
       throws NoSuchElementException, ImageNameAlreadyExistsException;
-  void verticalFlip(String imageName,String desImageName)
+  ImageObj verticalFlip(String imageName,String desImageName)
       throws NoSuchElementException, ImageNameAlreadyExistsException;
-  void brighten(int increment, String imageName, String desImageName)
+  ImageObj brighten(int increment, String imageName, String desImageName)
       throws NoSuchElementException, ImageNameAlreadyExistsException;
-  void rgbSplit(String imageName, String redDesImageName, String greenDesImageName, String blueDesImageName)
+  ImageObj[] rgbSplit(String imageName, String redDesImageName, String greenDesImageName, String blueDesImageName)
       throws NoSuchElementException, ImageNameAlreadyExistsException;
-  void rgbCombine(String destImageName, String redImageName, String greenImageName, String blueImageName)
+  ImageObj rgbCombine(String destImageName, String redImageName, String greenImageName, String blueImageName)
       throws NoSuchElementException, ImageNameAlreadyExistsException;
 
 }
