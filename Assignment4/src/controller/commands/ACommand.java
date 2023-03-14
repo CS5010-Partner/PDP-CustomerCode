@@ -1,6 +1,6 @@
-package commands;
+package controller.commands;
 
-import helper.Helper;
+import controller.helper.Helper;
 import java.io.BufferedReader;
 import model.IFile;
 import model.IImage;

@@ -1,4 +1,4 @@
-package helper;
+package controller.helper;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package helper;
+package controller.helper;
 
 /**
  * ImageNameAlreadyExistsException class throws an exception if the image name already exists.

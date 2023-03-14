@@ -1,4 +1,4 @@
-package helper;
+package controller.helper;
 
 /**
  * FileHandling exception is thrown when there is no file at the specified location.

@@ -1,9 +1,9 @@
-package commands;
+package controller.commands;
 
-import helper.CloseCmdLineException;
-import helper.FileHandlingException;
-import helper.ImageNameAlreadyExistsException;
-import helper.WrongCommandException;
+import controller.helper.CloseCmdLineException;
+import controller.helper.FileHandlingException;
+import controller.helper.ImageNameAlreadyExistsException;
+import controller.helper.WrongCommandException;
 import java.io.IOException;
 
 /**

@@ -1,4 +1,4 @@
-package helper;
+package controller.helper;
 
 /**
  * Terminates the program when there is a CloseCmdLineException.

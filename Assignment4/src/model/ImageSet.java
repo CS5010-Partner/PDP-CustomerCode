@@ -1,7 +1,7 @@
 package model;
 
-import helper.FileHandlingException;
-import helper.ImageNameAlreadyExistsException;
+import controller.helper.FileHandlingException;
+import controller.helper.ImageNameAlreadyExistsException;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 
