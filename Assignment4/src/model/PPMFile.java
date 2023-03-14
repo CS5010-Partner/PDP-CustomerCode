@@ -9,15 +9,17 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class PPMFile implements IFile{
-  String filePath;
+  private String filePath;
 
   public PPMFile(String path) {
     filePath = path;
   }
-  public PPMFile()
-  {
 
+  @Override
+  public String toString() {
+    return filePath;
   }
+
   @Override
   public String fileRead() throws FileHandlingException {
     Scanner sc;
