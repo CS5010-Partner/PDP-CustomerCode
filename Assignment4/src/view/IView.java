@@ -1,5 +1,8 @@
 package view;
 
+import helper.FileHandlingException;
+import java.io.IOException;
+
 public interface IView {
 
   /**

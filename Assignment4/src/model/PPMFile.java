@@ -13,7 +13,7 @@ import java.util.Scanner;
  * It implements the IFIle interface to implement the file methods.
  */
 public class PPMFile implements IFile{
-  String filePath;
+  private String filePath;
 
   /**
    * Constructor for the PPMFile class.
@@ -22,6 +22,12 @@ public class PPMFile implements IFile{
   public PPMFile(String path) {
     filePath = path;
   }
+
+  @Override
+  public String toString() {
+    return filePath;
+  }
+
   @Override
   public String fileRead() throws FileHandlingException {
     Scanner sc;

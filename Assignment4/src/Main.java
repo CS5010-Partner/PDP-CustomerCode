@@ -11,7 +11,7 @@ import view.View;
 
 public class Main {
 
-  public static void main(String[] args) throws CloseCmdLineException, IllegalAccessException {
+  public static void main(String[] args) {
     ImageSet model=new ImageSet();
     IView view=new View();
     ImgController controller=new ImgControllerImpl(model, view, new BufferedReader(new InputStreamReader(System.in)),new BufferedWriter(new OutputStreamWriter(System.out)));
