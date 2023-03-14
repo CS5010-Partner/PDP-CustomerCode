@@ -5,9 +5,15 @@ import helper.ImageNameAlreadyExistsException;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 
+/**
+ * ImageSet class implements the IImage interface, and it acts as a model.
+ */
 public class ImageSet implements IImage {
   HashMap<String,ImageObj> map;
 
+  /**
+   * Represents the empty constructor and initialises the data member which is the hashmap.
+   */
   public ImageSet()
   {
     map=new HashMap<>();

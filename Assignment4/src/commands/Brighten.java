@@ -4,21 +4,29 @@ import helper.CloseCmdLineException;
 import helper.ImageNameAlreadyExistsException;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Scanner;
 import model.IImage;
 import view.IView;
 
-public class Brighten extends ACommand{
+/**
+ * Brighten class is used to represent a class for the brighten value source_image dest_image
+ * command.
+ */
+public class Brighten extends ACommand {
 
-  public Brighten(IImage model, IView view,
-      BufferedReader in) {
+  /**
+   * Constructor for the Brighten class.
+   *
+   * @param model represents the model object.
+   * @param view  represent the view object.
+   * @param in    represents the input.
+   */
+  public Brighten(IImage model, IView view, BufferedReader in) {
     super(model, view, in);
   }
 
   @Override
   public void execute() throws IOException, CloseCmdLineException, ImageNameAlreadyExistsException {
-    int incrementValue=0;
+    int incrementValue = 0;
     while (true) {
       try {
         String increment = getInput(in);
