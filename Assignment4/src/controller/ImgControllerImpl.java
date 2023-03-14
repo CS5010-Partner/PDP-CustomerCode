@@ -96,10 +96,8 @@ public class ImgControllerImpl extends Helper implements ImgController {
 //        print(e + " Please enter a valid command!", true);
         this.view.echoWrongCmdError(e.toString(), true);
       } catch (FileHandlingException e) {
-//        print(e + "File not found, Please try again!", true);
         this.view.echoFileHandlingError(e.toString(), true);
       } catch (ImageNameAlreadyExistsException e) {
-//        print(e + " Please choose a different name!", true);
         this.view.echoImageNameAlreadyExistsError(e.toString(), true);
       }
     }
