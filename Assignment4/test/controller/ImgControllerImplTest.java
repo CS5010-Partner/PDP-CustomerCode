@@ -161,7 +161,7 @@ public class ImgControllerImplTest extends Helper {
     assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
   }
 
-//  permuations of greyscale red
+  //  permuations of greyscale red
   @Test
   public void greyscaleRedTest() {
     String test = "greyscale red koala koalaRed\n#\n";
@@ -239,10 +239,12 @@ public class ImgControllerImplTest extends Helper {
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
-    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
+    assertEquals(
+        "Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Close Cmd|",
+        viewRet);
   }
 
-//  permutations of greyscale blue cmd
+  //  permutations of greyscale blue cmd
   @Test
   public void greyscaleBlueTest() {
     String test = "greyscale blue koala koalaBlue\n#\n";
@@ -440,4 +442,4 @@ public class ImgControllerImplTest extends Helper {
     assertEquals("load | code/koala.ppm | koala\n", modelRet);
   }
 
-p
+}
