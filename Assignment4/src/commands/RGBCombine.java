@@ -4,13 +4,22 @@ import helper.CloseCmdLineException;
 import helper.ImageNameAlreadyExistsException;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Scanner;
 import model.IImage;
 import view.IView;
 
-public class RGBCombine extends ACommand{
+/**
+ * RGBCombine class is used to represent a class for the below command. RGBCombine
+ * destination_image_name source_image_name1 source_image_name2 source_image_name3.
+ */
+public class RGBCombine extends ACommand {
 
+  /**
+   * Constructor for the RGBCombine class.
+   *
+   * @param model represents the model object.
+   * @param view  represent the view object.
+   * @param in    represents the input.
+   */
   public RGBCombine(IImage model, IView view, BufferedReader in) {
     super(model, view, in);
   }

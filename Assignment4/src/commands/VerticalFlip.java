@@ -4,13 +4,22 @@ import helper.CloseCmdLineException;
 import helper.ImageNameAlreadyExistsException;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Scanner;
 import model.IImage;
 import view.IView;
 
-public class VerticalFlip extends ACommand{
+/**
+ * VerticalFlip class is used to represent a class for the below command. VerticalFlip
+ * source_image_name destination_image_name.
+ */
+public class VerticalFlip extends ACommand {
 
+  /**
+   * Constructor for the VerticalFlip class.
+   *
+   * @param model represents the model object.
+   * @param view  represent the view object.
+   * @param in    represents the input.
+   */
   public VerticalFlip(IImage model, IView view, BufferedReader in) {
     super(model, view, in);
   }

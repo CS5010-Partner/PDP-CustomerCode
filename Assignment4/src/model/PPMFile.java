@@ -8,9 +8,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * PPMFile represents the image file format which is in PPM.
+ * It implements the IFIle interface to implement the file methods.
+ */
 public class PPMFile implements IFile{
   private String filePath;
 
+  /**
+   * Constructor for the PPMFile class.
+   * @param path the file path.
+   */
   public PPMFile(String path) {
     filePath = path;
   }

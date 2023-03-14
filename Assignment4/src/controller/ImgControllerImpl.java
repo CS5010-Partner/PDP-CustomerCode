@@ -21,6 +21,10 @@ import java.io.StringReader;
 import model.IImage;
 import view.IView;
 
+/**
+ * ImgControllerImpl is the controller class which is called from the main. It takes input from the
+ * user and calls necessary classes from the model. Parses the output to the view.
+ */
 public class ImgControllerImpl extends Helper implements ImgController {
 
   private final IView view;
@@ -30,6 +34,14 @@ public class ImgControllerImpl extends Helper implements ImgController {
   private BufferedWriter out;
   private boolean verbose;
 
+  /**
+   * Constructor for the ImgControllerImpl class.
+   *
+   * @param model represents the model object.
+   * @param view  represents the view object.
+   * @param in    gives the object from where the input is read.
+   * @param out   gives the object through which the output is sent.
+   */
   public ImgControllerImpl(IImage model, IView view, BufferedReader in, BufferedWriter out) {
     this.model = model;
     this.view = view;
@@ -39,7 +51,10 @@ public class ImgControllerImpl extends Helper implements ImgController {
     this.verbose = true;
   }
 
-
+  private void print(String msg, boolean verboseOveride) {
+    if (this.verbose || verboseOveride)
+    System.out.println(msg);
+  }
 
   private void commandExecution() {
     while (true)
@@ -91,7 +106,8 @@ public class ImgControllerImpl extends Helper implements ImgController {
 
 
   private void switchHelper(String cmd)
-      throws CloseCmdLineException, IOException, FileHandlingException, WrongCommandException, ImageNameAlreadyExistsException {
+      throws CloseCmdLineException, IOException, FileHandlingException, WrongCommandException,
+      ImageNameAlreadyExistsException {
     switch (cmd) {
         case "load":
           Load load = new Load(model, view, in);
