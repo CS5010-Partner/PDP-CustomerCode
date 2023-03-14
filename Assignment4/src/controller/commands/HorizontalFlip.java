@@ -8,10 +8,10 @@ import model.IImage;
 import view.IView;
 
 /**
- * HorizontalFlip class is used to represent a class for the below command.
- * HorizontalFlip source_image_name destination_image_name.
+ * HorizontalFlip class is used to represent a class for the below command. HorizontalFlip
+ * source_image_name destination_image_name.
  */
-public class HorizontalFlip extends ACommand{
+public class HorizontalFlip extends ACommand {
 
   /**
    * Constructor for the HorizontalFlip class.

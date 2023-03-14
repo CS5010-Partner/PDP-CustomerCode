@@ -1,9 +1,9 @@
 package model;
 
 /**
- * This class represents the ImageObj which represents the image as an entity.
- * Here the images are stored in the form of a 3D integer array.
- * First 2 dimensions represent the pixel and the third dimension represents the RGB components.
+ * This class represents the ImageObj which represents the image as an entity. Here the images are
+ * stored in the form of a 3D integer array. First 2 dimensions represent the pixel and the third
+ * dimension represents the RGB components.
  */
 public class ImageObj {
 
@@ -15,9 +15,10 @@ public class ImageObj {
 
   /**
    * Constructor for the ImageObj class.
-   * @param image gives value to the image array.
-   * @param width represents the width of the image.
-   * @param height represents the height of the image.
+   *
+   * @param image    gives value to the image array.
+   * @param width    represents the width of the image.
+   * @param height   represents the height of the image.
    * @param maxValue represents the maximum value any component can have.
    */
   public ImageObj(int[][][] image, int width, int height, int maxValue) {
@@ -29,6 +30,7 @@ public class ImageObj {
 
   /**
    * Returns the image matrix.
+   *
    * @return the integer matrix of the image.
    */
   public int[][][] getImage() {
@@ -55,6 +57,7 @@ public class ImageObj {
 
   /**
    * Returns the transformed greyscale red component image.
+   *
    * @return ImageObj of the transformed greyscale red image.
    */
   public ImageObj greyScaleRed() {
@@ -65,6 +68,7 @@ public class ImageObj {
 
   /**
    * Returns the transformed greyscale green component image.
+   *
    * @return ImageObj of the transformed greyscale green image.
    */
   public ImageObj greyScaleGreen() {
@@ -72,8 +76,10 @@ public class ImageObj {
     helperGrey(image, 1);
     return new ImageObj(image, this.width, this.height, this.maxValue);
   }
+
   /**
    * Returns the transformed greyscale blue component image.
+   *
    * @return ImageObj of the transformed greyscale blue image.
    */
   public ImageObj greyScaleBlue() {
@@ -94,6 +100,7 @@ public class ImageObj {
 
   /**
    * Returns the transformed greyscale value component image.
+   *
    * @return ImageObj of the transformed greyscale value image.
    */
   public ImageObj greyScaleValue() {
@@ -111,6 +118,7 @@ public class ImageObj {
 
   /**
    * Returns the transformed greyscale intensity component image.
+   *
    * @return ImageObj of the transformed greyscale intensity image.
    */
   public ImageObj greyScaleIntensity() {
@@ -128,6 +136,7 @@ public class ImageObj {
 
   /**
    * Returns the transformed greyscale luma component image.
+   *
    * @return ImageObj of the transformed greyscale luma image.
    */
   public ImageObj greyScaleLUMA() {
@@ -146,6 +155,7 @@ public class ImageObj {
 
   /**
    * Returns the brightens image of the current image object.
+   *
    * @param increment the factor which is spplied on all the component parts.
    * @return the brightened image.
    */
@@ -166,6 +176,7 @@ public class ImageObj {
 
   /**
    * Splits the image into red, green, and blue componenets.
+   *
    * @return the ImageObj array of three components.
    */
   public ImageObj[] rgbSplit() {
@@ -178,8 +189,9 @@ public class ImageObj {
 
   /**
    * Combines three channels into an image.
+   *
    * @param green represents the green channel image.
-   * @param blue represents the blue channel image.
+   * @param blue  represents the blue channel image.
    * @return the ImageObj of the combined image.
    */
   public ImageObj rgbCombine(ImageObj green, ImageObj blue) {
@@ -208,10 +220,11 @@ public class ImageObj {
 
   /**
    * Returns the vertically flipped image of the current image.
+   *
    * @return the ImageObj of the vertically flipped image.
    */
   public ImageObj verticalFlip() {
-    int newImgArr[][][] = new int[this.height][this.width][3];
+    int[][][] newImgArr = new int[this.height][this.width][3];
 
     for (int i = 0; i < this.height; i++) {
       for (int j = 0; j < this.width; j++) {
@@ -224,11 +237,12 @@ public class ImageObj {
   }
 
   /**
-   *  Returns the horizontally flipped image of the current image.
-   *  @return the ImageObj of the horizontally flipped image.
+   * Returns the horizontally flipped image of the current image.
+   *
+   * @return the ImageObj of the horizontally flipped image.
    */
   public ImageObj horizontalFlip() {
-    int newImgArr[][][] = new int[this.height][this.width][3];
+    int[][][] newImgArr = new int[this.height][this.width][3];
 
     for (int i = 0; i < this.height; i++) {
       for (int j = 0; j < this.width; j++) {
