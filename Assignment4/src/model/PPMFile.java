@@ -1,6 +1,6 @@
 package model;
 
-import helper.FileHandlingException;
+import controller.helper.FileHandlingException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,14 +9,16 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * PPMFile represents the image file format which is in PPM.
- * It implements the IFIle interface to implement the file methods.
+ * PPMFile represents the image file format which is in PPM. It implements the IFIle interface to
+ * implement the file methods.
  */
-public class PPMFile implements IFile{
+public class PPMFile implements IFile {
+
   private String filePath;
 
   /**
    * Constructor for the PPMFile class.
+   *
    * @param path the file path.
    */
   public PPMFile(String path) {
@@ -34,15 +36,14 @@ public class PPMFile implements IFile{
 
     try {
       sc = new Scanner(new FileInputStream(this.filePath));
-    }
-    catch (FileNotFoundException e) {
+    } catch (FileNotFoundException e) {
       throw new FileHandlingException("File " + this.filePath + " not found!");
     }
     StringBuilder builder = new StringBuilder();
     while (sc.hasNextLine()) {
       String s = sc.nextLine();
-      if (s.charAt(0)!='#') {
-        builder.append(s+System.lineSeparator());
+      if (s.charAt(0) != '#') {
+        builder.append(s + System.lineSeparator());
       }
     }
     sc = new Scanner(builder.toString());
@@ -53,22 +54,22 @@ public class PPMFile implements IFile{
     if (!token.equals("P3")) {
       throw new FileHandlingException("Invalid PPM file: plain RAW file should begin with P3");
     }
-    StringBuilder result=new StringBuilder();
+    StringBuilder result = new StringBuilder();
     result.append("P3\n");
 
     int width = sc.nextInt();
-    result.append(width+"\n");
+    result.append(width + "\n");
     int height = sc.nextInt();
-    result.append(height+"\n");
+    result.append(height + "\n");
     int maxValue = sc.nextInt();
-    result.append(maxValue+"\n");
+    result.append(maxValue + "\n");
 
-    for (int i=0;i<height;i++) {
-      for (int j=0;j<width;j++) {
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
         int r = sc.nextInt();
         int g = sc.nextInt();
         int b = sc.nextInt();
-        result.append(r+"\n"+g+"\n"+b+"\n");
+        result.append(r + "\n" + g + "\n" + b + "\n");
       }
     }
     return result.toString();

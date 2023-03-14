@@ -2,7 +2,6 @@ package controller;
 
 import static org.junit.Assert.assertEquals;
 
-import helper.Helper;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.OutputStreamWriter;
@@ -13,19 +12,21 @@ import org.junit.Before;
 import org.junit.Test;
 import view.IView;
 
-public class ImgControllerImplTest extends Helper {
+/**
+ * This class tests the controller implementation.
+ */
+public class ImgControllerImplTest {
 
-  IImage model;
-  IView view;
-  ImgController controller;
+  private IImage model;
+  private IView view;
+  private ImgController controller;
 
   @Before
   public void setUp() {
     this.model = new MockModel();
-    ;
+
     this.view = new MockView();
-//    this.controller=new ImgControllerImpl(this.model, this.view, new BufferedReader(new InputStreamReader(System.in)),new BufferedWriter(new OutputStreamWriter(System.out)));
-//    this.controller.go();
+
 
   }
 
@@ -37,8 +38,8 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -53,8 +54,8 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -69,8 +70,8 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -86,8 +87,8 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -104,8 +105,8 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -120,8 +121,8 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -136,8 +137,8 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -152,13 +153,14 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
-    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
+    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Close Cmd|",
+        viewRet);
   }
 
   //  permuations of greyscale red
@@ -169,8 +171,8 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -185,8 +187,8 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -201,8 +203,8 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -217,8 +219,8 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -233,14 +235,15 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
     assertEquals(
-        "Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Close Cmd|",
+        "Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get "
+            + "Cmd|Close Cmd|",
         viewRet);
   }
 
@@ -252,13 +255,12 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("greyScaleBlue | koala | koalaBlue\n", modelRet);
-//    assertEquals("Get Cmd|");
   }
 
   @Test
@@ -268,8 +270,8 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -284,8 +286,8 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -299,8 +301,8 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -314,8 +316,8 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -329,8 +331,8 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -344,8 +346,8 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -359,8 +361,8 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -374,12 +376,13 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
-    assertEquals("rgbSplit | koalaSplit | koalaSRed | koalaSGreen | koalaSBlue\n", modelRet);
+    assertEquals("rgbSplit | koalaSplit | koalaSRed | koalaSGreen | koalaSBlue\n",
+        modelRet);
   }
 
   @Test
@@ -389,12 +392,13 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
-    assertEquals("rgbCombine | koalaCombine | koalaSRed | koalaSGreen | koalaSBlue\n", modelRet);
+    assertEquals("rgbCombine | koalaCombine | koalaSRed | koalaSGreen | koalaSBlue\n"
+        , modelRet);
   }
 
   @Test
@@ -404,12 +408,13 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
-    assertEquals("load | code/koala.ppm | koala\nsave | code/koalanew.ppm | koala\n", modelRet);
+    assertEquals("load | code/koala.ppm | koala\nsave | code/koalanew.ppm | koala\n"
+        , modelRet);
   }
 
   @Test
@@ -419,8 +424,8 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -434,8 +439,8 @@ public class ImgControllerImplTest extends Helper {
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader, writer);
-    this.controller.go();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
