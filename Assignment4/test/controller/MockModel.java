@@ -6,7 +6,7 @@ import model.IImage;
 import model.ImageObj;
 
 public class MockModel implements IImage {
-  private StringBuffer sb;
+  private StringBuffer sb = new StringBuffer();
 
   @Override
   public String toString() {
@@ -18,103 +18,90 @@ public class MockModel implements IImage {
 
   @Override
   public ImageObj load(IFile imagePath, String imageName) {
-    sb = new StringBuffer();
-    sb.append("load | " + imagePath.toString() + " | " + imageName);
+    sb.append("load | " + imagePath.toString() + " | " + imageName + "\n");
     return null;
   }
 
   @Override
   public ImageObj save(IFile imagePath, String imageName) {
-    sb = new StringBuffer();
-    sb.append("save | " + imagePath + " | " + imageName);
+     sb.append("save | " + imagePath + " | " + imageName + "\n");
     return null;
   }
 
   @Override
   public ImageObj greyScaleRed(String imageName, String desImageName)
       throws NoSuchElementException {
-    sb = new StringBuffer();
-    sb.append("greyScaleRed | " + imageName + " | " + desImageName);
+    sb.append("greyScaleRed | " + imageName + " | " + desImageName + "\n");
     return null;
   }
 
   @Override
   public ImageObj greyScaleGreen(String imageName, String desImageName)
       throws NoSuchElementException {
-    sb = new StringBuffer();
-    sb.append("greyScaleGreen | " + imageName + " | " + desImageName);
+    sb.append("greyScaleGreen | " + imageName + " | " + desImageName + "\n");
     return null;
   }
 
   @Override
   public ImageObj greyScaleBlue(String imageName, String desImageName)
       throws NoSuchElementException {
-    sb = new StringBuffer();
-    sb.append("greyScaleBlue | " + imageName + " | " + desImageName);
+    sb.append("greyScaleBlue | " + imageName + " | " + desImageName + "\n");
     return null;
   }
 
   @Override
   public ImageObj greyScaleValue(String imageName, String desImageName)
       throws NoSuchElementException {
-    sb = new StringBuffer();
-    sb.append("greyScaleValue | " + imageName + " | " + desImageName);
+    sb.append("greyScaleValue | " + imageName + " | " + desImageName + "\n");
     return null;
   }
 
   @Override
   public ImageObj greyScaleIntensity(String imageName, String desImageName)
       throws NoSuchElementException {
-    sb = new StringBuffer();
-    sb.append("greyScaleIntensity | " + imageName + " | " + desImageName);
+    sb.append("greyScaleIntensity | " + imageName + " | " + desImageName + "\n");
     return null;
   }
 
   @Override
   public ImageObj greyScaleLuma(String imageName, String desImageName)
       throws NoSuchElementException {
-    sb = new StringBuffer();
-    sb.append("greyScaleLuma | " + imageName + " | " + desImageName);
+    sb.append("greyScaleLuma | " + imageName + " | " + desImageName + "\n");
     return null;
   }
 
   @Override
   public ImageObj horizontalFlip(String imageName, String desImageName)
       throws NoSuchElementException {
-    sb = new StringBuffer();
-    sb.append("horizontalFlip | " + imageName + " | " + desImageName);
+    sb.append("horizontalFlip | " + imageName + " | " + desImageName + "\n");
     return null;
   }
 
   @Override
   public ImageObj verticalFlip(String imageName, String desImageName)
       throws NoSuchElementException {
-    sb = new StringBuffer();
-    sb.append("verticalFlip | " + imageName + " | " + desImageName);
+    sb.append("verticalFlip | " + imageName + " | " + desImageName + "\n");
     return null;
   }
 
   @Override
   public ImageObj brighten(int increment, String imageName, String desImageName)
       throws NoSuchElementException {
-    sb = new StringBuffer();
-    sb.append("brighten | " + increment + " | " + imageName + " | " + desImageName);
+    sb.append("brighten | " + increment + " | " + imageName + " | " + desImageName + "\n");
     return null;
   }
 
   @Override
   public ImageObj[] rgbSplit(String imageName, String redDesImageName, String greenDesImageName,
       String blueDesImageName) throws NoSuchElementException {
-    sb = new StringBuffer();
-    sb.append("rgbSplit | " + imageName + " | " + redDesImageName + " | " + greenDesImageName + " | " + blueDesImageName);
+    sb.append("rgbSplit | " + imageName + " | " + redDesImageName + " | " + greenDesImageName + " | " + blueDesImageName + "\n");
     return null;
   }
 
   @Override
   public ImageObj rgbCombine(String destImageName, String redImageName, String greenImageName,
       String blueImageName) throws NoSuchElementException {
-    sb = new StringBuffer();
-    sb.append("rgbCombine | " + destImageName + " | " + redImageName + " | " + greenImageName + " | " +blueImageName);
+    sb.append("rgbCombine | " + destImageName + " | " + redImageName + " | " + greenImageName + " | " +blueImageName + "\n");
     return null;
   }
 }
