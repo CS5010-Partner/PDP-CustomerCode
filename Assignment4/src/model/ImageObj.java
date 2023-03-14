@@ -17,14 +17,6 @@ public class ImageObj {
   {
 
   }
-  public int getWidth() {
-    return width;
-  }
-
-  public int getHeight() {
-    return height;
-  }
-
   public int[][][] getImage() {
     return image;
   }

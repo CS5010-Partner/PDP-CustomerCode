@@ -40,10 +40,7 @@ public class ImgControllerImpl extends Helper implements ImgController {
     this.verbose = true;
   }
 
-  private void print(String msg, boolean verboseOveride) {
-    if (this.verbose || verboseOveride)
-    System.out.println(msg);
-  }
+
 
   private void commandExecution() {
     while (true)
