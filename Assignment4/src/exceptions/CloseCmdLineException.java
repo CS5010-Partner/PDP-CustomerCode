@@ -1,4 +1,4 @@
-package controller.exceptions;
+package exceptions;
 
 /**
  * Terminates the program when there is a CloseCmdLineException.

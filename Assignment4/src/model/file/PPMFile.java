@@ -1,6 +1,6 @@
 package model.file;
 
-import controller.exceptions.FileHandlingException;
+import exceptions.FileHandlingException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

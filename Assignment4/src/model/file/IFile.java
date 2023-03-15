@@ -1,6 +1,6 @@
 package model.file;
 
-import controller.exceptions.FileHandlingException;
+import exceptions.FileHandlingException;
 
 /**
  * IFile represents the methods implemented by the classes which implement IFile interface.

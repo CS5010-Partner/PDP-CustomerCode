@@ -180,10 +180,4 @@ public class ViewTest {
     assertEquals("", out1);
     assertEquals("Please Enter A Valid Input\n", out2);
   }
-
-
-
-
-
-
 }

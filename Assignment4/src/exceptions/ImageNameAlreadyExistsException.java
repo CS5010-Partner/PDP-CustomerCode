@@ -1,4 +1,4 @@
-package controller.exceptions;
+package exceptions;
 
 /**
  * ImageNameAlreadyExistsException class throws an exception if the image name already exists.

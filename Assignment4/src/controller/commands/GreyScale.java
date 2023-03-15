@@ -1,8 +1,8 @@
 package controller.commands;
 
-import controller.exceptions.CloseCmdLineException;
-import controller.exceptions.ImageNameAlreadyExistsException;
-import controller.exceptions.WrongCommandException;
+import exceptions.CloseCmdLineException;
+import exceptions.ImageNameAlreadyExistsException;
+import exceptions.WrongCommandException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import model.IImage;

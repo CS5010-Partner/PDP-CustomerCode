@@ -1,7 +1,7 @@
 package model;
 
-import controller.exceptions.FileHandlingException;
-import controller.exceptions.ImageNameAlreadyExistsException;
+import exceptions.FileHandlingException;
+import exceptions.ImageNameAlreadyExistsException;
 import java.util.NoSuchElementException;
 import model.file.IFile;
 
