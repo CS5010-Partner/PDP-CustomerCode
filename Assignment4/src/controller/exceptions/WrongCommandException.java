@@ -1,4 +1,4 @@
-package controller.helper;
+package controller.exceptions;
 
 /**
  * WrongCommandException is thrown when there is no valid command exists for the current given

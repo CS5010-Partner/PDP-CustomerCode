@@ -1,9 +1,10 @@
 package model;
 
-import controller.helper.FileHandlingException;
-import controller.helper.ImageNameAlreadyExistsException;
+import controller.exceptions.FileHandlingException;
+import controller.exceptions.ImageNameAlreadyExistsException;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
+import model.file.IFile;
 
 /**
  * ImageSet class implements the IImage interface, and it acts as a model.

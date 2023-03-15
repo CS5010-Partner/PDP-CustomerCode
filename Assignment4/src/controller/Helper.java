@@ -1,5 +1,6 @@
-package controller.helper;
+package controller;
 
+import controller.exceptions.CloseCmdLineException;
 import java.io.BufferedReader;
 import java.io.IOException;
 
