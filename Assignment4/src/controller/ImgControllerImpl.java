@@ -8,11 +8,10 @@ import controller.commands.RGBCombine;
 import controller.commands.RGBSplit;
 import controller.commands.Save;
 import controller.commands.VerticalFlip;
-import controller.helper.CloseCmdLineException;
-import controller.helper.FileHandlingException;
-import controller.helper.Helper;
-import controller.helper.ImageNameAlreadyExistsException;
-import controller.helper.WrongCommandException;
+import exceptions.CloseCmdLineException;
+import exceptions.FileHandlingException;
+import exceptions.ImageNameAlreadyExistsException;
+import exceptions.WrongCommandException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -44,7 +43,6 @@ public class ImgControllerImpl extends Helper implements ImgController {
     this.view = view;
     this.in = in;
     this.tempIn = in;
-
     this.verbose = true;
   }
 

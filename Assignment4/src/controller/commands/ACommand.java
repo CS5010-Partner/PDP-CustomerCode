@@ -1,10 +1,10 @@
 package controller.commands;
 
-import controller.helper.Helper;
+import controller.Helper;
 import java.io.BufferedReader;
-import model.IFile;
+import model.file.IFile;
 import model.IImage;
-import model.PPMFile;
+import model.file.PPMFile;
 import view.IView;
 
 /**

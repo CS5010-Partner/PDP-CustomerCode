@@ -1,8 +1,9 @@
 package model;
 
-import controller.helper.FileHandlingException;
-import controller.helper.ImageNameAlreadyExistsException;
+import exceptions.FileHandlingException;
+import exceptions.ImageNameAlreadyExistsException;
 import java.util.NoSuchElementException;
+import model.file.IFile;
 
 /**
  * IImage represents the model interface and the methods that are required for the model.
