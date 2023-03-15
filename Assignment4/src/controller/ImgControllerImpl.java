@@ -44,7 +44,6 @@ public class ImgControllerImpl extends Helper implements ImgController {
     this.view = view;
     this.in = in;
     this.tempIn = in;
-
     this.verbose = true;
   }
 

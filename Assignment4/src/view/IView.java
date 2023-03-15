@@ -1,5 +1,7 @@
 package view;
 
+import java.io.IOException;
+
 /**
  * IView represents the view interface and the methods that are required for the view.
  */
