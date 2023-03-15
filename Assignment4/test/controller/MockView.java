@@ -2,18 +2,23 @@ package controller;
 
 import view.IView;
 
+/**
+ * This class acts as a mock implementation to the view class.
+ */
 public class MockView implements IView {
+
   private boolean verbose;
   private StringBuffer sb = new StringBuffer();
 
   public MockView() {
     this.verbose = true;
   }
-  
+
   public String toString() {
     return sb.toString();
   }
-  public void print(String msg, boolean verboseOveride) {
+
+  private void print(String msg, boolean verboseOveride) {
     if (this.verbose || verboseOveride) {
       System.out.println(msg);
       sb.append(msg);
@@ -24,6 +29,7 @@ public class MockView implements IView {
   public void toggleVerbose() {
     this.verbose = !this.verbose;
   }
+
   public void echoGetCommand(boolean verbose) {
     print("Get Cmd", false);
   }
@@ -63,18 +69,23 @@ public class MockView implements IView {
   public void echoBrightenSuccess(boolean verbose) {
     print("Brighten Success", false);
   }
+
   public void echoFlipSuccess(boolean verbose) {
     print("Flip Success", false);
   }
+
   public void echoSplitSuccess(boolean verbose) {
     print("Split Success", false);
   }
+
   public void echoCombineSuccess(boolean verbose) {
     print("Combine Success", false);
   }
+
   public void echoScriptSuccess(boolean verbose) {
     print("Script Success", true);
   }
+
   public void echoInvalidInputMsg(boolean verbose) {
     print("Invalid Input", true);
   }
