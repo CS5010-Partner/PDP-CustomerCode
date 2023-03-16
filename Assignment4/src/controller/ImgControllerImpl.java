@@ -21,8 +21,8 @@ import model.IImage;
 import view.IView;
 
 /**
- * ImgControllerImpl is the controller class which is called from the main. It takes input from the
- * user and calls necessary classes from the model. Parses the output to the view.
+   * ImgControllerImpl is the controller class which is called from the main. It takes input from the
+   * user and calls necessary classes from the model. Parses the output to the view.
  */
 public class ImgControllerImpl extends Helper implements ImgController {
 
