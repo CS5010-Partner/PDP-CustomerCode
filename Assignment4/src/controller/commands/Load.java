@@ -3,6 +3,7 @@ package controller.commands;
 import exceptions.CloseCmdLineException;
 import exceptions.FileHandlingException;
 import exceptions.ImageNameAlreadyExistsException;
+import exceptions.ImageNotFoundException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import model.IImage;
@@ -27,7 +28,7 @@ public class Load extends ACommand {
   @Override
   public void execute()
       throws IllegalStateException, FileHandlingException, IOException, CloseCmdLineException,
-      ImageNameAlreadyExistsException {
+      ImageNameAlreadyExistsException, ImageNotFoundException {
     String imagePath = this.getInput(in);
     String imageName = this.getInput(in);
     model.load(imagePathHelper(imagePath), imageName);

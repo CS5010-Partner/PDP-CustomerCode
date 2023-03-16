@@ -76,10 +76,11 @@ public class PPMFile implements IFile {
   }
 
   @Override
-  public void fileWrite(String content) {
+  public void fileWrite(String content) throws FileHandlingException{
     File file = new File(filePath);
 
-    try (FileOutputStream fos = new FileOutputStream(file)) {
+    try {
+      FileOutputStream fos = new FileOutputStream(file);
       if (!file.exists()) {
         file.createNewFile();
       }
@@ -87,6 +88,8 @@ public class PPMFile implements IFile {
 
       fos.write(contentInBytes);
       fos.flush();
+    } catch (FileNotFoundException e) {
+      throw new FileHandlingException("Directory not Found.");
     } catch (IOException e) {
       e.printStackTrace();
     }

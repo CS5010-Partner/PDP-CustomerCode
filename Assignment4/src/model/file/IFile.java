@@ -19,7 +19,8 @@ public interface IFile {
   /**
    * Writes the content into the specified file.
    * @param content the content to be written to the file.
+   * @throws FileHandlingException thrown when there is no such directory exists.
    */
-  void fileWrite(String content);
+  void fileWrite(String content) throws FileHandlingException;
 
 }

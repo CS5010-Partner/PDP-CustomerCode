@@ -2,6 +2,7 @@ package controller.commands;
 
 import exceptions.CloseCmdLineException;
 import exceptions.ImageNameAlreadyExistsException;
+import exceptions.ImageNotFoundException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import model.IImage;
@@ -25,7 +26,8 @@ public class RGBCombine extends ACommand {
   }
 
   @Override
-  public void execute() throws IOException, CloseCmdLineException, ImageNameAlreadyExistsException {
+  public void execute()
+      throws IOException, CloseCmdLineException, ImageNameAlreadyExistsException, ImageNotFoundException {
     String imageName = getInput(in);
     String redImg = getInput(in);
     String greenImg = getInput(in);

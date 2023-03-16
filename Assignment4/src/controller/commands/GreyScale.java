@@ -2,6 +2,7 @@ package controller.commands;
 
 import exceptions.CloseCmdLineException;
 import exceptions.ImageNameAlreadyExistsException;
+import exceptions.ImageNotFoundException;
 import exceptions.WrongCommandException;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,8 +28,8 @@ public class GreyScale extends ACommand {
 
   @Override
   public void execute()
-      throws WrongCommandException, IOException, CloseCmdLineException,
-      ImageNameAlreadyExistsException {
+      throws WrongCommandException, CloseCmdLineException,
+      ImageNameAlreadyExistsException, IOException, ImageNotFoundException {
     String value = getInput(in).toLowerCase();
     String sourceName = getInput(in);
     String destName = getInput(in);

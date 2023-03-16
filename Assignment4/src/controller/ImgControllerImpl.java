@@ -11,6 +11,7 @@ import controller.commands.VerticalFlip;
 import exceptions.CloseCmdLineException;
 import exceptions.FileHandlingException;
 import exceptions.ImageNameAlreadyExistsException;
+import exceptions.ImageNotFoundException;
 import exceptions.WrongCommandException;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -88,6 +89,8 @@ public class ImgControllerImpl extends Helper implements ImgController {
         this.view.echoFileHandlingError(e.toString(), true);
       } catch (ImageNameAlreadyExistsException e) {
         this.view.echoImageNameAlreadyExistsError(e.toString(), true);
+      } catch (ImageNotFoundException e) {
+        this.view.echoImageNotFoundError(e.toString(), true);
       }
     }
   }
@@ -95,7 +98,7 @@ public class ImgControllerImpl extends Helper implements ImgController {
 
   private void switchHelper(String cmd)
       throws CloseCmdLineException, IOException, FileHandlingException, WrongCommandException,
-      ImageNameAlreadyExistsException {
+      ImageNameAlreadyExistsException, ImageNotFoundException {
     switch (cmd) {
       case "load":
         Load load = new Load(model, view, in);

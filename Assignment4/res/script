@@ -1,0 +1,81 @@
+load res/img1orig.ppm i1
+load res/img2orig.ppm i2
+
+greyscale red i1 r1
+greyscale red i2 r2
+
+save res/img1greyRed.ppm r1
+save res/img2greyRed.ppm r2
+
+greyscale green i1 g1
+greyscale green i2 g2
+
+save res/img1greyGreen.ppm g1
+save res/img2greyGreen.ppm g2
+
+greyscale blue i1 b1
+greyscale blue i2 b2
+
+save res/img1greyBlue.ppm b1
+save res/img2greyBlue.ppm b2
+
+greyscale value i1 v1
+greyscale value i2 v2
+
+save res/img1greyVal.ppm v1
+save res/img2greyVal.ppm v2
+
+greyscale intensity i1 in1
+greyscale intensity i2 in2
+
+
+save res/img1greyIn.ppm in1
+save res/img2greyIn.ppm in2
+
+greyscale luma i1 l1
+greyscale luma i2 l2
+
+save res/img1greyLuma.ppm l1
+save res/img2greyLuma.ppm l2
+
+vertical-flip i1 vf1
+vertical-flip i2 vf2
+
+save res/img1vflip.ppm vf1
+save res/img2vflip.ppm vf2
+
+horizontal-flip i1 hf1
+horizontal-flip i2 hf2
+
+save res/img1hflip.ppm hf1
+save res/img2hflip.ppm hf2
+
+rgb-split i1 rsr1 rsg1 rsb1
+rgb-split i2 rsr2 rsg2 rsb2
+
+save res/img1split1.ppm rsr1
+save res/img1split2.ppm rsg1
+save res/img1split3.ppm rsb1
+
+save res/img2split1.ppm rsr2
+save res/img2split2.ppm rsg2
+save res/img2split3.ppm rsb2
+
+
+rgb-combine rc1 rsr1 rsg1 rsb1
+rgb-combine rc2 rsr2 rsg2 rsb2
+
+save res/img1combine.ppm rc1
+save res/img2combine.ppm rc2
+
+brighten 200 i1 fbr1
+brighten 200 i2 fbr2
+
+brighten 50 i1 br1
+brighten 50 i2 br2
+
+save res/img1brighten1.ppm fbr1
+save res/img2brighten1.ppm fbr2
+
+save res/img1brighten2.ppm br1
+save res/img2brighten2.ppm br2

@@ -29,6 +29,39 @@ public class ImageObj {
   }
 
   /**
+   * Getter for extracting the height of the image.
+   * @return  height in the integer format.
+   */
+  public int getHeight() {
+    return this.height;
+  }
+
+  /**
+   * Getter for extracting the width of the image.
+   * @return width in the integer format.
+   */
+  public int getWidth() {
+    return width;
+  }
+
+  /**
+   * Getter for extracting the max value of the image.
+   * @return max value in integer format.
+   */
+  public int getMaxValue() {
+    return maxValue;
+  }
+
+  /**
+   * Getter for extracting the image.
+   * @return image in the matrix format.
+   */
+
+  public int[][][] getMatrix() {
+    return image;
+  }
+
+  /**
    * Returns the image matrix.
    *
    * @return the integer matrix of the image.

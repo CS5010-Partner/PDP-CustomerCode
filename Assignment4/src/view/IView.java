@@ -50,6 +50,8 @@ public interface IView {
    */
   void echoFileHandlingError(String e, boolean b);
 
+  void echoImageNotFoundError(String e, boolean verbose);
+
   /**
    * Prints the message for the ImageNameAlreadyExists Error.
    *

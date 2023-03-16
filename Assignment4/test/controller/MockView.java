@@ -50,6 +50,11 @@ public class MockView implements IView {
     print("File Handling Error", true);
   }
 
+  @Override
+  public void echoImageNotFoundError(String e, boolean verbose) {
+    print("Image Name Error", true);
+  }
+
   public void echoImageNameAlreadyExistsError(String e, boolean verbose) {
     print("Image Name Error", true);
   }

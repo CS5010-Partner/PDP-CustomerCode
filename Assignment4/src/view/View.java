@@ -1,6 +1,5 @@
 package view;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 
@@ -65,6 +64,11 @@ public class View implements IView {
   @Override
   public void echoFileHandlingError(String e, boolean verbose) {
     print(e + " File not found, Please try again!", verbose);
+  }
+
+  @Override
+  public void echoImageNotFoundError(String e, boolean verbose) {
+    print(e + " Image Name not found. Please try again!", verbose);
   }
 
   @Override

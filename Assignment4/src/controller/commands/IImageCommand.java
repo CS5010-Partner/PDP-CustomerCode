@@ -3,6 +3,7 @@ package controller.commands;
 import exceptions.CloseCmdLineException;
 import exceptions.FileHandlingException;
 import exceptions.ImageNameAlreadyExistsException;
+import exceptions.ImageNotFoundException;
 import exceptions.WrongCommandException;
 import java.io.IOException;
 
@@ -14,5 +15,5 @@ public interface IImageCommand {
 
   void execute()
       throws WrongCommandException, FileHandlingException, IOException, CloseCmdLineException,
-      ImageNameAlreadyExistsException;
+      ImageNameAlreadyExistsException, ImageNotFoundException;
 }

@@ -2,6 +2,7 @@ package model;
 
 import exceptions.FileHandlingException;
 import exceptions.ImageNameAlreadyExistsException;
+import exceptions.ImageNotFoundException;
 import java.util.NoSuchElementException;
 import model.file.IFile;
 
@@ -20,7 +21,7 @@ public interface IImage {
    * @throws ImageNameAlreadyExistsException thrown when an image name already exists.
    */
   ImageObj load(IFile imagePath, String imageName)
-      throws FileHandlingException, ImageNameAlreadyExistsException;
+      throws FileHandlingException, ImageNameAlreadyExistsException, ImageNotFoundException;
 
   /**
    * saves the given imagename to the specified imagepath.
@@ -29,8 +30,11 @@ public interface IImage {
    * @param imageName image name
    * @return ImageObj of the saved image.
    * @throws ImageNameAlreadyExistsException thrown when an image name already exists.
+   * @throws NoSuchElementException throws when an image under the name does not exists.
+   * @throws FileHandlingException thrown when there is no such directory exists.
    */
-  ImageObj save(IFile imagePath, String imageName) throws ImageNameAlreadyExistsException;
+  ImageObj save(IFile imagePath, String imageName)
+      throws ImageNameAlreadyExistsException, NoSuchElementException, FileHandlingException, ImageNotFoundException;
 
   /**
    * Converts the image to the grey scale red image.
@@ -42,7 +46,7 @@ public interface IImage {
    * @throws ImageNameAlreadyExistsException thrown when an image name already exists.
    */
   ImageObj greyScaleRed(String imageName, String desImageName)
-      throws NoSuchElementException, ImageNameAlreadyExistsException;
+      throws NoSuchElementException, ImageNameAlreadyExistsException, ImageNotFoundException;
 
   /**
    * Converts the image to the grey scale green image.
@@ -54,7 +58,7 @@ public interface IImage {
    * @throws ImageNameAlreadyExistsException thrown when an image name already exists.
    */
   ImageObj greyScaleGreen(String imageName, String desImageName)
-      throws NoSuchElementException, ImageNameAlreadyExistsException;
+      throws NoSuchElementException, ImageNameAlreadyExistsException, ImageNotFoundException;
 
   /**
    * Converts the image to the grey scale blue image.
@@ -66,7 +70,7 @@ public interface IImage {
    * @throws ImageNameAlreadyExistsException thrown when an image name already exists.
    */
   ImageObj greyScaleBlue(String imageName, String desImageName)
-      throws NoSuchElementException, ImageNameAlreadyExistsException;
+      throws NoSuchElementException, ImageNameAlreadyExistsException, ImageNotFoundException;
 
   /**
    * Converts the image to the grey scale value image.
@@ -78,7 +82,7 @@ public interface IImage {
    * @throws ImageNameAlreadyExistsException thrown when an image name already exists.
    */
   ImageObj greyScaleValue(String imageName, String desImageName)
-      throws NoSuchElementException, ImageNameAlreadyExistsException;
+      throws NoSuchElementException, ImageNameAlreadyExistsException, ImageNotFoundException;
 
   /**
    * Converts the image to the grey scale intensity image.
@@ -90,7 +94,7 @@ public interface IImage {
    * @throws ImageNameAlreadyExistsException thrown when an image name already exists.
    */
   ImageObj greyScaleIntensity(String imageName, String desImageName)
-      throws NoSuchElementException, ImageNameAlreadyExistsException;
+      throws NoSuchElementException, ImageNameAlreadyExistsException, ImageNotFoundException;
 
   /**
    * Converts the image to the grey scale luma image.
@@ -102,7 +106,7 @@ public interface IImage {
    * @throws ImageNameAlreadyExistsException thrown when an image name already exists.
    */
   ImageObj greyScaleLuma(String imageName, String desImageName)
-      throws NoSuchElementException, ImageNameAlreadyExistsException;
+      throws NoSuchElementException, ImageNameAlreadyExistsException, ImageNotFoundException;
 
   /**
    * Flips the image horizontally.
@@ -114,7 +118,7 @@ public interface IImage {
    * @throws ImageNameAlreadyExistsException thrown when an image name already exists.
    */
   ImageObj horizontalFlip(String imageName, String desImageName)
-      throws NoSuchElementException, ImageNameAlreadyExistsException;
+      throws NoSuchElementException, ImageNameAlreadyExistsException, ImageNotFoundException;
 
   /**
    * Flips the image vertically.
@@ -126,7 +130,7 @@ public interface IImage {
    * @throws ImageNameAlreadyExistsException thrown when an image name already exists.
    */
   ImageObj verticalFlip(String imageName, String desImageName)
-      throws NoSuchElementException, ImageNameAlreadyExistsException;
+      throws NoSuchElementException, ImageNameAlreadyExistsException, ImageNotFoundException;
 
   /**
    * Brightens the image by the increment factor given by the user.
@@ -139,7 +143,7 @@ public interface IImage {
    * @throws ImageNameAlreadyExistsException thrown when an image name already exists.
    */
   ImageObj brighten(int increment, String imageName, String desImageName)
-      throws NoSuchElementException, ImageNameAlreadyExistsException;
+      throws NoSuchElementException, ImageNameAlreadyExistsException, ImageNotFoundException;
 
   /**
    * Splits the image into seperate red, green and blue grey components.
@@ -153,7 +157,7 @@ public interface IImage {
    * @throws ImageNameAlreadyExistsException thrown when an image name already exists.
    */
   ImageObj[] rgbSplit(String imageName, String redDesImageName, String greenDesImageName,
-      String blueDesImageName) throws NoSuchElementException, ImageNameAlreadyExistsException;
+      String blueDesImageName) throws NoSuchElementException, ImageNameAlreadyExistsException, ImageNotFoundException;
 
   /**
    * Combines the three components into one image.
@@ -167,7 +171,6 @@ public interface IImage {
    * @throws ImageNameAlreadyExistsException thrown when an image name already exists.
    */
   ImageObj rgbCombine(String destImageName, String redImageName, String greenImageName,
-      String blueImageName) throws NoSuchElementException, ImageNameAlreadyExistsException;
-
+      String blueImageName) throws NoSuchElementException, ImageNameAlreadyExistsException, ImageNotFoundException;
 }
 
