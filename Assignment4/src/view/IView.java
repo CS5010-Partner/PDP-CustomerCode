@@ -56,7 +56,7 @@ public interface IView {
    * @param e represents the error message
    * @param b decides whether to show the message to the user or not.
    */
-    void echoImageNameAlreadyExistsError(String e, boolean b);
+  void echoImageNameAlreadyExistsError(String e, boolean b);
 
   /**
    * Prints the message for the successful load of the image.
@@ -70,7 +70,7 @@ public interface IView {
    *
    * @param b decides whether to show the message to the user or not.
    */
-    void echoSaveSuccess(boolean b);
+  void echoSaveSuccess(boolean b);
 
   /**
    * Prints the message for the successful grey scale transformation of the image.
@@ -105,7 +105,7 @@ public interface IView {
    *
    * @param b decides whether to show the message to the user or not.
    */
-    void echoSplitSuccess(boolean b);
+  void echoSplitSuccess(boolean b);
 
   /**
    * Prints the message for the successful run of the script file.
