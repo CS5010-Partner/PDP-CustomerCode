@@ -3,8 +3,6 @@ package controller;
 import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.StringReader;
 import model.IImage;
@@ -35,7 +33,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -51,7 +48,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -67,7 +63,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -84,7 +79,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -102,7 +96,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -118,7 +111,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -134,7 +126,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -150,7 +141,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -168,7 +158,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -184,7 +173,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -200,7 +188,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -216,7 +203,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -232,7 +218,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -252,7 +237,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -268,7 +252,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
 
     this.controller.run();
@@ -285,7 +268,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -301,7 +283,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -318,7 +299,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -333,7 +313,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -349,7 +328,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -368,7 +346,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -384,7 +361,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -400,7 +376,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -416,7 +391,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -433,7 +407,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -449,7 +422,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -465,7 +437,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -481,7 +452,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -497,7 +467,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -514,7 +483,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -530,7 +498,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -548,7 +515,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -567,7 +533,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -584,7 +549,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -601,7 +565,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -617,7 +580,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -636,7 +598,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -651,7 +612,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -666,7 +626,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -687,7 +646,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -709,7 +667,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -724,7 +681,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -743,7 +699,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -759,7 +714,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -775,7 +729,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -790,7 +743,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -806,7 +758,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -822,7 +773,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -838,7 +788,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -853,8 +802,7 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
     String modelRet = this.model.toString();
@@ -869,7 +817,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -885,7 +832,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -902,7 +848,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -917,7 +862,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -932,7 +876,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -947,7 +890,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -962,7 +904,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -978,7 +919,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -993,7 +933,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -1008,7 +947,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -1023,7 +961,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -1038,7 +975,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -1053,7 +989,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -1068,7 +1003,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
 
     String modelRet = this.model.toString();
@@ -1082,7 +1016,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
@@ -1097,7 +1030,6 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 
