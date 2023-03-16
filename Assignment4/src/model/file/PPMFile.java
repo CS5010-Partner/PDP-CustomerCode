@@ -76,7 +76,7 @@ public class PPMFile implements IFile {
   }
 
   @Override
-  public void fileWrite(String content) throws FileHandlingException{
+  public void fileWrite(String content) throws FileHandlingException {
     File file = new File(filePath);
 
     try {

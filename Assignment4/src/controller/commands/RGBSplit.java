@@ -27,7 +27,8 @@ public class RGBSplit extends ACommand {
 
   @Override
   public void execute()
-      throws IOException, CloseCmdLineException, ImageNameAlreadyExistsException, ImageNotFoundException {
+      throws IOException, CloseCmdLineException, ImageNameAlreadyExistsException,
+      ImageNotFoundException {
     String imageName = getInput(in);
     String redImg = getInput(in);
     String greenImg = getInput(in);

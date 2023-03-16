@@ -13,6 +13,9 @@ import model.file.IFile;
 import model.file.PPMFile;
 import org.junit.Test;
 
+/**
+ * Class to test the Model part of the MVC.
+ */
 public class ImageSetTest {
 
   private ImageSet model;
@@ -22,6 +25,9 @@ public class ImageSetTest {
 
   private HashMap<String, ImageObj> map;
 
+  /**
+   * Constructor to initialize the variables.
+   */
   public ImageSetTest() {
     model = new ImageSet();
     img1 = new PPMFile("res/img1orig.ppm");
@@ -31,8 +37,8 @@ public class ImageSetTest {
   }
 
   private boolean checkTwoImages(ImageObj obj1, ImageObj obj2) {
-    if (obj1.getHeight() != obj2.getHeight() ||
-        obj1.getWidth() != obj2.getWidth()) {
+    if (obj1.getHeight() != obj2.getHeight()
+        || obj1.getWidth() != obj2.getWidth()) {
       return false;
     }
 
@@ -71,7 +77,8 @@ public class ImageSetTest {
 
   @Test
   public void saveTest()
-      throws ImageNameAlreadyExistsException, NoSuchElementException, FileHandlingException, ImageNotFoundException {
+      throws ImageNameAlreadyExistsException, NoSuchElementException, FileHandlingException,
+      ImageNotFoundException {
     map.put("1orig", model.load(img1, "1orig"));
     map.put("2orig", model.load(img2, "2orig"));
 
@@ -120,17 +127,18 @@ public class ImageSetTest {
     try {
       model.greyScaleRed("1orig", "1greyRed");
       fail("greyscale red failed");
-    }
-    catch (ImageNameAlreadyExistsException e) {
-      assertEquals("exceptions.ImageNameAlreadyExistsException: Image name already exists.",e.toString());
+    } catch (ImageNameAlreadyExistsException e) {
+      assertEquals("exceptions.ImageNameAlreadyExistsException: "
+              + "Image name already exists.",
+          e.toString());
     }
 
     try {
       model.greyScaleRed("1orig1", "1greyRed");
       fail("greyscale red failed");
-    }
-    catch (ImageNotFoundException e) {
-      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",e.toString());
+    } catch (ImageNotFoundException e) {
+      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",
+          e.toString());
     }
   }
 
@@ -155,17 +163,18 @@ public class ImageSetTest {
     try {
       model.greyScaleGreen("1orig", "1greyGreen");
       fail("greyscale Green failed");
-    }
-    catch (ImageNameAlreadyExistsException e) {
-      assertEquals("exceptions.ImageNameAlreadyExistsException: Image name already exists.",e.toString());
+    } catch (ImageNameAlreadyExistsException e) {
+      assertEquals("exceptions.ImageNameAlreadyExistsException: "
+              + "Image name already exists.",
+          e.toString());
     }
 
     try {
       model.greyScaleGreen("1orig1", "1greyGreen");
       fail("greyscale Green failed");
-    }
-    catch (ImageNotFoundException e) {
-      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",e.toString());
+    } catch (ImageNotFoundException e) {
+      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",
+          e.toString());
     }
   }
 
@@ -190,17 +199,18 @@ public class ImageSetTest {
     try {
       model.greyScaleBlue("1orig", "1greyBlue");
       fail("greyscale Blue failed");
-    }
-    catch (ImageNameAlreadyExistsException e) {
-      assertEquals("exceptions.ImageNameAlreadyExistsException: Image name already exists.",e.toString());
+    } catch (ImageNameAlreadyExistsException e) {
+      assertEquals("exceptions.ImageNameAlreadyExistsException: "
+              + "Image name already exists.",
+          e.toString());
     }
 
     try {
       model.greyScaleBlue("1orig1", "1greyBlue");
       fail("greyscale Blue failed");
-    }
-    catch (ImageNotFoundException e) {
-      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",e.toString());
+    } catch (ImageNotFoundException e) {
+      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",
+          e.toString());
     }
   }
 
@@ -225,17 +235,18 @@ public class ImageSetTest {
     try {
       model.greyScaleValue("1orig", "1greyVal");
       fail("greyscale Value failed");
-    }
-    catch (ImageNameAlreadyExistsException e) {
-      assertEquals("exceptions.ImageNameAlreadyExistsException: Image name already exists.",e.toString());
+    } catch (ImageNameAlreadyExistsException e) {
+      assertEquals("exceptions.ImageNameAlreadyExistsException: "
+              + "Image name already exists.",
+          e.toString());
     }
 
     try {
       model.greyScaleValue("1orig1", "1greyVal");
       fail("greyscale Value failed");
-    }
-    catch (ImageNotFoundException e) {
-      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",e.toString());
+    } catch (ImageNotFoundException e) {
+      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",
+          e.toString());
     }
   }
 
@@ -260,17 +271,18 @@ public class ImageSetTest {
     try {
       model.greyScaleIntensity("1orig", "1greyIn");
       fail("greyscale Intensity failed");
-    }
-    catch (ImageNameAlreadyExistsException e) {
-      assertEquals("exceptions.ImageNameAlreadyExistsException: Image name already exists.",e.toString());
+    } catch (ImageNameAlreadyExistsException e) {
+      assertEquals("exceptions.ImageNameAlreadyExistsException: "
+              + "Image name already exists.",
+          e.toString());
     }
 
     try {
       model.greyScaleIntensity("1orig1", "1greyIn");
       fail("greyscale Intensity failed");
-    }
-    catch (ImageNotFoundException e) {
-      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",e.toString());
+    } catch (ImageNotFoundException e) {
+      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",
+          e.toString());
     }
   }
 
@@ -295,17 +307,18 @@ public class ImageSetTest {
     try {
       model.greyScaleLuma("1orig", "1greyLuma");
       fail("greyscale Luma failed");
-    }
-    catch (ImageNameAlreadyExistsException e) {
-      assertEquals("exceptions.ImageNameAlreadyExistsException: Image name already exists.",e.toString());
+    } catch (ImageNameAlreadyExistsException e) {
+      assertEquals("exceptions.ImageNameAlreadyExistsException: "
+              + "Image name already exists.",
+          e.toString());
     }
 
     try {
       model.greyScaleLuma("1orig1", "1greyLuma");
       fail("greyscale Luma failed");
-    }
-    catch (ImageNotFoundException e) {
-      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",e.toString());
+    } catch (ImageNotFoundException e) {
+      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",
+          e.toString());
     }
   }
 
@@ -330,17 +343,18 @@ public class ImageSetTest {
     try {
       model.horizontalFlip("1orig", "1hori");
       fail("Horizontal Flip failed");
-    }
-    catch (ImageNameAlreadyExistsException e) {
-      assertEquals("exceptions.ImageNameAlreadyExistsException: Image name already exists.",e.toString());
+    } catch (ImageNameAlreadyExistsException e) {
+      assertEquals("exceptions.ImageNameAlreadyExistsException: "
+              + "Image name already exists.",
+          e.toString());
     }
 
     try {
       model.horizontalFlip("1orig1", "1hori");
       fail("Horizontal Flip failed");
-    }
-    catch (ImageNotFoundException e) {
-      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",e.toString());
+    } catch (ImageNotFoundException e) {
+      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",
+          e.toString());
     }
   }
 
@@ -365,17 +379,18 @@ public class ImageSetTest {
     try {
       model.verticalFlip("1orig", "1vert");
       fail("Vertical Flip failed");
-    }
-    catch (ImageNameAlreadyExistsException e) {
-      assertEquals("exceptions.ImageNameAlreadyExistsException: Image name already exists.",e.toString());
+    } catch (ImageNameAlreadyExistsException e) {
+      assertEquals("exceptions.ImageNameAlreadyExistsException: "
+              + "Image name already exists.",
+          e.toString());
     }
 
     try {
       model.verticalFlip("1orig1", "1vert");
       fail("Vertical Flip failed");
-    }
-    catch (ImageNotFoundException e) {
-      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",e.toString());
+    } catch (ImageNotFoundException e) {
+      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",
+          e.toString());
     }
   }
 
@@ -412,17 +427,18 @@ public class ImageSetTest {
     try {
       model.brighten(50, "1orig", "1br1");
       fail("Brighten failed");
-    }
-    catch (ImageNameAlreadyExistsException e) {
-      assertEquals("exceptions.ImageNameAlreadyExistsException: Image name already exists.",e.toString());
+    } catch (ImageNameAlreadyExistsException e) {
+      assertEquals("exceptions.ImageNameAlreadyExistsException: "
+              + "Image name already exists.",
+          e.toString());
     }
 
     try {
       model.brighten(50, "1orig1", "1br1");
       fail("Brighten Flip failed");
-    }
-    catch (ImageNotFoundException e) {
-      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",e.toString());
+    } catch (ImageNotFoundException e) {
+      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",
+          e.toString());
     }
   }
 
@@ -432,8 +448,10 @@ public class ImageSetTest {
     map.put("1orig", model.load(img1, "1orig"));
     map.put("2orig", model.load(img2, "2orig"));
 
-    ImageObj[] rs1 = model.rgbSplit("1orig", "1rs1", "1rs2", "1rs3");
-    ImageObj[] rs2 = model.rgbSplit("2orig", "2rs1", "2rs2", "2rs3");
+    ImageObj[] rs1 = model.rgbSplit("1orig", "1rs1",
+        "1rs2", "1rs3");
+    ImageObj[] rs2 = model.rgbSplit("2orig", "2rs1",
+        "2rs2", "2rs3");
 
     map.put("1rs1", rs1[0]);
     map.put("1rs2", rs1[1]);
@@ -468,19 +486,21 @@ public class ImageSetTest {
     assertEquals(true, checkTwoImages(map.get("2rs3Ref"), map.get("2rs3")));
 
     try {
-      model.rgbSplit("1orig", "1rs1", "1rs1", "1rs3");
+      model.rgbSplit("1orig", "1rs1", "1rs1",
+          "1rs3");
       fail("Split failed");
-    }
-    catch (ImageNameAlreadyExistsException e) {
-      assertEquals("exceptions.ImageNameAlreadyExistsException: Image name already exists.",e.toString());
+    } catch (ImageNameAlreadyExistsException e) {
+      assertEquals("exceptions.ImageNameAlreadyExistsException: Image name already exists.",
+          e.toString());
     }
 
     try {
-      model.rgbSplit("1orig1", "1rs1", "1rs2", "1rs3");
+      model.rgbSplit("1orig1", "1rs1", "1rs2",
+          "1rs3");
       fail("Brighten Flip failed");
-    }
-    catch (ImageNotFoundException e) {
-      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",e.toString());
+    } catch (ImageNotFoundException e) {
+      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",
+          e.toString());
     }
   }
 
@@ -490,11 +510,15 @@ public class ImageSetTest {
     map.put("1orig", model.load(img1, "1orig"));
     map.put("2orig", model.load(img2, "2orig"));
 
-    ImageObj[] rs1 = model.rgbSplit("1orig", "1rs1", "1rs2", "1rs3");
-    ImageObj[] rs2 = model.rgbSplit("2orig", "2rs1", "2rs2", "2rs3");
+    ImageObj[] rs1 = model.rgbSplit("1orig", "1rs1",
+        "1rs2", "1rs3");
+    ImageObj[] rs2 = model.rgbSplit("2orig", "2rs1",
+        "2rs2", "2rs3");
 
-    ImageObj rc1 = model.rgbCombine("1rc", "1rs1", "1rs2", "1rs3");
-    ImageObj rc2 = model.rgbCombine("2rc", "2rs1", "2rs2", "2rs3");
+    ImageObj rc1 = model.rgbCombine("1rc", "1rs1",
+        "1rs2", "1rs3");
+    ImageObj rc2 = model.rgbCombine("2rc", "2rs1",
+        "2rs2", "2rs3");
 
     map.put("1rc", rc1);
     map.put("2rc", rc2);
@@ -509,19 +533,22 @@ public class ImageSetTest {
     assertEquals(true, checkTwoImages(map.get("2rc"), map.get("2rcRef")));
 
     try {
-      model.rgbCombine("1rc", "1rs1", "1rs1", "1rs3");
+      model.rgbCombine("1rc", "1rs1", "1rs1",
+          "1rs3");
       fail("Split failed");
-    }
-    catch (ImageNameAlreadyExistsException e) {
-      assertEquals("exceptions.ImageNameAlreadyExistsException: Image name already exists.",e.toString());
+    } catch (ImageNameAlreadyExistsException e) {
+      assertEquals("exceptions.ImageNameAlreadyExistsException: Image name "
+              + "already exists.",
+          e.toString());
     }
 
     try {
-      model.rgbCombine("1rc", "1rs1", "1rs2", "1rs31");
+      model.rgbCombine("1rc", "1rs1", "1rs2",
+          "1rs31");
       fail("Brighten Flip failed");
-    }
-    catch (ImageNotFoundException e) {
-      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",e.toString());
+    } catch (ImageNotFoundException e) {
+      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",
+          e.toString());
     }
   }
 }

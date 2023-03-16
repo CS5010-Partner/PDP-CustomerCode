@@ -3,7 +3,8 @@ package exceptions;
 /**
  * ImageNotFoundException class throws an exception if the image name not found.
  */
-public class ImageNotFoundException extends Exception{
+public class ImageNotFoundException extends Exception {
+
   /**
    * Represents the constructor for the ImageNotFoundException class.
    *

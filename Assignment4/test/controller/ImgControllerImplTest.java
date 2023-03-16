@@ -26,7 +26,6 @@ public class ImgControllerImplTest {
 
   }
 
-  //  Permutation of load commands
   @Test
   public void loadTest() {
     String test = "load code/ant.ppm ant\n#\n";
@@ -89,7 +88,6 @@ public class ImgControllerImplTest {
     assertEquals("Get Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
   }
 
-  //  perumatations of save commands
   @Test
   public void saveTest() {
     String test = "save code/ant.ppm ant\n#\n";
@@ -151,7 +149,6 @@ public class ImgControllerImplTest {
         viewRet);
   }
 
-  //  permuations of greyscale red
   @Test
   public void greyscaleRedTest() {
     String test = "greyscale red ant antRed\n#\n";
@@ -230,7 +227,6 @@ public class ImgControllerImplTest {
         viewRet);
   }
 
-  //  permutations of greyscale blue cmd
   @Test
   public void greyscaleBlueTest() {
     String test = "greyscale blue ant antBlue\n#\n";
@@ -289,10 +285,10 @@ public class ImgControllerImplTest {
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
-    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
+    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid "
+        + "Input|Get Cmd|Close Cmd|", viewRet);
   }
 
-//  permuations of greyscale green
   @Test
   public void greyscaleGreenTest() {
     String test = "greyscale green ant antGreen\n#\n";
@@ -338,8 +334,6 @@ public class ImgControllerImplTest {
   }
 
 
-
-//  permuations of greyscale value
   @Test
   public void greyscaleValueTest() {
     String test = "greyscale value ant antValue\n#\n";
@@ -397,10 +391,10 @@ public class ImgControllerImplTest {
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
-    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
+    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get "
+        + "Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
   }
 
-//  permutations of gresycale intensity
   @Test
   public void greyscaleIntensityTest() {
     String test = "greyscale intensity ant antIntensity\n#\n";
@@ -473,10 +467,10 @@ public class ImgControllerImplTest {
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
-    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
+    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get "
+        + "Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
   }
 
-//  permutations of greyscale luma
   @Test
   public void greyscaleLumaTest() {
     String test = "greyscale luma ant antLuma\n#\n";
@@ -508,14 +502,14 @@ public class ImgControllerImplTest {
   }
 
 
-
   @Test
   public void greyscaleNoBlueTest() {
     String test = "greyscale ant antBlue\n#\n";
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -523,8 +517,6 @@ public class ImgControllerImplTest {
     assertEquals("Get Cmd|Close Cmd|", viewRet);
   }
 
-
-//  permuations of greyscale green
 
 
   @Test
@@ -539,10 +531,10 @@ public class ImgControllerImplTest {
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
-    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
+    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get "
+        + "Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
   }
 
-//  permuations of greyscale value
   @Test
   public void greyscaleNoValueTest() {
     String test = "greyscale ant antValue\n#\n";
@@ -558,22 +550,22 @@ public class ImgControllerImplTest {
     assertEquals("Get Cmd|Close Cmd|", viewRet);
   }
 
-//  permutations of gresycale intensity
   @Test
   public void greyscaleLumaNoCmdTest() {
     String test = " luma ant antLuma\n#\n";
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
-    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
+    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get "
+        + "Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
   }
 
-//  permuations of greyscale horizontal flip
   @Test
   public void greyscaleHoriFlipTest() {
     String test = "horizontal-flip ant antHFlip\n#\n";
@@ -590,15 +582,14 @@ public class ImgControllerImplTest {
   }
 
 
-
-//  permutations of greyscale luma
   @Test
   public void greyscaleHoriFlipNoSrcTest() {
     String test = "horizontal-flip antHFlip\n#\n";
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -612,7 +603,8 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -626,27 +618,24 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
-    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
+    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid "
+        + "Input|Get Cmd|Close Cmd|", viewRet);
   }
 
-  //  permuations of greyscale red
-
-  //  permutations of greyscale blue cmd
-
-
-//  permuations of greyscale green
   @Test
   public void greyscaleGreenNoSrcTest() {
     String test = "greyscale green antGreen\n#\n";
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -654,12 +643,6 @@ public class ImgControllerImplTest {
     assertEquals("Get Cmd|Close Cmd|", viewRet);
   }
 
-//  permuations of greyscale value
-
-
-//  permutations of gresycale intensity
-
-//  permutations of greyscale luma
 
   @Test
   public void greyscaleLumaNoDestTest() {
@@ -667,7 +650,8 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -681,7 +665,8 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -689,10 +674,6 @@ public class ImgControllerImplTest {
     assertEquals("Get Cmd|Close Cmd|", viewRet);
   }
 
-
-//  permuations of greyscale horizontal flip
-
-//  permuatations of vertical flip
   @Test
   public void greyscaleVertFlipTest() {
     String test = "vertical-flip ant antVFlip\n#\n";
@@ -729,7 +710,8 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -743,15 +725,16 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
-    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
+    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get "
+        + "Cmd|Close Cmd|", viewRet);
   }
 
-//  permutations for brighten command
   @Test
   public void greyscaleBrightenTest() {
     String test = "brighten 10 ant antBrighten\n#\n";
@@ -788,7 +771,8 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -817,15 +801,16 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
-    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
+    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid "
+        + "Input|Get Cmd|Close Cmd|", viewRet);
   }
 
-//  permutations of rgb split commands
   @Test
   public void greyscaleRgbSplitTest() {
     String test = "rgb-split antSplit antSRed antSGreen antSBlue\n#\n";
@@ -848,21 +833,23 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
     assertEquals("Get Cmd|Close Cmd|", viewRet);
   }
-  
+
   @Test
   public void greyscaleRgbSplitNo2DestTest() {
     String test = "rgb-split antSplit antSRed antSBlue\n#\n";
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -876,7 +863,8 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -890,7 +878,8 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -904,22 +893,24 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
-    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
+    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get "
+        + "Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
   }
 
-//  permutations for the rgb combine command
   @Test
   public void greyscaleRgbCombineTest() {
     String test = "rgb-combine antCombine antSRed antSGreen antSBlue\n#\n";
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -933,7 +924,8 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -947,7 +939,8 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -961,7 +954,8 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -975,7 +969,8 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -989,12 +984,16 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
-    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
+    assertEquals(
+        "Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid"
+            + " Input|Get Cmd|Invalid Input|Get Cmd|Close Cmd|",
+        viewRet);
   }
 
   @Test
@@ -1003,7 +1002,8 @@ public class ImgControllerImplTest {
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
-    this.controller = new ImgControllerImpl(this.model, this.view, reader);    this.controller.run();
+    this.controller = new ImgControllerImpl(this.model, this.view, reader);
+    this.controller.run();
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();

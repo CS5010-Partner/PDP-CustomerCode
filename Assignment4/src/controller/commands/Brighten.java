@@ -27,7 +27,8 @@ public class Brighten extends ACommand {
 
   @Override
   public void execute()
-      throws IOException, CloseCmdLineException, ImageNameAlreadyExistsException, ImageNotFoundException {
+      throws IOException, CloseCmdLineException, ImageNameAlreadyExistsException,
+      ImageNotFoundException {
     int incrementValue = 0;
     while (true) {
       try {

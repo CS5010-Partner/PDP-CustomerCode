@@ -27,7 +27,8 @@ public class HorizontalFlip extends ACommand {
 
   @Override
   public void execute()
-      throws IOException, CloseCmdLineException, ImageNameAlreadyExistsException, ImageNotFoundException {
+      throws IOException, CloseCmdLineException, ImageNameAlreadyExistsException,
+      ImageNotFoundException {
     String sourceName = getInput(in);
     String destName = getInput(in);
     model.horizontalFlip(sourceName, destName);

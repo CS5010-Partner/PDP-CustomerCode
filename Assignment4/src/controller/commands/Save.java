@@ -27,7 +27,8 @@ public class Save extends ACommand {
 
   @Override
   public void execute()
-      throws IOException, CloseCmdLineException, ImageNameAlreadyExistsException, FileHandlingException, ImageNotFoundException {
+      throws IOException, CloseCmdLineException, ImageNameAlreadyExistsException,
+      FileHandlingException, ImageNotFoundException {
     String imagePath = this.getInput(in);
     String imageName = this.getInput(in);
     model.save(imagePathHelper(imagePath), imageName);

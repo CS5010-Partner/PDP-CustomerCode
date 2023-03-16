@@ -3,9 +3,19 @@ package view;
 import java.io.BufferedWriter;
 import java.io.Writer;
 
+/**
+ * Class used to test the view part of the model using a mock buffered writer.
+ */
 public class MockBufferedWriter extends BufferedWriter {
+
   private String s;
   private String flush;
+
+  /**
+   * Constructor to initialize the variables.
+   *
+   * @param out Writer object as input.
+   */
   public MockBufferedWriter(Writer out) {
     super(out);
     s = "";

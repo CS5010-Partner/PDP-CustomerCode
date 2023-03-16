@@ -34,7 +34,8 @@ public interface IImage {
    * @throws FileHandlingException thrown when there is no such directory exists.
    */
   ImageObj save(IFile imagePath, String imageName)
-      throws ImageNameAlreadyExistsException, NoSuchElementException, FileHandlingException, ImageNotFoundException;
+      throws ImageNameAlreadyExistsException, NoSuchElementException, FileHandlingException,
+      ImageNotFoundException;
 
   /**
    * Converts the image to the grey scale red image.
@@ -157,7 +158,8 @@ public interface IImage {
    * @throws ImageNameAlreadyExistsException thrown when an image name already exists.
    */
   ImageObj[] rgbSplit(String imageName, String redDesImageName, String greenDesImageName,
-      String blueDesImageName) throws NoSuchElementException, ImageNameAlreadyExistsException, ImageNotFoundException;
+      String blueDesImageName) throws NoSuchElementException, ImageNameAlreadyExistsException,
+      ImageNotFoundException;
 
   /**
    * Combines the three components into one image.
@@ -171,6 +173,7 @@ public interface IImage {
    * @throws ImageNameAlreadyExistsException thrown when an image name already exists.
    */
   ImageObj rgbCombine(String destImageName, String redImageName, String greenImageName,
-      String blueImageName) throws NoSuchElementException, ImageNameAlreadyExistsException, ImageNotFoundException;
+      String blueImageName) throws NoSuchElementException, ImageNameAlreadyExistsException,
+      ImageNotFoundException;
 }
 

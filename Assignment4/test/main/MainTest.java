@@ -1,6 +1,6 @@
 package main;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import controller.ImgController;
 import controller.ImgControllerImpl;
@@ -21,10 +21,15 @@ import org.junit.Test;
 import view.IView;
 import view.View;
 
+/**
+ * Class to test the end to end functionality of the code.
+ */
 public class MainTest {
+
   private ImageSet model;
   private IView view;
   private ImgController controller;
+
   public MainTest() {
     model = new ImageSet();
     view = new View(new BufferedWriter(new OutputStreamWriter(System.out)));
@@ -34,7 +39,7 @@ public class MainTest {
       throws ImageNameAlreadyExistsException, ImageNotFoundException, FileHandlingException {
 
     boolean check = true;
-    for (int i=0; i<s1.length; i++) {
+    for (int i = 0; i < s1.length; i++) {
       IFile img1 = new PPMFile(s1[i]);
       IFile img2 = new PPMFile(s2[i]);
 
@@ -66,13 +71,15 @@ public class MainTest {
     this.controller = new ImgControllerImpl(model, view, reader);
     this.controller.run();
 
-    assertEquals(true,checkTwoImages(new String[]{"res/img1orig.ppm"}, new String[]{"res/loadTest.ppm"}));
+    assertEquals(true,
+        checkTwoImages(new String[]{"res/img1orig.ppm"}, new String[]{"res/loadTest.ppm"}));
   }
 
   @Test
   public void loadWithSpaceTest()
       throws ImageNameAlreadyExistsException, ImageNotFoundException, FileHandlingException {
-    String test = "load      res/img1orig.ppm     i1\n    save     res/loadWithSpaceTest.ppm       i1\n#\n";
+    String test = "load      res/img1orig.ppm     i1\n    save     res/loadWithSpaceTest.ppm"
+        + "       i1\n#\n";
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
@@ -80,13 +87,15 @@ public class MainTest {
     this.controller = new ImgControllerImpl(model, view, reader);
     this.controller.run();
 
-    assertEquals(true,checkTwoImages(new String[]{"res/img1orig.ppm"}, new String[]{"res/loadWithSpaceTest.ppm"}));
+    assertEquals(true, checkTwoImages(new String[]{"res/img1orig.ppm"},
+        new String[]{"res/loadWithSpaceTest.ppm"}));
   }
 
   @Test
   public void loadRepeatNameTest()
       throws ImageNameAlreadyExistsException, ImageNotFoundException, FileHandlingException {
-    String test = "load res/img1orig.ppm i1\nsave res/loadRepeatNameTest.ppm i1\nload res/img2orig.ppm i1\nsave res/loadRepeatNameTest.ppm i1\n#\n";
+    String test = "load res/img1orig.ppm i1\nsave res/loadRepeatNameTest.ppm i1\nload "
+        + "res/img2orig.ppm i1\nsave res/loadRepeatNameTest.ppm i1\n#\n";
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
@@ -94,10 +103,11 @@ public class MainTest {
     this.controller = new ImgControllerImpl(model, view, reader);
     this.controller.run();
 
-    assertEquals(false,checkTwoImages(new String[]{"res/img2orig.ppm"}, new String[]{"res/loadRepeatNameTest.ppm"}));
+    assertEquals(false, checkTwoImages(new String[]{"res/img2orig.ppm"},
+        new String[]{"res/loadRepeatNameTest.ppm"}));
   }
 
-  @Test (expected = FileHandlingException.class)
+  @Test(expected = FileHandlingException.class)
   public void saveWrongNameTest()
       throws ImageNameAlreadyExistsException, ImageNotFoundException, FileHandlingException {
     String test = "load res/img1orig.ppm i1\nsave res/saveWrongNameTest.ppm i2\n#\n";
@@ -108,13 +118,15 @@ public class MainTest {
     this.controller = new ImgControllerImpl(model, view, reader);
     this.controller.run();
 
-    assertEquals(false,checkTwoImages(new String[]{"res/img1orig.ppm"}, new String[]{"res/saveWrongNameTest.ppm"}));
+    assertEquals(false, checkTwoImages(new String[]{"res/img1orig.ppm"},
+        new String[]{"res/saveWrongNameTest.ppm"}));
   }
 
   @Test
   public void saveSamePathTest()
       throws ImageNameAlreadyExistsException, ImageNotFoundException, FileHandlingException {
-    String test = "load res/img1orig.ppm i1\nsave res/saveSamePathTest.ppm i1\nload res/img2orig.ppm i2\nsave res/saveSamePathTest.ppm i2\n#\n";
+    String test = "load res/img1orig.ppm i1\nsave res/saveSamePathTest.ppm i1\nload "
+        + "res/img2orig.ppm i2\nsave res/saveSamePathTest.ppm i2\n#\n";
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
@@ -122,13 +134,15 @@ public class MainTest {
     this.controller = new ImgControllerImpl(model, view, reader);
     this.controller.run();
 
-    assertEquals(true,checkTwoImages(new String[]{"res/img2orig.ppm"}, new String[]{"res/saveSamePathTest.ppm"}));
+    assertEquals(true,
+        checkTwoImages(new String[]{"res/img2orig.ppm"}, new String[]{"res/saveSamePathTest.ppm"}));
   }
 
   @Test
   public void saveSamePathWrongNameTest()
       throws ImageNameAlreadyExistsException, ImageNotFoundException, FileHandlingException {
-    String test = "load res/img1orig.ppm i1\nsave res/saveSamePathTest.ppm i1\nload res/img2orig.ppm i2\nsave res/saveSamePathTest.ppm i3\n#\n";
+    String test = "load res/img1orig.ppm i1\nsave res/saveSamePathTest.ppm i1\nload "
+        + "res/img2orig.ppm i2\nsave res/saveSamePathTest.ppm i3\n#\n";
 
     Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(inputString);
@@ -136,7 +150,8 @@ public class MainTest {
     this.controller = new ImgControllerImpl(model, view, reader);
     this.controller.run();
 
-    assertEquals(false,checkTwoImages(new String[]{"res/img2orig.ppm"}, new String[]{"res/saveSamePathTest.ppm"}));
+    assertEquals(false,
+        checkTwoImages(new String[]{"res/img2orig.ppm"}, new String[]{"res/saveSamePathTest.ppm"}));
   }
 
   @Test
@@ -158,7 +173,10 @@ public class MainTest {
     this.controller = new ImgControllerImpl(model, view, reader);
     this.controller.run();
 
-    assertEquals(true,checkTwoImages(new String[]{"res/img1greyRed.ppm", "res/img1greyGreen.ppm", "res/img1greyBlue.ppm"},  new String[]{"res/greyScaleTestRed.ppm", "res/greyScaleTestGreen.ppm", "res/greyScaleTestBlue.ppm"}));
+    assertEquals(true, checkTwoImages(
+        new String[]{"res/img1greyRed.ppm", "res/img1greyGreen.ppm", "res/img1greyBlue.ppm"},
+        new String[]{"res/greyScaleTestRed.ppm", "res/greyScaleTestGreen.ppm",
+            "res/greyScaleTestBlue.ppm"}));
   }
 
   @Test
@@ -175,7 +193,8 @@ public class MainTest {
     this.controller = new ImgControllerImpl(model, view, reader);
     this.controller.run();
 
-    assertEquals(true, checkTwoImages(new String[]{"res/img1brighten2.ppm"}, new String[]{"res/brightenTest.ppm"}));
+    assertEquals(true, checkTwoImages(new String[]{"res/img1brighten2.ppm"},
+        new String[]{"res/brightenTest.ppm"}));
   }
 
 
@@ -193,7 +212,8 @@ public class MainTest {
     this.controller = new ImgControllerImpl(model, view, reader);
     this.controller.run();
 
-    assertEquals(true, checkTwoImages(new String[]{"res/img1vflip.ppm"}, new String[]{"res/verticalFlipTest.ppm"}));
+    assertEquals(true, checkTwoImages(new String[]{"res/img1vflip.ppm"},
+        new String[]{"res/verticalFlipTest.ppm"}));
   }
 
   @Test
@@ -210,7 +230,8 @@ public class MainTest {
     this.controller = new ImgControllerImpl(model, view, reader);
     this.controller.run();
 
-    assertEquals(true, checkTwoImages(new String[]{"res/img1hflip.ppm"}, new String[]{"res/horizontalFlipTest.ppm"}));
+    assertEquals(true, checkTwoImages(new String[]{"res/img1hflip.ppm"},
+        new String[]{"res/horizontalFlipTest.ppm"}));
   }
 
   @Test
@@ -231,7 +252,9 @@ public class MainTest {
     this.controller = new ImgControllerImpl(model, view, reader);
     this.controller.run();
 
-    assertEquals(true, checkTwoImages(new String[]{"res/img1split1.ppm", "res/img1split2.ppm", "res/img1split3.ppm"}, new String[]{"res/rgbSplitTest1.ppm", "res/rgbSplitTest2.ppm", "res/rgbSplitTest3.ppm"}));
+    assertEquals(true, checkTwoImages(
+        new String[]{"res/img1split1.ppm", "res/img1split2.ppm", "res/img1split3.ppm"},
+        new String[]{"res/rgbSplitTest1.ppm", "res/rgbSplitTest2.ppm", "res/rgbSplitTest3.ppm"}));
   }
 
   @Test
@@ -254,7 +277,8 @@ public class MainTest {
     this.controller = new ImgControllerImpl(model, view, reader);
     this.controller.run();
 
-    assertEquals(true, checkTwoImages(new String[] {"res/img1combine.ppm"}, new String[]{"res/rgbCombineTest.ppm"}));
+    assertEquals(true, checkTwoImages(new String[]{"res/img1combine.ppm"},
+        new String[]{"res/rgbCombineTest.ppm"}));
   }
 
 }
