@@ -1,6 +1,7 @@
 package model.file;
 
 import exceptions.FileHandlingException;
+import model.ImageObj;
 
 /**
  * IFile represents the methods implemented by the classes which implement IFile interface.
@@ -21,6 +22,6 @@ public interface IFile {
    * @param content the content to be written to the file.
    * @throws FileHandlingException thrown when there is no such directory exists.
    */
-  void fileWrite(String content) throws FileHandlingException;
+  void fileWrite(ImageObj content) throws FileHandlingException;
 
 }

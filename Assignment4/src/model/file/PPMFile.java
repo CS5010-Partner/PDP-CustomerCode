@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Scanner;
+import model.ImageObj;
 
 /**
  * PPMFile represents the image file format which is in PPM. It implements the IFIle interface to
@@ -76,15 +77,20 @@ public class PPMFile implements IFile {
   }
 
   @Override
-  public void fileWrite(String content) throws FileHandlingException {
+  public void fileWrite(ImageObj saveObj) throws FileHandlingException {
     File file = new File(filePath);
-
+    StringBuilder s = new StringBuilder();
+    s.append("P3\n");
+    s.append(saveObj.getWidth() + "\n");
+    s.append(saveObj.getHeight() + "\n");
+    s.append(saveObj.getMaxValue() + "\n");
+    s.append(saveObj);
     try {
       FileOutputStream fos = new FileOutputStream(file);
       if (!file.exists()) {
         file.createNewFile();
       }
-      byte[] contentInBytes = content.getBytes();
+      byte[] contentInBytes = s.toString().getBytes();
 
       fos.write(contentInBytes);
       fos.flush();

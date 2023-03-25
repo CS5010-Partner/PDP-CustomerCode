@@ -7,11 +7,11 @@ package model;
  */
 public class ImageObj {
 
-  private int[][][] image;
-  private int width;
+  private final int[][][] image;
+  private final int width;
 
-  private int height;
-  private int maxValue;
+  private final int height;
+  private final int maxValue;
 
   /**
    * Constructor for the ImageObj class.
@@ -74,10 +74,6 @@ public class ImageObj {
   @Override
   public String toString() {
     StringBuilder s = new StringBuilder();
-    s.append("P3\n");
-    s.append(this.width + "\n");
-    s.append(this.height + "\n");
-    s.append(this.maxValue + "\n");
     for (int i = 0; i < this.height; i++) {
       for (int j = 0; j < this.width; j++) {
         for (int k = 0; k < 3; k++) {
@@ -288,4 +284,42 @@ public class ImageObj {
     return new ImageObj(newImgArr, this.width, this.height, this.maxValue);
   }
 
+  public ImageObj filtering(ImageObj kernel){
+    int[][][] newImgArr = new int[this.height][this.width][3];
+    int ker_row= kernel.getHeight();
+    int ker_col=kernel.getWidth();
+    int channels=3;
+    for(int ii=0;ii<this.height;ii++)
+    {
+      for(int ij=0;ij<this.width;ij++)
+      {
+
+        for(int ik=0;ik<channels;ik++)
+        {
+          int val=0;
+          for(int ki=0;ki<ker_row;ki++)
+          {
+            for(int kj=0;kj<ker_col;kj++)
+            {
+              if (ii == 0 && ki ==0)
+                continue;
+              if (ij == 0 && kj == 0):
+              continue;
+              if (ii == this.height-1 && ki == ker_row-1)
+                continue;
+              if (ij == this.width-1 && kj == ker_col-1)
+                continue;
+              if (ii+ki >= this.height || ij+kj >= this.width)
+                continue;
+
+              val += this.image[ii+ki][ij+kj][ik] * kernel.image[ki][kj][ik];
+
+            }
+            newImgArr[ii][ij][ik] = val;
+          }
+        }
+      }
+    }
+    return new ImageObj(newImgArr, this.width, this.height, this.maxValue);
+  }
 }
