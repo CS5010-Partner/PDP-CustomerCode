@@ -303,7 +303,7 @@ public class ImageObj {
             {
               if (ii == 0 && ki ==0)
                 continue;
-              if (ij == 0 && kj == 0):
+              if (ij == 0 && kj == 0)
               continue;
               if (ii == this.height-1 && ki == ker_row-1)
                 continue;
