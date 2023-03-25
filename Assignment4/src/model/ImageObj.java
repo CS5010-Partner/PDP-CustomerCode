@@ -179,7 +179,7 @@ public class ImageObj {
         }
       }
     }
-    return new ImageObj(image, this.width, this.height, this.maxValue);
+    return new ImageObj(image, this.width, this.height, this.m  axValue);
   }
 
   /**
