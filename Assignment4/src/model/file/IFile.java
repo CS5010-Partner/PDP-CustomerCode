@@ -1,6 +1,7 @@
 package model.file;
 
 import exceptions.FileHandlingException;
+import java.io.IOException;
 import model.ImageObj;
 
 /**

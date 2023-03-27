@@ -3,6 +3,7 @@ package model;
 import exceptions.FileHandlingException;
 import exceptions.ImageNameAlreadyExistsException;
 import exceptions.ImageNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import model.file.IFile;
 import model.file.PPMFile;

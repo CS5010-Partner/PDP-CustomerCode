@@ -3,6 +3,7 @@ package model;
 import exceptions.FileHandlingException;
 import exceptions.ImageNameAlreadyExistsException;
 import exceptions.ImageNotFoundException;
+import java.io.IOException;
 import java.util.NoSuchElementException;
 import model.file.IFile;
 
@@ -21,7 +22,7 @@ public interface IImage {
    * @throws ImageNameAlreadyExistsException thrown when an image name already exists.
    */
   ImageObj load(IFile imagePath, String imageName)
-      throws FileHandlingException, ImageNameAlreadyExistsException, ImageNotFoundException;
+      throws FileHandlingException, ImageNameAlreadyExistsException, ImageNotFoundException, IOException;
 
   /**
    * saves the given imagename to the specified imagepath.

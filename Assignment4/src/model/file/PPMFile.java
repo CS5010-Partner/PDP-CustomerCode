@@ -15,7 +15,7 @@ import model.ImageObj;
  */
 public class PPMFile implements IFile {
 
-  private String filePath;
+  private final String filePath;
 
   /**
    * Constructor for the PPMFile class.
