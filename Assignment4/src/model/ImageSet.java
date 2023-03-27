@@ -21,7 +21,7 @@ public class ImageSet implements IImage {
     map = new HashMap<>();
   }
 
-  private void checkName(String[] inputNames, String[] destNames)
+  protected void checkName(String[] inputNames, String[] destNames)
       throws ImageNameAlreadyExistsException, ImageNotFoundException {
     for (String s : inputNames) {
       if (!map.containsKey(s)) {
@@ -180,5 +180,4 @@ public class ImageSet implements IImage {
     map.put(destimageName, combine);
     return combine;
   }
-
 }
