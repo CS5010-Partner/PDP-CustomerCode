@@ -23,8 +23,7 @@ public class ImageSetAdvancedTest {
     model = new ImageSetAdvanced();
     img1 = new PPMFile("res/img1orig.ppm");
     img2 = new PPMFile("res/img2orig.ppm");
-    img3 = new PPMFile("res/koala.ppm");
-//    img3 = new PPMFile("res/somerandompath.ppm");
+    img3 = new PPMFile("res/new1.ppm");
     map = new HashMap<String, ImageObj>();
   }
 
@@ -187,6 +186,45 @@ public class ImageSetAdvancedTest {
     try {
       model.transformSepia("1orig1", "1sepia");
       fail("sepia tranform failed");
+    } catch (ImageNotFoundException e) {
+      assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",
+          e.toString());
+    }
+  }
+
+  @Test
+  public void ditherTest()
+      throws ImageNameAlreadyExistsException, FileHandlingException, ImageNotFoundException {
+    map.put("1orig", model.load(img3, "1orig"));
+    map.put("2orig", model.load(img2, "2orig"));
+
+    map.put("1dither", model.dither("1orig", "1dither"));
+    map.put("2dither", model.dither("2orig", "2dither"));
+
+    IFile ref1 = new PPMFile("res/img1dither1.ppm");
+    IFile ref2 = new PPMFile("res/img2dither1.ppm");
+
+    ImageObj s1 = model.save(ref1, "1dither");
+    ImageObj s2 = model.save(ref2, "2dither");
+
+    map.put("1ditherRef", model.load(ref1, "1ditherRef"));
+    map.put("2ditherRef", model.load(ref2, "2ditherRef"));
+
+    assertEquals(true, checkTwoImages(map.get("1ditherRef"), map.get("1dither")));
+    assertEquals(true, checkTwoImages(map.get("2ditherRef"), map.get("2dither")));
+
+    try {
+      model.dither("1orig", "1dither");
+      fail("dither transform failed");
+    } catch (ImageNameAlreadyExistsException e) {
+      assertEquals("exceptions.ImageNameAlreadyExistsException: "
+              + "Image name already exists.",
+          e.toString());
+    }
+
+    try {
+      model.dither("1orig1", "1dither");
+      fail("dither tranform failed");
     } catch (ImageNotFoundException e) {
       assertEquals("exceptions.ImageNotFoundException: The image name does not exist.",
           e.toString());

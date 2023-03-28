@@ -294,7 +294,6 @@ public class ImageObj {
         }
       }
     }
-    System.out.println(m);
     return img;
   }
 
@@ -344,8 +343,6 @@ public class ImageObj {
         }
       }
     }
-    System.out.println(max + " + " + min);
-    System.out.println("h : " + this.maxValue);
     newImgArr = capValues(newImgArr, this.maxValue, max, min);
     return new ImageObj(newImgArr, this.width, this.height, this.maxValue);
   }
@@ -367,6 +364,59 @@ public class ImageObj {
           max = Math.max(val, max);
           min = Math.min(val, min);
           newImgArr[ii][ij][k] = val;
+        }
+      }
+    }
+    newImgArr = capValues(newImgArr, this.maxValue, max, min);
+    return new ImageObj(newImgArr, this.width, this.height, this.maxValue);
+  }
+
+  public ImageObj dithering() {
+    int[][][] newImgArr = new int[this.height][this.width][3];
+
+    int max = Integer.MIN_VALUE;
+    int min = Integer.MAX_VALUE;
+
+    ImageObj grey = transformation(transformations.getGreyScaleMatrix());
+
+    for (int ii=0; ii<grey.height; ii++) {
+      for (int ij=0; ij<grey.width; ij++) {
+        for (int ik=0; ik<3; ik++) {
+          int val = grey.image[ii][ij][ik];
+          int newVal = (val > 127) ? 255:0;
+          int error = val - newVal;
+
+          newImgArr[ii][ij][ik] = newVal;
+
+          if (ij+1 < grey.width) {
+            int temp = newImgArr[ii][ij+1][ik];
+            temp += (0.4375*error);
+            newImgArr[ii][ij+1][ik] = temp;
+            max = Math.max(temp, max);
+            min = Math.min(temp, min);
+          }
+
+          if (ii+1 < grey.height && ij-1 > 0) {
+            int temp = newImgArr[ii+1][ij-1][ik];
+            temp += (0.1875*error);
+            newImgArr[ii+1][ij-1][ik] = temp;
+            max = Math.max(temp, max);
+            min = Math.min(temp, min);
+          }
+          if (ii+1 < grey.height) {
+            int temp = newImgArr[ii+1][ij][ik];
+            temp += (0.3125*error);
+            newImgArr[ii+1][ij][ik] = temp;
+            max = Math.max(temp, max);
+            min = Math.min(temp, min);
+          }
+          if (ii+1 < grey.height && ij+1 < grey.width) {
+            int temp = newImgArr[ii+1][ij+1][ik];
+            temp += (0.0625*error);
+            newImgArr[ii+1][ij+1][ik] = temp;
+            max   = Math.max(temp, max);
+            min = Math.min(temp, min);
+          }
         }
       }
     }

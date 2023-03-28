@@ -41,4 +41,13 @@ public class ImageSetAdvanced extends ImageSet implements IImageAdvanced {
     map.put(destImageName, img);
     return img;
   }
+
+  public ImageObj dither(String imageName, String destImageName)
+      throws ImageNameAlreadyExistsException, ImageNotFoundException {
+    checkName(new String[]{imageName}, new String[]{destImageName});
+    double matrix[][] = transformations.getSepiaMatrix();
+    ImageObj img = map.get(imageName).dithering();
+    map.put(destImageName, img);
+    return img;
+  }
 }
