@@ -32,7 +32,7 @@ public abstract class AFile implements IFile{
 
     for (int x = 0; x < height; x++) {
       for (int y = 0; y < width; y++) {
-        int rgb = image.getRGB(x, y);
+        int rgb = image.getRGB(y, x);
         img[x][y][0] = (rgb >> 16) & 0xFF;
         s.append(img[x][y][0]).append("\n");
         img[x][y][1] = (rgb >> 8) & 0xFF;
