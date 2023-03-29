@@ -32,5 +32,6 @@ public class HorizontalFlip extends ACommand {
     String sourceName = getInput(in);
     String destName = getInput(in);
     model.horizontalFlip(sourceName, destName);
+    view.echoFlipSuccess(false);
   }
 }

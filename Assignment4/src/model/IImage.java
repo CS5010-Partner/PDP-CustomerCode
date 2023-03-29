@@ -5,7 +5,7 @@ import exceptions.ImageNameAlreadyExistsException;
 import exceptions.ImageNotFoundException;
 import java.io.IOException;
 import java.util.NoSuchElementException;
-import model.file.IFile;
+import controller.file.IFile;
 
 /**
  * IImage represents the model interface and the methods that are required for the model.

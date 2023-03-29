@@ -3,10 +3,8 @@ package model;
 import exceptions.FileHandlingException;
 import exceptions.ImageNameAlreadyExistsException;
 import exceptions.ImageNotFoundException;
-import java.io.IOException;
 import java.util.HashMap;
-import model.file.IFile;
-import model.file.PPMFile;
+import controller.file.IFile;
 
 /**
  * ImageSet class implements the IImage interface, and it acts as a model.
@@ -45,12 +43,11 @@ public class ImageSet implements IImage {
 
     String content = obj.fileRead();
     String[] token = content.split("\n");
+    int width = Integer.parseInt(token[0]);
+    int height = Integer.parseInt(token[1]);
+    int maxValue = Integer.parseInt(token[2]);
 
-    int width = Integer.parseInt(token[1]);
-    int height = Integer.parseInt(token[2]);
-    int maxValue = Integer.parseInt(token[3]);
-
-    int t = 4;
+    int t = 3;
     int[][][] image = new int[height][width][3];
 
     for (int i = 0; i < height; i++) {

@@ -1,7 +1,7 @@
 package controller;
 
 import java.util.NoSuchElementException;
-import model.file.IFile;
+import controller.file.IFile;
 import model.IImage;
 import model.ImageObj;
 

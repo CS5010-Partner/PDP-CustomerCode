@@ -2,7 +2,6 @@ package model;
 
 import exceptions.ImageNameAlreadyExistsException;
 import exceptions.ImageNotFoundException;
-import java.awt.Image;
 
 public class ImageSetAdvanced extends ImageSet implements IImageAdvanced {
 

@@ -42,5 +42,7 @@ public class Brighten extends ACommand {
     String sourceName = getInput(in);
     String destName = getInput(in);
     model.brighten(incrementValue, sourceName, destName);
+    view.echoBrightenSuccess(false);
+
   }
 }

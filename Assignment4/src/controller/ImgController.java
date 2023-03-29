@@ -1,5 +1,11 @@
 package controller;
 
+import exceptions.CloseCmdLineException;
+import exceptions.FileHandlingException;
+import exceptions.ImageNameAlreadyExistsException;
+import exceptions.ImageNotFoundException;
+import java.io.IOException;
+
 /**
  * This interface represents the methods which are implemented in the controller.
  */

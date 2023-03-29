@@ -34,5 +34,6 @@ public class RGBSplit extends ACommand {
     String greenImg = getInput(in);
     String blueImg = getInput(in);
     model.rgbSplit(imageName, redImg, greenImg, blueImg);
+    view.echoSplitSuccess(false);
   }
 }

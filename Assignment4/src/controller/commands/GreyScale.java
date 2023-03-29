@@ -62,5 +62,8 @@ public class GreyScale extends ACommand {
       default:
         throw new WrongCommandException("Please enter a valid metric for greyscale conversion.");
     }
+    view.echoGreyscaleSuccess(false);
+
+
   }
 }

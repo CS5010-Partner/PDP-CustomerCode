@@ -34,5 +34,6 @@ public class RGBCombine extends ACommand {
     String greenImg = getInput(in);
     String blueImg = getInput(in);
     model.rgbCombine(imageName, redImg, greenImg, blueImg);
+    view.echoCombineSuccess(false);
   }
 }

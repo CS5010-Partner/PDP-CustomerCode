@@ -32,5 +32,6 @@ public class Save extends ACommand {
     String imagePath = this.getInput(in);
     String imageName = this.getInput(in);
     model.save(imagePathHelper(imagePath), imageName);
+    view.echoSaveSuccess(false);
   }
 }

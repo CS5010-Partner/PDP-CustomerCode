@@ -32,5 +32,6 @@ public class Load extends ACommand {
     String imagePath = this.getInput(in);
     String imageName = this.getInput(in);
     model.load(imagePathHelper(imagePath), imageName);
+    view.echoLoadSuccess(false);
   }
 }

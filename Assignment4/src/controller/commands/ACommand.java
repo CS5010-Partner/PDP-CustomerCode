@@ -1,10 +1,16 @@
 package controller.commands;
 
 import controller.Helper;
+import exceptions.CloseCmdLineException;
+import exceptions.FileHandlingException;
+import exceptions.ImageNameAlreadyExistsException;
+import exceptions.ImageNotFoundException;
+import exceptions.WrongCommandException;
 import java.io.BufferedReader;
-import model.file.IFile;
+import controller.file.IFile;
+import java.io.IOException;
 import model.IImage;
-import model.file.PPMFile;
+import controller.file.PPMFile;
 import view.IView;
 
 /**
@@ -34,4 +40,6 @@ public abstract class ACommand extends Helper implements IImageCommand {
     return new PPMFile(imagePath);
   }
 
+  public void execute() throws WrongCommandException, CloseCmdLineException,
+      ImageNameAlreadyExistsException, IOException, ImageNotFoundException, FileHandlingException {}
 }

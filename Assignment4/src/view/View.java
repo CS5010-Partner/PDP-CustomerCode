@@ -9,7 +9,7 @@ import java.io.IOException;
  */
 public class View implements IView {
 
-  private boolean verbose;
+  protected boolean verbose;
   private BufferedWriter out;
 
   /**
@@ -20,7 +20,7 @@ public class View implements IView {
     this.out = out;
   }
 
-  private void print(String msg, boolean verboseOveride) {
+  protected void print(String msg, boolean verboseOveride) {
     try {
       if (this.verbose || verboseOveride) {
         this.out.write(msg);

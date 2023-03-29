@@ -7,8 +7,8 @@ import exceptions.ImageNameAlreadyExistsException;
 import exceptions.ImageNotFoundException;
 import java.util.Arrays;
 import java.util.HashMap;
-import model.file.IFile;
-import model.file.PPMFile;
+import controller.file.IFile;
+import controller.file.PPMFile;
 import org.junit.Test;
 
 public class ImageSetAdvancedTest {
@@ -230,7 +230,4 @@ public class ImageSetAdvancedTest {
           e.toString());
     }
   }
-
-
-
 }

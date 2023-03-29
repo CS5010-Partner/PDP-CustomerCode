@@ -1,7 +1,5 @@
 package model;
 
-import java.awt.Image;
-
 /**
  * This class represents the ImageObj which represents the image as an entity. Here the images are
  * stored in the form of a 3D integer array. First 2 dimensions represent the pixel and the third
@@ -32,7 +30,8 @@ public class ImageObj {
 
   /**
    * Getter for extracting the height of the image.
-   * @return  height in the integer format.
+   *
+   * @return height in the integer format.
    */
   public int getHeight() {
     return this.height;
@@ -40,6 +39,7 @@ public class ImageObj {
 
   /**
    * Getter for extracting the width of the image.
+   *
    * @return width in the integer format.
    */
   public int getWidth() {
@@ -48,6 +48,7 @@ public class ImageObj {
 
   /**
    * Getter for extracting the max value of the image.
+   *
    * @return max value in integer format.
    */
   public int getMaxValue() {
@@ -56,6 +57,7 @@ public class ImageObj {
 
   /**
    * Getter for extracting the image.
+   *
    * @return image in the matrix format.
    */
 
@@ -239,7 +241,6 @@ public class ImageObj {
   }
 
 
-
   /**
    * Returns the vertically flipped image of the current image.
    *
@@ -282,9 +283,9 @@ public class ImageObj {
 
     int m = 0;
 
-    for (int i=0; i<height; i++) {
-      for (int j=0; j<width; j++) {
-        for (int k=0; k<3; k++) {
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
+        for (int k = 0; k < 3; k++) {
           if (img[i][j][k] > 255 || img[i][j][k] < 0) {
             double val = (double) (img[i][j][k] - min) / (max - min);
             val = val * hardMax;
@@ -297,49 +298,41 @@ public class ImageObj {
     return img;
   }
 
-  public ImageObj filtering(double[][] kernel){
+  public ImageObj filtering(double[][] kernel) {
     int[][][] newImgArr = new int[this.height][this.width][3];
 
-    int ker_row= kernel.length;
-    int ker_col=kernel[0].length;
-    int channels=3;
+    int ker_row = kernel.length;
+    int ker_col = kernel[0].length;
+    int ker_mid = ker_row / 2;
+    int channels = 3;
 
     int max = Integer.MIN_VALUE;
     int min = Integer.MAX_VALUE;
 
-    for(int ii=0;ii<this.height;ii++)
-    {
-      for(int ij=0;ij<this.width;ij++)
-      {
-        for(int ik=0;ik<channels;ik++)
-        {
-          double val=0;
-          for(int ki=0;ki<ker_row;ki++)
-          {
-            for(int kj=0;kj<ker_col;kj++)
-            {
-              if (ii == 0 && ki ==0)
+    for (int ii = 0; ii < this.height; ii++) {
+      for (int ij = 0; ij < this.width; ij++) {
+        for (int ik = 0; ik < channels; ik++) {
+          double val = 0;
+          for (int ki = -ker_mid; ki < ker_mid + 1; ki++) {
+            for (int kj = -ker_mid; kj < ker_mid + 1; kj++) {
+              if (ii + ki < 0 || ii + ki >= this.height) {
                 continue;
-              if (ij == 0 && kj == 0)
+              }
+              if (ij + kj < 0 || ij + kj >= this.width) {
                 continue;
-              if (ii == this.height-1 && ki == ker_row-1)
-                continue;
-              if (ij == this.width-1 && kj == ker_col-1)
-                continue;
-              if (ii+ki >= this.height || ij+kj >= this.width)
-                continue;
-              val += this.image[ii+ki][ij+kj][ik] * kernel[ki][kj];
+              }
+              val += this.image[ii + ki][ij + kj][ik] * kernel[ki + ker_mid][kj + ker_mid];
             }
-            if (val > maxValue) {
-              val = maxValue;
-            }
-            if (val < 0) {
-              val = 0;
-            }
-            max = (int) Math.max(val, max);
-            min = (int) Math.min(val, min);
-            newImgArr[ii][ij][ik] = (int) val;
           }
+          if (val > maxValue) {
+            val = maxValue;
+          }
+          if (val < 0) {
+            val = 0;
+          }
+          max = (int) Math.max(val, max);
+          min = (int) Math.min(val, min);
+          newImgArr[ii][ij][ik] = (int) val;
         }
       }
     }
@@ -353,13 +346,13 @@ public class ImageObj {
     int max = Integer.MIN_VALUE;
     int min = Integer.MAX_VALUE;
 
-    for (int ii=0; ii<this.height; ii++) {
-      for (int ij=0; ij<this.width; ij++) {
+    for (int ii = 0; ii < this.height; ii++) {
+      for (int ij = 0; ij < this.width; ij++) {
         double red = this.image[ii][ij][0];
         double green = this.image[ii][ij][1];
         double blue = this.image[ii][ij][2];
 
-        for (int k=0; k<3; k++) {
+        for (int k = 0; k < 3; k++) {
           int val = (int) ((matrix[k][0] * red) + (matrix[k][1] * green) + (matrix[k][2] * blue));
           max = Math.max(val, max);
           min = Math.min(val, min);
@@ -379,48 +372,48 @@ public class ImageObj {
 
     ImageObj grey = transformation(transformations.getGreyScaleMatrix());
 
-    for (int ii=0; ii<grey.height; ii++) {
-      for (int ij=0; ij<grey.width; ij++) {
-        for (int ik=0; ik<3; ik++) {
-          int val = grey.image[ii][ij][ik];
-          int newVal = (val > 127) ? 255:0;
-          int error = val - newVal;
+    for (int i = 0; i < grey.height; i++) {
+      for (int j = 0; j < grey.width; j++) {
+        for (int k = 0; k < 3; k++) {
+        int oldC = grey.image[i][j][0];
+        int newC = 0;
+        if (oldC > 127)
+          newC = 255;
 
-          newImgArr[ii][ij][ik] = newVal;
+        double error = oldC - newC;
 
-          if (ij+1 < grey.width) {
-            int temp = newImgArr[ii][ij+1][ik];
-            temp += (0.4375*error);
-            newImgArr[ii][ij+1][ik] = temp;
-            max = Math.max(temp, max);
-            min = Math.min(temp, min);
-          }
+        newImgArr[i][j][k] = newC;
 
-          if (ii+1 < grey.height && ij-1 > 0) {
-            int temp = newImgArr[ii+1][ij-1][ik];
-            temp += (0.1875*error);
-            newImgArr[ii+1][ij-1][ik] = temp;
-            max = Math.max(temp, max);
-            min = Math.min(temp, min);
-          }
-          if (ii+1 < grey.height) {
-            int temp = newImgArr[ii+1][ij][ik];
-            temp += (0.3125*error);
-            newImgArr[ii+1][ij][ik] = temp;
-            max = Math.max(temp, max);
-            min = Math.min(temp, min);
-          }
-          if (ii+1 < grey.height && ij+1 < grey.width) {
-            int temp = newImgArr[ii+1][ij+1][ik];
-            temp += (0.0625*error);
-            newImgArr[ii+1][ij+1][ik] = temp;
-            max   = Math.max(temp, max);
-            min = Math.min(temp, min);
-          }
+        if (j + 1 < grey.width) {
+          newImgArr[i][j][k] += (7./16) * error;
+//            tempN = Math.max(0, tempN);
+//            tempN = Math.min(255, tempN);
+
+//          max = Math.max(tempN, max);
+//          min = Math.min(tempN, min);
+        }
+
+        if (i + 1 < grey.height && j - 1 > 0) {
+          newImgArr[i+1][j-1][k] += (3./16) * error;
+
+//          max = Math.max(tempN, max);
+//          min = Math.min(tempN, min);
+        }
+        if (i + 1 < grey.height) {
+          newImgArr[i+1][j][k] += (5./16) * error;
+//          max = Math.max(tempN, max);
+//          min = Math.min(tempN, min);
+        }
+        if (i + 1 < grey.height && j + 1 < grey.width) {
+          newImgArr[i+1][j+1][k] += (1./16) * error;
+
+//          max = Math.max(tempN, max);
+//          min = Math.min(tempN, min);
+        }
         }
       }
     }
-    newImgArr = capValues(newImgArr, this.maxValue, max, min);
+//    newImgArr = capValues(newImgArr, this.maxValue, max, min);
     return new ImageObj(newImgArr, this.width, this.height, this.maxValue);
   }
 }

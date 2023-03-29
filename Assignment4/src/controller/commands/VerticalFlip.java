@@ -32,5 +32,6 @@ public class VerticalFlip extends ACommand {
     String sourceName = getInput(in);
     String destName = getInput(in);
     model.verticalFlip(sourceName, destName);
+    view.echoFlipSuccess(false);
   }
 }
