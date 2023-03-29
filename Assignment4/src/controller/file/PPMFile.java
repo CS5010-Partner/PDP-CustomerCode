@@ -44,7 +44,7 @@ public class PPMFile implements IFile {
     while (sc.hasNextLine()) {
       String s = sc.nextLine();
       if (s.charAt(0) != '#') {
-        builder.append(s + System.lineSeparator());
+        builder.append(s).append(System.lineSeparator());
       }
     }
     sc = new Scanner(builder.toString());
@@ -56,21 +56,20 @@ public class PPMFile implements IFile {
       throw new FileHandlingException("Invalid PPM file: plain RAW file should begin with P3");
     }
     StringBuilder result = new StringBuilder();
-//    result.append("P3\n");
 
     int width = sc.nextInt();
-    result.append(width + "\n");
+    result.append(width).append("\n");
     int height = sc.nextInt();
-    result.append(height + "\n");
+    result.append(height).append("\n");
     int maxValue = sc.nextInt();
-    result.append(maxValue + "\n");
+    result.append(maxValue).append("\n");
 
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
         int r = sc.nextInt();
         int g = sc.nextInt();
         int b = sc.nextInt();
-        result.append(r + "\n" + g + "\n" + b + "\n");
+        result.append(r).append("\n").append(g).append("\n").append(b).append("\n");
       }
     }
     return result.toString();
@@ -81,9 +80,9 @@ public class PPMFile implements IFile {
     File file = new File(filePath);
     StringBuilder s = new StringBuilder();
     s.append("P3\n");
-    s.append(saveObj.getWidth() + "\n");
-    s.append(saveObj.getHeight() + "\n");
-    s.append(saveObj.getMaxValue() + "\n");
+    s.append(saveObj.getWidth()).append("\n");
+    s.append(saveObj.getHeight()).append("\n");
+    s.append(saveObj.getMaxValue()).append("\n");
     s.append(saveObj);
     try {
       FileOutputStream fos = new FileOutputStream(file);
@@ -100,5 +99,4 @@ public class PPMFile implements IFile {
       e.printStackTrace();
     }
   }
-
 }

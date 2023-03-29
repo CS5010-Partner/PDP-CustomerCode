@@ -9,13 +9,13 @@ import model.IImage;
 import view.IView;
 
 /**
- * Brighten class is used to represent a class for the brighten value source_image dest_image
+ * Brighten class is used to represent a class for the brightened value source_image dest_image
  * command.
  */
 public class Brighten extends ACommand {
 
   /**
-   * Constructor for the Brighten class.
+   * Constructor for the Brightened class.
    *
    * @param model represents the model object.
    * @param view  represent the view object.
@@ -29,7 +29,7 @@ public class Brighten extends ACommand {
   public void execute()
       throws IOException, CloseCmdLineException, ImageNameAlreadyExistsException,
       ImageNotFoundException {
-    int incrementValue = 0;
+    int incrementValue;
     while (true) {
       try {
         String increment = getInput(in);

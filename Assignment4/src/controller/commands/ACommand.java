@@ -36,8 +36,13 @@ public abstract class ACommand extends Helper implements IImageCommand {
     this.in = in;
   }
 
-  protected IFile imagePathHelper(String imagePath) {
-    return new PPMFile(imagePath);
+  protected IFile imagePathHelper(String imagePath) throws WrongCommandException {
+    String[] fileType = imagePath.split("\\.");
+
+    if (fileType[fileType.length - 1].equals("ppm"))
+      return new PPMFile(imagePath);
+    else
+      throw new WrongCommandException("The given file format is not supported");
   }
 
   public void execute() throws WrongCommandException, CloseCmdLineException,

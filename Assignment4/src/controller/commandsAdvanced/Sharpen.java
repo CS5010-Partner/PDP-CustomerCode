@@ -1,7 +1,6 @@
 package controller.commandsAdvanced;
 
 
-import controller.commands.ACommand;
 import exceptions.CloseCmdLineException;
 import exceptions.ImageNameAlreadyExistsException;
 import exceptions.ImageNotFoundException;
@@ -10,11 +9,11 @@ import java.io.IOException;
 import model.IImageAdvanced;
 import view.IViewAdvanced;
 
-public class Sharpen extends ACommand {
+public class Sharpen extends ACommandAdvanced {
 
-  private IImageAdvanced model;
-  private IViewAdvanced view;
-  private BufferedReader in;
+  private final IImageAdvanced model;
+  private final IViewAdvanced view;
+  private final BufferedReader in;
 
   public Sharpen(IImageAdvanced model, IViewAdvanced view, BufferedReader in) {
     super(model, view, in);

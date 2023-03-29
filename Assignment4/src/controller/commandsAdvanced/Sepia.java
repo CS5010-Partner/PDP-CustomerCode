@@ -1,21 +1,18 @@
 package controller.commandsAdvanced;
 
-import controller.commands.ACommand;
 import exceptions.CloseCmdLineException;
 import exceptions.ImageNameAlreadyExistsException;
 import exceptions.ImageNotFoundException;
 import java.io.BufferedReader;
 import java.io.IOException;
-import model.IImage;
 import model.IImageAdvanced;
-import view.IView;
 import view.IViewAdvanced;
 
-public class Sepia extends ACommand {
+public class Sepia extends ACommandAdvanced {
 
-  private IImageAdvanced model;
-  private IViewAdvanced view;
-  private BufferedReader in;
+  private final IImageAdvanced model;
+  private final IViewAdvanced view;
+  private final BufferedReader in;
 
   /**
    * Constructor for the ACommand class.

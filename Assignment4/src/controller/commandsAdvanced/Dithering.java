@@ -1,6 +1,5 @@
 package controller.commandsAdvanced;
 
-import controller.commands.ACommand;
 import exceptions.CloseCmdLineException;
 import exceptions.ImageNameAlreadyExistsException;
 import exceptions.ImageNotFoundException;
@@ -9,11 +8,11 @@ import java.io.IOException;
 import model.IImageAdvanced;
 import view.IViewAdvanced;
 
-public class Dithering extends ACommand {
+public class Dithering extends ACommandAdvanced {
 
-  private IImageAdvanced model;
-  private IViewAdvanced view;
-  private BufferedReader in;
+  private final IImageAdvanced model;
+  private final IViewAdvanced view;
+  private final BufferedReader in;
 
   /**
    * Constructor for the ACommand class.

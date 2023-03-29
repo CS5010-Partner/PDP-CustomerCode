@@ -1,6 +1,5 @@
 package controller.commandsAdvanced;
 
-import controller.commands.ACommand;
 import exceptions.CloseCmdLineException;
 import exceptions.ImageNameAlreadyExistsException;
 import exceptions.ImageNotFoundException;
@@ -10,10 +9,10 @@ import java.io.IOException;
 import model.IImageAdvanced;
 import view.IView;
 
-public class GreyScaleAdvanced extends ACommand {
-  private IImageAdvanced model;
-  private IView view;
-  private BufferedReader in;
+public class GreyScaleAdvanced extends ACommandAdvanced {
+  private final IImageAdvanced model;
+  private final IView view;
+  private final BufferedReader in;
   public GreyScaleAdvanced(IImageAdvanced model, IView view, BufferedReader in) {
     super(model, view, in);
     this.model = model;

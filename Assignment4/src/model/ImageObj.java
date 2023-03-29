@@ -81,7 +81,7 @@ public class ImageObj {
     for (int i = 0; i < this.height; i++) {
       for (int j = 0; j < this.width; j++) {
         for (int k = 0; k < 3; k++) {
-          s.append(this.image[i][j][k] + "\n");
+          s.append(this.image[i][j][k]).append("\n");
         }
       }
     }
@@ -189,7 +189,7 @@ public class ImageObj {
   /**
    * Returns the brightens image of the current image object.
    *
-   * @param increment the factor which is spplied on all the component parts.
+   * @param increment the factor which is applied on all the component parts.
    * @return the brightened image.
    */
   public ImageObj brighten(int increment) {
@@ -198,8 +198,8 @@ public class ImageObj {
       for (int j = 0; j < width; j++) {
         for (int k = 0; k < 3; k++) {
           int val = this.image[i][j][k] + increment;
-          val = val < 0 ? 0 : val;
-          val = val > this.maxValue ? this.maxValue : val;
+          val = Math.max(val, 0);
+          val = Math.min(val, this.maxValue);
           image[i][j][k] = val;
         }
       }
@@ -208,7 +208,7 @@ public class ImageObj {
   }
 
   /**
-   * Splits the image into red, green, and blue componenets.
+   * Splits the image into red, green, and blue components.
    *
    * @return the ImageObj array of three components.
    */
@@ -251,9 +251,7 @@ public class ImageObj {
 
     for (int i = 0; i < this.height; i++) {
       for (int j = 0; j < this.width; j++) {
-        for (int k = 0; k < 3; k++) {
-          newImgArr[this.height - i - 1][j][k] = this.image[i][j][k];
-        }
+        System.arraycopy(this.image[i][j], 0, newImgArr[this.height - i - 1][j], 0, 3);
       }
     }
     return new ImageObj(newImgArr, this.width, this.height, this.maxValue);
@@ -269,15 +267,13 @@ public class ImageObj {
 
     for (int i = 0; i < this.height; i++) {
       for (int j = 0; j < this.width; j++) {
-        for (int k = 0; k < 3; k++) {
-          newImgArr[i][this.width - j - 1][k] = this.image[i][j][k];
-        }
+        System.arraycopy(this.image[i][j], 0, newImgArr[i][this.width - j - 1], 0, 3);
       }
     }
     return new ImageObj(newImgArr, this.width, this.height, this.maxValue);
   }
 
-  private int[][][] capValues(int[][][] img, int hardMax, int max, int min) {
+  private void capValues(int[][][] img, int hardMax, int max, int min) {
     int height = img.length;
     int width = img[0].length;
 
@@ -295,14 +291,12 @@ public class ImageObj {
         }
       }
     }
-    return img;
   }
 
   public ImageObj filtering(double[][] kernel) {
     int[][][] newImgArr = new int[this.height][this.width][3];
 
     int ker_row = kernel.length;
-    int ker_col = kernel[0].length;
     int ker_mid = ker_row / 2;
     int channels = 3;
 
@@ -336,7 +330,7 @@ public class ImageObj {
         }
       }
     }
-    newImgArr = capValues(newImgArr, this.maxValue, max, min);
+    capValues(newImgArr, this.maxValue, max, min);
     return new ImageObj(newImgArr, this.width, this.height, this.maxValue);
   }
 
@@ -360,60 +354,42 @@ public class ImageObj {
         }
       }
     }
-    newImgArr = capValues(newImgArr, this.maxValue, max, min);
+    capValues(newImgArr, this.maxValue, max, min);
     return new ImageObj(newImgArr, this.width, this.height, this.maxValue);
   }
 
   public ImageObj dithering() {
-    int[][][] newImgArr = new int[this.height][this.width][3];
-
-    int max = Integer.MIN_VALUE;
-    int min = Integer.MAX_VALUE;
-
     ImageObj grey = transformation(transformations.getGreyScaleMatrix());
 
     for (int i = 0; i < grey.height; i++) {
       for (int j = 0; j < grey.width; j++) {
         for (int k = 0; k < 3; k++) {
-        int oldC = grey.image[i][j][0];
-        int newC = 0;
-        if (oldC > 127)
-          newC = 255;
+          int oldC = grey.image[i][j][0];
+          int newC = 0;
+          if (oldC > 127) {
+            newC = 255;
+          }
 
-        double error = oldC - newC;
+          double error = oldC - newC;
 
-        newImgArr[i][j][k] = newC;
+          grey.image[i][j][k] = newC;
 
-        if (j + 1 < grey.width) {
-          newImgArr[i][j][k] += (7./16) * error;
-//            tempN = Math.max(0, tempN);
-//            tempN = Math.min(255, tempN);
+          if ((j+1) < grey.width) {
+            grey.image[i][j+1][k] += (int)((7.0 / 16) * error);
+          }
 
-//          max = Math.max(tempN, max);
-//          min = Math.min(tempN, min);
-        }
-
-        if (i + 1 < grey.height && j - 1 > 0) {
-          newImgArr[i+1][j-1][k] += (3./16) * error;
-
-//          max = Math.max(tempN, max);
-//          min = Math.min(tempN, min);
-        }
-        if (i + 1 < grey.height) {
-          newImgArr[i+1][j][k] += (5./16) * error;
-//          max = Math.max(tempN, max);
-//          min = Math.min(tempN, min);
-        }
-        if (i + 1 < grey.height && j + 1 < grey.width) {
-          newImgArr[i+1][j+1][k] += (1./16) * error;
-
-//          max = Math.max(tempN, max);
-//          min = Math.min(tempN, min);
-        }
+          if ((i+1) < grey.height && (j-1) >= 0) {
+            grey.image[i + 1][j - 1][k] += (int)((3.0 / 16) * error);
+          }
+          if ((i+1) < grey.height) {
+            grey.image[i + 1][j][k] += (int)((5.0 / 16) * error);
+          }
+          if ((i+1) < grey.height && (j+1) < grey.width) {
+            grey.image[i + 1][j + 1][k] += (int)((1.0 / 16) * error);
+          }
         }
       }
     }
-//    newImgArr = capValues(newImgArr, this.maxValue, max, min);
-    return new ImageObj(newImgArr, this.width, this.height, this.maxValue);
+    return new ImageObj(grey.image, this.width, this.height, this.maxValue);
   }
 }

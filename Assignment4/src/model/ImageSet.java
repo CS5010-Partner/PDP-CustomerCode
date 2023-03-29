@@ -167,15 +167,15 @@ public class ImageSet implements IImage {
   }
 
   @Override
-  public ImageObj rgbCombine(String destimageName, String redImageName, String greenImageName,
+  public ImageObj rgbCombine(String destImageName, String redImageName, String greenImageName,
       String blueImageName) throws ImageNotFoundException, ImageNameAlreadyExistsException {
     checkName(new String[]{redImageName, greenImageName, blueImageName},
-        new String[]{destimageName});
+        new String[]{destImageName});
     ImageObj redImage = map.get(redImageName);
     ImageObj greenImage = map.get(greenImageName);
     ImageObj blueImage = map.get(blueImageName);
     ImageObj combine = redImage.rgbCombine(greenImage, blueImage);
-    map.put(destimageName, combine);
+    map.put(destImageName, combine);
     return combine;
   }
 }

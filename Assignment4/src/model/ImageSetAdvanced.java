@@ -17,7 +17,7 @@ public class ImageSetAdvanced extends ImageSet implements IImageAdvanced {
   public ImageObj filterSharpen(String imageName, String destImageName)
       throws ImageNameAlreadyExistsException, ImageNotFoundException {
     checkName(new String[]{imageName}, new String[]{destImageName});
-    double kernel[][] = kernels.getImageSharpenKernel();
+    double[][] kernel = kernels.getImageSharpenKernel();
     ImageObj img = map.get(imageName).filtering(kernel);
     map.put(destImageName, img);
     return img;
@@ -26,7 +26,7 @@ public class ImageSetAdvanced extends ImageSet implements IImageAdvanced {
   public ImageObj transformGreyScale(String imageName, String destImageName)
       throws ImageNameAlreadyExistsException, ImageNotFoundException {
     checkName(new String[]{imageName}, new String[]{destImageName});
-    double matrix[][] = transformations.getGreyScaleMatrix();
+    double[][] matrix = transformations.getGreyScaleMatrix();
     ImageObj img = map.get(imageName).transformation(matrix);
     map.put(destImageName, img);
     return img;
@@ -35,7 +35,7 @@ public class ImageSetAdvanced extends ImageSet implements IImageAdvanced {
   public ImageObj transformSepia(String imageName, String destImageName)
       throws ImageNameAlreadyExistsException, ImageNotFoundException {
     checkName(new String[]{imageName}, new String[]{destImageName});
-    double matrix[][] = transformations.getSepiaMatrix();
+    double[][] matrix = transformations.getSepiaMatrix();
     ImageObj img = map.get(imageName).transformation(matrix);
     map.put(destImageName, img);
     return img;
@@ -44,7 +44,6 @@ public class ImageSetAdvanced extends ImageSet implements IImageAdvanced {
   public ImageObj dither(String imageName, String destImageName)
       throws ImageNameAlreadyExistsException, ImageNotFoundException {
     checkName(new String[]{imageName}, new String[]{destImageName});
-    double matrix[][] = transformations.getSepiaMatrix();
     ImageObj img = map.get(imageName).dithering();
     map.put(destImageName, img);
     return img;

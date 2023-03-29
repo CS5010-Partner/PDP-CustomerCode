@@ -4,6 +4,7 @@ import exceptions.CloseCmdLineException;
 import exceptions.FileHandlingException;
 import exceptions.ImageNameAlreadyExistsException;
 import exceptions.ImageNotFoundException;
+import exceptions.WrongCommandException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import model.IImage;
@@ -28,7 +29,7 @@ public class Save extends ACommand {
   @Override
   public void execute()
       throws IOException, CloseCmdLineException, ImageNameAlreadyExistsException,
-      FileHandlingException, ImageNotFoundException {
+      FileHandlingException, ImageNotFoundException, WrongCommandException {
     String imagePath = this.getInput(in);
     String imageName = this.getInput(in);
     model.save(imagePathHelper(imagePath), imageName);

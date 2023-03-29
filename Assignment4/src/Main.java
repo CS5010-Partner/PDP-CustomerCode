@@ -1,4 +1,3 @@
-import controller.ImgController;
 import controller.ImgControllerImpl;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
