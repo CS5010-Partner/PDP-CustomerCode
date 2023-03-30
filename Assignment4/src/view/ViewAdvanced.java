@@ -15,22 +15,22 @@ public class ViewAdvanced extends View implements IViewAdvanced {
 
   @Override
   public void echoFilterBlurSuccess(boolean b) {
-    super.print("Image Blurred successfully.", super.verbose);
+    print("Image Blurred successfully.", b);
   }
 
   @Override
   public void echoFilterSharpenSuccess(boolean b) {
-    super.print("Image Sharpened successfully.", super.verbose);
+    print("Image Sharpened successfully.", b);
   }
 
   @Override
   public void echoSepiaSuccess(boolean b) {
-    super.print("Image converted to Sepia successfully.", super.verbose);
+    print("Image converted to Sepia successfully.", b);
   }
 
   @Override
   public void echoDither(boolean b) {
-    super.print("Image converted to Dither successfully.", super.verbose);
+    print("Image converted to Dither successfully.", b);
   }
 
 }

@@ -8,6 +8,7 @@ import view.IViewAdvanced;
 import view.ViewAdvanced;
 
 public class MainAdvanced {
+
   /**
    * Calls the go method of the controller.
    *

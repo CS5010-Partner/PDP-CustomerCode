@@ -7,8 +7,8 @@ import view.IView;
  */
 public class MockView implements IView {
 
-  private boolean verbose;
-  private StringBuffer sb = new StringBuffer();
+  protected boolean verbose;
+  protected StringBuffer sb = new StringBuffer();
 
   public MockView() {
     this.verbose = true;

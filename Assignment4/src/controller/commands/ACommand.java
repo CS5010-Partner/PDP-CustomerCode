@@ -36,6 +36,12 @@ public abstract class ACommand extends Helper implements IImageCommand {
     this.in = in;
   }
 
+  /**
+   * Method to dispatch the load to specific file formats.
+   * @param imagePath represnts the path of the image file.
+   * @return
+   * @throws WrongCommandException
+   */
   protected IFile imagePathHelper(String imagePath) throws WrongCommandException {
     String[] fileType = imagePath.split("\\.");
 

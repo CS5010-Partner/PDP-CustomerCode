@@ -13,7 +13,7 @@ import model.ImageObj;
  * PPMFile represents the image file format which is in PPM. It implements the IFIle interface to
  * implement the file methods.
  */
-public class PPMFile implements IFile {
+public class PPMFile extends AFile {
 
   private final String filePath;
 
@@ -23,13 +23,10 @@ public class PPMFile implements IFile {
    * @param path the file path.
    */
   public PPMFile(String path) {
+    super(path);
     filePath = path;
   }
 
-  @Override
-  public String toString() {
-    return filePath;
-  }
 
   @Override
   public String fileRead() throws FileHandlingException {

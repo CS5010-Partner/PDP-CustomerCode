@@ -8,8 +8,8 @@ import java.io.Writer;
  */
 public class MockBufferedWriter extends BufferedWriter {
 
-  private String s;
-  private String flush;
+  protected String s;
+  protected String flush;
 
   /**
    * Constructor to initialize the variables.

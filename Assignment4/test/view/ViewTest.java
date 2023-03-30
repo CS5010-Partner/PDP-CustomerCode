@@ -11,11 +11,11 @@ import org.junit.Test;
  */
 public class ViewTest {
   IView v;
-  MockBufferedWriter mbw;
+  MockBufferedWriterAdvanced mbw;
 
   @Before
   public void setUp() {
-    mbw = new MockBufferedWriter(new OutputStreamWriter(System.out));
+    mbw = new MockBufferedWriterAdvanced(new OutputStreamWriter(System.out));
     v = new View(mbw);
   }
 

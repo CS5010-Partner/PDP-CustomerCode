@@ -8,9 +8,9 @@ import model.ImageObj;
 /**
  * This class acts as a mock implementation to the model class.
  */
-public class MockModel implements IImage {
+public class MockModel implements IImage{
 
-  private StringBuffer sb = new StringBuffer();
+  protected StringBuffer sb = new StringBuffer();
 
   @Override
   public String toString() {
@@ -28,7 +28,7 @@ public class MockModel implements IImage {
 
   @Override
   public ImageObj save(IFile imagePath, String imageName) {
-    sb.append("save | " + imagePath + " | " + imageName + "\n");
+    sb.append("save | " + imagePath.toString() + " | " + imageName + "\n");
     return null;
   }
 

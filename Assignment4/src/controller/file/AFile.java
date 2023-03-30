@@ -13,6 +13,11 @@ public abstract class AFile implements IFile{
   protected AFile(String filePath) {
     this.filePath = filePath;
   }
+
+  @Override
+  public String toString() {
+    return filePath;
+  }
   @Override
   public String fileRead() throws FileHandlingException {
     StringBuilder s = new StringBuilder();
@@ -56,7 +61,7 @@ public abstract class AFile implements IFile{
     File file = new File(filePath);
     int width = content.getWidth();
     int height = content.getHeight();
-    int[][][] img=content.getImage();
+    int[][][] img=content.getMatrix();
     BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
     for (int x = 0; x < height; x++) {
       for (int y = 0; y < width; y++) {

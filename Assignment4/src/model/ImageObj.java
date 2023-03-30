@@ -70,10 +70,6 @@ public class ImageObj {
    *
    * @return the integer matrix of the image.
    */
-  public int[][][] getImage() {
-    return image;
-  }
-
 
   @Override
   public String toString() {
@@ -233,8 +229,8 @@ public class ImageObj {
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
         image[i][j][0] = this.image[i][j][0];
-        image[i][j][1] = green.getImage()[i][j][1];
-        image[i][j][2] = blue.getImage()[i][j][2];
+        image[i][j][1] = green.getMatrix()[i][j][1];
+        image[i][j][2] = blue.getMatrix()[i][j][2];
       }
     }
     return new ImageObj(image, this.width, this.height, this.maxValue);
