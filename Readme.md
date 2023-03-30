@@ -12,6 +12,10 @@
 ### File Package:
 * **IFile** - IFile represents the methods implemented by the classes which implement IFile interface.
 * **PPMFile** - PPMFile represents the image file format which is in PPM. It implements the IFIle interface to implement the file methods.
+* **JPEGFile** - JPEGFile represents the image file format which is in JPEG. It implements the IFile interface to implement the file methods.
+* **BMPFile** - BMPFile represents the image file format which is in BMP. It implements the IFile interface to implement the file methods.
+* **PNGFile** - PNGFile represents the image file format which is in PNG. It implements the IFile interface to implement the file methods.
+
 
 >### *IImage* :
 > IImage represents the model interface and the methods that are required for the model.
@@ -30,15 +34,19 @@
 * **brighten** - This method when called brightens the image by the input value.
 * **rgbSplit** - This method when called splits the RGB image into different color channels
 * **rgbCombine** - This method when called combines the various channels of the image into RGB image.
-
+* **tranformGreyscale** - This method when called converts the image to greyscale.
+* **transformSepia** - This method when called converts the image to sepia.
+* **filterBlur** - This method when called blurs the image.
+* **filterSharpen** - This method when called sharpens the image.
+* **dither** - This method when called dithers the image.
 > ### *ImageSet* :
 > This class implements the ***IImage*** Interface and holds the map between image values and corresponding name.
 
 > ### *ImageObj* :
 > This class implements all the functions mentioned in the ***IImage***. This is used to perform the said operations on a singular image.
 
-
-
+> ### *ImageObjAdvanced* :
+> This class implements all the functions mentioned in the ***IImageAdvanced***. This is used to perform the said operations on a singular image.
 
 ## VIEW
 
@@ -67,6 +75,10 @@ The view hosts a ***IView*** Interface and ***View*** Class.
 * **echoSplitSuccess** - This method when called prints a statement indicating the user that the image has been splitted successfully.
 * **echoScriptSuccess** - This method when called prints a statement indicating the user that the script has been executed successfully.
 * **echoInvalidInputMsg** - This method when called prints a statement indicating the user that an invalid input has been entered.
+* **echoFilterBlurSuccess**  This methowd when called prints a statement indicating the user that the image has been blurred successfully.
+* **echoFilterSharpenSuccess** - This method when called prints a statement indicating the user that the image has been shaperend successfully.
+* **echoSepiaSuccess** - This method when called prints a statement indicating the user that the image has been converted to sepia successfully.
+* **echoDither** - This method when called prints a statement indicating the user that the image has been converted to dither successfully.
 
 > ### *View* :
 > This class implements the ***IView*** interface and all the methods it holds.
@@ -90,6 +102,10 @@ The view hosts a ***IView*** Interface and ***View*** Class.
 * **RGB Split** - class that implements the RGB split functionality.
 * **Save** - class that implements the save functionlity.
 * **Vertical Flip** - class that implmenents the vertical flip functionality.
+* **blur** - class that implements the blur functionality.
+* **sharpen** - class that implements the sharpen functionality.
+* **dither** - class that implements the dither functionality.
+* **sepia** - class that implements the sepia functionality.
 
 >### *ImgController* : 
 > This Interface consist of the following methods in it.
@@ -99,3 +115,8 @@ The view hosts a ***IView*** Interface and ***View*** Class.
 
 >### *ImgControllerImpl* :
 > ImgControllerImpl is the controller class which is called from the main. It takes input from the user and calls necessary classes from the model. Parses the output to the view.
+
+>### *ImgControllerImplAdvanced* :
+> ImgControllerImplAdvanced is the controlled class which is called from main and consist of additional functionalities. It takes input from the user and calls necessary classes from the mode. Parses the output to ViewAdvanced.
+
+#### CITATION - IMAGES ARE TAKEN FROM MARIA ANSON.
