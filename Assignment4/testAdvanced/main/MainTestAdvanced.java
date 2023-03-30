@@ -227,6 +227,7 @@ public class MainTestAdvanced {
     this.controller = new ImgControllerImplAdvanced(model, view, reader);
     this.controller.run();
 
+<<<<<<< HEAD
     assertEquals(true, checkTwoImages(
         new String[]{"res/sepia.ppm"},
         new String[]{"res/sepia.png"}));
@@ -256,6 +257,35 @@ public class MainTestAdvanced {
     assertEquals(true, checkTwoImages(
         new String[]{"res/dither.ppm"},
         new String[]{"res/dither.png"}));
+=======
+    assertEquals(true,
+        checkTwoImages(new String[]{"res/sepia.ppm"}, new String[]{"res/sepia.png"}));
+  }
+
+  @Test
+  public void ditherTest()
+      throws ImageNameAlreadyExistsException, ImageNotFoundException, FileHandlingException {
+    String test = "load res/img1orig.ppm i1\n";
+    test += "load res/img1orig.jpg i11\n";
+    test += "dither i1 i1g\n";
+    test += "dither i11 i1g1\n";
+
+    test += "save res/dither.ppm i1g\n";
+    test += "save res/dither.png i1g\n";
+    test += "save res/dither.jpg i1g1\n";
+    test += "save res/dither.bmp i1g1\n";
+
+    test += "#\n";
+
+    Reader inputString = new StringReader(test);
+    BufferedReader reader = new BufferedReader(inputString);
+
+    this.controller = new ImgControllerImplAdvanced(model, view, reader);
+    this.controller.run();
+
+    assertEquals(true,
+        checkTwoImages(new String[]{"res/sepia.ppm"}, new String[]{"res/sepia.png"}));
+>>>>>>> main
   }
 
   @Test
@@ -279,9 +309,14 @@ public class MainTestAdvanced {
     this.controller = new ImgControllerImplAdvanced(model, view, reader);
     this.controller.run();
 
+<<<<<<< HEAD
     assertEquals(true, checkTwoImages(
         new String[]{"res/blur.ppm"},
         new String[]{"res/blur.png"}));
+=======
+    assertEquals(true,
+        checkTwoImages(new String[]{"res/blur.ppm"}, new String[]{"" + "res/blur.png"}));
+>>>>>>> main
   }
 
   @Test
@@ -305,8 +340,13 @@ public class MainTestAdvanced {
     this.controller = new ImgControllerImplAdvanced(model, view, reader);
     this.controller.run();
 
+<<<<<<< HEAD
     assertEquals(true, checkTwoImages(
         new String[]{"res/sharpen.ppm"},
         new String[]{"res/sharpen.png"}));
+=======
+    assertEquals(true,
+        checkTwoImages(new String[]{"res/sharpen.ppm"}, new String[]{"res/sharpen.png"}));
+>>>>>>> main
   }
 }

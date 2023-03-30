@@ -1,13 +1,13 @@
 package controller;
 
 import controller.commands.ACommand;
-import controller.commandsAdvanced.Blur;
-import controller.commandsAdvanced.Dithering;
-import controller.commandsAdvanced.GreyScaleAdvanced;
-import controller.commandsAdvanced.LoadAdvanced;
-import controller.commandsAdvanced.SaveAdvanced;
-import controller.commandsAdvanced.Sepia;
-import controller.commandsAdvanced.Sharpen;
+import controller.newcommands.Blur;
+import controller.newcommands.Dithering;
+import controller.newcommands.GreyScaleAdvanced;
+import controller.newcommands.LoadAdvanced;
+import controller.newcommands.SaveAdvanced;
+import controller.newcommands.Sepia;
+import controller.newcommands.Sharpen;
 import java.io.BufferedReader;
 import model.IImageAdvanced;
 import view.IViewAdvanced;
