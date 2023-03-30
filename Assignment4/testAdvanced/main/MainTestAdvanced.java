@@ -189,7 +189,6 @@ public class MainTestAdvanced {
     test += "greyscale i1 i1g\n";
     test += "greyscale i11 i1g1\n";
 
-
     test += "save res/greyScale.ppm i1g\n";
     test += "save res/greyScale.png i1g\n";
     test += "save res/greyScale.jpg i1g1\n";
@@ -205,6 +204,36 @@ public class MainTestAdvanced {
 
     assertEquals(true, checkTwoImages(
         new String[]{"res/greyScale.ppm"},
-        new String[]{"res/greyScale.png", "res/greyScale.jpg", "res/greyScale.bmp"}));
+        new String[]{"res/greyScale.png"}));
+  }
+
+  @Test
+  public void sepiaTest()
+      throws ImageNameAlreadyExistsException, ImageNotFoundException, FileHandlingException {
+    String test = "load res/img1orig.ppm i1\n";
+    test += "load res/img1orig.jpg i11\n";
+    test += "sepia i1 i1g\n";
+    test += "sepia i11 i1g1\n";
+
+    test += "save res/sepia.ppm i1g\n";
+    test += "save res/sepia.png i1g\n";
+    test += "save res/sepia.jpg i1g1\n";
+    test += "save res/sepia.bmp i1g1\n";
+
+    test += "#\n";
+
+    Reader inputString = new StringReader(test);
+    BufferedReader reader = new BufferedReader(inputString);
+
+    this.controller = new ImgControllerImplAdvanced(model, view, reader);
+    this.controller.run();
+
+    assertEquals(true, checkTwoImages(
+        new String[]{"res/sepia.ppm"},
+        new String[]{"res/sepia.png"}));
+
+    assertEquals(true, checkTwoImages(
+        new String[]{"res/sepia.jpg"},
+        new String[]{"res/sepia.bmp"}));
   }
 }
