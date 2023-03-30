@@ -28,12 +28,11 @@ import view.IView;
  * ImgControllerImpl is the controller class which is called from the main. It takes input from the
  * user and calls necessary classes from the model. Parses the output to the view.
  */
-public class ImgControllerImpl extends Helper implements ImgController{
+public class ImgControllerImpl extends Helper implements ImgController {
 
   private final IView view;
-
-  protected Map<String, ACommand> cMap;
   private final IImage model;
+  protected Map<String, ACommand> cMap;
   private BufferedReader in;
   private BufferedReader tempIn;
 
@@ -118,8 +117,9 @@ public class ImgControllerImpl extends Helper implements ImgController{
   private void switchHelper(String cmd)
       throws CloseCmdLineException, IOException, FileHandlingException, WrongCommandException,
       ImageNameAlreadyExistsException, ImageNotFoundException {
-    if (Objects.equals(cmd, "run"))
+    if (Objects.equals(cmd, "run")) {
       return;
+    }
 
     if (Objects.equals(cmd, "_run-end##")) {
       this.view.echoScriptSuccess(true);
@@ -135,6 +135,7 @@ public class ImgControllerImpl extends Helper implements ImgController{
     cMap.get(cmd).execute();
   }
 
-  public void run() {commandExecution();
+  public void run() {
+    commandExecution();
   }
 }

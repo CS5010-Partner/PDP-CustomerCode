@@ -7,9 +7,19 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import model.ImageObj;
 
-public abstract class AFile implements IFile{
+/**
+ * AFile is an abstract class where it implements the IFile. It has common methods like fileRead()
+ * and fileWriterHeper() to avoid duplication of code.
+ */
+public abstract class AFile implements IFile {
+
   protected final String filePath;
 
+  /**
+   * Constructor for the AFile class. Child class can directly call the super classes constructor.
+   *
+   * @param filePath sets the filepath data member value.
+   */
   protected AFile(String filePath) {
     this.filePath = filePath;
   }
@@ -18,21 +28,21 @@ public abstract class AFile implements IFile{
   public String toString() {
     return filePath;
   }
+
   @Override
   public String fileRead() throws FileHandlingException {
     StringBuilder s = new StringBuilder();
-    int maxValue=Integer.MIN_VALUE;
+    int maxValue = Integer.MIN_VALUE;
     int width;
     int height;
     BufferedImage image;
     try {
       image = ImageIO.read(new File(this.filePath));
-    }catch (IOException e)
-    {
+    } catch (IOException e) {
       throw new FileHandlingException("File " + this.filePath + " not found!");
     }
-    width=image.getWidth();
-    height=image.getHeight();
+    width = image.getWidth();
+    height = image.getHeight();
     int[][][] img = new int[height][width][3];
 
     for (int x = 0; x < height; x++) {
@@ -44,24 +54,21 @@ public abstract class AFile implements IFile{
         s.append(img[x][y][1]).append("\n");
         img[x][y][2] = rgb & 0xFF;
         s.append(img[x][y][2]).append("\n");
-        maxValue=Math.max(img[x][y][0],Math.max(img[x][y][1],Math.max(maxValue,img[x][y][2])));
+        maxValue = Math.max(img[x][y][0], Math.max(img[x][y][1], Math.max(maxValue, img[x][y][2])));
       }
     }
-    return convertToResult(s.toString(),maxValue,width,height);
+    return convertToResult(s.toString(), maxValue, width, height);
   }
-  private String convertToResult(String pngImage, int maxValue,int width,int height)
-  {
-    return width + "\n"
-        + height + "\n"
-        + maxValue + "\n"
-        + pngImage;
+
+  private String convertToResult(String pngImage, int maxValue, int width, int height) {
+    return width + "\n" + height + "\n" + maxValue + "\n" + pngImage;
   }
 
   protected void fileWriteHelper(ImageObj content, String fileType) throws FileHandlingException {
     File file = new File(filePath);
     int width = content.getWidth();
     int height = content.getHeight();
-    int[][][] img=content.getMatrix();
+    int[][][] img = content.getMatrix();
     BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
     for (int x = 0; x < height; x++) {
       for (int y = 0; y < width; y++) {
@@ -74,8 +81,7 @@ public abstract class AFile implements IFile{
     }
     try {
       ImageIO.write(image, fileType, file);
-    }catch (IOException e)
-    {
+    } catch (IOException e) {
       throw new FileHandlingException("Directory not Found.");
     }
   }

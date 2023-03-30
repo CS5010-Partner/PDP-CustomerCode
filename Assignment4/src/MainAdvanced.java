@@ -7,10 +7,14 @@ import model.ImageSetAdvanced;
 import view.IViewAdvanced;
 import view.ViewAdvanced;
 
+/**
+ * This class is used to call controller, and it creates a model and view advanced objects. This is
+ * the function the user makes a call to.
+ */
 public class MainAdvanced {
 
   /**
-   * Calls the go method of the controller.
+   * Calls the go method of the controller advanced.
    *
    * @param args takes the input from the terminal.
    */

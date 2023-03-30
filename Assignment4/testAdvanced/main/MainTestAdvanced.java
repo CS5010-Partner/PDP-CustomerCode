@@ -25,7 +25,7 @@ import view.IViewAdvanced;
 import view.ViewAdvanced;
 
 /**
- * Class to test the end to end functionality of the code.
+ * Class to test the end to end functionality of the code for the newer implementation.
  */
 public class MainTestAdvanced {
 
@@ -41,7 +41,7 @@ public class MainTestAdvanced {
   private IFile getFileObj(String s) {
     String[] sp = s.split("\\.");
 
-    switch (sp[sp.length-1]) {
+    switch (sp[sp.length - 1]) {
       case "ppm":
         System.out.println("ppm");
         return new PPMFile(s);
@@ -54,15 +54,16 @@ public class MainTestAdvanced {
       case "bmp":
         System.out.println("bmp");
         return new BMPFile(s);
+      default:
+        return null;
     }
-    return null;
   }
 
   private boolean checkTwoImages(String[] s1, String[] s2)
       throws ImageNameAlreadyExistsException, ImageNotFoundException, FileHandlingException {
 
     boolean check = true;
-    for (int i = 0; i<s1.length; i++) {
+    for (int i = 0; i < s1.length; i++) {
       IFile img1 = getFileObj(s1[i]);
       String ref1 = "ref1" + i;
       ImageObj obj1 = model.load(img1, ref1);
@@ -73,8 +74,7 @@ public class MainTestAdvanced {
 
         ImageObj obj2 = model.load(img2, ref2);
 
-        if (obj1.getHeight() != obj2.getHeight() ||
-            obj1.getWidth() != obj2.getWidth()) {
+        if (obj1.getHeight() != obj2.getHeight() || obj1.getWidth() != obj2.getWidth()) {
           System.out.println(i);
           return false;
         }
@@ -202,9 +202,8 @@ public class MainTestAdvanced {
     this.controller = new ImgControllerImplAdvanced(model, view, reader);
     this.controller.run();
 
-    assertEquals(true, checkTwoImages(
-        new String[]{"res/greyScale.ppm"},
-        new String[]{"res/greyScale.png"}));
+    assertEquals(true,
+        checkTwoImages(new String[]{"res/greyScale.ppm"}, new String[]{"res/greyScale.png"}));
   }
 
   @Test
@@ -228,6 +227,7 @@ public class MainTestAdvanced {
     this.controller = new ImgControllerImplAdvanced(model, view, reader);
     this.controller.run();
 
+<<<<<<< HEAD
     assertEquals(true, checkTwoImages(
         new String[]{"res/sepia.ppm"},
         new String[]{"res/sepia.png"}));
@@ -257,5 +257,12 @@ public class MainTestAdvanced {
     assertEquals(true, checkTwoImages(
         new String[]{"res/sepia.ppm"},
         new String[]{"res/sepia.png"}));
+=======
+    assertEquals(true,
+        checkTwoImages(new String[]{"res/sepia.ppm"}, new String[]{"res/sepia.png"}));
+
+    assertEquals(true,
+        checkTwoImages(new String[]{"res/sepia.jpg"}, new String[]{"res/sepia.bmp"}));
+>>>>>>> main
   }
 }

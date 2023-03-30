@@ -1,10 +1,9 @@
 package controller;
 
-import view.IView;
 import view.IViewAdvanced;
 
 /**
- * This class acts as a mock implementation to the view class.
+ * This class acts as a new mock implementation to the view class.
  */
 public class MockViewAdvanced extends MockView implements IViewAdvanced {
 

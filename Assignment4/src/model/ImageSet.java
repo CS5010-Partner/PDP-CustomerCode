@@ -1,10 +1,10 @@
 package model;
 
+import controller.file.IFile;
 import exceptions.FileHandlingException;
 import exceptions.ImageNameAlreadyExistsException;
 import exceptions.ImageNotFoundException;
 import java.util.HashMap;
-import controller.file.IFile;
 
 /**
  * ImageSet class implements the IImage interface, and it acts as a model.
@@ -67,7 +67,7 @@ public class ImageSet implements IImage {
   public ImageObj save(IFile format, String imageName)
       throws ImageNameAlreadyExistsException, ImageNotFoundException, FileHandlingException {
     checkName(new String[]{imageName}, new String[]{});
-    ImageObj saveObj=map.get(imageName);
+    ImageObj saveObj = map.get(imageName);
     format.fileWrite(saveObj);
     return map.get(imageName);
   }

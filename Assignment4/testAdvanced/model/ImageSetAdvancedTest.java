@@ -1,36 +1,42 @@
 package model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
+import controller.file.IFile;
 import controller.file.JPEGFile;
+import controller.file.PPMFile;
 import exceptions.FileHandlingException;
 import exceptions.ImageNameAlreadyExistsException;
 import exceptions.ImageNotFoundException;
 import java.util.Arrays;
 import java.util.HashMap;
-import controller.file.IFile;
-import controller.file.PPMFile;
 import org.junit.Test;
 
+/**
+ * Class to test the Model part of the new MVC.
+ */
 public class ImageSetAdvancedTest {
+
   private ImageSetAdvanced model;
   private IFile img1;
   private IFile img2;
-  private IFile img3;
 
   private HashMap<String, ImageObj> map;
 
+  /**
+   * Constructor to initialize the variables.
+   */
   public ImageSetAdvancedTest() {
     model = new ImageSetAdvanced();
     img1 = new PPMFile("res/img1orig.ppm");
     img2 = new PPMFile("res/img2orig.ppm");
-    img3 = new PPMFile("res/new1.ppm");
+    IFile img3 = new PPMFile("res/new1.ppm");
     map = new HashMap<String, ImageObj>();
   }
 
   private boolean checkTwoImages(ImageObj obj1, ImageObj obj2) {
-    if (obj1.getHeight() != obj2.getHeight()
-        || obj1.getWidth() != obj2.getWidth()) {
+    if (obj1.getHeight() != obj2.getHeight() || obj1.getWidth() != obj2.getWidth()) {
       return false;
     }
 
@@ -89,8 +95,8 @@ public class ImageSetAdvancedTest {
       model.filterBlur("1orig", "1filter");
       fail("filter red failed");
     } catch (ImageNameAlreadyExistsException e) {
-      assertEquals("exceptions.ImageNameAlreadyExistsException: "
-              + "Image name already exists.",
+      assertEquals("exceptions.ImageNameAlreadyExistsException: " +
+              "Image name already exists.",
           e.toString());
     }
 
@@ -151,13 +157,12 @@ public class ImageSetAdvancedTest {
     assertEquals(true, checkTwoImages(map.get("1sharpRef"), map.get("1sharp")));
     assertEquals(true, checkTwoImages(map.get("2sharpRef"), map.get("2sharp")));
 
-
     try {
       model.filterSharpen("1orig", "1sharp");
       fail("sharp red failed");
     } catch (ImageNameAlreadyExistsException e) {
-      assertEquals("exceptions.ImageNameAlreadyExistsException: "
-              + "Image name already exists.",
+      assertEquals("exceptions.ImageNameAlreadyExistsException: " +
+              "Image name already exists.",
           e.toString());
     }
 
@@ -222,8 +227,8 @@ public class ImageSetAdvancedTest {
       model.transformGreyScale("1orig", "1grey");
       fail("grey transform failed");
     } catch (ImageNameAlreadyExistsException e) {
-      assertEquals("exceptions.ImageNameAlreadyExistsException: "
-              + "Image name already exists.",
+      assertEquals("exceptions.ImageNameAlreadyExistsException: " +
+              "Image name already exists.",
           e.toString());
     }
 
@@ -272,7 +277,6 @@ public class ImageSetAdvancedTest {
     map.put("1sepiaRefBmp", model.load(ref1bmp, "1sepiaRefBmp"));
     map.put("2sepiaRefBmp", model.load(ref2bmp, "2sepiaRefBmp"));
 
-
     assertEquals(true, checkTwoImages(map.get("1sepiaRef"), map.get("1sepia")));
     assertEquals(true, checkTwoImages(map.get("2sepiaRef"), map.get("2sepia")));
 
@@ -289,8 +293,8 @@ public class ImageSetAdvancedTest {
       model.transformSepia("1orig", "1sepia");
       fail("sepia transform failed");
     } catch (ImageNameAlreadyExistsException e) {
-      assertEquals("exceptions.ImageNameAlreadyExistsException: "
-              + "Image name already exists.",
+      assertEquals("exceptions.ImageNameAlreadyExistsException: " +
+              "Image name already exists.",
           e.toString());
     }
 
@@ -324,8 +328,6 @@ public class ImageSetAdvancedTest {
     IFile ref1bmp = new JPEGFile("res/img1ditherRef.bmp");
     IFile ref2bmp = new JPEGFile("res/img2ditherRef.bmp");
 
-
-
     ImageObj s1 = model.save(ref1, "1dither");
     ImageObj s2 = model.save(ref2, "2dither");
 
@@ -353,13 +355,12 @@ public class ImageSetAdvancedTest {
     assertEquals(true, checkTwoImages(map.get("1ditherRef"), map.get("1dither")));
     assertEquals(true, checkTwoImages(map.get("2ditherRef"), map.get("2dither")));
 
-
     try {
       model.dither("1orig", "1dither");
       fail("dither transform failed");
     } catch (ImageNameAlreadyExistsException e) {
-      assertEquals("exceptions.ImageNameAlreadyExistsException: "
-              + "Image name already exists.",
+      assertEquals("exceptions.ImageNameAlreadyExistsException: " +
+              "Image name already exists.",
           e.toString());
     }
 

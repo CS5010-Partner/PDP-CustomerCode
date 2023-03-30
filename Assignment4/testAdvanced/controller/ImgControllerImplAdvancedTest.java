@@ -5,15 +5,13 @@ import static org.junit.Assert.assertEquals;
 import java.io.BufferedReader;
 import java.io.Reader;
 import java.io.StringReader;
-import model.IImage;
 import model.IImageAdvanced;
 import org.junit.Before;
 import org.junit.Test;
-import view.IView;
 import view.IViewAdvanced;
 
 /**
- * This class tests the controller implementation.
+ * This class tests the new controller implementation.
  */
 public class ImgControllerImplAdvancedTest {
 
@@ -274,20 +272,20 @@ public class ImgControllerImplAdvancedTest {
         viewRet);
   }
 
- @Test
+  @Test
   public void transformSepiaTest() {
-   String test = "sepia ant antRed\n#\n";
+    String test = "sepia ant antRed\n#\n";
 
-   Reader inputString = new StringReader(test);
-   BufferedReader reader = new BufferedReader(inputString);
-   this.controller = new ImgControllerImplAdvanced(this.model, this.view, reader);
-   this.controller.run();
+    Reader inputString = new StringReader(test);
+    BufferedReader reader = new BufferedReader(inputString);
+    this.controller = new ImgControllerImplAdvanced(this.model, this.view, reader);
+    this.controller.run();
 
-   String modelRet = this.model.toString();
-   String viewRet = this.view.toString();
-   assertEquals("transformSepia | ant | antRed\n", modelRet);
-   assertEquals("Get Cmd|Sepia Success|Get Cmd|Close Cmd|", viewRet);
- }
+    String modelRet = this.model.toString();
+    String viewRet = this.view.toString();
+    assertEquals("transformSepia | ant | antRed\n", modelRet);
+    assertEquals("Get Cmd|Sepia Success|Get Cmd|Close Cmd|", viewRet);
+  }
 
   @Test
   public void transformSepiaNoCmdTest() {

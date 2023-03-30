@@ -22,7 +22,8 @@ public interface IImage {
    * @throws ImageNameAlreadyExistsException thrown when an image name already exists.
    */
   ImageObj load(IFile imagePath, String imageName)
-      throws FileHandlingException, ImageNameAlreadyExistsException, ImageNotFoundException, IOException;
+      throws FileHandlingException, ImageNameAlreadyExistsException, ImageNotFoundException,
+      IOException;
 
   /**
    * saves the given image-name to the specified image-path.
