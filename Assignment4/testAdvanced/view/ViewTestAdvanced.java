@@ -7,9 +7,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Class to test the view part of the MVC.
+ * Class to test the new view part of the MVC.
  */
 public class ViewTestAdvanced {
+
   IViewAdvanced v;
   MockBufferedWriterAdvanced mbw;
 

@@ -1,14 +1,14 @@
 package controller;
 
-import java.util.NoSuchElementException;
 import controller.file.IFile;
+import java.util.NoSuchElementException;
 import model.IImage;
 import model.ImageObj;
 
 /**
  * This class acts as a mock implementation to the model class.
  */
-public class MockModel implements IImage{
+public class MockModel implements IImage {
 
   protected StringBuffer sb = new StringBuffer();
 

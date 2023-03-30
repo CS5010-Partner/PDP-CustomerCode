@@ -6,7 +6,7 @@ import model.IImageAdvanced;
 import model.ImageObj;
 
 /**
- * This class acts as a mock implementation to the model class.
+ * This class acts as a new mock implementation to the model class.
  */
 public class MockModelAdvanced extends MockModel implements IImageAdvanced {
 

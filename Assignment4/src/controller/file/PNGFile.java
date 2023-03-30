@@ -3,7 +3,16 @@ package controller.file;
 import exceptions.FileHandlingException;
 import model.ImageObj;
 
-public class PNGFile extends AFile{
+/**
+ * PNGFile class supports class for the PNG image type.
+ */
+public class PNGFile extends AFile {
+
+  /**
+   * Constructor for the PNGFile class.
+   *
+   * @param filePath sets the value for the filePath data member.
+   */
   public PNGFile(String filePath) {
     super(filePath);
   }

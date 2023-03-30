@@ -263,7 +263,8 @@ public class ImageObj {
 
     for (int i = 0; i < this.height; i++) {
       for (int j = 0; j < this.width; j++) {
-        System.arraycopy(this.image[i][j], 0, newImgArr[i][this.width - j - 1], 0, 3);
+        System.arraycopy(this.image[i][j], 0, newImgArr[i][this.width - j - 1],
+            0, 3);
       }
     }
     return new ImageObj(newImgArr, this.width, this.height, this.maxValue);
@@ -289,6 +290,12 @@ public class ImageObj {
     }
   }
 
+  /**
+   * Returns the filtered image based on the given kernel of the current image.
+   *
+   * @param kernel the kernel which is applied for the filtering.
+   * @return ImageObj of the filtered image.
+   */
   public ImageObj filtering(double[][] kernel) {
     int[][][] newImgArr = new int[this.height][this.width][3];
 
@@ -330,6 +337,13 @@ public class ImageObj {
     return new ImageObj(newImgArr, this.width, this.height, this.maxValue);
   }
 
+  /**
+   * Returns the transformed image based on the given matrix of the current image.
+   *
+   * @param matrix the matrix which is used for transformation.
+   * @return the ImageObj of the transformed image.
+   */
+
   public ImageObj transformation(double[][] matrix) {
     int[][][] newImgArr = new int[this.height][this.width][3];
 
@@ -354,8 +368,13 @@ public class ImageObj {
     return new ImageObj(newImgArr, this.width, this.height, this.maxValue);
   }
 
+  /**
+   * Returns the dithered image of the current image.
+   *
+   * @return ImageObj of the dithered form of the current image.
+   */
   public ImageObj dithering() {
-    ImageObj grey = transformation(transformations.getGreyScaleMatrix());
+    ImageObj grey = transformation(Transformations.getGreyScaleMatrix());
 
     for (int i = 0; i < grey.height; i++) {
       for (int j = 0; j < grey.width; j++) {
@@ -370,18 +389,18 @@ public class ImageObj {
 
           grey.image[i][j][k] = newC;
 
-          if ((j+1) < grey.width) {
-            grey.image[i][j+1][k] += (int)((7.0 / 16) * error);
+          if ((j + 1) < grey.width) {
+            grey.image[i][j + 1][k] += (int) ((7.0 / 16) * error);
           }
 
-          if ((i+1) < grey.height && (j-1) >= 0) {
-            grey.image[i + 1][j - 1][k] += (int)((3.0 / 16) * error);
+          if ((i + 1) < grey.height && (j - 1) >= 0) {
+            grey.image[i + 1][j - 1][k] += (int) ((3.0 / 16) * error);
           }
-          if ((i+1) < grey.height) {
-            grey.image[i + 1][j][k] += (int)((5.0 / 16) * error);
+          if ((i + 1) < grey.height) {
+            grey.image[i + 1][j][k] += (int) ((5.0 / 16) * error);
           }
-          if ((i+1) < grey.height && (j+1) < grey.width) {
-            grey.image[i + 1][j + 1][k] += (int)((1.0 / 16) * error);
+          if ((i + 1) < grey.height && (j + 1) < grey.width) {
+            grey.image[i + 1][j + 1][k] += (int) ((1.0 / 16) * error);
           }
         }
       }

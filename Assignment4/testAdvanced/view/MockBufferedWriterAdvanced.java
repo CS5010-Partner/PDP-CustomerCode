@@ -3,7 +3,7 @@ package view;
 import java.io.Writer;
 
 /**
- * Class used to test the view part of the model using a mock buffered writer.
+ * Class used to test the new view part of the model using a mock buffered writer.
  */
 public class MockBufferedWriterAdvanced extends MockBufferedWriter {
 

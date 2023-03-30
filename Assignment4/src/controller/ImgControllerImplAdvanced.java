@@ -12,6 +12,11 @@ import java.io.BufferedReader;
 import model.IImageAdvanced;
 import view.IViewAdvanced;
 
+/**
+ * ImgControllerImplAdvanced is the controller class which is called from the main. It takes input
+ * from the user and calls necessary classes from the model. Parses the output to the view. It is
+ * written to support the newer implementation.
+ */
 public class ImgControllerImplAdvanced extends ImgControllerImpl {
 
   private final IImageAdvanced model;
@@ -20,7 +25,7 @@ public class ImgControllerImplAdvanced extends ImgControllerImpl {
 
 
   /**
-   * Constructor for the ImgControllerImpl class.
+   * Constructor for the ImgControllerImplAdvanced class.
    *
    * @param model represents the model object.
    * @param view  represents the view object.
