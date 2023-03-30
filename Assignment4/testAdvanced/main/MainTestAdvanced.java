@@ -227,9 +227,8 @@ public class MainTestAdvanced {
     this.controller = new ImgControllerImplAdvanced(model, view, reader);
     this.controller.run();
 
-    assertEquals(true, checkTwoImages(
-        new String[]{"res/sepia.ppm"},
-        new String[]{"res/sepia.png"}));
+    assertEquals(true,
+        checkTwoImages(new String[]{"res/sepia.ppm"}, new String[]{"res/sepia.png"}));
   }
 
   @Test
@@ -253,13 +252,8 @@ public class MainTestAdvanced {
     this.controller = new ImgControllerImplAdvanced(model, view, reader);
     this.controller.run();
 
-    assertEquals(true, checkTwoImages(
-<<<<<<< HEAD
-        new String[]{"res/sepia.ppm"},
-        new String[]{"res/sepia.png"}));
-=======
-        new String[]{"res/dither.ppm"},
-        new String[]{"res/dither.png"}));
+    assertEquals(true,
+        checkTwoImages(new String[]{"res/sepia.ppm"}, new String[]{"res/sepia.png"}));
   }
 
   @Test
@@ -283,9 +277,8 @@ public class MainTestAdvanced {
     this.controller = new ImgControllerImplAdvanced(model, view, reader);
     this.controller.run();
 
-    assertEquals(true, checkTwoImages(
-        new String[]{"res/blur.ppm"},
-        new String[]{"res/blur.png"}));
+    assertEquals(true,
+        checkTwoImages(new String[]{"res/blur.ppm"}, new String[]{"" + "res/blur.png"}));
   }
 
   @Test
@@ -309,9 +302,7 @@ public class MainTestAdvanced {
     this.controller = new ImgControllerImplAdvanced(model, view, reader);
     this.controller.run();
 
-    assertEquals(true, checkTwoImages(
-        new String[]{"res/sharpen.ppm"},
-        new String[]{"res/sharpen.png"}));
->>>>>>> 5057711 (added readme)
+    assertEquals(true,
+        checkTwoImages(new String[]{"res/sharpen.ppm"}, new String[]{"res/sharpen.png"}));
   }
 }
