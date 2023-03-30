@@ -233,17 +233,17 @@ public class MainTestAdvanced {
   }
 
   @Test
-  public void Test()
+  public void ditherTest()
       throws ImageNameAlreadyExistsException, ImageNotFoundException, FileHandlingException {
     String test = "load res/img1orig.ppm i1\n";
     test += "load res/img1orig.jpg i11\n";
-    test += "sepia i1 i1g\n";
-    test += "sepia i11 i1g1\n";
+    test += "dither i1 i1g\n";
+    test += "dither i11 i1g1\n";
 
-    test += "save res/sepia.ppm i1g\n";
-    test += "save res/sepia.png i1g\n";
-    test += "save res/sepia.jpg i1g1\n";
-    test += "save res/sepia.bmp i1g1\n";
+    test += "save res/dither.ppm i1g\n";
+    test += "save res/dither.png i1g\n";
+    test += "save res/dither.jpg i1g1\n";
+    test += "save res/dither.bmp i1g1\n";
 
     test += "#\n";
 
@@ -254,7 +254,64 @@ public class MainTestAdvanced {
     this.controller.run();
 
     assertEquals(true, checkTwoImages(
+<<<<<<< HEAD
         new String[]{"res/sepia.ppm"},
         new String[]{"res/sepia.png"}));
+=======
+        new String[]{"res/dither.ppm"},
+        new String[]{"res/dither.png"}));
+  }
+
+  @Test
+  public void blurTest()
+      throws ImageNameAlreadyExistsException, ImageNotFoundException, FileHandlingException {
+    String test = "load res/img1orig.ppm i1\n";
+    test += "load res/img1orig.jpg i11\n";
+    test += "blur i1 i1g\n";
+    test += "blur i11 i1g1\n";
+
+    test += "save res/blur.ppm i1g\n";
+    test += "save res/blur.png i1g\n";
+    test += "save res/blur.jpg i1g1\n";
+    test += "save res/blur.bmp i1g1\n";
+
+    test += "#\n";
+
+    Reader inputString = new StringReader(test);
+    BufferedReader reader = new BufferedReader(inputString);
+
+    this.controller = new ImgControllerImplAdvanced(model, view, reader);
+    this.controller.run();
+
+    assertEquals(true, checkTwoImages(
+        new String[]{"res/blur.ppm"},
+        new String[]{"res/blur.png"}));
+  }
+
+  @Test
+  public void sharpenTest()
+      throws ImageNameAlreadyExistsException, ImageNotFoundException, FileHandlingException {
+    String test = "load res/img1orig.ppm i1\n";
+    test += "load res/img1orig.jpg i11\n";
+    test += "sharpen i1 i1g\n";
+    test += "sharpen i11 i1g1\n";
+
+    test += "save res/sharpen.ppm i1g\n";
+    test += "save res/sharpen.png i1g\n";
+    test += "save res/sharpen.jpg i1g1\n";
+    test += "save res/sharpen.bmp i1g1\n";
+
+    test += "#\n";
+
+    Reader inputString = new StringReader(test);
+    BufferedReader reader = new BufferedReader(inputString);
+
+    this.controller = new ImgControllerImplAdvanced(model, view, reader);
+    this.controller.run();
+
+    assertEquals(true, checkTwoImages(
+        new String[]{"res/sharpen.ppm"},
+        new String[]{"res/sharpen.png"}));
+>>>>>>> 5057711 (added readme)
   }
 }
