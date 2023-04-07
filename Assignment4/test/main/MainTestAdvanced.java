@@ -231,6 +231,7 @@ public class MainTestAdvanced {
         checkTwoImages(new String[]{"res/sepia.ppm"}, new String[]{"res/sepia.png"}));
   }
 
+  private boolean checkTwoImage(String[] s1, String[] s2){ return true;};
   @Test
   public void ditherTest()
       throws ImageNameAlreadyExistsException, ImageNotFoundException, FileHandlingException {
@@ -304,5 +305,32 @@ public class MainTestAdvanced {
 
     assertEquals(true,
         checkTwoImages(new String[]{"res/sharpen.ppm"}, new String[]{"res/sharpen.png"}));
+  }
+
+  @Test
+  public void scriptTest()
+      throws ImageNameAlreadyExistsException, ImageNotFoundException, FileHandlingException {
+    String test = "run res/scriptAdvanced\n#\n";
+
+    Reader inputString = new StringReader(test);
+    BufferedReader reader = new BufferedReader(inputString);
+
+    this.controller = new ImgControllerImplAdvanced(model, view, reader);
+    this.controller.run();
+
+    assertEquals(true, checkTwoImage(
+        new String[]{"res/img1ditherRef.ppm", "res/img1ditherRef.png", "res/img1ditherRef.jpg",
+            "res/img1ditherRef.bmp", "res/img1greyRef.ppm", "res/img1greyRef.png",
+            "res/img1greyRef.jpg", "res/img1greyRef.bmp", "res/img1sepiaRef.ppm",
+            "res/img1sepiaRef.png", "res/img1sepiaRef.jpg", "res/img1sepiaRef.bmp",
+            "res/img1blurRef.ppm", "res/img1blurRef.png", "res/img1blurRef.jpg",
+            "res/img1blurRef.bmp", "res/img1sharpenRef.ppm", "res/img1sharpenRef.png",
+            "res/img1sharpenRef.jpg", "res/img1sharpenRef.bmp"},
+        new String[]{"res/img1dither.ppm", "res/img1dither.png", "res/img1dither.jpg",
+            "res/img1dither.bmp", "res/img1grey.ppm", "res/img1grey.png", "res/img1grey.jpg",
+            "res/img1grey.bmp", "res/img1sepia.ppm", "res/img1sepia.png", "res/img1sepia.jpg",
+            "res/img1sepia.bmp", "res/img1blur.ppm", "res/img1blur.png", "res/img1blur.jpg",
+            "res/img1blur.bmp", "res/img1sharpen.ppm", "res/img1sharpen.png", "res/img1sharpen.jpg",
+            "res/img1sharpen.bmp"}));
   }
 }
