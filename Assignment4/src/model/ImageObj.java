@@ -279,7 +279,7 @@ public class ImageObj {
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
         for (int k = 0; k < 3; k++) {
-          if (img[i][j][k] > 255 || img[i][j][k] < 0) {
+          if (img[i][j][k] > this.maxValue || img[i][j][k] < 0) {
             double val = (double) (img[i][j][k] - min) / (max - min);
             val = val * hardMax;
             img[i][j][k] = (int) val;

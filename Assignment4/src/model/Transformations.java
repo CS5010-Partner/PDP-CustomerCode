@@ -22,7 +22,6 @@ public class Transformations {
    * @return the double matrix of the sepia transformation.
    */
   public static double[][] getSepiaMatrix() {
-
     return new double[][]{{0.393, 0.769, 0.189}, {0.349, 0.686, 0.168}, {0.272, 0.534, 0.131}};
   }
 }
