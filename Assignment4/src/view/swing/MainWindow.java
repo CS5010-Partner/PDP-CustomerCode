@@ -78,14 +78,10 @@ public class MainWindow extends ViewAdvanced {
     imageLabel.setText(null);
     imageLabel.setHorizontalAlignment(JLabel.CENTER);
     imageLabel.setVerticalAlignment(JLabel.CENTER);
-    imageLabel.setText(null);
-    imageLabel.setHorizontalAlignment(JLabel.CENTER);
-    imageLabel.setVerticalAlignment(JLabel.CENTER);
   }
 
   @Override
   public void echoLoadSuccess(ImageObj img, boolean verbose) {
-    currentOperation.setText("Loaded Successfully");
     currentOperation.setText("Loaded Successfully");
     showImage(img);
   }
@@ -175,7 +171,6 @@ public class MainWindow extends ViewAdvanced {
   {
     frame.setVisible(true);
     panel.setLayout(new GridLayout(10,1,2,1)); //divides the panel into rectangles
-    panel.setLayout(new GridLayout(10,1,2,1)); //divides the panel into rectangles
     panel.setBackground(Color.red);
     panel.add(btnMap.get("load"));
     panel.add(btnMap.get("save"));
@@ -201,20 +196,10 @@ public class MainWindow extends ViewAdvanced {
     panel.add(btnMap.get("sharpen"));
     panel.add(btnMap.get("sepia"));
     panel.add(btnMap.get("dither"));
+
+
+
     frame.add(panel, BorderLayout.WEST);
-    frame.add(topPanel,BorderLayout.NORTH);
-
-    topPanel.add(histoPanel);
-    topPanel.add(operationPanel);
-
-    operationPanel.add(currentOperation);
-
-    histoPanel.add(histoLabel1);
-    histoPanel.add(histoLabel2);
-    histoPanel.add(histoLabel3);
-    histoPanel.add(histoLabel4);
-
-
     frame.add(topPanel,BorderLayout.NORTH);
 
     topPanel.add(histoPanel);
@@ -230,7 +215,6 @@ public class MainWindow extends ViewAdvanced {
 
     frame.add(imageLabel);
   }
-
 //  private JButton horizontalFlipHelper(){
 //    horizontalFlip.addActionListener(new ActionListener() {
 //      @Override
