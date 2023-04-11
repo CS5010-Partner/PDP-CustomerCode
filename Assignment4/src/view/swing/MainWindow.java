@@ -123,6 +123,11 @@ public class MainWindow extends ViewAdvanced {
     System.out.println("in here");
     showImage(imgs[0]);
   }
+  @Override
+  public void echoSplitSuccess(ImageObj[] imgs, boolean verbose) {
+    currentOperation.setText("RGB Split Done Successfully");
+    showImage(imgs[0]);
+  }
 
   @Override
   public void echoBrightenSuccess(ImageObj img, boolean verbose) {
@@ -147,7 +152,7 @@ public class MainWindow extends ViewAdvanced {
     btnMap.put("grey-normal",new JButton("grey-normal"));
 //
 //    btnMap.put("grey",new JButton("GreyScale"));
-//    btnMap.put("split",new JButton("RGB Split"));
+    btnMap.put("split",new JButton("RGB Split"));
 //    btnMap.put("combine",new JButton("RGB Combine"));
 //
 //    btnMap.put("blur",new JButton("Blur"));
@@ -175,7 +180,7 @@ public class MainWindow extends ViewAdvanced {
 //    panel.add(btnMap.get("grey"));
     panel.add(btnMap.get("vFlip"));
     panel.add(btnMap.get("hflip"));
-//    panel.add(btnMap.get("split"));
+    panel.add(btnMap.get("split"));
 //    panel.add(btnMap.get("combine"));
 //    panel.add(btnMap.get("blur"));
 //    panel.add(btnMap.get("sharp"));

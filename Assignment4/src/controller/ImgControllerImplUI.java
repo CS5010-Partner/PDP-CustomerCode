@@ -108,10 +108,26 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     view.btnMap.get("vFlip").addActionListener(vflipActionListner());
     view.btnMap.get("bright").addActionListener(brightActionListner());
     view.btnMap.get("grey-normal").addActionListener(greyNormalActionListner());
+    view.btnMap.get("split").addActionListener(splitActionListner());
 
 
 
 
+
+  }
+
+  private ActionListener splitActionListner() {
+    ActionListener a = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        String imgNameRed = generateNewImageName();
+        String imgNameGreen = generateNewImageName();
+        String imgNameBlue = generateNewImageName();
+        String[] params = new String[] { currentImgs[0],imgNameRed,imgNameGreen,imgNameBlue};
+        actionHelper(params, "split");
+      }
+    };
+    return a;
   }
 
   private ActionListener greyNormalActionListner() {
@@ -259,14 +275,14 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
       cmd += params[0]; // save file path
       cmd += " ";
       cmd += params[1]; // current file path
-    } else if (command == "rgb-split") {
+    } else if (command == "split") {
       cmd += params[0]; // source file path
       cmd += " ";
-      cmd += generateNewImageName(); // red image name
+      cmd += params[1]; // red image name
       cmd += " ";
-      cmd += generateNewImageName(); // green image name
+      cmd += params[2]; // green image name
       cmd += " ";
-      cmd += generateNewImageName(); // blue image name
+      cmd += params[3]; // blue image name
     } else if (command == "grey-normal") {
       cmd += params[0]; // source file path
       cmd += " ";
