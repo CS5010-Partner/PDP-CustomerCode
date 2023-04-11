@@ -412,6 +412,7 @@ public class ImageObj {
 
     private ImageObj generateHistogram(ImageObj img, int index) {
       int[][][] newImgArr = new int[256][256][3];
+      double maxVal = -1;
 
       HashMap<Integer, Integer> map = new HashMap<>();
 
@@ -420,26 +421,53 @@ public class ImageObj {
           int val = img.getMatrix()[i][j][index];
           if (map.containsKey(val)) {
             map.put(val, map.get(val) + 1);
+            if (maxVal < map.get(val)) {
+              maxVal = map.get(val);
+            }
           } else {
             map.put(val, 1);
           }
         }
       }
 
-      for (int i=0; i<255; i++) {
-        for (int j=0; j<255; j++) {
-          if (map.containsKey(j) && map.get(j) <= i && map.get(j) > i - 10) {
-            newImgArr[i][j][0] = 100;
-            newImgArr[i][j][1] = 100;
-            newImgArr[i][j][2] = 100;
+//      map.put(100, 200);
+//      map.put(150, 10);
+//      maxVal = 255;
 
-          }
-          else {
-            newImgArr[i][j][0] = 255;
-            newImgArr[i][j][1] = 255;
-            newImgArr[i][j][2] = 255;
+      for (int i=0; i<255; i++) {
+        if (!map.containsKey(i)) {
+          map.put(i, 0);
+        }
+      }
+
+      for (int i=1; i<255; i++) {
+        int j1 = 255 - (int)(((map.get(i-1) - 0.0) / maxVal)*255.0);
+        int j2 = 255 - (int)(((map.get(i) - 0.0) / maxVal)*255.0);
+
+        newImgArr[j1][i-1][0] = 255;
+        newImgArr[j1][i][0] = 255;
+
+        newImgArr[j1][i-1][1] = 255;
+        newImgArr[j1][i][1] = 255;
+
+        newImgArr[j1][i-1][2] = 255;
+        newImgArr[j1][i][2] = 255;
+
+        if (j1>j2) {
+          for (int c=j2; c<j1; c++) {
+            newImgArr[c][i][0] = 100;
+            newImgArr[c][i][1] = 100;
+            newImgArr[c][i][2] = 100;
           }
         }
+        else {
+          for (int c=j1; c<j2; c++) {
+            newImgArr[c][i][0] = 100;
+            newImgArr[c][i][1] = 100;
+            newImgArr[c][i][2] = 100;
+          }
+        }
+
       }
 
       return new ImageObj(newImgArr,256, 256, 255);

@@ -205,7 +205,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
   public void run() {
     initView();
     generateCommands();
-    actionHelper(new String[]{"/Users/aditya/Programming/CS5010/PDP/Assignment4/res/img1orig.ppm", "i1"}, "load");
+    actionHelper(new String[]{"/Users/aditya/Programming/CS5010/PDP/Assignment4/res/img2orig.ppm", "i1"}, "load");
     actionHelper(new String[]{"i1", "r", "g", "h", "i"}, "hist");
 //        actionHelper(new String[]{"/Users/aditya/Programming/CS5010/PDP/Assignment4/res/img1orig.ppm", "i1"}, "load");
 //    actionHelper(new String[]{"i1", "i1d"}, "dither");
