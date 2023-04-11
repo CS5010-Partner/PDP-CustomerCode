@@ -28,9 +28,9 @@ public class View implements IView {
     return verbose;
   }
   protected void print(String msg, boolean verboseOveride) {
-//    if (!this.masterVerbose) {
-//      return;
-//    }
+    if (!this.masterVerbose) {
+      return;
+    }
     try {
       if (this.verbose || verboseOveride) {
         this.out.write(msg);

@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -36,8 +37,8 @@ import view.ViewAdvanced;
 public class MainWindow extends ViewAdvanced {
   private ImageObj img;
   private JFrame frame;
-  private JPanel panel,panel1;
-  private JLabel imageLabel;
+  private JPanel panel,histoPanel,topPanel, operationPanel;
+  private JLabel imageLabel, histoLabel1,histoLabel2,histoLabel3,histoLabel4, currentOperation;
   private JScrollPane scrollPane;
   public HashMap<String, JButton> btnMap;
   public MainWindow()
@@ -46,13 +47,28 @@ public class MainWindow extends ViewAdvanced {
 //    super.toggleMasterVerbose();
     frame=new JFrame();
     panel=new JPanel();
-    panel1=new JPanel();
-    imageLabel=new JLabel("Select an option to display an image");
-    imageLabel.setAlignmentX(CENTER_ALIGNMENT);
-    imageLabel.setSize(new Dimension(500,500));
+    histoPanel=new JPanel();
+    topPanel=new JPanel();
+    topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.PAGE_AXIS));
+    operationPanel=new JPanel();
+
+
+    imageLabel=new JLabel();
+
+
+    frame.setMinimumSize(new Dimension(700, 500));
+//    imageLabel.setSize(new Dimension(500,500));
     frame.setTitle("Image Transformations");
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //closes when clicked on X
     frame.setSize(800,600);
+
+    histoLabel1=new JLabel("label1");
+    histoLabel2=new JLabel("label 2");
+    histoLabel3=new JLabel("label 3");
+    histoLabel4=new JLabel("label 4");
+
+    currentOperation=new JLabel("Select an operation to show an image");
+
     initButtons();
   }
 
@@ -71,10 +87,14 @@ public class MainWindow extends ViewAdvanced {
     imageLabel.setIcon(icon);
     Dimension imageSize = new Dimension(image.getWidth(null), image.getHeight(null));
     imageLabel.setPreferredSize(imageSize);
+    imageLabel.setText(null);
+    imageLabel.setHorizontalAlignment(JLabel.CENTER);
+    imageLabel.setVerticalAlignment(JLabel.CENTER);
   }
 
   @Override
   public void echoLoadSuccess(ImageObj img, boolean verbose) {
+    currentOperation.setText("Loaded Successfully");
     showImage(img);
   }
 
@@ -119,7 +139,7 @@ public class MainWindow extends ViewAdvanced {
   public void show()
   {
     frame.setVisible(true);
-    panel.setLayout(new GridLayout(6,5,10,10)); //divides the panel into rectangles
+    panel.setLayout(new GridLayout(10,1,2,1)); //divides the panel into rectangles
     panel.setBackground(Color.red);
     panel.add(btnMap.get("load"));
     panel.add(btnMap.get("save"));
@@ -134,7 +154,23 @@ public class MainWindow extends ViewAdvanced {
 //    panel.add(btnMap.get("sharp"));
 //    panel.add(btnMap.get("sepia"));
     panel.add(btnMap.get("dither"));
+
+
+
     frame.add(panel, BorderLayout.WEST);
+    frame.add(topPanel,BorderLayout.NORTH);
+
+    topPanel.add(histoPanel);
+    topPanel.add(operationPanel);
+
+    operationPanel.add(currentOperation);
+
+    histoPanel.add(histoLabel1);
+    histoPanel.add(histoLabel2);
+    histoPanel.add(histoLabel3);
+    histoPanel.add(histoLabel4);
+
+
     frame.add(imageLabel);
   }
 
@@ -148,56 +184,6 @@ public class MainWindow extends ViewAdvanced {
     }
   }
 
-//  private JButton horizontalFlipHelper(){
-//    horizontalFlip.addActionListener(new ActionListener() {
-//      @Override
-//      public void actionPerformed(ActionEvent e) {
-//        if(img!=null)
-//        {
-//          img=img.horizontalFlip();
-//          functionsHelper1();
-//        }
-//      }
-//    });
-//    return horizontalFlip;
-//  }
-
-//  private JButton verticalFlipHelper(){
-//    JButton verticalFlip = new JButton("Vertical Flip");
-//    verticalFlip.addActionListener(new ActionListener() {
-//      @Override
-//      public void actionPerformed(ActionEvent e) {
-//        if(img!=null)
-//        {
-//          img=img.verticalFlip();
-//          functionsHelper1();
-//        }
-//      }
-//    });
-//    return verticalFlip;
-//  }
-
-//  private void functionsHelper1()
-//  {
-//    int[][][] data=img.getMatrix();
-//    BufferedImage image = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
-//    for (int x = 0; x < img.getHeight(); x++) {
-//      for (int y = 0; y < img.getWidth(); y++) {
-//        int r = data[x][y][0];
-//        int g = data[x][y][1];
-//        int b = data[x][y][2];
-//        int rgb = (r << 16) | (g << 8) | b;
-//        image.setRGB(y, x, rgb);
-//      }
-//    }
-//   scrollPaneHelper();
-//// create an ImageIcon from the BufferedImage to display in the JLabel
-//    ImageIcon icon = new ImageIcon(image);
-//    imageLabel.setText(null);
-//    imageLabel.setIcon(icon);
-//    Dimension imageSize = new Dimension(image.getWidth(null), image.getHeight(null));
-//    imageLabel.setPreferredSize(imageSize);
-//  }
   private void scrollPaneHelper()
   {
     // Remove the old scroll pane from the frame
