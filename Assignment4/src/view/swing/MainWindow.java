@@ -1,13 +1,5 @@
 package view.swing;
 
-import static java.awt.Component.CENTER_ALIGNMENT;
-
-import controller.file.BMPFile;
-import controller.file.IFile;
-import controller.file.JPEGFile;
-import controller.file.PNGFile;
-import controller.file.PPMFile;
-import exceptions.FileHandlingException;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,11 +7,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -92,10 +81,14 @@ public class MainWindow extends ViewAdvanced {
     imageLabel.setText(null);
     imageLabel.setHorizontalAlignment(JLabel.CENTER);
     imageLabel.setVerticalAlignment(JLabel.CENTER);
+    imageLabel.setText(null);
+    imageLabel.setHorizontalAlignment(JLabel.CENTER);
+    imageLabel.setVerticalAlignment(JLabel.CENTER);
   }
 
   @Override
   public void echoLoadSuccess(ImageObj img, boolean verbose) {
+    currentOperation.setText("Loaded Successfully");
     currentOperation.setText("Loaded Successfully");
     showImage(img);
   }
@@ -114,26 +107,39 @@ public class MainWindow extends ViewAdvanced {
 
   @Override
   public void echoSaveSuccess(ImageObj img, boolean verbose) {
-    currentOperation.setText("Image Saved Successfully");
-    print("             Image Saved Successfully", true);
+    currentOperation.setText("Saved Successfully");
   }
 
-  @Override
-  public void echoHistogramSuccess(ImageObj[] imgs, boolean verbose) {
-    System.out.println("in here");
-    showImage(imgs[0]);
-  }
-  @Override
-  public void echoSplitSuccess(ImageObj[] imgs, boolean verbose) {
-    currentOperation.setText("RGB Split Done Successfully");
-    showImage(imgs[0]);
-  }
 
   @Override
   public void echoBrightenSuccess(ImageObj img, boolean verbose) {
     currentOperation.setText("Brightened Successfully");
     showImage(img);
   }
+
+  @Override
+  public void echoHistogramSuccess(ImageObj[] imgs, boolean verbose) {
+    showImage(imgs[0]);
+  }
+
+  @Override
+  public void echoFilterBlurSuccess(ImageObj img, boolean verbose) {
+    currentOperation.setText("Blurred Successfully");
+    showImage(img);
+  }
+
+  @Override
+  public void echoSepiaSuccess(ImageObj img, boolean verbose) {
+    currentOperation.setText("Sepia Successful.");
+    showImage(img);
+  }
+
+  @Override
+  public void echoFilterSharpenSuccess(ImageObj img, boolean verbose) {
+    currentOperation.setText("Sharpening Successful.");
+    showImage(img);
+  }
+
   @Override
   public void echoGreyscaleSuccess(ImageObj img, boolean verbose) {
     currentOperation.setText("Greyscale Image Generated Successfully");
@@ -160,9 +166,9 @@ public class MainWindow extends ViewAdvanced {
     btnMap.put("split",new JButton("RGB Split"));
     btnMap.put("combine",new JButton("RGB Combine"));
 //
-//    btnMap.put("blur",new JButton("Blur"));
-//    btnMap.put("sepia",new JButton("Sepia"));
-//    btnMap.put("sharp",new JButton("Sharpen"));
+    btnMap.put("blur",new JButton("Blur"));
+    btnMap.put("sepia",new JButton("Sepia"));
+    btnMap.put("sharpen",new JButton("Sharpen"));
     btnMap.put("dither",new JButton("Dither"));
 //
 //    String[] greyScaleOptions = {"Default","Red", "Blue","Green", "Luma","Intensity","Value"};
@@ -171,7 +177,8 @@ public class MainWindow extends ViewAdvanced {
   public void show()
   {
     frame.setVisible(true);
-    panel.setLayout(new GridLayout(13,1,2,1)); //divides the panel into rectangles
+    panel.setLayout(new GridLayout(10,1,2,1)); //divides the panel into rectangles
+    panel.setLayout(new GridLayout(10,1,2,1)); //divides the panel into rectangles
     panel.setBackground(Color.red);
     panel.add(btnMap.get("load"));
     panel.add(btnMap.get("save"));
@@ -182,19 +189,35 @@ public class MainWindow extends ViewAdvanced {
     panel.add(btnMap.get("grey-normal"));
 
 
+    panel.add(btnMap.get("bright"));
+
+
+    panel.add(btnMap.get("grey-normal"));
+
+
 //    panel.add(btnMap.get("grey"));
-    panel.add(btnMap.get("vFlip"));
+    panel.add(btnMap.get("vflip"));
     panel.add(btnMap.get("hflip"));
-    panel.add(btnMap.get("split"));
-    panel.add(btnMap.get("combine"));
-//    panel.add(btnMap.get("blur"));
-//    panel.add(btnMap.get("sharp"));
-//    panel.add(btnMap.get("sepia"));
+   panel.add(btnMap.get("split"));
+   panel.add(btnMap.get("combine"));
+    panel.add(btnMap.get("blur"));
+    panel.add(btnMap.get("sharpen"));
+    panel.add(btnMap.get("sepia"));
     panel.add(btnMap.get("dither"));
-
-
-
     frame.add(panel, BorderLayout.WEST);
+    frame.add(topPanel,BorderLayout.NORTH);
+
+    topPanel.add(histoPanel);
+    topPanel.add(operationPanel);
+
+    operationPanel.add(currentOperation);
+
+    histoPanel.add(histoLabel1);
+    histoPanel.add(histoLabel2);
+    histoPanel.add(histoLabel3);
+    histoPanel.add(histoLabel4);
+
+
     frame.add(topPanel,BorderLayout.NORTH);
 
     topPanel.add(histoPanel);

@@ -3,6 +3,7 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.SwingUtilities;
@@ -16,7 +17,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
   private MockSystemIn in = new MockSystemIn();
   private Map<String, String> formulateMap;
   private MainWindow view;
-  private String[] currentImgs;
+  private ArrayList<String> currentImgs;
 
 
 
@@ -32,7 +33,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     super(model, view, new BufferedReader(in));
     formulateMap = new HashMap<String, String>();
     this.view = view;
-    currentImgs = new String[3];
+    currentImgs = new ArrayList();
 //    super.commandExecution();
   }
 
@@ -104,7 +105,12 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     view.btnMap.get("load").addActionListener(loadActionListner());
     view.btnMap.get("dither").addActionListener(ditherActionListner());
     view.btnMap.get("save").addActionListener(saveActionListner());
-    view.btnMap.get("hflip").addActionListener(hflipActionListner());
+
+    view.btnMap.get("bright").addActionListener(brightenListner());
+    view.btnMap.get("blur").addActionListener(blurActionListner());
+    view.btnMap.get("sepia").addActionListener(sepiaActionListner());
+    view.btnMap.get("sharpen").addActionListener(sharpenActionListner());
+    view.btnMap.get("hFlip").addActionListener(hflipActionListner());
     view.btnMap.get("vFlip").addActionListener(vflipActionListner());
     view.btnMap.get("bright").addActionListener(brightActionListner());
     view.btnMap.get("grey-normal").addActionListener(greyNormalActionListner());
@@ -116,7 +122,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     ActionListener a = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        String[] params = new String[] { generateNewImageName(),currentImgs[0],currentImgs[1],currentImgs[2]};
+        String[] params = new String[] { generateNewImageName(),currentImgs.get(currentImgs.size()-3),currentImgs.get(currentImgs.size()-2),currentImgs.get(currentImgs.size()-1)};
         actionHelper(params, "combine");
       }
     };
@@ -127,13 +133,13 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     ActionListener a = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        String source=currentImgs[0];
+        String source=currentImgs.get(currentImgs.size()-1);
         String imgNameRed = generateNewImageName();
-        currentImgs[0]=imgNameRed;
+        currentImgs.add(imgNameRed);
         String imgNameGreen = generateNewImageName();
-        currentImgs[1]=imgNameGreen;
+        currentImgs.add(imgNameGreen);
         String imgNameBlue = generateNewImageName();
-        currentImgs[2]=imgNameBlue;
+        currentImgs.add(imgNameBlue);
         String[] params = new String[] { source,imgNameRed,imgNameGreen,imgNameBlue};
         actionHelper(params, "split");
       }
@@ -169,7 +175,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
             type = "value";
             break;
         }
-        String[] params = new String[] { type,currentImgs[0],imgName};
+        String[] params = new String[] { type,currentImgs.get(currentImgs.size()-1),imgName};
         actionHelper(params, "grey-normal");
       }
     };
@@ -186,7 +192,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
         if(!input.equals("not clicked")){
           increment=Integer.parseInt(input);
         }
-        String[] params = new String[] { String.valueOf(increment),currentImgs[0],imgName};
+        String[] params = new String[] { String.valueOf(increment),currentImgs.get(currentImgs.size()-1),imgName};
         actionHelper(params, "bright");
       }
     };
@@ -198,24 +204,50 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
       @Override
       public void actionPerformed(ActionEvent e) {
         String imgName = generateNewImageName();
-        String[] params = new String[] { currentImgs[0],imgName};
+        String[] params = new String[] { currentImgs.get(currentImgs.size()-1),imgName};
         actionHelper(params, "vFlip");
       }
     };
     return a;
   }
+
   private ActionListener hflipActionListner() {
     ActionListener a = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         String imgName = generateNewImageName();
-        String[] params = new String[] { currentImgs[0],imgName};
+        String[] params = new String[] { currentImgs.get(currentImgs.size()-1),imgName};
         actionHelper(params, "hflip");
       }
     };
     return a;
   }
 
+  private ActionListener sharpenActionListner() {
+    ActionListener a = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        String imgName = generateNewImageName();
+        String[] params = new String[] { currentImgs.get(currentImgs.size()-1),imgName};
+        currentImgs.add(imgName);
+        actionHelper(params, "sharpen");
+      }
+    };
+    return a;
+  }
+
+  private ActionListener sepiaActionListner() {
+    ActionListener a = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        String imgName = generateNewImageName();
+        String[] params = new String[] { currentImgs.get(currentImgs.size()-1),imgName};
+        currentImgs.add(imgName);
+        actionHelper(params, "sepia");
+      }
+    };
+    return a;
+  }
   private ActionListener loadActionListner() {
     ActionListener a = new ActionListener() {
       @Override
@@ -223,8 +255,8 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
         String[] filePaths = view.fileChooser(1);
 //        System.out.println(filePaths[0]);
         String imgName = generateNewImageName();
-        currentImgs[0] = imgName;
-        String[] params = new String[] {filePaths[0], currentImgs[0]};
+        currentImgs.add(imgName);
+        String[] params = new String[] {filePaths[0], currentImgs.get(currentImgs.size()-1)};
         actionHelper(params, "load");
       }
     };
@@ -236,8 +268,8 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
       @Override
       public void actionPerformed(ActionEvent e) {
         String newImgName = generateNewImageName();
-        String[] params = new String[] {currentImgs[0], newImgName};
-        currentImgs[0] = newImgName;
+        String[] params = new String[] {currentImgs.get(currentImgs.size()-1), newImgName};
+        currentImgs.add(newImgName);
         actionHelper(params, "dither");
       }
     };
@@ -249,8 +281,34 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
       @Override
       public void actionPerformed(ActionEvent e) {
         String filePath= view.savePath();
-        String[] params = new String[] {filePath,currentImgs[0]};
+        String[] params = new String[] {filePath,currentImgs.get(currentImgs.size()-1)};
         actionHelper(params, "save");
+      }
+    };
+    return a;
+  }
+
+  private ActionListener blurActionListner() {
+    ActionListener a = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        String newImgName = generateNewImageName();
+        String[] params = new String[] {currentImgs.get(currentImgs.size()-1), newImgName};
+        currentImgs.add(newImgName);
+        actionHelper(params, "blur");
+      }
+    };
+    return a;
+  }
+
+  private ActionListener brightenListner() {
+    ActionListener a = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        String newImgName = generateNewImageName();
+        String[] params = new String[] {currentImgs.get(currentImgs.size()-1), newImgName};
+        currentImgs.add(newImgName);
+        actionHelper(params, "bright");
       }
     };
     return a;
@@ -296,6 +354,15 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     } else if (command == "grey-normal") {
       cmd += params[0]; // source file path
       cmd += " ";
+      cmd += params[1]; // red image name
+      cmd += " ";
+      cmd += params[2]; // green image name
+      cmd += " ";
+      cmd += params[3]; // blue image name
+    } else if (command == "grey-normal") {
+      cmd += params[0]; // source file path
+      cmd += " ";
+      cmd += params[1]; // source file path
       cmd += params[1]; // source file path
       cmd += " ";
       cmd += params[2];
@@ -315,6 +382,8 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
   public void run() {
     initView();
     generateCommands();
+//    actionHelper(new String[]{"/Users/aditya/Programming/CS5010/PDP/Assignment4/res/img1orig.ppm", "i1"}, "load");
+//    actionHelper(new String[]{"i1", "r", "g", "h", "i"}, "hist");
 //    actionHelper(new String[]{"/Users/aditya/Programming/CS5010/PDP/Assignment4/res/img1orig.ppm", "i1"}, "load");
 //    actionHelper(new String[]{"i1", "r", "g", "h", "i"}, "hist");
 //        actionHelper(new String[]{"/Users/aditya/Programming/CS5010/PDP/Assignment4/res/img1orig.ppm", "i1"}, "load");
