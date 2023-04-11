@@ -109,21 +109,32 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     view.btnMap.get("bright").addActionListener(brightActionListner());
     view.btnMap.get("grey-normal").addActionListener(greyNormalActionListner());
     view.btnMap.get("split").addActionListener(splitActionListner());
+    view.btnMap.get("combine").addActionListener(combineActionListner());
+  }
 
-
-
-
-
+  private ActionListener combineActionListner() {
+    ActionListener a = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        String[] params = new String[] { generateNewImageName(),currentImgs[0],currentImgs[1],currentImgs[2]};
+        actionHelper(params, "combine");
+      }
+    };
+    return a;
   }
 
   private ActionListener splitActionListner() {
     ActionListener a = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
+        String source=currentImgs[0];
         String imgNameRed = generateNewImageName();
+        currentImgs[0]=imgNameRed;
         String imgNameGreen = generateNewImageName();
+        currentImgs[1]=imgNameGreen;
         String imgNameBlue = generateNewImageName();
-        String[] params = new String[] { currentImgs[0],imgNameRed,imgNameGreen,imgNameBlue};
+        currentImgs[2]=imgNameBlue;
+        String[] params = new String[] { source,imgNameRed,imgNameGreen,imgNameBlue};
         actionHelper(params, "split");
       }
     };
@@ -249,12 +260,11 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
   public void actionHelper(String[] params, String command) {
     String cmd = formulateMap.get(command);
 
-    if (command == "rgb-combine") {
+    if (command == "combine") {
       for (int i = 0; i < 4; i++) {
         cmd += params[i]; // 3 file paths
         cmd += " ";
       }
-      cmd += generateNewImageName();
     } else if (command == "hist") {
       for (int i = 0; i < 5; i++) {
         cmd += params[i]; // 3 file paths

@@ -140,6 +140,11 @@ public class MainWindow extends ViewAdvanced {
     showImage(img);
   }
 
+  @Override
+  public void echoCombineSuccess(ImageObj img, boolean verbose) {
+    currentOperation.setText("Combined the last three images Successfully");
+    showImage(img);
+  }
   private void initButtons() {
     btnMap = new HashMap<>();
     btnMap.put("load", new JButton("Load"));
@@ -153,7 +158,7 @@ public class MainWindow extends ViewAdvanced {
 //
 //    btnMap.put("grey",new JButton("GreyScale"));
     btnMap.put("split",new JButton("RGB Split"));
-//    btnMap.put("combine",new JButton("RGB Combine"));
+    btnMap.put("combine",new JButton("RGB Combine"));
 //
 //    btnMap.put("blur",new JButton("Blur"));
 //    btnMap.put("sepia",new JButton("Sepia"));
@@ -166,7 +171,7 @@ public class MainWindow extends ViewAdvanced {
   public void show()
   {
     frame.setVisible(true);
-    panel.setLayout(new GridLayout(10,1,2,1)); //divides the panel into rectangles
+    panel.setLayout(new GridLayout(13,1,2,1)); //divides the panel into rectangles
     panel.setBackground(Color.red);
     panel.add(btnMap.get("load"));
     panel.add(btnMap.get("save"));
@@ -181,7 +186,7 @@ public class MainWindow extends ViewAdvanced {
     panel.add(btnMap.get("vFlip"));
     panel.add(btnMap.get("hflip"));
     panel.add(btnMap.get("split"));
-//    panel.add(btnMap.get("combine"));
+    panel.add(btnMap.get("combine"));
 //    panel.add(btnMap.get("blur"));
 //    panel.add(btnMap.get("sharp"));
 //    panel.add(btnMap.get("sepia"));
