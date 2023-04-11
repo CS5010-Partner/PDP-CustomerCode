@@ -108,7 +108,20 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     view.btnMap.get("load").addActionListener(loadActionListner());
     view.btnMap.get("dither").addActionListener(ditherActionListner());
     view.btnMap.get("save").addActionListener(saveActionListner());
+    view.btnMap.get("hflip").addActionListener(hflipActionListner());
 
+  }
+
+  private ActionListener hflipActionListner() {
+    ActionListener a = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        String imgName = generateNewImageName();
+        String[] params = new String[] { currentImgs[0],imgName};
+        actionHelper(params, "hflip");
+      }
+    };
+    return a;
   }
 
   private ActionListener loadActionListner() {

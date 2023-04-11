@@ -104,6 +104,12 @@ public class MainWindow extends ViewAdvanced {
   }
 
   @Override
+  public void echoFlipSuccess(ImageObj img, boolean verbose) {
+    currentOperation.setText("Flipped Successfully");
+    showImage(img);
+  }
+
+  @Override
   public void echoSaveSuccess(ImageObj img, boolean verbose) {
     print("             Image Saved Successfully", true);
   }
@@ -120,7 +126,7 @@ public class MainWindow extends ViewAdvanced {
     btnMap.put("save",new JButton("save"));
     btnMap.put("histogram", new JButton("Histogram"));
 //
-//    btnMap.put("hFlip",new JButton("Horizontal Flip"));
+    btnMap.put("hflip",new JButton("Horizontal Flip"));
 //    btnMap.put("vFlip",new JButton("Vertical Flip"));
 //    btnMap.put("bright",new JButton("Brighten"));
 //
@@ -147,7 +153,7 @@ public class MainWindow extends ViewAdvanced {
 //    panel.add(btnMap.get("bright"));
 //    panel.add(btnMap.get("grey"));
 //    panel.add(btnMap.get("vFlip"));
-//    panel.add(btnMap.get("hFlip"));
+    panel.add(btnMap.get("hflip"));
 //    panel.add(btnMap.get("split"));
 //    panel.add(btnMap.get("combine"));
 //    panel.add(btnMap.get("blur"));

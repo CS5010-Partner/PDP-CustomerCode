@@ -43,7 +43,7 @@ public class View implements IView {
     }
   }
 
-  @Override
+//  @Override
   public void toggleMasterVerbose() {
     this.masterVerbose = !this.masterVerbose;
   }
