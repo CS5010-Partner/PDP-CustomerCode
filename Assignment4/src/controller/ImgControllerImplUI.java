@@ -221,10 +221,9 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     ActionListener a = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        String newImgName = generateNewImageName();
-        String[] params = new String[] {currentImgs[0], newImgName};
-        currentImgs[0] = newImgName;
-        actionHelper(params, "dither");
+        String filePath= view.savePath();
+        String[] params = new String[] {filePath,currentImgs[0]};
+        actionHelper(params, "save");
       }
     };
     return a;

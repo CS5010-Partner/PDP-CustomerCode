@@ -102,6 +102,7 @@ public class MainWindow extends ViewAdvanced {
 
   @Override
   public void echoDither(ImageObj img, boolean verbose) {
+    currentOperation.setText("Dithered the Image Successfully");
     showImage(img);
   }
 
@@ -113,6 +114,7 @@ public class MainWindow extends ViewAdvanced {
 
   @Override
   public void echoSaveSuccess(ImageObj img, boolean verbose) {
+    currentOperation.setText("Image Saved Successfully");
     print("             Image Saved Successfully", true);
   }
 
@@ -283,5 +285,10 @@ public class MainWindow extends ViewAdvanced {
 
     }
     return selectedOption;
+  }
+
+  public String savePath(){
+    return JOptionPane.showInputDialog(frame,
+        "Enter path where the current image has to be saved:");
   }
 }
