@@ -9,10 +9,7 @@ import model.IImageAdvanced;
 import model.ImageObj;
 import view.IViewAdvanced;
 
-/**
- * Dithering class is used to represent a class for the dithering source_image dest_image command.
- */
-public class Dithering extends ACommandAdvanced {
+public class Histogram extends ACommandAdvanced {
 
   private final IImageAdvanced model;
   private final IViewAdvanced view;
@@ -25,7 +22,7 @@ public class Dithering extends ACommandAdvanced {
    * @param view  represents the view object.
    * @param in    represents the input stream.
    */
-  public Dithering(IImageAdvanced model, IViewAdvanced view, BufferedReader in) {
+  public Histogram(IImageAdvanced model, IViewAdvanced view, BufferedReader in) {
     super(model, view, in);
     this.model = model;
     this.view = view;
@@ -36,9 +33,15 @@ public class Dithering extends ACommandAdvanced {
   public void execute()
       throws CloseCmdLineException, IOException, ImageNameAlreadyExistsException,
       ImageNotFoundException {
+    System.out.println("histttt");
     String sourceName = getInput(in);
-    String destName = getInput(in);
-    ImageObj img = this.model.dither(sourceName, destName);
-    this.view.echoDither(img,false);
+    String redHistName = getInput(in);
+    String greenHistName = getInput(in);
+    String blueHistName = getInput(in);
+    String intHistName = getInput(in);
+
+    ImageObj[] imgs = this.model.histogram(sourceName, redHistName, greenHistName, blueHistName, intHistName);
+    System.out.println("cominggg");
+    this.view.echoHistogramSuccess(imgs,false);
   }
 }

@@ -39,4 +39,10 @@ public class ViewAdvanced extends View implements IViewAdvanced {
     print("Image converted to Dither successfully.", b);
   }
 
+  @Override
+  public void echoHistogramSuccess(ImageObj[] imgs, boolean b) {
+    System.out.println("adasdas");
+    print("Histograms generated successfully.", b);
+  }
+
 }

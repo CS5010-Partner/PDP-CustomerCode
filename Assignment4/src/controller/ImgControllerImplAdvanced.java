@@ -4,6 +4,7 @@ import controller.commands.ACommand;
 import controller.newcommands.Blur;
 import controller.newcommands.Dithering;
 import controller.newcommands.GreyScaleAdvanced;
+import controller.newcommands.Histogram;
 import controller.newcommands.LoadAdvanced;
 import controller.newcommands.SaveAdvanced;
 import controller.newcommands.Sepia;
@@ -47,6 +48,7 @@ public class ImgControllerImplAdvanced extends ImgControllerImpl {
     ACommand greyscale = new GreyScaleAdvanced(model, view, in);
     ACommand loadAdvanced = new LoadAdvanced(model, view, in);
     ACommand saveAdvanced = new SaveAdvanced(model, view, in);
+    ACommand hist = new Histogram(model, view, in);
 
     super.cMap.put("blur", blur);
     super.cMap.put("dither", dither);
@@ -55,6 +57,7 @@ public class ImgControllerImplAdvanced extends ImgControllerImpl {
     super.cMap.put("greyscale", greyscale);
     super.cMap.put("load", loadAdvanced);
     super.cMap.put("save", saveAdvanced);
+    super.cMap.put("histogram", hist);
   }
 
   @Override

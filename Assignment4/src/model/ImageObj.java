@@ -1,5 +1,7 @@
 package model;
 
+import java.util.HashMap;
+
 /**
  * This class represents the ImageObj which represents the image as an entity. Here the images are
  * stored in the form of a 3D integer array. First 2 dimensions represent the pixel and the third
@@ -406,5 +408,55 @@ public class ImageObj {
       }
     }
     return new ImageObj(grey.image, this.width, this.height, this.maxValue);
+    }
+
+    private ImageObj generateHistogram(ImageObj img, int index) {
+      int[][][] newImgArr = new int[256][256][3];
+
+      HashMap<Integer, Integer> map = new HashMap<>();
+
+      for (int i = 0; i < img.height; i++) {
+        for (int j = 0; j < img.width; j++) {
+          int val = img.getMatrix()[i][j][index];
+          if (map.containsKey(val)) {
+            map.put(val, map.get(val) + 1);
+          } else {
+            map.put(val, 1);
+          }
+        }
+      }
+
+      for (int i=0; i<255; i++) {
+        for (int j=0; j<255; j++) {
+          if (map.containsKey(j) && map.get(j) <= i && map.get(j) > i - 10) {
+            newImgArr[i][j][0] = 100;
+            newImgArr[i][j][1] = 100;
+            newImgArr[i][j][2] = 100;
+
+          }
+          else {
+            newImgArr[i][j][0] = 255;
+            newImgArr[i][j][1] = 255;
+            newImgArr[i][j][2] = 255;
+          }
+        }
+      }
+
+      return new ImageObj(newImgArr,256, 256, 255);
+
+    }
+
+    public ImageObj[] histograms() {
+      ImageObj[] hist = new ImageObj[4];
+
+      hist[0] = generateHistogram(this.greyScaleRed(), 0);
+      hist[1] = generateHistogram(this.greyScaleGreen(), 0);
+      hist[2] = generateHistogram(this.greyScaleBlue(), 0);
+      hist[3] = generateHistogram(this.greyScaleIntensity(), 0);
+
+      return hist;
+    }
+
   }
-}
+
+

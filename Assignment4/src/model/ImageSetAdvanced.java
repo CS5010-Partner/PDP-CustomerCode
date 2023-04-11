@@ -56,4 +56,29 @@ public class ImageSetAdvanced extends ImageSet implements IImageAdvanced {
     map.put(destImageName, img);
     return img;
   }
+
+  @Override
+  public ImageObj[] histogram(String imageName, String redHistImgName, String blueHistImgName,
+      String greenHistImgname, String intHistImgName)
+      throws ImageNameAlreadyExistsException, ImageNotFoundException {
+    checkName(new String[]{imageName}, new String[]{redHistImgName, blueHistImgName,
+        greenHistImgname, intHistImgName});
+    ImageObj[] histograms = map.get(imageName).histograms();
+    map.put(redHistImgName, histograms[0]);
+    map.put(blueHistImgName, histograms[1]);
+    map.put(greenHistImgname, histograms[2]);
+    map.put(intHistImgName, histograms[3]);
+    return histograms;
+  }
+  @Override
+  public ImageObj[] rgbSplit(String imageName, String redDesImageName, String greenDesImageName,
+      String blueDesImageName) throws ImageNotFoundException, ImageNameAlreadyExistsException {
+    checkName(new String[]{imageName},
+        new String[]{redDesImageName, greenDesImageName, blueDesImageName});
+    ImageObj[] rgbSplit = map.get(imageName).rgbSplit();
+    map.put(redDesImageName, rgbSplit[0]);
+    map.put(greenDesImageName, rgbSplit[1]);
+    map.put(blueDesImageName, rgbSplit[2]);
+    return rgbSplit;
+  }
 }

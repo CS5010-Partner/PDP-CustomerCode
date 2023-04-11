@@ -72,6 +72,8 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     formulateMap.put("blur", "blur ");
     formulateMap.put("sharpen", "sharpen ");
     formulateMap.put("dither", "dither ");
+
+    formulateMap.put("hist", "histogram ");
   }
 
 //  private BufferedImage convertImage(ImageObj img) {
@@ -155,12 +157,18 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     String cmd = formulateMap.get(command);
 
     if (command == "rgb-combine") {
-      for (int i = 0; i < 3; i++) {
+      for (int i = 0; i < 4; i++) {
         cmd += params[i]; // 3 file paths
+        cmd += " ";
       }
-      cmd += " ";
       cmd += generateNewImageName();
-    } else if (command == "bright") {
+    } else if (command == "hist") {
+      for (int i = 0; i < 5; i++) {
+        cmd += params[i]; // 3 file paths
+        cmd += " ";
+      }
+    }
+      else if (command == "bright") {
       cmd += params[0]; // brighten param
       cmd += " ";
       cmd += params[1]; // current file path
@@ -197,6 +205,8 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
   public void run() {
     initView();
     generateCommands();
+    actionHelper(new String[]{"/Users/aditya/Programming/CS5010/PDP/Assignment4/res/img1orig.ppm", "i1"}, "load");
+    actionHelper(new String[]{"i1", "r", "g", "h", "i"}, "hist");
 //        actionHelper(new String[]{"/Users/aditya/Programming/CS5010/PDP/Assignment4/res/img1orig.ppm", "i1"}, "load");
 //    actionHelper(new String[]{"i1", "i1d"}, "dither");
 

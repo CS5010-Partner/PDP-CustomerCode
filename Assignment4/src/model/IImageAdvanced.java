@@ -68,4 +68,8 @@ public interface IImageAdvanced extends IImage {
    */
   ImageObj dither(String sourceName, String destName)
       throws ImageNameAlreadyExistsException, ImageNotFoundException;
+
+  ImageObj[] histogram(String imageName, String redHistImgName, String blueHistImgName,
+      String greenHistImgname, String intHistImgName)
+      throws ImageNameAlreadyExistsException, ImageNotFoundException;
 }
