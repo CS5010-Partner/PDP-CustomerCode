@@ -8,6 +8,7 @@ import exceptions.WrongCommandException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import model.IImage;
+import model.ImageObj;
 import view.IView;
 
 /**
@@ -32,7 +33,7 @@ public class Save extends ACommand {
       FileHandlingException, ImageNotFoundException, WrongCommandException {
     String imagePath = this.getInput(in);
     String imageName = this.getInput(in);
-    model.save(imagePathHelper(imagePath), imageName);
-    view.echoSaveSuccess(false);
+    ImageObj img = model.save(imagePathHelper(imagePath), imageName);
+    view.echoSaveSuccess(img,false);
   }
 }

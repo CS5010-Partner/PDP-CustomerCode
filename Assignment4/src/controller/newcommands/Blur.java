@@ -6,6 +6,7 @@ import exceptions.ImageNotFoundException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import model.IImageAdvanced;
+import model.ImageObj;
 import view.IViewAdvanced;
 
 /**
@@ -38,7 +39,7 @@ public class Blur extends ACommandAdvanced {
       ImageNotFoundException {
     String sourceName = getInput(in);
     String destName = getInput(in);
-    this.model.filterBlur(sourceName, destName);
-    this.view.echoFilterBlurSuccess(false);
+    ImageObj img = this.model.filterBlur(sourceName, destName);
+    this.view.echoFilterBlurSuccess(img,false);
   }
 }

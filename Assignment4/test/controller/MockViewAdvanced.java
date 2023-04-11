@@ -1,5 +1,6 @@
 package controller;
 
+import model.ImageObj;
 import view.IViewAdvanced;
 
 /**
@@ -21,24 +22,24 @@ public class MockViewAdvanced extends MockView implements IViewAdvanced {
 
 
   @Override
-  public void echoFilterBlurSuccess(boolean b) {
+  public void echoFilterBlurSuccess(ImageObj img, boolean b) {
     print("Blur Success", false);
   }
 
   @Override
-  public void echoFilterSharpenSuccess(boolean b) {
+  public void echoFilterSharpenSuccess(ImageObj img, boolean b) {
     print("Sharpen Success", false);
 
   }
 
   @Override
-  public void echoSepiaSuccess(boolean b) {
+  public void echoSepiaSuccess(ImageObj img, boolean b) {
     print("Sepia Success", false);
 
   }
 
   @Override
-  public void echoDither(boolean b) {
+  public void echoDither(ImageObj img, boolean b) {
     print("Dither Success", false);
 
   }

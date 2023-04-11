@@ -6,6 +6,7 @@ import exceptions.ImageNotFoundException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import model.IImageAdvanced;
+import model.ImageObj;
 import view.IViewAdvanced;
 
 /**
@@ -35,9 +36,10 @@ public class Dithering extends ACommandAdvanced {
   public void execute()
       throws CloseCmdLineException, IOException, ImageNameAlreadyExistsException,
       ImageNotFoundException {
+    System.out.println("in dither");
     String sourceName = getInput(in);
     String destName = getInput(in);
-    this.model.dither(sourceName, destName);
-    this.view.echoDither(false);
+    ImageObj img = this.model.dither(sourceName, destName);
+    this.view.echoDither(img,false);
   }
 }

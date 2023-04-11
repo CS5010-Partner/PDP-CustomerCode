@@ -36,6 +36,7 @@ public class ImgControllerImplAdvanced extends ImgControllerImpl {
     this.model = model;
     this.view = view;
     this.in = in;
+    initCommands();
   }
 
   private void initCommands() {
@@ -58,7 +59,6 @@ public class ImgControllerImplAdvanced extends ImgControllerImpl {
 
   @Override
   public void run() {
-    initCommands();
     super.commandExecution();
   }
 }

@@ -6,6 +6,7 @@ import exceptions.ImageNotFoundException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import model.IImageAdvanced;
+import model.ImageObj;
 import view.IViewAdvanced;
 
 /**
@@ -38,7 +39,7 @@ public class Sepia extends ACommandAdvanced {
       ImageNotFoundException {
     String sourceName = getInput(in);
     String destName = getInput(in);
-    this.model.transformSepia(sourceName, destName);
-    this.view.echoSepiaSuccess(false);
+    ImageObj img = this.model.transformSepia(sourceName, destName);
+    this.view.echoSepiaSuccess(img,false);
   }
 }

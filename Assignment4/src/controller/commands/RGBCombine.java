@@ -6,6 +6,7 @@ import exceptions.ImageNotFoundException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import model.IImage;
+import model.ImageObj;
 import view.IView;
 
 /**
@@ -33,7 +34,7 @@ public class RGBCombine extends ACommand {
     String redImg = getInput(in);
     String greenImg = getInput(in);
     String blueImg = getInput(in);
-    model.rgbCombine(imageName, redImg, greenImg, blueImg);
-    view.echoCombineSuccess(false);
+    ImageObj img = model.rgbCombine(imageName, redImg, greenImg, blueImg);
+    view.echoCombineSuccess(img,false);
   }
 }

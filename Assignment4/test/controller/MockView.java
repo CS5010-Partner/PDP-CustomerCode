@@ -1,5 +1,6 @@
 package controller;
 
+import model.ImageObj;
 import view.IView;
 
 /**
@@ -59,31 +60,31 @@ public class MockView implements IView {
     print("Image Name Error", true);
   }
 
-  public void echoLoadSuccess(boolean verbose) {
+  public void echoLoadSuccess(ImageObj img, boolean verbose) {
     print("Load Success", false);
   }
 
-  public void echoSaveSuccess(boolean verbose) {
+  public void echoSaveSuccess(ImageObj img,boolean verbose) {
     print("Save Success", false);
   }
 
-  public void echoGreyscaleSuccess(boolean verbose) {
+  public void echoGreyscaleSuccess(ImageObj img,boolean verbose) {
     print("Greyscale Success", false);
   }
 
-  public void echoBrightenSuccess(boolean verbose) {
+  public void echoBrightenSuccess(ImageObj img,boolean verbose) {
     print("Brighten Success", false);
   }
 
-  public void echoFlipSuccess(boolean verbose) {
+  public void echoFlipSuccess(ImageObj img,boolean verbose) {
     print("Flip Success", false);
   }
 
-  public void echoSplitSuccess(boolean verbose) {
+  public void echoSplitSuccess(ImageObj[] imgs, boolean verbose) {
     print("Split Success", false);
   }
 
-  public void echoCombineSuccess(boolean verbose) {
+  public void echoCombineSuccess(ImageObj img,boolean verbose) {
     print("Combine Success", false);
   }
 

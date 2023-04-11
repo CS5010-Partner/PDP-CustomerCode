@@ -321,7 +321,7 @@ public class MainTestAdvanced {
     this.controller = new ImgControllerImplAdvanced(model, view, reader);
     this.controller.run();
 
-    assertEquals(true, checkTwoImage(
+    assertEquals(true, checkTwoImages(
         new String[]{"res/img1ditherRef.ppm", "res/img1ditherRef.png", "res/img1ditherRef.jpg",
             "res/img1ditherRef.bmp", "res/img1greyRef.ppm", "res/img1greyRef.png",
             "res/img1greyRef.jpg", "res/img1greyRef.bmp", "res/img1sepiaRef.ppm",

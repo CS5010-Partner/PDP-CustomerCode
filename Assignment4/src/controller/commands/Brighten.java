@@ -6,6 +6,7 @@ import exceptions.ImageNotFoundException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import model.IImage;
+import model.ImageObj;
 import view.IView;
 
 /**
@@ -41,8 +42,8 @@ public class Brighten extends ACommand {
     }
     String sourceName = getInput(in);
     String destName = getInput(in);
-    model.brighten(incrementValue, sourceName, destName);
-    view.echoBrightenSuccess(false);
+    ImageObj img = model.brighten(incrementValue, sourceName, destName);
+    view.echoBrightenSuccess(img,false);
 
   }
 }

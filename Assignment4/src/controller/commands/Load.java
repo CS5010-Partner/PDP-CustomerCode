@@ -8,6 +8,7 @@ import exceptions.WrongCommandException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import model.IImage;
+import model.ImageObj;
 import view.IView;
 
 /**
@@ -32,7 +33,7 @@ public class Load extends ACommand {
       ImageNameAlreadyExistsException, ImageNotFoundException, WrongCommandException {
     String imagePath = this.getInput(in);
     String imageName = this.getInput(in);
-    model.load(imagePathHelper(imagePath), imageName);
-    view.echoLoadSuccess(false);
+    ImageObj img = model.load(imagePathHelper(imagePath), imageName);
+    view.echoLoadSuccess(img, false);
   }
 }

@@ -7,6 +7,7 @@ import exceptions.ImageNotFoundException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import model.IImageAdvanced;
+import model.ImageObj;
 import view.IViewAdvanced;
 
 /**
@@ -39,7 +40,7 @@ public class Sharpen extends ACommandAdvanced {
       ImageNotFoundException {
     String sourceName = getInput(in);
     String destName = getInput(in);
-    this.model.filterSharpen(sourceName, destName);
-    this.view.echoFilterSharpenSuccess(false);
+    ImageObj img = model.filterSharpen(sourceName, destName);
+    this.view.echoFilterSharpenSuccess(img,false);
   }
 }

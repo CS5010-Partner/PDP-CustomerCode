@@ -3,6 +3,7 @@ package controller;
 import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
 import model.IImage;
@@ -18,22 +19,28 @@ public class ImgControllerImplTest {
   private IImage model;
   private IView view;
   private ImgController controller;
+  private MockSystemIn in;
 
   @Before
   public void setUp() {
     this.model = new MockModel();
     this.view = new MockView();
+    this.in = new MockSystemIn();
 
   }
 
   @Test
   public void loadTest() {
-    String test = "load code/ant.ppm ant\n#\n";
-
-    Reader inputString = new StringReader(test);
-    BufferedReader reader = new BufferedReader(inputString);
+    String test = "load code/ant.ppm ant\n \n";
+//
+//    Reader inputString = new StringReader(test);
+    BufferedReader reader = new BufferedReader(new InputStreamReader(new MockSystemIn()));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
+
+//    in.addInput(test);
+//    in.addInput("#\n");
+
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();

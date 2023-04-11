@@ -7,6 +7,7 @@ import exceptions.WrongCommandException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import model.IImage;
+import model.ImageObj;
 import view.IView;
 
 /**
@@ -33,36 +34,37 @@ public class GreyScale extends ACommand {
     String value = getInput(in).toLowerCase();
     String sourceName = getInput(in);
     String destName = getInput(in);
+    ImageObj img;
 
     switch (value.toLowerCase()) {
       case "red":
-        model.greyScaleRed(sourceName, destName);
+        img = model.greyScaleRed(sourceName, destName);
         break;
 
       case "green":
-        model.greyScaleGreen(sourceName, destName);
+        img = model.greyScaleGreen(sourceName, destName);
         break;
 
       case "blue":
-        model.greyScaleBlue(sourceName, destName);
+        img = model.greyScaleBlue(sourceName, destName);
         break;
 
       case "value":
-        model.greyScaleValue(sourceName, destName);
+        img = model.greyScaleValue(sourceName, destName);
         break;
 
       case "intensity":
-        model.greyScaleIntensity(sourceName, destName);
+        img = model.greyScaleIntensity(sourceName, destName);
         break;
 
       case "luma":
-        model.greyScaleLuma(sourceName, destName);
+        img = model.greyScaleLuma(sourceName, destName);
         break;
 
       default:
         throw new WrongCommandException("Please enter a valid metric for greyscale conversion.");
     }
-    view.echoGreyscaleSuccess(false);
+    view.echoGreyscaleSuccess(img, false);
 
 
   }

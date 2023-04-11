@@ -2,6 +2,7 @@ package view;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import model.ImageObj;
 
 /**
  * View class represents the view object which is the accessed from the main object. It implements
@@ -9,8 +10,10 @@ import java.io.IOException;
  */
 public class View implements IView {
 
-  protected boolean verbose;
+  private boolean verbose;
   private BufferedWriter out;
+  private boolean masterVerbose;
+
 
   /**
    * Constructor for the View class. It initializes the verbose datamember value.
@@ -18,9 +21,16 @@ public class View implements IView {
   public View(BufferedWriter out) {
     this.verbose = true;
     this.out = out;
+    this.masterVerbose = true;
   }
 
+  protected boolean getVerbose() {
+    return verbose;
+  }
   protected void print(String msg, boolean verboseOveride) {
+//    if (!this.masterVerbose) {
+//      return;
+//    }
     try {
       if (this.verbose || verboseOveride) {
         this.out.write(msg);
@@ -31,6 +41,11 @@ public class View implements IView {
     catch (IOException e) {
       System.out.println("There is a problem with output generator.");
     }
+  }
+
+  @Override
+  public void toggleMasterVerbose() {
+    this.masterVerbose = !this.masterVerbose;
   }
 
   @Override
@@ -77,41 +92,41 @@ public class View implements IView {
   }
 
   @Override
-  public void echoLoadSuccess(boolean verbose) {
+  public void echoLoadSuccess(ImageObj img, boolean verbose) {
     print("Image loaded sucessfully.",
         verbose);
   }
 
   @Override
-  public void echoSaveSuccess(boolean verbose) {
+  public void echoSaveSuccess(ImageObj img, boolean verbose) {
     print("Image saved successfully.",
         verbose);
   }
 
   @Override
-  public void echoGreyscaleSuccess(boolean verbose) {
+  public void echoGreyscaleSuccess(ImageObj img, boolean verbose) {
     print("Image converted to greyscale successfully.", verbose);
   }
 
   @Override
-  public void echoBrightenSuccess(boolean verbose) {
+  public void echoBrightenSuccess(ImageObj img, boolean verbose) {
     print("Image brightened successfully.", verbose);
   }
 
   @Override
-  public void echoFlipSuccess(boolean verbose) {
+  public void echoFlipSuccess(ImageObj img, boolean verbose) {
     print("Image flipped successfully.",
         verbose);
   }
 
   @Override
-  public void echoSplitSuccess(boolean verbose) {
+  public void echoSplitSuccess(ImageObj[] imgs, boolean verbose) {
     print("Image split successfully.",
         verbose);
   }
 
   @Override
-  public void echoCombineSuccess(boolean verbose) {
+  public void echoCombineSuccess(ImageObj img, boolean verbose) {
     print("Image combined successfully.",
         verbose);
   }

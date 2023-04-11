@@ -6,6 +6,7 @@ import exceptions.ImageNotFoundException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import model.IImage;
+import model.ImageObj;
 import view.IView;
 
 /**
@@ -31,7 +32,7 @@ public class HorizontalFlip extends ACommand {
       ImageNotFoundException {
     String sourceName = getInput(in);
     String destName = getInput(in);
-    model.horizontalFlip(sourceName, destName);
-    view.echoFlipSuccess(false);
+    ImageObj img = model.horizontalFlip(sourceName, destName);
+    view.echoFlipSuccess(img,false);
   }
 }

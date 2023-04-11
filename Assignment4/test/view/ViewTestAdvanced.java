@@ -3,6 +3,7 @@ package view;
 import static org.junit.Assert.assertEquals;
 
 import java.io.OutputStreamWriter;
+import model.ImageObj;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,6 +14,7 @@ public class ViewTestAdvanced {
 
   IViewAdvanced v;
   MockBufferedWriterAdvanced mbw;
+  ImageObj img = null;
 
   @Before
   public void setUp() {
@@ -23,9 +25,9 @@ public class ViewTestAdvanced {
   @Test
   public void getFilterBlurSuccess() {
     v.toggleVerbose();
-    v.echoFilterBlurSuccess(false);
+    v.echoFilterBlurSuccess(img,false);
     String out1 = mbw.checkBuffer();
-    v.echoFilterBlurSuccess(true);
+    v.echoFilterBlurSuccess(img,true);
     String out2 = mbw.checkBuffer();
     assertEquals("", out1);
     assertEquals("Image Blurred successfully.\n", out2);
@@ -34,9 +36,9 @@ public class ViewTestAdvanced {
   @Test
   public void getFilterSharpenSuccess() {
     v.toggleVerbose();
-    v.echoFilterSharpenSuccess(false);
+    v.echoFilterSharpenSuccess(img,false);
     String out1 = mbw.checkBuffer();
-    v.echoFilterSharpenSuccess(true);
+    v.echoFilterSharpenSuccess(img,true);
     String out2 = mbw.checkBuffer();
     assertEquals("", out1);
     assertEquals("Image Sharpened successfully.\n", out2);
@@ -45,9 +47,9 @@ public class ViewTestAdvanced {
   @Test
   public void getTransformSepiaSuccess() {
     v.toggleVerbose();
-    v.echoSepiaSuccess(false);
+    v.echoSepiaSuccess(img,false);
     String out1 = mbw.checkBuffer();
-    v.echoSepiaSuccess(true);
+    v.echoSepiaSuccess(img,true);
     String out2 = mbw.checkBuffer();
     assertEquals("", out1);
     assertEquals("Image converted to Sepia successfully.\n", out2);
@@ -56,9 +58,9 @@ public class ViewTestAdvanced {
   @Test
   public void getDitherSuccess() {
     v.toggleVerbose();
-    v.echoDither(false);
+    v.echoDither(img,false);
     String out1 = mbw.checkBuffer();
-    v.echoDither(true);
+    v.echoDither(img,true);
     String out2 = mbw.checkBuffer();
     assertEquals("", out1);
     assertEquals("Image converted to Dither successfully.\n", out2);

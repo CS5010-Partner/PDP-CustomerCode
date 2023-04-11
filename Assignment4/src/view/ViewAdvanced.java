@@ -1,6 +1,7 @@
 package view;
 
 import java.io.BufferedWriter;
+import model.ImageObj;
 
 /**
  * ViewAdvanced class represents the view object which is the accessed from the main object. It
@@ -18,23 +19,23 @@ public class ViewAdvanced extends View implements IViewAdvanced {
   }
 
   @Override
-  public void echoFilterBlurSuccess(boolean b) {
+  public void echoFilterBlurSuccess(ImageObj img,boolean b) {
     print("Image Blurred successfully.", b);
   }
 
   @Override
-  public void echoFilterSharpenSuccess(boolean b) {
+  public void echoFilterSharpenSuccess(ImageObj img, boolean b) {
     print("Image Sharpened successfully.", b);
 
   }
 
   @Override
-  public void echoSepiaSuccess(boolean b) {
+  public void echoSepiaSuccess(ImageObj img, boolean b) {
     print("Image converted to Sepia successfully.", b);
   }
 
   @Override
-  public void echoDither(boolean b) {
+  public void echoDither(ImageObj img, boolean b) {
     print("Image converted to Dither successfully.", b);
   }
 
