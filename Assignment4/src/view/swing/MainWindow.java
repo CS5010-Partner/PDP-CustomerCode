@@ -88,10 +88,17 @@ public class MainWindow extends ViewAdvanced {
     print("             Image Saved Successfully", true);
   }
 
+  @Override
+  public void echoHistogramSuccess(ImageObj[] imgs, boolean verbose) {
+    System.out.println("in here");
+    showImage(imgs[0]);
+  }
+
   private void initButtons() {
     btnMap = new HashMap<>();
     btnMap.put("load", new JButton("Load"));
     btnMap.put("save",new JButton("save"));
+    btnMap.put("histogram", new JButton("Histogram"));
 //
 //    btnMap.put("hFlip",new JButton("Horizontal Flip"));
 //    btnMap.put("vFlip",new JButton("Vertical Flip"));
@@ -116,6 +123,7 @@ public class MainWindow extends ViewAdvanced {
     panel.setBackground(Color.red);
     panel.add(btnMap.get("load"));
     panel.add(btnMap.get("save"));
+    panel.add(btnMap.get("histogram"));
 //    panel.add(btnMap.get("bright"));
 //    panel.add(btnMap.get("grey"));
 //    panel.add(btnMap.get("vFlip"));

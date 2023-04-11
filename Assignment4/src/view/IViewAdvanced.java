@@ -38,4 +38,6 @@ public interface IViewAdvanced extends IView {
    * @param img image object returned by the controller.
    */
   void echoDither(ImageObj img, boolean b);
+
+  void echoHistogramSuccess(ImageObj[] imgs, boolean b);
 }
