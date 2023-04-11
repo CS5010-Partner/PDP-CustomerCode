@@ -56,14 +56,10 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     formulateMap.put("load", "load ");
     formulateMap.put("save", "save ");
     formulateMap.put("bright", "brighten ");
-    formulateMap.put("grey-red", "greyscale red ");
-    formulateMap.put("grey-blue", "greyscale blue ");
-    formulateMap.put("grey-green", "greyscale green ");
-    formulateMap.put("grey-intensity", "greyscale intensity ");
-    formulateMap.put("grey-luma", "greyscale luma ");
-    formulateMap.put("grey-value", "greyscale value ");
+
+    formulateMap.put("grey-normal", "greyscale ");
     formulateMap.put("hflip", "horizontal-flip ");
-    formulateMap.put("vflip", "vertical-flip ");
+    formulateMap.put("vFlip", "vertical-flip ");
     formulateMap.put("combine", "rgb-combine ");
     formulateMap.put("split", "rgb-split ");
 
@@ -109,9 +105,78 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     view.btnMap.get("dither").addActionListener(ditherActionListner());
     view.btnMap.get("save").addActionListener(saveActionListner());
     view.btnMap.get("hflip").addActionListener(hflipActionListner());
+    view.btnMap.get("vFlip").addActionListener(vflipActionListner());
+    view.btnMap.get("bright").addActionListener(brightActionListner());
+    view.btnMap.get("grey-normal").addActionListener(greyNormalActionListner());
+
+
+
 
   }
 
+  private ActionListener greyNormalActionListner() {
+    ActionListener a = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        String imgName = generateNewImageName();
+        String selectedOption= view.greyChooser();
+        String type = null;
+        switch (selectedOption)
+        {
+          case "Red":
+            type = "red";
+            break;
+          case "Blue":
+            type = "blue";
+            break;
+          case "Green":
+            type = "green";
+            break;
+          case "LUMA":
+            type = "luma";
+            break;
+          case "Intensity":
+            type = "intensity";   
+            break;
+          case "Value":
+            type = "value";
+            break;
+        }
+        String[] params = new String[] { type,currentImgs[0],imgName};
+        actionHelper(params, "grey-normal");
+      }
+    };
+    return a;
+  }
+
+  private ActionListener brightActionListner() {
+    ActionListener a = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        String imgName = generateNewImageName();
+        String input= view.popUpInput();
+        int increment=0;
+        if(!input.equals("not clicked")){
+          increment=Integer.parseInt(input);
+        }
+        String[] params = new String[] { String.valueOf(increment),currentImgs[0],imgName};
+        actionHelper(params, "bright");
+      }
+    };
+    return a;
+  }
+
+  private ActionListener vflipActionListner() {
+    ActionListener a = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        String imgName = generateNewImageName();
+        String[] params = new String[] { currentImgs[0],imgName};
+        actionHelper(params, "vFlip");
+      }
+    };
+    return a;
+  }
   private ActionListener hflipActionListner() {
     ActionListener a = new ActionListener() {
       @Override
@@ -186,7 +251,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
       cmd += " ";
       cmd += params[1]; // current file path
       cmd += " ";
-      cmd += generateNewImageName();
+      cmd += params[2];
     } else if (command == "load") {
       cmd += params[0]; // load file path
       cmd += " ";
@@ -203,10 +268,17 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
       cmd += generateNewImageName(); // green image name
       cmd += " ";
       cmd += generateNewImageName(); // blue image name
-    } else {
+    } else if (command == "grey-normal") {
       cmd += params[0]; // source file path
       cmd += " ";
-      cmd += generateNewImageName();
+      cmd += params[1]; // source file path
+      cmd += " ";
+      cmd += params[2];
+    }
+      else {
+      cmd += params[0]; // source file path
+      cmd += " ";
+      cmd += params[1];
     }
     cmd += "\n#\n";
     System.out.println("command : " + cmd);

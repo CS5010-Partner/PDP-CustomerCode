@@ -45,4 +45,11 @@ public class MockModelAdvanced extends MockModel implements IImageAdvanced {
     super.sb.append("dither | " + sourceName + " | " + destName + "\n");
     return null;
   }
+
+  @Override
+  public ImageObj[] histogram(String imageName, String redHistImgName, String blueHistImgName,
+      String greenHistImgname, String intHistImgName)
+      throws ImageNameAlreadyExistsException, ImageNotFoundException {
+    return new ImageObj[0];
+  }
 }

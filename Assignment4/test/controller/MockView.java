@@ -35,6 +35,11 @@ public class MockView implements IView {
     print("Get Cmd", false);
   }
 
+  @Override
+  public void toggleMasterVerbose() {
+    return;
+  }
+
   public void echoCloseCmd(boolean verbose) {
     print("Close Cmd", true);
   }

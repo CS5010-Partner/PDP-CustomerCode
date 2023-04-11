@@ -43,4 +43,9 @@ public class MockViewAdvanced extends MockView implements IViewAdvanced {
     print("Dither Success", false);
 
   }
+
+  @Override
+  public void echoHistogramSuccess(ImageObj[] imgs, boolean b) {
+    print("historgram success", false);
+  }
 }

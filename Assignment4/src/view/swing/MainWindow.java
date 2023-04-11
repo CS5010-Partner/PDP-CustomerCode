@@ -41,6 +41,7 @@ public class MainWindow extends ViewAdvanced {
   private JLabel imageLabel, histoLabel1,histoLabel2,histoLabel3,histoLabel4, currentOperation;
   private JScrollPane scrollPane;
   public HashMap<String, JButton> btnMap;
+  private  JComboBox<String> dropdown;
   public MainWindow()
   {
     super(null);
@@ -51,7 +52,8 @@ public class MainWindow extends ViewAdvanced {
     topPanel=new JPanel();
     topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.PAGE_AXIS));
     operationPanel=new JPanel();
-
+    String[] options = {"Select", "Red", "Blue", "Green", "Luma", "Intensity", "Value"};
+    dropdown = new JComboBox<>(options);
 
     imageLabel=new JLabel();
 
@@ -120,6 +122,17 @@ public class MainWindow extends ViewAdvanced {
     showImage(imgs[0]);
   }
 
+  @Override
+  public void echoBrightenSuccess(ImageObj img, boolean verbose) {
+    currentOperation.setText("Brightened Successfully");
+    showImage(img);
+  }
+  @Override
+  public void echoGreyscaleSuccess(ImageObj img, boolean verbose) {
+    currentOperation.setText("Greyscale Image Generated Successfully");
+    showImage(img);
+  }
+
   private void initButtons() {
     btnMap = new HashMap<>();
     btnMap.put("load", new JButton("Load"));
@@ -127,8 +140,9 @@ public class MainWindow extends ViewAdvanced {
     btnMap.put("histogram", new JButton("Histogram"));
 //
     btnMap.put("hflip",new JButton("Horizontal Flip"));
-//    btnMap.put("vFlip",new JButton("Vertical Flip"));
-//    btnMap.put("bright",new JButton("Brighten"));
+    btnMap.put("vFlip",new JButton("Vertical Flip"));
+    btnMap.put("bright",new JButton("Brighten"));
+    btnMap.put("grey-normal",new JButton("grey-normal"));
 //
 //    btnMap.put("grey",new JButton("GreyScale"));
 //    btnMap.put("split",new JButton("RGB Split"));
@@ -150,9 +164,14 @@ public class MainWindow extends ViewAdvanced {
     panel.add(btnMap.get("load"));
     panel.add(btnMap.get("save"));
     panel.add(btnMap.get("histogram"));
-//    panel.add(btnMap.get("bright"));
+    panel.add(btnMap.get("bright"));
+
+
+    panel.add(btnMap.get("grey-normal"));
+
+
 //    panel.add(btnMap.get("grey"));
-//    panel.add(btnMap.get("vFlip"));
+    panel.add(btnMap.get("vFlip"));
     panel.add(btnMap.get("hflip"));
 //    panel.add(btnMap.get("split"));
 //    panel.add(btnMap.get("combine"));
@@ -243,155 +262,26 @@ public class MainWindow extends ViewAdvanced {
     }
     return filePaths;
   }
-
-  private JButton loadHelper()
+  public String popUpInput()
   {
-    JButton label=new JButton("Load");
-    label.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        JFileChooser fileChooser = new JFileChooser();
-        int returnValue = fileChooser.showOpenDialog(null);
-        if (returnValue == JFileChooser.APPROVE_OPTION) {
-          File selectedFile = fileChooser.getSelectedFile();
-          String fileName = selectedFile.getPath();
-          String[] params = {fileName, fileName};
-
-          try {
-            String[] fileType=(selectedFile.getPath()).split("\\.");
-
-            if(fileType[1].equals("jpg")||fileType[1].equals("png")||fileType[1].equals("ppm")||fileType[1].equals("bmp")) {
-              // Read the image file and display it on the JLabel
-              System.out.println(selectedFile.getPath());
-              BufferedImage image = ImageIO.read(selectedFile);
-
-              imageLabel.setText(null);
-              imageLabel.setIcon(new ImageIcon(image));
-
-              Dimension imageSize = new Dimension(image.getWidth(null), image.getHeight(null));
-              imageLabel.setPreferredSize(imageSize);
-
-
-              switch (fileType[1]){
-                case "jpg":
-                  img = readHelper(new JPEGFile(selectedFile.getPath()));
-                  break;
-                case "ppm":
-                  img = readHelper(new PPMFile(selectedFile.getPath()));
-                  break;
-                case "png":
-                  img = readHelper(new PNGFile(selectedFile.getPath()));
-                  break;
-                case "bmp":
-                  img = readHelper(new BMPFile(selectedFile.getPath()));
-                  break;
-              }
-              scrollPaneHelper();
-            }
-            else
-            {
-              imageLabel.setIcon(null);
-              imageLabel.setText("Cannot read the file");
-            }
-          } catch (IOException ex) {
-            ex.printStackTrace();
-          } catch (FileHandlingException ex) {
-            imageLabel.setText("Can not read the specified file");
-          }
-        }
-      }});
-    return label;
-  }
-
-  private ImageObj readHelper(IFile obj) throws FileHandlingException {
-    String content = obj.fileRead();
-    String[] token = content.split("\n");
-    int width = Integer.parseInt(token[0]);
-    int height = Integer.parseInt(token[1]);
-    int maxValue = Integer.parseInt(token[2]);
-
-    int t = 3;
-    int[][][] image = new int[height][width][3];
-
-    for (int i = 0; i < height; i++) {
-      for (int j = 0; j < width; j++) {
-        for (int k = 0; k < 3; k++) {
-          image[i][j][k] = Integer.parseInt(token[t]);
-          t++;
-        }
-      }
+    String input = JOptionPane.showInputDialog(frame, "Enter input:");
+    if (input != null) {
+      // User clicked OK and entered some input
+      return input;
+    } else {
+      // User clicked Cancel or closed the dialog
+      return "not clicked";
     }
-    return new ImageObj(image, width, height, maxValue);
   }
 
-  private JButton brightenHelper()
-  {
-    JButton button = new JButton("Brighten");
-    button.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        String input = JOptionPane.showInputDialog(frame, "Enter input:");
-        if (input != null) {
-          // User clicked OK and entered some input
-          img=img.brighten(Integer.parseInt(input));
-//          functionsHelper1();
-          scrollPaneHelper();
-        } else {
-          // User clicked Cancel or closed the dialog
-          System.out.println("User cancelled input dialog.");
-        }
-      }
-    });
-    return button;
-  }
+  public String greyChooser() {
+    int result = JOptionPane.showConfirmDialog(null, dropdown, "Select"
+        + " an option", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+    String selectedOption = "";
+    if (result == JOptionPane.OK_OPTION) {
+      selectedOption = (String) dropdown.getSelectedItem();
 
-  private JButton basicFuntions() {
-    JButton button = new JButton("Basic Functions");
-    String[] options = {"Select", ""};
-    JComboBox<String> dropdown = new JComboBox<>(options);
-    return button;
+    }
+    return selectedOption;
   }
-  private JButton checkBox()
-  {
-    JButton button = new JButton("Gray");
-    String[] options = {"Select","Red", "Blue","Green", "Luma","Intensity","Value"};
-    JComboBox<String> dropdown = new JComboBox<>(options);
-
-    button.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        int result = JOptionPane.showConfirmDialog(null, dropdown, "Select"
-            + " an option", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-        if (result == JOptionPane.OK_OPTION) {
-          String selectedOption = (String) dropdown.getSelectedItem();
-          System.out.println("Selected option: " + selectedOption);
-          switch (selectedOption)
-          {
-            case "Red":
-              img=img.greyScaleRed();
-              break;
-            case "Blue":
-              img=img.greyScaleBlue();
-              break;
-            case "Green":
-              img=img.greyScaleGreen();
-              break;
-            case "LUMA":
-              img=img.greyScaleLUMA();
-              break;
-            case "Intensity":
-              img=img.greyScaleIntensity();
-              break;
-            case "Value":
-              img=img.greyScaleValue();
-              break;
-          }
-//          functionsHelper1();
-          scrollPaneHelper();
-        }
-      }
-    });
-    return button;
-  }
-
 }
