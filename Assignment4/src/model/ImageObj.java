@@ -7,11 +7,11 @@ package model;
  */
 public class ImageObj {
 
-  private final int[][][] image;
-  private final int width;
+  protected final int[][][] image;
+  protected final int width;
 
-  private final int height;
-  private final int maxValue;
+  protected final int height;
+  protected final int maxValue;
 
   /**
    * Constructor for the ImageObj class.
@@ -30,7 +30,8 @@ public class ImageObj {
 
   /**
    * Getter for extracting the height of the image.
-   * @return  height in the integer format.
+   *
+   * @return height in the integer format.
    */
   public int getHeight() {
     return this.height;
@@ -38,6 +39,7 @@ public class ImageObj {
 
   /**
    * Getter for extracting the width of the image.
+   *
    * @return width in the integer format.
    */
   public int getWidth() {
@@ -46,6 +48,7 @@ public class ImageObj {
 
   /**
    * Getter for extracting the max value of the image.
+   *
    * @return max value in integer format.
    */
   public int getMaxValue() {
@@ -54,6 +57,7 @@ public class ImageObj {
 
   /**
    * Getter for extracting the image.
+   *
    * @return image in the matrix format.
    */
 
@@ -66,10 +70,6 @@ public class ImageObj {
    *
    * @return the integer matrix of the image.
    */
-  public int[][][] getImage() {
-    return image;
-  }
-
 
   @Override
   public String toString() {
@@ -77,7 +77,7 @@ public class ImageObj {
     for (int i = 0; i < this.height; i++) {
       for (int j = 0; j < this.width; j++) {
         for (int k = 0; k < 3; k++) {
-          s.append(this.image[i][j][k] + "\n");
+          s.append(this.image[i][j][k]).append("\n");
         }
       }
     }
@@ -185,7 +185,7 @@ public class ImageObj {
   /**
    * Returns the brightens image of the current image object.
    *
-   * @param increment the factor which is spplied on all the component parts.
+   * @param increment the factor which is applied on all the component parts.
    * @return the brightened image.
    */
   public ImageObj brighten(int increment) {
@@ -194,8 +194,8 @@ public class ImageObj {
       for (int j = 0; j < width; j++) {
         for (int k = 0; k < 3; k++) {
           int val = this.image[i][j][k] + increment;
-          val = val < 0 ? 0 : val;
-          val = val > this.maxValue ? this.maxValue : val;
+          val = Math.max(val, 0);
+          val = Math.min(val, this.maxValue);
           image[i][j][k] = val;
         }
       }
@@ -204,7 +204,7 @@ public class ImageObj {
   }
 
   /**
-   * Splits the image into red, green, and blue componenets.
+   * Splits the image into red, green, and blue components.
    *
    * @return the ImageObj array of three components.
    */
@@ -229,23 +229,13 @@ public class ImageObj {
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
         image[i][j][0] = this.image[i][j][0];
-        image[i][j][1] = green.getImage()[i][j][1];
-        image[i][j][2] = blue.getImage()[i][j][2];
+        image[i][j][1] = green.getMatrix()[i][j][1];
+        image[i][j][2] = blue.getMatrix()[i][j][2];
       }
     }
     return new ImageObj(image, this.width, this.height, this.maxValue);
   }
 
-  private void swap(int[][][] imgArr, int i1, int j1, int i2, int j2) {
-
-    for (int k = 0; k < 3; k++) {
-      int temp = imgArr[i1][j1][k];
-      imgArr[i1][j1][k] = imgArr[i2][j2][k];
-      imgArr[i2][j2][k] = temp;
-    }
-
-
-  }
 
   /**
    * Returns the vertically flipped image of the current image.
@@ -257,9 +247,7 @@ public class ImageObj {
 
     for (int i = 0; i < this.height; i++) {
       for (int j = 0; j < this.width; j++) {
-        for (int k = 0; k < 3; k++) {
-          newImgArr[this.height - i - 1][j][k] = this.image[i][j][k];
-        }
+        System.arraycopy(this.image[i][j], 0, newImgArr[this.height - i - 1][j], 0, 3);
       }
     }
     return new ImageObj(newImgArr, this.width, this.height, this.maxValue);
@@ -275,51 +263,148 @@ public class ImageObj {
 
     for (int i = 0; i < this.height; i++) {
       for (int j = 0; j < this.width; j++) {
-        for (int k = 0; k < 3; k++) {
-          newImgArr[i][this.width - j - 1][k] = this.image[i][j][k];
-        }
+        System.arraycopy(this.image[i][j], 0, newImgArr[i][this.width - j - 1],
+            0, 3);
       }
     }
-
     return new ImageObj(newImgArr, this.width, this.height, this.maxValue);
   }
 
-  public ImageObj filtering(ImageObj kernel){
-    int[][][] newImgArr = new int[this.height][this.width][3];
-    int ker_row= kernel.getHeight();
-    int ker_col=kernel.getWidth();
-    int channels=3;
-    for(int ii=0;ii<this.height;ii++)
-    {
-      for(int ij=0;ij<this.width;ij++)
-      {
+  private void capValues(int[][][] img, int hardMax, int max, int min) {
+    int height = img.length;
+    int width = img[0].length;
 
-        for(int ik=0;ik<channels;ik++)
-        {
-          int val=0;
-          for(int ki=0;ki<ker_row;ki++)
-          {
-            for(int kj=0;kj<ker_col;kj++)
-            {
-              if (ii == 0 && ki ==0)
-                continue;
-              if (ij == 0 && kj == 0)
-              continue;
-              if (ii == this.height-1 && ki == ker_row-1)
-                continue;
-              if (ij == this.width-1 && kj == ker_col-1)
-                continue;
-              if (ii+ki >= this.height || ij+kj >= this.width)
-                continue;
+    int m = 0;
 
-              val += this.image[ii+ki][ij+kj][ik] * kernel.image[ki][kj][ik];
-
-            }
-            newImgArr[ii][ij][ik] = val;
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
+        for (int k = 0; k < 3; k++) {
+          if (img[i][j][k] > this.maxValue || img[i][j][k] < 0) {
+            double val = (double) (img[i][j][k] - min) / (max - min);
+            val = val * hardMax;
+            img[i][j][k] = (int) val;
+            m = (int) Math.max(val, m);
           }
         }
       }
     }
+  }
+
+  /**
+   * Returns the filtered image based on the given kernel of the current image.
+   *
+   * @param kernel the kernel which is applied for the filtering.
+   * @return ImageObj of the filtered image.
+   */
+  public ImageObj filtering(double[][] kernel) {
+    int[][][] newImgArr = new int[this.height][this.width][3];
+
+    int ker_row = kernel.length;
+    int ker_mid = ker_row / 2;
+    int channels = 3;
+
+    int max = Integer.MIN_VALUE;
+    int min = Integer.MAX_VALUE;
+
+    for (int ii = 0; ii < this.height; ii++) {
+      for (int ij = 0; ij < this.width; ij++) {
+        for (int ik = 0; ik < channels; ik++) {
+          double val = 0;
+          for (int ki = -ker_mid; ki < ker_mid + 1; ki++) {
+            for (int kj = -ker_mid; kj < ker_mid + 1; kj++) {
+              if (ii + ki < 0 || ii + ki >= this.height) {
+                continue;
+              }
+              if (ij + kj < 0 || ij + kj >= this.width) {
+                continue;
+              }
+              val += this.image[ii + ki][ij + kj][ik] * kernel[ki + ker_mid][kj + ker_mid];
+            }
+          }
+          if (val > maxValue) {
+            val = maxValue;
+          }
+          if (val < 0) {
+            val = 0;
+          }
+          max = (int) Math.max(val, max);
+          min = (int) Math.min(val, min);
+          newImgArr[ii][ij][ik] = (int) val;
+        }
+      }
+    }
+    capValues(newImgArr, this.maxValue, max, min);
     return new ImageObj(newImgArr, this.width, this.height, this.maxValue);
+  }
+
+  /**
+   * Returns the transformed image based on the given matrix of the current image.
+   *
+   * @param matrix the matrix which is used for transformation.
+   * @return the ImageObj of the transformed image.
+   */
+
+  public ImageObj transformation(double[][] matrix) {
+    int[][][] newImgArr = new int[this.height][this.width][3];
+
+    int max = Integer.MIN_VALUE;
+    int min = Integer.MAX_VALUE;
+
+    for (int ii = 0; ii < this.height; ii++) {
+      for (int ij = 0; ij < this.width; ij++) {
+        double red = this.image[ii][ij][0];
+        double green = this.image[ii][ij][1];
+        double blue = this.image[ii][ij][2];
+
+        for (int k = 0; k < 3; k++) {
+          int val = (int) ((matrix[k][0] * red) + (matrix[k][1] * green) + (matrix[k][2] * blue));
+          max = Math.max(val, max);
+          min = Math.min(val, min);
+          newImgArr[ii][ij][k] = val;
+        }
+      }
+    }
+    capValues(newImgArr, this.maxValue, max, min);
+    return new ImageObj(newImgArr, this.width, this.height, this.maxValue);
+  }
+
+  /**
+   * Returns the dithered image of the current image.
+   *
+   * @return ImageObj of the dithered form of the current image.
+   */
+  public ImageObj dithering() {
+    ImageObj grey = transformation(Transformations.getGreyScaleMatrix());
+
+    for (int i = 0; i < grey.height; i++) {
+      for (int j = 0; j < grey.width; j++) {
+        for (int k = 0; k < 3; k++) {
+          int oldC = grey.image[i][j][0];
+          int newC = 0;
+          if (oldC > 127) {
+            newC = 255;
+          }
+
+          double error = oldC - newC;
+
+          grey.image[i][j][k] = newC;
+
+          if ((j + 1) < grey.width) {
+            grey.image[i][j + 1][k] += (int) ((7.0 / 16) * error);
+          }
+
+          if ((i + 1) < grey.height && (j - 1) >= 0) {
+            grey.image[i + 1][j - 1][k] += (int) ((3.0 / 16) * error);
+          }
+          if ((i + 1) < grey.height) {
+            grey.image[i + 1][j][k] += (int) ((5.0 / 16) * error);
+          }
+          if ((i + 1) < grey.height && (j + 1) < grey.width) {
+            grey.image[i + 1][j + 1][k] += (int) ((1.0 / 16) * error);
+          }
+        }
+      }
+    }
+    return new ImageObj(grey.image, this.width, this.height, this.maxValue);
   }
 }

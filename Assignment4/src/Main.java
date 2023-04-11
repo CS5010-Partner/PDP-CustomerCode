@@ -1,4 +1,3 @@
-import controller.ImgController;
 import controller.ImgControllerImpl;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -22,7 +21,7 @@ public class Main {
   public static void main(String[] args) {
     ImageSet model = new ImageSet();
     IView view = new View(new BufferedWriter(new OutputStreamWriter(System.out)));
-    ImgController controller = new ImgControllerImpl(model, view,
+    ImgControllerImpl controller = new ImgControllerImpl(model, view,
         new BufferedReader(new InputStreamReader(System.in)));
     controller.run();
   }

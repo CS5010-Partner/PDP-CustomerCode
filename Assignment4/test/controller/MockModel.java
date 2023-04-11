@@ -1,7 +1,7 @@
 package controller;
 
+import controller.file.IFile;
 import java.util.NoSuchElementException;
-import model.file.IFile;
 import model.IImage;
 import model.ImageObj;
 
@@ -10,7 +10,7 @@ import model.ImageObj;
  */
 public class MockModel implements IImage {
 
-  private StringBuffer sb = new StringBuffer();
+  protected StringBuffer sb = new StringBuffer();
 
   @Override
   public String toString() {
@@ -28,7 +28,7 @@ public class MockModel implements IImage {
 
   @Override
   public ImageObj save(IFile imagePath, String imageName) {
-    sb.append("save | " + imagePath + " | " + imageName + "\n");
+    sb.append("save | " + imagePath.toString() + " | " + imageName + "\n");
     return null;
   }
 

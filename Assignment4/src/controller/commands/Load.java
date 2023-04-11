@@ -4,9 +4,11 @@ import exceptions.CloseCmdLineException;
 import exceptions.FileHandlingException;
 import exceptions.ImageNameAlreadyExistsException;
 import exceptions.ImageNotFoundException;
+import exceptions.WrongCommandException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import model.IImage;
+import model.ImageObj;
 import view.IView;
 
 /**
@@ -28,9 +30,10 @@ public class Load extends ACommand {
   @Override
   public void execute()
       throws IllegalStateException, FileHandlingException, IOException, CloseCmdLineException,
-      ImageNameAlreadyExistsException, ImageNotFoundException {
+      ImageNameAlreadyExistsException, ImageNotFoundException, WrongCommandException {
     String imagePath = this.getInput(in);
     String imageName = this.getInput(in);
-    model.load(imagePathHelper(imagePath), imageName);
+    ImageObj img = model.load(imagePathHelper(imagePath), imageName);
+    view.echoLoadSuccess(img, false);
   }
 }

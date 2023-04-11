@@ -6,6 +6,7 @@ import exceptions.ImageNotFoundException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import model.IImage;
+import model.ImageObj;
 import view.IView;
 
 /**
@@ -33,6 +34,7 @@ public class RGBSplit extends ACommand {
     String redImg = getInput(in);
     String greenImg = getInput(in);
     String blueImg = getInput(in);
-    model.rgbSplit(imageName, redImg, greenImg, blueImg);
+    ImageObj[] imgs = model.rgbSplit(imageName, redImg, greenImg, blueImg);
+    view.echoSplitSuccess(imgs,false);
   }
 }

@@ -5,7 +5,7 @@ import exceptions.ImageNameAlreadyExistsException;
 import exceptions.ImageNotFoundException;
 import java.io.IOException;
 import java.util.NoSuchElementException;
-import model.file.IFile;
+import controller.file.IFile;
 
 /**
  * IImage represents the model interface and the methods that are required for the model.
@@ -22,16 +22,17 @@ public interface IImage {
    * @throws ImageNameAlreadyExistsException thrown when an image name already exists.
    */
   ImageObj load(IFile imagePath, String imageName)
-      throws FileHandlingException, ImageNameAlreadyExistsException, ImageNotFoundException, IOException;
+      throws FileHandlingException, ImageNameAlreadyExistsException, ImageNotFoundException,
+      IOException;
 
   /**
-   * saves the given imagename to the specified imagepath.
+   * saves the given image-name to the specified image-path.
    *
    * @param imagePath path of file
    * @param imageName image name
    * @return ImageObj of the saved image.
    * @throws ImageNameAlreadyExistsException thrown when an image name already exists.
-   * @throws NoSuchElementException throws when an image under the name does not exists.
+   * @throws NoSuchElementException throws when an image under the name does not exist.
    * @throws FileHandlingException thrown when there is no such directory exists.
    */
   ImageObj save(IFile imagePath, String imageName)
@@ -148,7 +149,7 @@ public interface IImage {
       throws NoSuchElementException, ImageNameAlreadyExistsException, ImageNotFoundException;
 
   /**
-   * Splits the image into seperate red, green and blue grey components.
+   * Splits the image into separate red, green and blue grey components.
    *
    * @param imageName         the name of the image on which the transformation is done.
    * @param redDesImageName   name of the grey red image.

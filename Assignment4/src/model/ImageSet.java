@@ -1,12 +1,10 @@
 package model;
 
+import controller.file.IFile;
 import exceptions.FileHandlingException;
 import exceptions.ImageNameAlreadyExistsException;
 import exceptions.ImageNotFoundException;
-import java.io.IOException;
 import java.util.HashMap;
-import model.file.IFile;
-import model.file.PPMFile;
 
 /**
  * ImageSet class implements the IImage interface, and it acts as a model.
@@ -22,7 +20,7 @@ public class ImageSet implements IImage {
     map = new HashMap<>();
   }
 
-  private void checkName(String[] inputNames, String[] destNames)
+  protected void checkName(String[] inputNames, String[] destNames)
       throws ImageNameAlreadyExistsException, ImageNotFoundException {
     for (String s : inputNames) {
       if (!map.containsKey(s)) {
@@ -45,12 +43,11 @@ public class ImageSet implements IImage {
 
     String content = obj.fileRead();
     String[] token = content.split("\n");
+    int width = Integer.parseInt(token[0]);
+    int height = Integer.parseInt(token[1]);
+    int maxValue = Integer.parseInt(token[2]);
 
-    int width = Integer.parseInt(token[1]);
-    int height = Integer.parseInt(token[2]);
-    int maxValue = Integer.parseInt(token[3]);
-
-    int t = 4;
+    int t = 3;
     int[][][] image = new int[height][width][3];
 
     for (int i = 0; i < height; i++) {
@@ -70,7 +67,7 @@ public class ImageSet implements IImage {
   public ImageObj save(IFile format, String imageName)
       throws ImageNameAlreadyExistsException, ImageNotFoundException, FileHandlingException {
     checkName(new String[]{imageName}, new String[]{});
-    ImageObj saveObj=map.get(imageName);
+    ImageObj saveObj = map.get(imageName);
     format.fileWrite(saveObj);
     return map.get(imageName);
   }
@@ -170,16 +167,15 @@ public class ImageSet implements IImage {
   }
 
   @Override
-  public ImageObj rgbCombine(String destimageName, String redImageName, String greenImageName,
+  public ImageObj rgbCombine(String destImageName, String redImageName, String greenImageName,
       String blueImageName) throws ImageNotFoundException, ImageNameAlreadyExistsException {
     checkName(new String[]{redImageName, greenImageName, blueImageName},
-        new String[]{destimageName});
+        new String[]{destImageName});
     ImageObj redImage = map.get(redImageName);
     ImageObj greenImage = map.get(greenImageName);
     ImageObj blueImage = map.get(blueImageName);
     ImageObj combine = redImage.rgbCombine(greenImage, blueImage);
-    map.put(destimageName, combine);
+    map.put(destImageName, combine);
     return combine;
   }
-
 }

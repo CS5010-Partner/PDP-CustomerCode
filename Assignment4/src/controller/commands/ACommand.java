@@ -1,10 +1,11 @@
 package controller.commands;
 
 import controller.Helper;
+import controller.file.IFile;
+import controller.file.PPMFile;
+import exceptions.WrongCommandException;
 import java.io.BufferedReader;
-import model.file.IFile;
 import model.IImage;
-import model.file.PPMFile;
 import view.IView;
 
 /**
@@ -30,8 +31,21 @@ public abstract class ACommand extends Helper implements IImageCommand {
     this.in = in;
   }
 
-  protected IFile imagePathHelper(String imagePath) {
-    return new PPMFile(imagePath);
+  /**
+   * Method to dispatch the load to specific file formats.
+   *
+   * @param imagePath represnts the path of the image file.
+   * @return the IFile object of the requested path file type.
+   * @throws WrongCommandException thrown when a wrong command is called by the user.
+   */
+  protected IFile imagePathHelper(String imagePath) throws WrongCommandException {
+    String[] fileType = imagePath.split("\\.");
+
+    if (fileType[fileType.length - 1].equals("ppm")) {
+      return new PPMFile(imagePath);
+    } else {
+      throw new WrongCommandException("The given file format is not supported");
+    }
   }
 
 }

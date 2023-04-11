@@ -3,6 +3,7 @@ package view;
 import static org.junit.Assert.assertEquals;
 
 import java.io.OutputStreamWriter;
+import model.ImageObj;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,11 +12,12 @@ import org.junit.Test;
  */
 public class ViewTest {
   IView v;
-  MockBufferedWriter mbw;
+  MockBufferedWriterAdvanced mbw;
 
+  ImageObj img = null;
   @Before
   public void setUp() {
-    mbw = new MockBufferedWriter(new OutputStreamWriter(System.out));
+    mbw = new MockBufferedWriterAdvanced(new OutputStreamWriter(System.out));
     v = new View(mbw);
   }
 
@@ -87,10 +89,11 @@ public class ViewTest {
 
   @Test
   public void getLoadSuccess() {
+
     v.toggleVerbose();
-    v.echoLoadSuccess(false);
+    v.echoLoadSuccess(img,false);
     String out1 = mbw.checkBuffer();
-    v.echoLoadSuccess(true);
+    v.echoLoadSuccess(img,true);
     String out2 = mbw.checkBuffer();
     assertEquals("", out1);
     assertEquals("Image loaded sucessfully.\n", out2);
@@ -99,9 +102,9 @@ public class ViewTest {
   @Test
   public void getSaveSuccess() {
     v.toggleVerbose();
-    v.echoSaveSuccess(false);
+    v.echoSaveSuccess(img,false);
     String out1 = mbw.checkBuffer();
-    v.echoSaveSuccess(true);
+    v.echoSaveSuccess(img,true);
     String out2 = mbw.checkBuffer();
     assertEquals("", out1);
     assertEquals("Image saved successfully.\n", out2);
@@ -110,9 +113,9 @@ public class ViewTest {
   @Test
   public void getGreyscaleSuccess() {
     v.toggleVerbose();
-    v.echoGreyscaleSuccess(false);
+    v.echoGreyscaleSuccess(img, false);
     String out1 = mbw.checkBuffer();
-    v.echoGreyscaleSuccess(true);
+    v.echoGreyscaleSuccess(img, true);
     String out2 = mbw.checkBuffer();
     assertEquals("", out1);
     assertEquals("Image converted to greyscale successfully.\n", out2);
@@ -121,9 +124,9 @@ public class ViewTest {
   @Test
   public void getBrightenSuccess() {
     v.toggleVerbose();
-    v.echoBrightenSuccess(false);
+    v.echoBrightenSuccess(img,false);
     String out1 = mbw.checkBuffer();
-    v.echoBrightenSuccess(true);
+    v.echoBrightenSuccess(img,true);
     String out2 = mbw.checkBuffer();
     assertEquals("", out1);
     assertEquals("Image brightened successfully.\n", out2);
@@ -132,9 +135,9 @@ public class ViewTest {
   @Test
   public void getFlipSuccess() {
     v.toggleVerbose();
-    v.echoFlipSuccess(false);
+    v.echoFlipSuccess(img,false);
     String out1 = mbw.checkBuffer();
-    v.echoFlipSuccess(true);
+    v.echoFlipSuccess(img,true);
     String out2 = mbw.checkBuffer();
     assertEquals("", out1);
     assertEquals("Image flipped successfully.\n", out2);
@@ -142,10 +145,11 @@ public class ViewTest {
 
   @Test
   public void getSplitSuccess() {
+    ImageObj[] imgs = {null, null};
     v.toggleVerbose();
-    v.echoSplitSuccess(false);
+    v.echoSplitSuccess(imgs,false);
     String out1 = mbw.checkBuffer();
-    v.echoSplitSuccess(true);
+    v.echoSplitSuccess(imgs,true);
     String out2 = mbw.checkBuffer();
     assertEquals("", out1);
     assertEquals("Image split successfully.\n", out2);
@@ -154,9 +158,9 @@ public class ViewTest {
   @Test
   public void getCombineSuccess() {
     v.toggleVerbose();
-    v.echoCombineSuccess(false);
+    v.echoCombineSuccess(img,false);
     String out1 = mbw.checkBuffer();
-    v.echoCombineSuccess(true);
+    v.echoCombineSuccess(img,true);
     String out2 = mbw.checkBuffer();
     assertEquals("", out1);
     assertEquals("Image combined successfully.\n", out2);

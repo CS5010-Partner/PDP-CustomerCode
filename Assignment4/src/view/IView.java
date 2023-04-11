@@ -1,5 +1,7 @@
 package view;
 
+import model.ImageObj;
+
 /**
  * IView represents the view interface and the methods that are required for the view.
  */
@@ -11,6 +13,8 @@ public interface IView {
    * @param b decides whether to show the message to the user or not.
    */
   void echoGetCommand(boolean b);
+
+  void toggleMasterVerbose();
 
   /**
    * Changes the value of the toggle data member. Decides whether to print a message or not.
@@ -62,50 +66,60 @@ public interface IView {
    * Prints the message for the successful load of the image.
    *
    * @param b decides whether to show the message to the user or not.
+   * @param img img object returned by the controller.
    */
-  void echoLoadSuccess(boolean b);
+  void echoLoadSuccess(ImageObj img, boolean b);
 
   /**
    * Prints the message for the successful save of the image.
    *
    * @param b decides whether to show the message to the user or not.
+   * @param img img object returned by the controller.
    */
-  void echoSaveSuccess(boolean b);
+  void echoSaveSuccess(ImageObj img, boolean b);
 
   /**
    * Prints the message for the successful grey scale transformation of the image.
    *
    * @param b decides whether to show the message to the user or not.
+   * @param img img object returned by the controller.
    */
-  void echoGreyscaleSuccess(boolean b);
+  void echoGreyscaleSuccess(ImageObj img, boolean b);
 
   /**
    * Prints the message for the brightening of the image.
    *
-   * @param b decides whether to show the message to the user or not.
+   * @param verbose decides whether to show the message to the user or not.
+   * @param img img object returned by the controller.
    */
-  void echoBrightenSuccess(boolean b);
+  void echoBrightenSuccess(ImageObj img, boolean verbose);
 
   /**
    * Prints the message for the successful flip of the image.
    *
    * @param b decides whether to show the message to the user or not.
+   * @param img img object returned by the controller.
    */
-  void echoFlipSuccess(boolean b);
+  void echoFlipSuccess(ImageObj img, boolean b);
+
 
   /**
    * Prints the message for the successful combination of three componenets  of the image.
    *
    * @param b decides whether to show the message to the user or not.
+   * @param img img object returned by the controller.
    */
-  void echoCombineSuccess(boolean b);
+  void echoCombineSuccess(ImageObj img, boolean b);
+
 
   /**
    * Prints the message for the successful split of the image into three components.
    *
    * @param b decides whether to show the message to the user or not.
+   * @param img img object returned by the controller.
    */
-  void echoSplitSuccess(boolean b);
+  void echoSplitSuccess(ImageObj[] imgs, boolean b);
+
 
   /**
    * Prints the message for the successful run of the script file.
