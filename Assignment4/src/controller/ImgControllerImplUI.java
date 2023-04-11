@@ -105,6 +105,8 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     view.btnMap.get("load").addActionListener(loadActionListner());
     view.btnMap.get("dither").addActionListener(ditherActionListner());
     view.btnMap.get("save").addActionListener(saveActionListner());
+    view.btnMap.get("vFlip").addActionListener(vflipActionListner());
+    view.btnMap.get("bright").addActionListener(brightenListner());
 
     view.btnMap.get("bright").addActionListener(brightenListner());
     view.btnMap.get("blur").addActionListener(blurActionListner());
@@ -313,7 +315,6 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     };
     return a;
   }
-
 
   public void actionHelper(String[] params, String command) {
     String cmd = formulateMap.get(command);

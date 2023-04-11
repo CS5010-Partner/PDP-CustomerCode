@@ -4,11 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
-import java.util.Map;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -234,16 +231,56 @@ public class MainWindow extends ViewAdvanced {
     frame.add(imageLabel);
   }
 
-  private void initActionListner() {
-    for (Map.Entry<String,JButton> btnName : btnMap.entrySet()) {
-      btnMap.get(btnName).addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-        }
-      });
-    }
-  }
+//  private JButton horizontalFlipHelper(){
+//    horizontalFlip.addActionListener(new ActionListener() {
+//      @Override
+//      public void actionPerformed(ActionEvent e) {
+//        if(img!=null)
+//        {
+//          img=img.horizontalFlip();
+//          functionsHelper1();
+//        }
+//      }
+//    });
+//    return horizontalFlip;
+//  }
 
+//  private JButton verticalFlipHelper(){
+//    JButton verticalFlip = new JButton("Vertical Flip");
+//    verticalFlip.addActionListener(new ActionListener() {
+//      @Override
+//      public void actionPerformed(ActionEvent e) {
+//        if(img!=null)
+//        {
+//          img=img.verticalFlip();
+//          functionsHelper1();
+//        }
+//      }
+//    });
+//    return verticalFlip;
+//  }
+
+//  private void functionsHelper1()
+//  {
+//    int[][][] data=img.getMatrix();
+//    BufferedImage image = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
+//    for (int x = 0; x < img.getHeight(); x++) {
+//      for (int y = 0; y < img.getWidth(); y++) {
+//        int r = data[x][y][0];
+//        int g = data[x][y][1];
+//        int b = data[x][y][2];
+//        int rgb = (r << 16) | (g << 8) | b;
+//        image.setRGB(y, x, rgb);
+//      }
+//    }
+//   scrollPaneHelper();
+//// create an ImageIcon from the BufferedImage to display in the JLabel
+//    ImageIcon icon = new ImageIcon(image);
+//    imageLabel.setText(null);
+//    imageLabel.setIcon(icon);
+//    Dimension imageSize = new Dimension(image.getWidth(null), image.getHeight(null));
+//    imageLabel.setPreferredSize(imageSize);
+//  }
   private void scrollPaneHelper()
   {
     // Remove the old scroll pane from the frame
