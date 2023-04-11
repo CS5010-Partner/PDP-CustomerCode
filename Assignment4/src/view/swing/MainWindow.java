@@ -144,28 +144,28 @@ public class MainWindow extends ViewAdvanced {
     currentOperation.setText("Combined the last three images Successfully");
     showImage(img);
   }
+
+  @Override
+  public void echoSplitSuccess(ImageObj[] imgs, boolean verbose) {
+    currentOperation.setText("RGB Split Done Successfully");
+    showImage(imgs[0]);
+  }
+
   private void initButtons() {
     btnMap = new HashMap<>();
     btnMap.put("load", new JButton("Load"));
     btnMap.put("save",new JButton("save"));
     btnMap.put("histogram", new JButton("Histogram"));
-//
-    btnMap.put("hflip",new JButton("Horizontal Flip"));
+    btnMap.put("hFlip",new JButton("Horizontal Flip"));
     btnMap.put("vFlip",new JButton("Vertical Flip"));
     btnMap.put("bright",new JButton("Brighten"));
     btnMap.put("grey-normal",new JButton("grey-normal"));
-//
-//    btnMap.put("grey",new JButton("GreyScale"));
     btnMap.put("split",new JButton("RGB Split"));
     btnMap.put("combine",new JButton("RGB Combine"));
-//
     btnMap.put("blur",new JButton("Blur"));
     btnMap.put("sepia",new JButton("Sepia"));
     btnMap.put("sharpen",new JButton("Sharpen"));
     btnMap.put("dither",new JButton("Dither"));
-//
-//    String[] greyScaleOptions = {"Default","Red", "Blue","Green", "Luma","Intensity","Value"};
-//    JComboBox<String> dropdown = new JComboBox<>(greyScaleOptions);
   }
   public void show()
   {
@@ -188,8 +188,8 @@ public class MainWindow extends ViewAdvanced {
 
 
 //    panel.add(btnMap.get("grey"));
-    panel.add(btnMap.get("vflip"));
-    panel.add(btnMap.get("hflip"));
+    panel.add(btnMap.get("vFlip"));
+    panel.add(btnMap.get("hFlip"));
    panel.add(btnMap.get("split"));
    panel.add(btnMap.get("combine"));
     panel.add(btnMap.get("blur"));
@@ -215,56 +215,7 @@ public class MainWindow extends ViewAdvanced {
 
     frame.add(imageLabel);
   }
-//  private JButton horizontalFlipHelper(){
-//    horizontalFlip.addActionListener(new ActionListener() {
-//      @Override
-//      public void actionPerformed(ActionEvent e) {
-//        if(img!=null)
-//        {
-//          img=img.horizontalFlip();
-//          functionsHelper1();
-//        }
-//      }
-//    });
-//    return horizontalFlip;
-//  }
 
-//  private JButton verticalFlipHelper(){
-//    JButton verticalFlip = new JButton("Vertical Flip");
-//    verticalFlip.addActionListener(new ActionListener() {
-//      @Override
-//      public void actionPerformed(ActionEvent e) {
-//        if(img!=null)
-//        {
-//          img=img.verticalFlip();
-//          functionsHelper1();
-//        }
-//      }
-//    });
-//    return verticalFlip;
-//  }
-
-//  private void functionsHelper1()
-//  {
-//    int[][][] data=img.getMatrix();
-//    BufferedImage image = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
-//    for (int x = 0; x < img.getHeight(); x++) {
-//      for (int y = 0; y < img.getWidth(); y++) {
-//        int r = data[x][y][0];
-//        int g = data[x][y][1];
-//        int b = data[x][y][2];
-//        int rgb = (r << 16) | (g << 8) | b;
-//        image.setRGB(y, x, rgb);
-//      }
-//    }
-//   scrollPaneHelper();
-//// create an ImageIcon from the BufferedImage to display in the JLabel
-//    ImageIcon icon = new ImageIcon(image);
-//    imageLabel.setText(null);
-//    imageLabel.setIcon(icon);
-//    Dimension imageSize = new Dimension(image.getWidth(null), image.getHeight(null));
-//    imageLabel.setPreferredSize(imageSize);
-//  }
   private void scrollPaneHelper()
   {
     // Remove the old scroll pane from the frame
@@ -298,9 +249,6 @@ public class MainWindow extends ViewAdvanced {
       }
       return image;
   }
-
-
-
 
   public String[] fileChooser(int count) {
     String[] filePaths = new String[count];

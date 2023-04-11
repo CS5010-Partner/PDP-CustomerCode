@@ -60,7 +60,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     formulateMap.put("bright", "brighten ");
 
     formulateMap.put("grey-normal", "greyscale ");
-    formulateMap.put("hflip", "horizontal-flip ");
+    formulateMap.put("hFlip", "horizontal-flip ");
     formulateMap.put("vFlip", "vertical-flip ");
     formulateMap.put("combine", "rgb-combine ");
     formulateMap.put("split", "rgb-split ");
@@ -74,47 +74,49 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     formulateMap.put("hist", "histogram ");
   }
 
-//  private BufferedImage convertImage(ImageObj img) {
-//    int[][][] data=img.getMatrix();
-//
-//    BufferedImage image = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
-//    for (int x = 0; x < img.getHeight(); x++) {
-//      for (int y = 0; y < img.getWidth(); y++) {
-//        int r = data[x][y][0];
-//        int g = data[x][y][1];
-//        int b = data[x][y][2];
-//        int rgb = (r << 16) | (g << 8) | b;
-//        image.setRGB(y, x, rgb);
-//      }
-//    }
-//    return image;
-//  }
-
-//  private void loadActionListner() {
-//    for (Map.Entry<String, JButton> btnName : view.btnMap.entrySet()) {
-//      view.btnMap.get(btnName).addActionListener(new ActionListener() {
-//        @Override
-//        public void actionPerformed(ActionEvent e) {
-//          actionHelper(btnName);
-//
-//        }
-//      });
-//    }
-//  }
-
   private void initActionListners() {
     view.btnMap.get("load").addActionListener(loadActionListner());
     view.btnMap.get("dither").addActionListener(ditherActionListner());
     view.btnMap.get("save").addActionListener(saveActionListner());
-    view.btnMap.get("bright").addActionListener(brightenListner());
+    view.btnMap.get("bright").addActionListener(brightActionListner());
     view.btnMap.get("blur").addActionListener(blurActionListner());
     view.btnMap.get("sepia").addActionListener(sepiaActionListner());
     view.btnMap.get("sharpen").addActionListener(sharpenActionListner());
-
+    view.btnMap.get("grey-normal").addActionListener(greyNormalActionListner());
     view.btnMap.get("hFlip").addActionListener(hflipActionListner());
     view.btnMap.get("vFlip").addActionListener(vflipActionListner());
+    view.btnMap.get("split").addActionListener(splitActionListner());
+    view.btnMap.get("combine").addActionListener(combineActionListner());
   }
 
+  private ActionListener combineActionListner() {
+    ActionListener a = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        String[] params = new String[] { generateNewImageName(),currentImgs.get(currentImgs.size()-3),currentImgs.get(currentImgs.size()-2),currentImgs.get(currentImgs.size()-1)};
+        actionHelper(params, "combine");
+      }
+    };
+    return a;
+  }
+
+  private ActionListener splitActionListner() {
+    ActionListener a = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        String source=currentImgs.get(currentImgs.size()-1);
+        String imgNameRed = generateNewImageName();
+        currentImgs.add(imgNameRed);
+        String imgNameGreen = generateNewImageName();
+        currentImgs.add(imgNameGreen);
+        String imgNameBlue = generateNewImageName();
+        currentImgs.add(imgNameBlue);
+        String[] params = new String[] { source,imgNameRed,imgNameGreen,imgNameBlue};
+        actionHelper(params, "split");
+      }
+    };
+    return a;
+  }
   private ActionListener sharpenActionListner() {
     ActionListener a = new ActionListener() {
       @Override
@@ -128,6 +130,42 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     return a;
   }
 
+  private ActionListener greyNormalActionListner() {
+    ActionListener a = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        String imgName = generateNewImageName();
+        String selectedOption= view.greyChooser();
+        String type = null;
+        switch (selectedOption)
+        {
+          case "Red":
+            type = "red";
+            break;
+          case "Blue":
+            type = "blue";
+            break;
+          case "Green":
+            type = "green";
+            break;
+          case "Luma":
+            type = "luma";
+            break;
+          case "Intensity":
+            type = "intensity";
+            break;
+          case "Value":
+            type = "value";
+            break;
+        }
+        String[] params = new String[] {type,currentImgs.get(currentImgs.size()-1),imgName};
+        currentImgs.add(imgName);
+        actionHelper(params, "grey-normal");
+      }
+    };
+    return a;
+  }
+
   private ActionListener hflipActionListner() {
     ActionListener a = new ActionListener() {
       @Override
@@ -135,7 +173,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
         String imgName = generateNewImageName();
         String[] params = new String[] { currentImgs.get(currentImgs.size()-1),imgName};
         currentImgs.add(imgName);
-        actionHelper(params, "hflip");
+        actionHelper(params, "hFlip");
       }
     };
     return a;
@@ -148,7 +186,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
         String imgName = generateNewImageName();
         String[] params = new String[] { currentImgs.get(currentImgs.size()-1),imgName};
         currentImgs.add(imgName);
-        actionHelper(params, "vflip");
+        actionHelper(params, "vFlip");
       }
     };
     return a;
@@ -171,7 +209,6 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
       @Override
       public void actionPerformed(ActionEvent e) {
         String[] filePaths = view.fileChooser(1);
-//        System.out.println(filePaths[0]);
         String imgName = generateNewImageName();
         currentImgs.add(imgName);
         String[] params = new String[] {filePaths[0], currentImgs.get(currentImgs.size()-1)};
@@ -220,13 +257,18 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
   }
 
 
-  private ActionListener brightenListner() {
+  private ActionListener brightActionListner() {
     ActionListener a = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        String newImgName = generateNewImageName();
-        String[] params = new String[] {currentImgs.get(currentImgs.size()-1), newImgName};
-        currentImgs.add(newImgName);
+        String imgName = generateNewImageName();
+        String input= view.popUpInput();
+        int increment=0;
+        if(!input.equals("not clicked")){
+          increment=Integer.parseInt(input);
+        }
+        String[] params = new String[] { String.valueOf(increment),currentImgs.get(currentImgs.size()-1),imgName};
+        currentImgs.add(imgName);
         actionHelper(params, "bright");
       }
     };
@@ -253,7 +295,6 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
       cmd += params[1]; // current file path
       cmd += " ";
       cmd += params[2];
-      cmd += params[2];
     } else if (command == "load") {
       cmd += params[0]; // load file path
       cmd += " ";
@@ -276,14 +317,12 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
       cmd += params[1]; // red image name
       cmd += " ";
       cmd += params[2]; // green image name
-      cmd += " ";
-      cmd += params[3]; // blue image name
+
     } else {
       cmd += params[0]; // source file path
       cmd += " ";
       cmd += params[1];
-      cmd += params[1];
-    }
+      }
     cmd += "\n#\n";
     System.out.println("command : " + cmd);
     in.addInput(cmd);
