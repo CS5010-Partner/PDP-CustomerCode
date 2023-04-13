@@ -265,8 +265,7 @@ public class ImageObj {
 
     for (int i = 0; i < this.height; i++) {
       for (int j = 0; j < this.width; j++) {
-        System.arraycopy(this.image[i][j], 0, newImgArr[i][this.width - j - 1],
-            0, 3);
+        System.arraycopy(this.image[i][j], 0, newImgArr[i][this.width - j - 1], 0, 3);
       }
     }
     return new ImageObj(newImgArr, this.width, this.height, this.maxValue);
@@ -408,97 +407,101 @@ public class ImageObj {
       }
     }
     return new ImageObj(grey.image, this.width, this.height, this.maxValue);
+  }
+
+  private ImageObj generateHistogram(ImageObj img, int index) {
+    int[][][] newImgArr = new int[256][256][3];
+    double maxVal = -1;
+
+    HashMap<Integer, Integer> map = new HashMap<>();
+
+    for (int i = 0; i < img.height; i++) {
+      for (int j = 0; j < img.width; j++) {
+        int val = img.getMatrix()[i][j][index];
+        if (map.containsKey(val)) {
+          map.put(val, map.get(val) + 1);
+          if (maxVal < map.get(val)) {
+            maxVal = map.get(val);
+          }
+        } else {
+          map.put(val, 1);
+        }
+      }
     }
 
-    private ImageObj generateHistogram(ImageObj img, int index) {
-      int[][][] newImgArr = new int[256][256][3];
-      double maxVal = -1;
+    for (int i = 0; i < 255; i++) {
+      if (!map.containsKey(i)) {
+        map.put(i, 0);
+      }
+    }
 
-      HashMap<Integer, Integer> map = new HashMap<>();
-
-      for (int i = 0; i < img.height; i++) {
-        for (int j = 0; j < img.width; j++) {
-          int val = img.getMatrix()[i][j][index];
-          if (map.containsKey(val)) {
-            map.put(val, map.get(val) + 1);
-            if (maxVal < map.get(val)) {
-              maxVal = map.get(val);
-            }
-          } else {
-            map.put(val, 1);
-          }
+    for (int i = 0; i < 255; i++) {
+      for (int j = 0; j < 255; j++) {
+        newImgArr[i][j][0] = 45;
+        newImgArr[i][j][1] = 15;
+        newImgArr[i][j][2] = 93;
+        if (j % 64 == 0) {
+          newImgArr[i][j][0] = 69;
+          newImgArr[i][j][1] = 69;
+          newImgArr[i][j][2] = 69;
+        }
+        if (i % 64 == 0) {
+          newImgArr[i][j][0] = 69;
+          newImgArr[i][j][1] = 69;
+          newImgArr[i][j][2] = 69;
         }
       }
+    }
 
-      for (int i=0; i<255; i++) {
-        if (!map.containsKey(i)) {
-          map.put(i, 0);
+    for (int i = 1; i < 255; i++) {
+      int j1 = 255 - (int) (((map.get(i - 1) - 0.0) / maxVal) * 255.0);
+      int j2 = 255 - (int) (((map.get(i) - 0.0) / maxVal) * 255.0);
+
+      newImgArr[j1][i - 1][0] = 245;
+      newImgArr[j1][i][0] = 245;
+
+      newImgArr[j1][i - 1][1] = 243;
+      newImgArr[j1][i][1] = 243;
+
+      newImgArr[j1][i - 1][2] = 193;
+      newImgArr[j1][i][2] = 193;
+
+      if (j1 > j2) {
+        for (int c = j2; c < j1; c++) {
+          newImgArr[c][i][0] = 205;
+          newImgArr[c][i][1] = 193;
+          newImgArr[c][i][2] = 143;
+        }
+      } else {
+        for (int c = j1; c < j2; c++) {
+          newImgArr[c][i][0] = 205;
+          newImgArr[c][i][1] = 193;
+          newImgArr[c][i][2] = 143;
         }
       }
-
-      for (int i=0; i<255; i++) {
-        for (int j=0; j<255; j++) {
-          newImgArr[i][j][0] = 45;
-          newImgArr[i][j][1] = 15;
-          newImgArr[i][j][2] = 93;
-          if (j%64 == 0) {
-            newImgArr[i][j][0] = 69;
-            newImgArr[i][j][1] = 69;
-            newImgArr[i][j][2] = 69;
-          }
-          if (i%64 == 0) {
-            newImgArr[i][j][0] = 69;
-            newImgArr[i][j][1] = 69;
-            newImgArr[i][j][2] = 69;
-          }
-        }
-      }
-
-      for (int i=1; i<255; i++) {
-        int j1 = 255 - (int)(((map.get(i-1) - 0.0) / maxVal)*255.0);
-        int j2 = 255 - (int)(((map.get(i) - 0.0) / maxVal)*255.0);
-
-        newImgArr[j1][i-1][0] = 245;
-        newImgArr[j1][i][0] = 245;
-
-        newImgArr[j1][i-1][1] = 243;
-        newImgArr[j1][i][1] = 243;
-
-        newImgArr[j1][i-1][2] = 193;
-        newImgArr[j1][i][2] = 193;
-
-        if (j1>j2) {
-          for (int c=j2; c<j1; c++) {
-            newImgArr[c][i][0] = 205;
-            newImgArr[c][i][1] = 193;
-            newImgArr[c][i][2] = 143;
-          }
-        }
-        else {
-          for (int c=j1; c<j2; c++) {
-            newImgArr[c][i][0] = 205;
-            newImgArr[c][i][1] = 193;
-            newImgArr[c][i][2] = 143;
-          }
-        }
-
-      }
-
-      return new ImageObj(newImgArr,256, 256, 255);
 
     }
 
-    public ImageObj[] histograms() {
-      ImageObj[] hist = new ImageObj[4];
-
-      hist[0] = generateHistogram(this.greyScaleRed(), 0);
-      hist[1] = generateHistogram(this.greyScaleGreen(), 0);
-      hist[2] = generateHistogram(this.greyScaleBlue(), 0);
-      hist[3] = generateHistogram(this.greyScaleIntensity(), 0);
-
-      return hist;
-    }
+    return new ImageObj(newImgArr, 256, 256, 255);
 
   }
+
+  /**
+   * Creates histograms for the red, green, blue and intensity channels.
+   *
+   * @return the image objects of the RGBIntensity histograms.
+   */
+  public ImageObj[] histograms() {
+    ImageObj[] hist = new ImageObj[4];
+
+    hist[0] = generateHistogram(this.greyScaleRed(), 0);
+    hist[1] = generateHistogram(this.greyScaleGreen(), 0);
+    hist[2] = generateHistogram(this.greyScaleBlue(), 0);
+    hist[3] = generateHistogram(this.greyScaleIntensity(), 0);
+
+    return hist;
+  }
+
+}
 
 

@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
-import java.util.Arrays;
 import java.util.HashMap;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -26,30 +25,36 @@ import javax.swing.border.EmptyBorder;
 import model.ImageObj;
 import view.ViewAdvanced;
 
+/**
+ * SwingUI class has the necessary structure for the Java Swing Application and also the methods
+ * necessary for the model, view and controller interaction.
+ */
 public class SwingUI extends ViewAdvanced {
 
-  public HashMap<String, JButton> btnMap;
   private final JFrame frame;
   private final JPanel panel;
   private final JPanel histoPanel;
   private final JPanel topPanel;
   private final JPanel operationPanel;
-  private JLabel imageLabel;
   private final JLabel currentOperation;
   private final JLabel histoLabel1;
   private final JLabel histoLabel2;
   private final JLabel histoLabel;
   private final JLabel histoLabel3;
   private final JLabel histoLabel4;
-  private JScrollPane scrollPane;
   private final JComboBox<String> greyChooserDropdown;
   private final JComboBox<String> splitChooserDropdown;
   private final JComboBox<String> combineChooserDropdown;
-
   private final String[] splitChooserOptions;
   private final String[] combineChooserOptions;
+  public HashMap<String, JButton> btnMap;
+  private JLabel imageLabel;
+  private JScrollPane scrollPane;
 
 
+  /**
+   * Constructor which initializes the data members of the SwingUI class.
+   */
   public SwingUI() {
     super(null);
     frame = new JFrame();
@@ -125,8 +130,7 @@ public class SwingUI extends ViewAdvanced {
 
   @Override
   public void echoLoadSuccess(ImageObj img, boolean verbose) {
-    if(img==null)
-    {
+    if (img == null) {
       currentOperation.setText("Please Try Loading Again");
       return;
     }
@@ -231,12 +235,14 @@ public class SwingUI extends ViewAdvanced {
     btnMap.put("dither", new JButton("DITHER"));
 
     Border blueBorder = BorderFactory.createLineBorder(new Color(0xB0DAFF), 2);
-    for(String key:btnMap.keySet())
-    {
+    for (String key : btnMap.keySet()) {
       btnMap.get(key).setBorder(blueBorder);
     }
   }
 
+  /**
+   * show() method when called will set the buttons and labels in the application.
+   */
   public void show() {
     frame.setVisible(true);
     panel.setLayout(new GridLayout(12, 1, 1, 1));
@@ -286,8 +292,7 @@ public class SwingUI extends ViewAdvanced {
     frame.add(imageLabel);
   }
 
-  private void scrollPaneHelper()
-  {
+  private void scrollPaneHelper() {
     if (scrollPane != null) {
       frame.remove(scrollPane);
     }
@@ -316,6 +321,12 @@ public class SwingUI extends ViewAdvanced {
     return image;
   }
 
+  /**
+   * Will get the count number of file paths from the user.
+   *
+   * @param count number of the file paths needed.
+   * @return the string array of the paths.
+   */
   public String[] fileChooser(int count) {
     imageLabel.setText(null);
     String[] filePaths = new String[count];
@@ -330,6 +341,10 @@ public class SwingUI extends ViewAdvanced {
     return filePaths;
   }
 
+  /**
+   * This method sets the image in the center of the application. When null we can not read the
+   * image and sets the frame to empty.
+   */
   public void changeImageType() {
     if (imageLabel != null) {
       frame.remove(imageLabel);
@@ -342,6 +357,11 @@ public class SwingUI extends ViewAdvanced {
     frame.repaint();
   }
 
+  /**
+   * Returns the input entered by the user in the pop up.
+   *
+   * @return the string input.
+   */
   public String popUpInput() {
     String input = JOptionPane.showInputDialog(frame, "Enter input:");
     if (input != null) {
@@ -351,6 +371,11 @@ public class SwingUI extends ViewAdvanced {
     }
   }
 
+  /**
+   * Returns the type of operation to be applied for the grey scale image.
+   *
+   * @return the value to be applied to the grey transformation.
+   */
   public String greyChooser() {
     int result = JOptionPane.showConfirmDialog(null, greyChooserDropdown,
         "Select" + " an option",
@@ -362,6 +387,11 @@ public class SwingUI extends ViewAdvanced {
     return selectedOption;
   }
 
+  /**
+   * Returns the type of operation to be applied for the rgb split image.
+   *
+   * @return the value to be applied to the rgb split transformation.
+   */
   public boolean splitChooser() {
     int result = JOptionPane.showConfirmDialog(null, splitChooserDropdown,
         "Select" + " an option",
@@ -373,6 +403,11 @@ public class SwingUI extends ViewAdvanced {
     return selectedOption.equals(splitChooserOptions[0]);
   }
 
+  /**
+   * Returns the type of operation to be applied for the rgb combine image.
+   *
+   * @return the value to be applied to the rgb combine transformation.
+   */
   public boolean combineChooser() {
     int result = JOptionPane.showConfirmDialog(null, combineChooserDropdown,
         "Select" + " an option", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
@@ -380,10 +415,14 @@ public class SwingUI extends ViewAdvanced {
     if (result == JOptionPane.OK_OPTION) {
       selectedOption = (String) splitChooserDropdown.getSelectedItem();
     }
-    return selectedOption.equals( combineChooserOptions[0]);
+    return selectedOption.equals(combineChooserOptions[0]);
   }
 
-
+  /**
+   * Returns the path where the image has to be saved.
+   *
+   * @return the path of the image.
+   */
   public String savePath() {
     return JOptionPane.showInputDialog(frame,
         "Enter path where the current image has to be saved:");
@@ -417,6 +456,17 @@ public class SwingUI extends ViewAdvanced {
 
   }
 
+  /**
+   * Sets the currentOperation label value to a message when expected an integer input and got
+   * string.
+   */
+  public void setBrightException() {
+    currentOperation.setText("Please give an integer input for brightening");
+  }
+
+  /**
+   * Static class to set label text under the image icon which overrides the JLabel.
+   */
   public static class ImageLabel extends JLabel {
 
     private final String text;
@@ -439,9 +489,5 @@ public class SwingUI extends ViewAdvanced {
       size.height += getFontMetrics(getFont()).getHeight();
       return size;
     }
-  }
-  public void setBrightException()
-  {
-    currentOperation.setText("Please give an integer input for brightening");
   }
 }

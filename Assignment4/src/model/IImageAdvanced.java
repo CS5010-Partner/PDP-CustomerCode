@@ -69,6 +69,18 @@ public interface IImageAdvanced extends IImage {
   ImageObj dither(String sourceName, String destName)
       throws ImageNameAlreadyExistsException, ImageNotFoundException;
 
+  /**
+   * Returns histogram images for the Red, Green, Blue and Intensity channels.
+   *
+   * @param imageName        source image name.
+   * @param redHistImgName   destination red histogram name.
+   * @param blueHistImgName  destination blue histogram name.
+   * @param greenHistImgname destination green histogram name.
+   * @param intHistImgName   destination intensity histogram name.
+   * @return the image objects array of red, green, blue and intensity histograms.
+   * @throws ImageNameAlreadyExistsException thrown when an image name already exists.
+   * @throws ImageNotFoundException          thrown when the image is not found.
+   */
   ImageObj[] histogram(String imageName, String redHistImgName, String blueHistImgName,
       String greenHistImgname, String intHistImgName)
       throws ImageNameAlreadyExistsException, ImageNotFoundException;

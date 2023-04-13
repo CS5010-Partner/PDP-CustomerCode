@@ -9,6 +9,9 @@ import model.IImageAdvanced;
 import model.ImageObj;
 import view.IViewAdvanced;
 
+/**
+ * Histogram class is used to represent a class for the generation of the histograms.
+ */
 public class Histogram extends ACommandAdvanced {
 
   private final IImageAdvanced model;
@@ -16,7 +19,7 @@ public class Histogram extends ACommandAdvanced {
   private final BufferedReader in;
 
   /**
-   * Constructor for the Dithering class.
+   * Constructor for the Histogram class.
    *
    * @param model represents the model object.
    * @param view  represents the view object.
@@ -39,7 +42,8 @@ public class Histogram extends ACommandAdvanced {
     String blueHistName = getInput(in);
     String intHistName = getInput(in);
 
-    ImageObj[] imgs = this.model.histogram(sourceName, redHistName, greenHistName, blueHistName, intHistName);
-    this.view.echoHistogramSuccess(imgs,false);
+    ImageObj[] imgs = this.model.histogram(sourceName, redHistName, greenHistName, blueHistName,
+        intHistName);
+    this.view.echoHistogramSuccess(imgs, false);
   }
 }

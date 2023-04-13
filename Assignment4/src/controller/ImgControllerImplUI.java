@@ -10,6 +10,10 @@ import javax.swing.SwingUtilities;
 import model.IImageAdvanced;
 import view.swing.SwingUI;
 
+/**
+ * ImgControllerImplUI acts as a controller for the UI implementation.
+ * It is extended from the already created ImgControllerImplAdvanced.
+ */
 public class ImgControllerImplUI extends ImgControllerImplAdvanced {
 
   private final String defaultImageName = "tempImg";
@@ -107,7 +111,8 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
           actionHelper(params, "load");
         }
        newImgName = generateNewImageName();
-        String[] params = new String[] { newImgName,currentImgs.get(currentImgs.size()-3),currentImgs.get(currentImgs.size()-2),currentImgs.get(currentImgs.size()-1)};
+        String[] params = new String[] { newImgName,currentImgs.get(currentImgs.size()-3),
+            currentImgs.get(currentImgs.size()-2),currentImgs.get(currentImgs.size()-1)};
         actionHelper(params, "combine");
         currentImgs.add(newImgName);
         histoGenerator();
@@ -278,7 +283,8 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
   }
 
   private void histoGenerator(){
-    String[] params2 = new String[] {currentImgs.get(currentImgs.size()-1), generateNewImageName(), generateNewImageName(), generateNewImageName(), generateNewImageName()};
+    String[] params2 = new String[] {currentImgs.get(currentImgs.size()-1), generateNewImageName(),
+        generateNewImageName(), generateNewImageName(), generateNewImageName()};
     actionHelper(params2, "hist");
   }
   private ActionListener ditherActionListner() {
@@ -338,7 +344,8 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
             return;
           }
         }
-        String[] params = new String[] { String.valueOf(increment),currentImgs.get(currentImgs.size()-1),imgName};
+        String[] params = new String[] { String.valueOf(increment),
+            currentImgs.get(currentImgs.size()-1),imgName};
         currentImgs.add(imgName);
         actionHelper(params, "bright");
         histoGenerator();
