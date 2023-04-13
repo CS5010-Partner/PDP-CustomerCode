@@ -20,6 +20,8 @@
 >### *IImage* :
 > IImage represents the model interface and the methods that are required for the model.
 
+> ### *ImageObj* :
+> This class implements all the functions mentioned in the ***IImage***. This is used to perform the said operations on a singular image.
 ### Methods:
 * ***load*** - This method when called loads the image from disk.
 * **save** - This method when called saves the image to the disk.
@@ -34,6 +36,8 @@
 * **brighten** - This method when called brightens the image by the input value.
 * **rgbSplit** - This method when called splits the RGB image into different color channels
 * **rgbCombine** - This method when called combines the various channels of the image into RGB image.
+
+`Advanced Functions`
 * **tranformGreyscale** - This method when called converts the image to greyscale.
 * **transformSepia** - This method when called converts the image to sepia.
 * **filterBlur** - This method when called blurs the image.
@@ -42,11 +46,14 @@
 > ### *ImageSet* :
 > This class implements the ***IImage*** Interface and holds the map between image values and corresponding name.
 
-> ### *ImageObj* :
-> This class implements all the functions mentioned in the ***IImage***. This is used to perform the said operations on a singular image.
-
-> ### *ImageObjAdvanced* :
+> ### *ImageSetAdvanced* :
 > This class implements all the functions mentioned in the ***IImageAdvanced***. This is used to perform the said operations on a singular image.
+
+> ### *Kernels* :
+> This class consist of different kernel matrix used for Sharpen and Blur the images.
+
+> ### *Transformations* :
+> This class consist of different transformations matrix used for greyscale and sepia operations on the images.
 
 ## VIEW
 
@@ -75,6 +82,8 @@ The view hosts a ***IView*** Interface and ***View*** Class.
 * **echoSplitSuccess** - This method when called prints a statement indicating the user that the image has been splitted successfully.
 * **echoScriptSuccess** - This method when called prints a statement indicating the user that the script has been executed successfully.
 * **echoInvalidInputMsg** - This method when called prints a statement indicating the user that an invalid input has been entered.
+
+`Advanced Functions`
 * **echoFilterBlurSuccess**  This methowd when called prints a statement indicating the user that the image has been blurred successfully.
 * **echoFilterSharpenSuccess** - This method when called prints a statement indicating the user that the image has been shaperend successfully.
 * **echoSepiaSuccess** - This method when called prints a statement indicating the user that the image has been converted to sepia successfully.
@@ -83,12 +92,19 @@ The view hosts a ***IView*** Interface and ***View*** Class.
 > ### *View* :
 > This class implements the ***IView*** interface and all the methods it holds.
 
+> ### *ViewAdvanced* :
+> This class implements the ***IViewAdvanced*** interface and all the methods it holds.
+
+> ### *ViewSwingUI* :
+> This class implements the ***IViewAdvanced*** interface and all the methods it holds and implements the Java Swing for GUI.
+
 ## CONTROLLER
 ---
 > The controller has the following packages in it.
 > * commands 
+> * newcommands
 >
-> Along with it also hosts a ***Helper*** class, a ***ImgControllerImpl*** class and ***ImgController*** interface.
+> Along with it also hosts a ***Helper*** class, ***CustomSystemIn***, a ***ImgControllerImpl*** class, ***ImgControllerImplAdvanced***, ***ImgControllerImplUI*** and ***ImgController*** interface.
 
 ### Command Package:
 
@@ -102,6 +118,8 @@ The view hosts a ***IView*** Interface and ***View*** Class.
 * **RGB Split** - class that implements the RGB split functionality.
 * **Save** - class that implements the save functionlity.
 * **Vertical Flip** - class that implmenents the vertical flip functionality.
+
+`Advanced Functions`
 * **blur** - class that implements the blur functionality.
 * **sharpen** - class that implements the sharpen functionality.
 * **dither** - class that implements the dither functionality.
@@ -117,6 +135,10 @@ The view hosts a ***IView*** Interface and ***View*** Class.
 > ImgControllerImpl is the controller class which is called from the main. It takes input from the user and calls necessary classes from the model. Parses the output to the view.
 
 >### *ImgControllerImplAdvanced* :
-> ImgControllerImplAdvanced is the controlled class which is called from main and consist of additional functionalities. It takes input from the user and calls necessary classes from the mode. Parses the output to ViewAdvanced.
+> ImgControllerImplAdvanced is the controlled class which is called from mainAdvanced and consist of additional functionalities. It takes input from the user and calls necessary classes from the mode. Parses the output to ViewAdvanced.
 
-#### CITATION - IMAGES ARE TAKEN FROM MARIA ANSON.
+>### *ImgControllerImplUI* :
+> ImgControllerImplAdvanced is the controlled class which is called from mainUI and aimed at a GUI view. It takes input from the user and calls necessary classes from the mode. Parses the output to ViewUI. The GUI has been implemented using Java Swing.
+
+
+#### CITATION - IMAGES ARE TAKEN FROM @MARIA ANSON.

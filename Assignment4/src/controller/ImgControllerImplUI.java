@@ -347,56 +347,47 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     return a;
   }
 
-  public void actionHelper(String[] params, String command) {
+  private void actionHelper(String[] params, String command) {
     String cmd = formulateMap.get(command);
 
-    if (command == "combine") {
-      for (int i = 0; i < 4; i++) {
-        cmd += params[i]; // 3 file paths
+    switch (command) {
+      case "combine":
+        for (int i = 0; i < 4; i++) {
+          cmd += params[i]; // 3 file paths
+          cmd += " ";
+        }
+        break;
+      case "hist":
+        for (int i = 0; i < 5; i++) {
+          cmd += params[i]; // 3 file paths
+          cmd += " ";
+        }
+        break;
+      case "bright":
+      case "grey-normal":
+        cmd += params[0]; // brighten param
         cmd += " ";
-      }
-    } else if (command == "hist") {
-      for (int i = 0; i < 5; i++) {
-        cmd += params[i]; // 3 file paths
+        cmd += params[1]; // current file path
         cmd += " ";
-      }
+        cmd += params[2];
+        break;
+      case "split":
+        cmd += params[0]; // source file path
+        cmd += " ";
+        cmd += params[1]; // red image name
+        cmd += " ";
+        cmd += params[2]; // green image name
+        cmd += " ";
+        cmd += params[3]; // blue image name
+        break;
+      default:
+        cmd += params[0]; // source file path
+        cmd += " ";
+        cmd += params[1];
+        break;
     }
-      else if (command == "bright") {
-      cmd += params[0]; // brighten param
-      cmd += " ";
-      cmd += params[1]; // current file path
-      cmd += " ";
-      cmd += params[2];
-    } else if (command == "load") {
-      cmd += params[0]; // load file path
-      cmd += " ";
-      cmd += params[1]; // current file path
-    } else if (command == "save") {
-      cmd += params[0]; // save file path
-      cmd += " ";
-      cmd += params[1]; // current file path
-    } else if (command == "split") {
-      cmd += params[0]; // source file path
-      cmd += " ";
-      cmd += params[1]; // red image name
-      cmd += " ";
-      cmd += params[2]; // green image name
-      cmd += " ";
-      cmd += params[3]; // blue image name
-    } else if (command == "grey-normal") {
-      cmd += params[0]; // source file path
-      cmd += " ";
-      cmd += params[1]; // red image name
-      cmd += " ";
-      cmd += params[2]; // green image name
 
-    } else {
-      cmd += params[0]; // source file path
-      cmd += " ";
-      cmd += params[1];
-      }
     cmd += "\n#\n";
-    System.out.println(cmd);
     in.addInput(cmd);
     super.commandExecution();
   }

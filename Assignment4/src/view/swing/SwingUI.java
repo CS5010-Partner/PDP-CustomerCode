@@ -284,17 +284,15 @@ public class SwingUI extends ViewAdvanced {
     frame.add(imageLabel);
   }
 
-  private void scrollPaneHelper() {
-    // Remove the old scroll pane from the frame
+  private void scrollPaneHelper()
+  {
     if (scrollPane != null) {
       frame.remove(scrollPane);
     }
-    // Create a new scroll pane with the updated label
     scrollPane = new JScrollPane(imageLabel);
     scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
     scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     frame.add(scrollPane, BorderLayout.CENTER);
-    // Repaint the frame to show the updated contents
     frame.revalidate();
     frame.repaint();
   }
@@ -338,7 +336,6 @@ public class SwingUI extends ViewAdvanced {
     imageLabel.setText("Cannot read the file");
     frame.add(imageLabel);
 
-    // Repaint the frame to show the updated contents
     frame.revalidate();
     frame.repaint();
   }
@@ -346,10 +343,8 @@ public class SwingUI extends ViewAdvanced {
   public String popUpInput() {
     String input = JOptionPane.showInputDialog(frame, "Enter input:");
     if (input != null) {
-      // User clicked OK and entered some input
       return input;
     } else {
-      // User clicked Cancel or closed the dialog
       return "not clicked";
     }
   }
