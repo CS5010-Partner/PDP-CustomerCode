@@ -4,12 +4,12 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class MockSystemIn extends InputStream {
+public class CustomSystemIn extends InputStream {
 
   private String input;
   private InputStream in;
 
-  public MockSystemIn() {
+  public CustomSystemIn() {
     input = "\n";
     in = new ByteArrayInputStream(input.getBytes());
     System.setIn(in);

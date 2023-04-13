@@ -19,13 +19,13 @@ public class ImgControllerImplTest {
   private IImage model;
   private IView view;
   private ImgController controller;
-  private MockSystemIn in;
+  private CustomSystemIn in;
 
   @Before
   public void setUp() {
     this.model = new MockModel();
     this.view = new MockView();
-    this.in = new MockSystemIn();
+    this.in = new CustomSystemIn();
 
   }
 
@@ -34,7 +34,7 @@ public class ImgControllerImplTest {
     String test = "load code/ant.ppm ant\n \n";
 //
 //    Reader inputString = new StringReader(test);
-    BufferedReader reader = new BufferedReader(new InputStreamReader(new MockSystemIn()));
+    BufferedReader reader = new BufferedReader(new InputStreamReader(new CustomSystemIn()));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 

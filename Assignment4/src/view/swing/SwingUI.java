@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
-import java.util.Arrays;
 import java.util.HashMap;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -24,26 +23,41 @@ import javax.swing.border.EmptyBorder;
 import model.ImageObj;
 import view.ViewAdvanced;
 
-public class MainWindow extends ViewAdvanced {
+public class SwingUI extends ViewAdvanced {
   private JFrame frame;
   private JPanel panel,histoPanel,topPanel, operationPanel;
   private JLabel imageLabel, currentOperation,histoLabel1,histoLabel2,histoLabel;
   private JLabel  histoLabel3,histoLabel4;
   private JScrollPane scrollPane;
   public HashMap<String, JButton> btnMap;
-  private  JComboBox<String> dropdown;
-  public MainWindow()
+  private  JComboBox<String> greyChooserDropdown;
+  private  JComboBox<String> splitChooserDropdown;
+  private  JComboBox<String> combineChooserDropdown;
+
+  private String[] splitChooserOptions;
+  private String[] combineChooserOptions;
+
+
+  public SwingUI()
   {
     super(null);
-//    super.toggleMasterVerbose();
     frame=new JFrame();
     panel=new JPanel();
     histoPanel=new JPanel();
     topPanel=new JPanel();
     topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.PAGE_AXIS));
     operationPanel=new JPanel();
-    String[] options = {"Select","Transformation", "Red", "Blue", "Green", "Luma", "Intensity", "Value"};
-    dropdown = new JComboBox<>(options);
+
+    String[] greyChooserOptions = {"Select","Transformation", "Red", "Blue", "Green", "Luma", "Intensity", "Value"};
+    greyChooserDropdown = new JComboBox<>(greyChooserOptions);
+
+    splitChooserOptions = new String[]{"Store in memory", "Save to disk"};
+    splitChooserDropdown = new JComboBox<>(splitChooserOptions);
+
+    combineChooserOptions = new String[]{"Load from memory", "Load from disk"};
+    combineChooserDropdown = new JComboBox<>(combineChooserOptions);
+
+
     imageLabel=new JLabel();
 
     frame.setMinimumSize(new Dimension(1200, 800));
@@ -58,7 +72,6 @@ public class MainWindow extends ViewAdvanced {
     histoLabel2=new ImageLabel(null,"GREEN HISTOGRAM");
     histoLabel3=new ImageLabel(null,"BLUE HISTOGRAM");
     histoLabel4=new ImageLabel(null,"INTENSITY HISTOGRAM");
-//    histoPanel.setVisible(false);
 
     histoLabel.setText(welcomeText);
     histoLabel1.setVerticalAlignment(SwingConstants.CENTER);
@@ -81,7 +94,7 @@ public class MainWindow extends ViewAdvanced {
   }
 
   private void showImage(ImageObj img) {
-    BufferedImage image = imageCovnerter(img);
+    BufferedImage image = imageConverter(img);
     scrollPaneHelper();
     ImageIcon icon = new ImageIcon(image);
     imageLabel.setText(null);
@@ -131,7 +144,6 @@ public class MainWindow extends ViewAdvanced {
   public void echoSaveSuccess(ImageObj img, boolean verbose) {
     currentOperation.setText("Saved Successfully");
   }
-
 
   @Override
   public void echoBrightenSuccess(ImageObj img, boolean verbose) {
@@ -203,16 +215,9 @@ public class MainWindow extends ViewAdvanced {
     panel.setBackground(Color.red);
     panel.add(btnMap.get("load"));
     panel.add(btnMap.get("save"));
-
     panel.add(btnMap.get("bright"));
-
-
     panel.add(btnMap.get("grey-normal"));
-
-
     panel.add(btnMap.get("bright"));
-
-
     panel.add(btnMap.get("grey-normal"));
     panel.add(btnMap.get("vFlip"));
     panel.add(btnMap.get("hFlip"));
@@ -272,7 +277,7 @@ public class MainWindow extends ViewAdvanced {
   }
 
 
-  private BufferedImage imageCovnerter(ImageObj img) {
+  private BufferedImage imageConverter(ImageObj img) {
       int[][][] data=img.getMatrix();
       BufferedImage image = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
       for (int x = 0; x < img.getHeight(); x++) {
@@ -302,7 +307,6 @@ public class MainWindow extends ViewAdvanced {
   }
   public void changeImageType()
   {
-    System.out.println("view image type");
     if(imageLabel!=null)
       frame.remove(imageLabel);
     imageLabel=new JLabel();
@@ -326,37 +330,61 @@ public class MainWindow extends ViewAdvanced {
   }
 
   public String greyChooser() {
-    int result = JOptionPane.showConfirmDialog(null, dropdown, "Select"
+    int result = JOptionPane.showConfirmDialog(null, greyChooserDropdown, "Select"
         + " an option", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
     String selectedOption = "";
     if (result == JOptionPane.OK_OPTION) {
-      selectedOption = (String) dropdown.getSelectedItem();
-
+      selectedOption = (String) greyChooserDropdown.getSelectedItem();
     }
     return selectedOption;
   }
+
+  public boolean splitChooser() {
+    int result = JOptionPane.showConfirmDialog(null, splitChooserDropdown, "Select"
+        + " an option", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+    String selectedOption = "";
+    if (result == JOptionPane.OK_OPTION) {
+      selectedOption = (String) splitChooserDropdown.getSelectedItem();
+    }
+    if (selectedOption == splitChooserOptions[0])
+      return true;
+    return false;
+  }
+
+  public boolean combineChooser() {
+    int result = JOptionPane.showConfirmDialog(null, combineChooserDropdown, "Select"
+        + " an option", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+    String selectedOption = "";
+    if (result == JOptionPane.OK_OPTION) {
+      selectedOption = (String) splitChooserDropdown.getSelectedItem();
+    }
+    if (selectedOption == combineChooserOptions[0])
+      return true;
+    return false;
+  }
+
 
   public String savePath(){
     return JOptionPane.showInputDialog(frame,
         "Enter path where the current image has to be saved:");
   }
   private void showHistogram(ImageObj[] img) {
-    BufferedImage image = imageCovnerter(img[0]);
+    BufferedImage image = imageConverter(img[0]);
     ImageIcon icon1 = new ImageIcon(image);
     histoLabel1.setText(null);
     histoLabel1.setIcon(icon1);
 
-    image = imageCovnerter(img[1]);
+    image = imageConverter(img[1]);
     ImageIcon icon2 = new ImageIcon(image);
     histoLabel2.setText(null);
     histoLabel2.setIcon(icon2);
 
-    image = imageCovnerter(img[2]);
+    image = imageConverter(img[2]);
     ImageIcon icon3 = new ImageIcon(image);
     histoLabel3.setText(null);
     histoLabel3.setIcon(icon3);
 
-    image = imageCovnerter(img[3]);
+    image = imageConverter(img[3]);
     ImageIcon icon4 = new ImageIcon(image);
     histoLabel4.setText(null);
     histoLabel4.setIcon(icon4);
