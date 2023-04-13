@@ -3,7 +3,7 @@ import controller.ImgControllerImplUI;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import model.ImageSetAdvanced;
-import view.swing.SwingUI;
+import view.ViewUI;
 
 /**
  * This class is used to call controller, and it creates a model and view advanced objects. This is
@@ -19,7 +19,7 @@ public class MainUI {
   public static void main(String[] args) {
     CustomSystemIn in = new CustomSystemIn();
     ImageSetAdvanced model = new ImageSetAdvanced();
-    SwingUI view = new SwingUI();
+    ViewUI view = new ViewUI();
     ImgControllerImplUI controller = new ImgControllerImplUI(model, view,
         new BufferedReader(new InputStreamReader(in)));
     controller.run();

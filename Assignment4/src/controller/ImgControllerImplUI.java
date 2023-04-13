@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.SwingUtilities;
 import model.IImageAdvanced;
-import view.swing.SwingUI;
+import view.ViewUI;
 
 /**
  * ImgControllerImplUI acts as a controller for the UI implementation.
@@ -20,7 +20,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
   private int iter = 0;
   private CustomSystemIn in = new CustomSystemIn();
   private Map<String, String> formulateMap;
-  private SwingUI view;
+  private ViewUI view;
   private ArrayList<String> currentImgs;
 
 
@@ -32,7 +32,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
    * @param view  represents the view object.
    * @param in    gives the object from where the input is read.
    */
-  public ImgControllerImplUI(IImageAdvanced model, SwingUI view,
+  public ImgControllerImplUI(IImageAdvanced model, ViewUI view,
       BufferedReader in) {
     super(model, view, new BufferedReader(in));
     formulateMap = new HashMap<String, String>();
