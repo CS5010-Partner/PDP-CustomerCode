@@ -3,8 +3,10 @@ package view.swing;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
+import java.util.Arrays;
 import java.util.HashMap;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -17,13 +19,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import model.ImageObj;
 import view.ViewAdvanced;
 
 public class MainWindow extends ViewAdvanced {
   private JFrame frame;
   private JPanel panel,histoPanel,topPanel, operationPanel;
-  private JLabel imageLabel, histoLabel1,histoLabel2,histoLabel3,histoLabel4, currentOperation;
+  private JLabel imageLabel, currentOperation,histoLabel1,histoLabel2,histoLabel;
+  private JLabel  histoLabel3,histoLabel4;
   private JScrollPane scrollPane;
   public HashMap<String, JButton> btnMap;
   private  JComboBox<String> dropdown;
@@ -37,22 +42,32 @@ public class MainWindow extends ViewAdvanced {
     topPanel=new JPanel();
     topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.PAGE_AXIS));
     operationPanel=new JPanel();
-    String[] options = {"Select", "Red", "Blue", "Green", "Luma", "Intensity", "Value"};
+    String[] options = {"Select","Transformation", "Red", "Blue", "Green", "Luma", "Intensity", "Value"};
     dropdown = new JComboBox<>(options);
-
     imageLabel=new JLabel();
 
-
-    frame.setMinimumSize(new Dimension(700, 500));
+    frame.setMinimumSize(new Dimension(1200, 800));
     frame.setTitle("Image Transformations");
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //closes when clicked on X
-    frame.setSize(800,600);
+    frame.setSize(1200,800);
+    String welcomeText = "<html><div style='text-align: center; font-size: 20px; font-weight: bold; " +
+        "font-family: Arial, sans-serif;'>Welcome to my Application!</div></html>";
 
-    histoLabel1=new JLabel("label1");
-    histoLabel2=new JLabel("label 2");
-    histoLabel3=new JLabel("label 3");
-    histoLabel4=new JLabel("label 4");
+    histoLabel=new JLabel(welcomeText);
+    histoLabel1=new ImageLabel(null,"RED HISTOGRAM");
+    histoLabel2=new ImageLabel(null,"GREEN HISTOGRAM");
+    histoLabel3=new ImageLabel(null,"BLUE HISTOGRAM");
+    histoLabel4=new ImageLabel(null,"INTENSITY HISTOGRAM");
+//    histoPanel.setVisible(false);
 
+    histoLabel.setText(welcomeText);
+    histoLabel1.setVerticalAlignment(SwingConstants.CENTER);
+    histoLabel1.setHorizontalAlignment(SwingConstants.CENTER);
+    histoLabel1.setVisible(false);
+
+    histoLabel2.setVisible(false);
+    histoLabel3.setVisible(false);
+    histoLabel4.setVisible(false);
     currentOperation=new JLabel("Select an operation to show an image");
 
     initButtons();
@@ -82,6 +97,22 @@ public class MainWindow extends ViewAdvanced {
   public void echoLoadSuccess(ImageObj img, boolean verbose) {
     currentOperation.setText("Loaded Successfully");
     showImage(img);
+    btnMap.get("save").setVisible(true);
+    btnMap.get("bright").setVisible(true);
+    btnMap.get("grey-normal").setVisible(true);
+    btnMap.get("vFlip").setVisible(true);
+    btnMap.get("hFlip").setVisible(true);
+    btnMap.get("split").setVisible(true);
+    btnMap.get("combine").setVisible(true);
+    btnMap.get("blur").setVisible(true);
+    btnMap.get("sharpen").setVisible(true);
+    btnMap.get("sepia").setVisible(true);
+    btnMap.get("dither").setVisible(true);
+    histoLabel.setVisible(false);
+    histoLabel1.setVisible(true);
+    histoLabel2.setVisible(true);
+    histoLabel3.setVisible(true);
+    histoLabel4.setVisible(true);
   }
 
   @Override
@@ -110,7 +141,7 @@ public class MainWindow extends ViewAdvanced {
 
   @Override
   public void echoHistogramSuccess(ImageObj[] imgs, boolean verbose) {
-    showImage(imgs[0]);
+    showHistogram(imgs);
   }
 
   @Override
@@ -153,11 +184,11 @@ public class MainWindow extends ViewAdvanced {
     btnMap = new HashMap<>();
     btnMap.put("load", new JButton("Load"));
     btnMap.put("save",new JButton("save"));
-    btnMap.put("histogram", new JButton("Histogram"));
+
     btnMap.put("hFlip",new JButton("Horizontal Flip"));
     btnMap.put("vFlip",new JButton("Vertical Flip"));
     btnMap.put("bright",new JButton("Brighten"));
-    btnMap.put("grey-normal",new JButton("grey-normal"));
+    btnMap.put("grey-normal",new JButton("Grey"));
     btnMap.put("split",new JButton("RGB Split"));
     btnMap.put("combine",new JButton("RGB Combine"));
     btnMap.put("blur",new JButton("Blur"));
@@ -168,11 +199,11 @@ public class MainWindow extends ViewAdvanced {
   public void show()
   {
     frame.setVisible(true);
-    panel.setLayout(new GridLayout(10,1,2,1)); //divides the panel into rectangles
+    panel.setLayout(new GridLayout(13,1,1,1)); //divides the panel into rectangles
     panel.setBackground(Color.red);
     panel.add(btnMap.get("load"));
     panel.add(btnMap.get("save"));
-    panel.add(btnMap.get("histogram"));
+
     panel.add(btnMap.get("bright"));
 
 
@@ -192,6 +223,18 @@ public class MainWindow extends ViewAdvanced {
     panel.add(btnMap.get("sepia"));
     panel.add(btnMap.get("dither"));
 
+    btnMap.get("save").setVisible(false);
+    btnMap.get("bright").setVisible(false);
+    btnMap.get("grey-normal").setVisible(false);
+    btnMap.get("vFlip").setVisible(false);
+    btnMap.get("hFlip").setVisible(false);
+    btnMap.get("split").setVisible(false);
+    btnMap.get("combine").setVisible(false);
+    btnMap.get("blur").setVisible(false);
+    btnMap.get("sharpen").setVisible(false);
+    btnMap.get("sepia").setVisible(false);
+    btnMap.get("dither").setVisible(false);
+
 
 
     frame.add(panel, BorderLayout.WEST);
@@ -202,11 +245,12 @@ public class MainWindow extends ViewAdvanced {
 
     operationPanel.add(currentOperation);
 
+    histoPanel.add(histoLabel);
     histoPanel.add(histoLabel1);
     histoPanel.add(histoLabel2);
     histoPanel.add(histoLabel3);
     histoPanel.add(histoLabel4);
-
+    histoPanel.setPreferredSize(new Dimension(1200,300));
 
     frame.add(imageLabel);
   }
@@ -244,6 +288,7 @@ public class MainWindow extends ViewAdvanced {
   }
 
   public String[] fileChooser(int count) {
+    imageLabel.setText(null);
     String[] filePaths = new String[count];
     for (int i = 0; i < count; i++) {
       JFileChooser fileChooser = new JFileChooser();
@@ -252,12 +297,21 @@ public class MainWindow extends ViewAdvanced {
         String fileName = fileChooser.getSelectedFile().getAbsolutePath();
         filePaths[i] = fileName;
       }
-      else {
-        imageLabel.setIcon(null);
-        imageLabel.setText("Cannot read the file");
-      }
     }
     return filePaths;
+  }
+  public void changeImageType()
+  {
+    System.out.println("view image type");
+    if(imageLabel!=null)
+      frame.remove(imageLabel);
+    imageLabel=new JLabel();
+    imageLabel.setText("Cannot read the file");
+    frame.add(imageLabel);
+
+    // Repaint the frame to show the updated contents
+    frame.revalidate();
+    frame.repaint();
   }
   public String popUpInput()
   {
@@ -285,5 +339,55 @@ public class MainWindow extends ViewAdvanced {
   public String savePath(){
     return JOptionPane.showInputDialog(frame,
         "Enter path where the current image has to be saved:");
+  }
+  private void showHistogram(ImageObj[] img) {
+    BufferedImage image = imageCovnerter(img[0]);
+    ImageIcon icon1 = new ImageIcon(image);
+    histoLabel1.setText(null);
+    histoLabel1.setIcon(icon1);
+
+    image = imageCovnerter(img[1]);
+    ImageIcon icon2 = new ImageIcon(image);
+    histoLabel2.setText(null);
+    histoLabel2.setIcon(icon2);
+
+    image = imageCovnerter(img[2]);
+    ImageIcon icon3 = new ImageIcon(image);
+    histoLabel3.setText(null);
+    histoLabel3.setIcon(icon3);
+
+    image = imageCovnerter(img[3]);
+    ImageIcon icon4 = new ImageIcon(image);
+    histoLabel4.setText(null);
+    histoLabel4.setIcon(icon4);
+
+    histoLabel1.setBorder(new EmptyBorder(10,0,10,0));
+    histoLabel2.setBorder(new EmptyBorder(10,0,10,0));
+    histoLabel3.setBorder(new EmptyBorder(10,0,10,0));
+    histoLabel4.setBorder(new EmptyBorder(10,0,10,0));
+
+  }
+
+  public class ImageLabel extends JLabel {
+    private String text;
+
+    public ImageLabel(ImageIcon icon, String text) {
+      super(icon);
+      this.text = text;
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+      super.paintComponent(g);
+      g.drawString(text, 0+2, getHeight());
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+      Dimension size = super.getPreferredSize();
+      size.width = Math.max(size.width, getFontMetrics(getFont()).stringWidth(text));
+      size.height += getFontMetrics(getFont()).getHeight();
+      return size;
+    }
   }
 }
