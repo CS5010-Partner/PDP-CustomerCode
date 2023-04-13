@@ -11,8 +11,8 @@ import model.IImageAdvanced;
 import view.ViewUI;
 
 /**
- * ImgControllerImplUI acts as a controller for the UI implementation.
- * It is extended from the already created ImgControllerImplAdvanced.
+ * ImgControllerImplUI acts as a controller for the UI implementation. It is extended from the
+ * already created ImgControllerImplAdvanced.
  */
 public class ImgControllerImplUI extends ImgControllerImplAdvanced {
 
@@ -24,7 +24,6 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
   private ArrayList<String> currentImgs;
 
 
-
   /**
    * Constructor for the ImgControllerImplAdvanced class.
    *
@@ -32,8 +31,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
    * @param view  represents the view object.
    * @param in    gives the object from where the input is read.
    */
-  public ImgControllerImplUI(IImageAdvanced model, ViewUI view,
-      BufferedReader in) {
+  public ImgControllerImplUI(IImageAdvanced model, ViewUI view, BufferedReader in) {
     super(model, view, new BufferedReader(in));
     formulateMap = new HashMap<String, String>();
     this.view = view;
@@ -93,7 +91,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
       @Override
       public void actionPerformed(ActionEvent e) {
         String newImgName;
-        boolean isLoadMemory= view.combineChooser();
+        boolean isLoadMemory = view.combineChooser();
         if (!isLoadMemory) {
           String[] params;
           String[] filePaths = view.fileChooser(3);
@@ -110,9 +108,9 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
           params = new String[]{filePaths[2], currentImgs.get(currentImgs.size() - 1)};
           actionHelper(params, "load");
         }
-       newImgName = generateNewImageName();
-        String[] params = new String[] { newImgName,currentImgs.get(currentImgs.size()-3),
-            currentImgs.get(currentImgs.size()-2),currentImgs.get(currentImgs.size()-1)};
+        newImgName = generateNewImageName();
+        String[] params = new String[]{newImgName, currentImgs.get(currentImgs.size() - 3),
+            currentImgs.get(currentImgs.size() - 2), currentImgs.get(currentImgs.size() - 1)};
         actionHelper(params, "combine");
         currentImgs.add(newImgName);
         histoGenerator();
@@ -126,8 +124,8 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     ActionListener a = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        String source=currentImgs.get(currentImgs.size()-1);
-        boolean isSaveMemory= view.splitChooser();
+        String source = currentImgs.get(currentImgs.size() - 1);
+        boolean isSaveMemory = view.splitChooser();
         histoGenerator();
 
         String imgNameRed = generateNewImageName();
@@ -136,21 +134,21 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
         currentImgs.add(imgNameGreen);
         String imgNameBlue = generateNewImageName();
         currentImgs.add(imgNameBlue);
-        String[] params = new String[] { source,imgNameRed,imgNameGreen,imgNameBlue};
+        String[] params = new String[]{source, imgNameRed, imgNameGreen, imgNameBlue};
         actionHelper(params, "split");
 
         if (!isSaveMemory) {
           String savePath;
           savePath = view.savePath();
-          params = new String[] {savePath,currentImgs.get(currentImgs.size()-3)};
+          params = new String[]{savePath, currentImgs.get(currentImgs.size() - 3)};
           actionHelper(params, "save");
 
           savePath = view.savePath();
-          params = new String[] {savePath,currentImgs.get(currentImgs.size()-2)};
+          params = new String[]{savePath, currentImgs.get(currentImgs.size() - 2)};
           actionHelper(params, "save");
 
           savePath = view.savePath();
-          params = new String[] {savePath,currentImgs.get(currentImgs.size()-1)};
+          params = new String[]{savePath, currentImgs.get(currentImgs.size() - 1)};
           actionHelper(params, "save");
         }
       }
@@ -163,7 +161,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
       @Override
       public void actionPerformed(ActionEvent e) {
         String imgName = generateNewImageName();
-        String[] params = new String[] { currentImgs.get(currentImgs.size()-1),imgName};
+        String[] params = new String[]{currentImgs.get(currentImgs.size() - 1), imgName};
         currentImgs.add(imgName);
         actionHelper(params, "sharpen");
         histoGenerator();
@@ -177,10 +175,9 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
       @Override
       public void actionPerformed(ActionEvent e) {
         String imgName = generateNewImageName();
-        String selectedOption= view.greyChooser();
+        String selectedOption = view.greyChooser();
         String type = null;
-        switch (selectedOption)
-        {
+        switch (selectedOption) {
           case "Red":
             type = "red";
             break;
@@ -200,10 +197,12 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
             type = "value";
             break;
           case "Transformation":
-            type=" ";
+            type = " ";
+            break;
+          default:
             break;
         }
-        String[] params = new String[] {type,currentImgs.get(currentImgs.size()-1),imgName};
+        String[] params = new String[]{type, currentImgs.get(currentImgs.size() - 1), imgName};
         currentImgs.add(imgName);
         actionHelper(params, "grey-normal");
         histoGenerator();
@@ -217,7 +216,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
       @Override
       public void actionPerformed(ActionEvent e) {
         String imgName = generateNewImageName();
-        String[] params = new String[] { currentImgs.get(currentImgs.size()-1),imgName};
+        String[] params = new String[]{currentImgs.get(currentImgs.size() - 1), imgName};
         currentImgs.add(imgName);
         actionHelper(params, "hFlip");
         histoGenerator();
@@ -231,7 +230,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
       @Override
       public void actionPerformed(ActionEvent e) {
         String imgName = generateNewImageName();
-        String[] params = new String[] { currentImgs.get(currentImgs.size()-1),imgName};
+        String[] params = new String[]{currentImgs.get(currentImgs.size() - 1), imgName};
         currentImgs.add(imgName);
         actionHelper(params, "vFlip");
         histoGenerator();
@@ -245,7 +244,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
       @Override
       public void actionPerformed(ActionEvent e) {
         String imgName = generateNewImageName();
-        String[] params = new String[] { currentImgs.get(currentImgs.size()-1),imgName};
+        String[] params = new String[]{currentImgs.get(currentImgs.size() - 1), imgName};
         currentImgs.add(imgName);
         actionHelper(params, "sepia");
         histoGenerator();
@@ -253,23 +252,20 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     };
     return a;
   }
+
   private ActionListener loadActionListner() {
     ActionListener a = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         String[] filePaths = view.fileChooser(1);
-        if(filePaths[0]==null)
-        {
+        if (filePaths[0] == null) {
           return;
         }
-        String[] fileType=filePaths[0].split("\\.");
-        if((!fileType[1].equals("jpg")) &&
-            (!fileType[1].equals("png")) &&
-            (!fileType[1].equals("bmp")) &&
-            (!fileType[1].equals("ppm"))) {
-            view.changeImageType();
-        }
-        else {
+        String[] fileType = filePaths[0].split("\\.");
+        if ((!fileType[1].equals("jpg")) && (!fileType[1].equals("png")) && (!fileType[1].equals(
+            "bmp")) && (!fileType[1].equals("ppm"))) {
+          view.changeImageType();
+        } else {
           String imgName = generateNewImageName();
           currentImgs.add(imgName);
           String[] params = new String[]{filePaths[0], currentImgs.get(currentImgs.size() - 1)};
@@ -282,17 +278,18 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     return a;
   }
 
-  private void histoGenerator(){
-    String[] params2 = new String[] {currentImgs.get(currentImgs.size()-1), generateNewImageName(),
+  private void histoGenerator() {
+    String[] params2 = new String[]{currentImgs.get(currentImgs.size() - 1), generateNewImageName(),
         generateNewImageName(), generateNewImageName(), generateNewImageName()};
     actionHelper(params2, "hist");
   }
+
   private ActionListener ditherActionListner() {
     ActionListener a = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         String newImgName = generateNewImageName();
-        String[] params = new String[] {currentImgs.get(currentImgs.size()-1), newImgName};
+        String[] params = new String[]{currentImgs.get(currentImgs.size() - 1), newImgName};
         currentImgs.add(newImgName);
         actionHelper(params, "dither");
         histoGenerator();
@@ -306,7 +303,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
       @Override
       public void actionPerformed(ActionEvent e) {
         String savePath = view.savePath();
-        String[] params = new String[] {savePath,currentImgs.get(currentImgs.size()-1)};
+        String[] params = new String[]{savePath, currentImgs.get(currentImgs.size() - 1)};
         actionHelper(params, "save");
       }
     };
@@ -318,7 +315,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
       @Override
       public void actionPerformed(ActionEvent e) {
         String newImgName = generateNewImageName();
-        String[] params = new String[] {currentImgs.get(currentImgs.size()-1), newImgName};
+        String[] params = new String[]{currentImgs.get(currentImgs.size() - 1), newImgName};
         currentImgs.add(newImgName);
         actionHelper(params, "blur");
         histoGenerator();
@@ -332,19 +329,18 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
       @Override
       public void actionPerformed(ActionEvent e) {
         String imgName = generateNewImageName();
-        String input= view.popUpInput();
-        int increment=0;
-        if(!input.equals("not clicked")){
+        String input = view.popUpInput();
+        int increment = 0;
+        if (!input.equals("not clicked")) {
           try {
             increment = Integer.parseInt(input);
-          }catch (NumberFormatException exception)
-          {
+          } catch (NumberFormatException exception) {
             view.setBrightException();
             return;
           }
         }
-        String[] params = new String[] { String.valueOf(increment),
-            currentImgs.get(currentImgs.size()-1),imgName};
+        String[] params = new String[]{String.valueOf(increment),
+            currentImgs.get(currentImgs.size() - 1), imgName};
         currentImgs.add(imgName);
         actionHelper(params, "bright");
         histoGenerator();

@@ -28,7 +28,7 @@ import model.ImageObj;
  * SwingUI class has the necessary structure for the Java Swing Application and also the methods
  * necessary for the model, view and controller interaction.
  */
-public class ViewUI extends ViewAdvanced implements IViewUI{
+public class ViewUI extends ViewAdvanced implements IViewUI {
 
   private final JFrame frame;
   private final JPanel panel;
@@ -119,8 +119,7 @@ public class ViewUI extends ViewAdvanced implements IViewUI{
     ImageIcon icon = new ImageIcon(image);
     imageLabel.setText(null);
     imageLabel.setIcon(icon);
-    Dimension imageSize = new Dimension(image.getWidth(null), image.getHeight(
-        null));
+    Dimension imageSize = new Dimension(image.getWidth(null), image.getHeight(null));
     imageLabel.setPreferredSize(imageSize);
     imageLabel.setText(null);
     imageLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -392,8 +391,7 @@ public class ViewUI extends ViewAdvanced implements IViewUI{
    * @return the value to be applied to the rgb split transformation.
    */
   public boolean splitChooser() {
-    int result = JOptionPane.showConfirmDialog(null, splitChooserDropdown,
-        "Select" + " an option",
+    int result = JOptionPane.showConfirmDialog(null, splitChooserDropdown, "Select" + " an option",
         JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
     String selectedOption = "";
     if (result == JOptionPane.OK_OPTION) {
@@ -455,6 +453,11 @@ public class ViewUI extends ViewAdvanced implements IViewUI{
 
   }
 
+  @Override
+  public void setBrightException() {
+    currentOperation.setText("Please give an integer input for brightening");
+  }
+
   /**
    * Static class to set label text under the image icon which overrides the JLabel.
    */
@@ -480,10 +483,5 @@ public class ViewUI extends ViewAdvanced implements IViewUI{
       size.height += getFontMetrics(getFont()).getHeight();
       return size;
     }
-  }
-  @Override
-  public void setBrightException()
-  {
-    currentOperation.setText("Please give an integer input for brightening");
   }
 }

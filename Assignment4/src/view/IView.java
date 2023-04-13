@@ -116,7 +116,7 @@ public interface IView {
    * Prints the message for the successful split of the image into three components.
    *
    * @param b decides whether to show the message to the user or not.
-   * @param img img object returned by the controller.
+   * @param imgs img object returned by the controller.
    */
   void echoSplitSuccess(ImageObj[] imgs, boolean b);
 

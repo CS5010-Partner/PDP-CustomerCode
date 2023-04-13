@@ -9,14 +9,13 @@ import java.io.InputStream;
  */
 public class CustomSystemIn extends InputStream {
 
-  private String input;
   private InputStream in;
 
   /**
    * Constructor to initialize the data members of this class.
    */
   public CustomSystemIn() {
-    input = "\n";
+    String input = "\n";
     in = new ByteArrayInputStream(input.getBytes());
     System.setIn(in);
   }

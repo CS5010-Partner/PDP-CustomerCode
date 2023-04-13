@@ -1,12 +1,14 @@
 package controller;
 
-import static org.junit.Assert.*;
-
 import model.IImageAdvanced;
 import org.junit.Before;
 import view.IViewAdvanced;
 
+/**
+ * Tests the implementation of the UI.
+ */
 public class ImgControllerImplUITest {
+
   private IImageAdvanced model;
   private IViewAdvanced view;
   private ImgController controller;

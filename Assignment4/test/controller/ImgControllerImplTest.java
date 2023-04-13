@@ -19,28 +19,20 @@ public class ImgControllerImplTest {
   private IImage model;
   private IView view;
   private ImgController controller;
-  private CustomSystemIn in;
 
   @Before
   public void setUp() {
     this.model = new MockModel();
     this.view = new MockView();
-    this.in = new CustomSystemIn();
 
   }
 
   @Test
   public void loadTest() {
     String test = "load code/ant.ppm ant\n \n";
-//
-//    Reader inputString = new StringReader(test);
     BufferedReader reader = new BufferedReader(new InputStreamReader(new CustomSystemIn()));
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
-
-//    in.addInput(test);
-//    in.addInput("#\n");
-
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
@@ -152,8 +144,7 @@ public class ImgControllerImplTest {
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
-    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Close Cmd|",
-        viewRet);
+    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
   }
 
   @Test
@@ -229,8 +220,7 @@ public class ImgControllerImplTest {
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
     assertEquals(
-        "Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get "
-            + "Cmd|Close Cmd|",
+        "Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get " + "Cmd|Close Cmd|",
         viewRet);
   }
 
@@ -292,8 +282,9 @@ public class ImgControllerImplTest {
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
-    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid "
-        + "Input|Get Cmd|Close Cmd|", viewRet);
+    assertEquals(
+        "Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid " + "Input|Get Cmd|Close Cmd|",
+        viewRet);
   }
 
   @Test
@@ -398,8 +389,9 @@ public class ImgControllerImplTest {
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
-    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get "
-        + "Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
+    assertEquals(
+        "Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get " + "Cmd|Invalid Input|Get Cmd|Close Cmd|",
+        viewRet);
   }
 
   @Test
@@ -474,8 +466,9 @@ public class ImgControllerImplTest {
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
-    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get "
-        + "Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
+    assertEquals(
+        "Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get " + "Cmd|Invalid Input|Get Cmd|Close Cmd|",
+        viewRet);
   }
 
   @Test
@@ -525,7 +518,6 @@ public class ImgControllerImplTest {
   }
 
 
-
   @Test
   public void greyscaleGreenNoCmdTest() {
     String test = "green ant antGreen\n#\n";
@@ -538,8 +530,9 @@ public class ImgControllerImplTest {
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
-    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get "
-        + "Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
+    assertEquals(
+        "Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get " + "Cmd|Invalid Input|Get Cmd|Close Cmd|",
+        viewRet);
   }
 
   @Test
@@ -569,8 +562,9 @@ public class ImgControllerImplTest {
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
-    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get "
-        + "Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
+    assertEquals(
+        "Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get " + "Cmd|Invalid Input|Get Cmd|Close Cmd|",
+        viewRet);
   }
 
   @Test
@@ -631,8 +625,7 @@ public class ImgControllerImplTest {
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
-    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid "
-        + "Input|Get Cmd|Close Cmd|", viewRet);
+    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid " + "Input|Get Cmd|Close Cmd|", viewRet);
   }
 
   @Test
@@ -738,8 +731,7 @@ public class ImgControllerImplTest {
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
-    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get "
-        + "Cmd|Close Cmd|", viewRet);
+    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get " + "Cmd|Close Cmd|", viewRet);
   }
 
   @Test
@@ -814,8 +806,9 @@ public class ImgControllerImplTest {
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
-    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid "
-        + "Input|Get Cmd|Close Cmd|", viewRet);
+    assertEquals(
+        "Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid " + "Input|Get Cmd|Close Cmd|",
+        viewRet);
   }
 
   @Test
@@ -829,8 +822,7 @@ public class ImgControllerImplTest {
 
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
-    assertEquals("rgbSplit | antSplit | antSRed | antSGreen | antSBlue\n",
-        modelRet);
+    assertEquals("rgbSplit | antSplit | antSRed | antSGreen | antSBlue\n", modelRet);
     assertEquals("Get Cmd|Split Success|Get Cmd|Close Cmd|", viewRet);
   }
 
@@ -997,10 +989,8 @@ public class ImgControllerImplTest {
     String modelRet = this.model.toString();
     String viewRet = this.view.toString();
     assertEquals("", modelRet);
-    assertEquals(
-        "Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid"
-            + " Input|Get Cmd|Invalid Input|Get Cmd|Close Cmd|",
-        viewRet);
+    assertEquals("Get Cmd|Invalid Input|Get Cmd|Invalid Input|Get Cmd|Invalid"
+        + " Input|Get Cmd|Invalid Input|Get Cmd|Close Cmd|", viewRet);
   }
 
   @Test

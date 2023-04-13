@@ -98,7 +98,7 @@ public class ImgControllerImpl extends Helper implements ImgController {
         }
 
       } catch (CloseCmdLineException e) {
-//        this.view.echoCloseCmd(true);
+        this.view.echoCloseCmd(false);
         break;
       } catch (IOException e) {
         this.view.echoIoError(e.toString(), true);

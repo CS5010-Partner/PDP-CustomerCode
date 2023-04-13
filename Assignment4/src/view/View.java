@@ -27,6 +27,7 @@ public class View implements IView {
   protected boolean getVerbose() {
     return verbose;
   }
+
   protected void print(String msg, boolean verboseOveride) {
     if (!this.masterVerbose) {
       return;
@@ -37,13 +38,12 @@ public class View implements IView {
         this.out.newLine();
         this.out.flush();
       }
-    }
-    catch (IOException e) {
+    } catch (IOException e) {
       System.out.println("There is a problem with output generator.");
     }
   }
 
-//  @Override
+
   public void toggleMasterVerbose() {
     this.masterVerbose = !this.masterVerbose;
   }
@@ -55,20 +55,17 @@ public class View implements IView {
 
   @Override
   public void echoGetCommand(boolean verbose) {
-    print("Enter the command",
-        verbose);
+    print("Enter the command", verbose);
   }
 
   @Override
   public void echoCloseCmd(boolean verbose) {
-    print("Program exited successfully",
-        verbose);
+    print("Program exited successfully", verbose);
   }
 
   @Override
   public void echoIoError(String e, boolean verbose) {
-    print(e + " There is a problem with reading the input, please try again.",
-        verbose);
+    print(e + " There is a problem with reading the input, please try again.", verbose);
   }
 
   @Override
@@ -93,14 +90,12 @@ public class View implements IView {
 
   @Override
   public void echoLoadSuccess(ImageObj img, boolean verbose) {
-    print("Image loaded sucessfully.",
-        verbose);
+    print("Image loaded sucessfully.", verbose);
   }
 
   @Override
   public void echoSaveSuccess(ImageObj img, boolean verbose) {
-    print("Image saved successfully.",
-        verbose);
+    print("Image saved successfully.", verbose);
   }
 
   @Override
@@ -115,20 +110,17 @@ public class View implements IView {
 
   @Override
   public void echoFlipSuccess(ImageObj img, boolean verbose) {
-    print("Image flipped successfully.",
-        verbose);
+    print("Image flipped successfully.", verbose);
   }
 
   @Override
   public void echoSplitSuccess(ImageObj[] imgs, boolean verbose) {
-    print("Image split successfully.",
-        verbose);
+    print("Image split successfully.", verbose);
   }
 
   @Override
   public void echoCombineSuccess(ImageObj img, boolean verbose) {
-    print("Image combined successfully.",
-        verbose);
+    print("Image combined successfully.", verbose);
   }
 
   @Override
@@ -138,7 +130,6 @@ public class View implements IView {
 
   @Override
   public void echoInvalidInputMsg(boolean verbose) {
-    print("Please Enter A Valid Input",
-        verbose);
+    print("Please Enter A Valid Input", verbose);
   }
 }

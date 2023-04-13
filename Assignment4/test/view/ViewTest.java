@@ -11,10 +11,11 @@ import org.junit.Test;
  * Class to test the view part of the MVC.
  */
 public class ViewTest {
+
   IView v;
   MockBufferedWriterAdvanced mbw;
-
   ImageObj img = null;
+
   @Before
   public void setUp() {
     mbw = new MockBufferedWriterAdvanced(new OutputStreamWriter(System.out));
@@ -48,10 +49,11 @@ public class ViewTest {
     v.toggleVerbose();
     v.echoIoError("error :", false);
     String out1 = mbw.checkBuffer();
-    v.echoIoError("error :",true);
+    v.echoIoError("error :", true);
     String out2 = mbw.checkBuffer();
     assertEquals("", out1);
-    assertEquals("error : There is a problem with reading the input, please try again.\n", out2);
+    assertEquals("error : There is a problem with reading the input, please try again" + ".\n",
+        out2);
   }
 
   @Test
@@ -59,7 +61,7 @@ public class ViewTest {
     v.toggleVerbose();
     v.echoWrongCmdError("error :", false);
     String out1 = mbw.checkBuffer();
-    v.echoWrongCmdError("error :",true);
+    v.echoWrongCmdError("error :", true);
     String out2 = mbw.checkBuffer();
     assertEquals("", out1);
     assertEquals("error : Please enter a valid command!\n", out2);
@@ -70,7 +72,7 @@ public class ViewTest {
     v.toggleVerbose();
     v.echoFileHandlingError("error :", false);
     String out1 = mbw.checkBuffer();
-    v.echoFileHandlingError("error :",true);
+    v.echoFileHandlingError("error :", true);
     String out2 = mbw.checkBuffer();
     assertEquals("", out1);
     assertEquals("error : File not found, Please try again!\n", out2);
@@ -81,7 +83,7 @@ public class ViewTest {
     v.toggleVerbose();
     v.echoImageNameAlreadyExistsError("error :", false);
     String out1 = mbw.checkBuffer();
-    v.echoImageNameAlreadyExistsError("error :",true);
+    v.echoImageNameAlreadyExistsError("error :", true);
     String out2 = mbw.checkBuffer();
     assertEquals("", out1);
     assertEquals("error : Please choose a different name!\n", out2);
@@ -91,9 +93,9 @@ public class ViewTest {
   public void getLoadSuccess() {
 
     v.toggleVerbose();
-    v.echoLoadSuccess(img,false);
+    v.echoLoadSuccess(img, false);
     String out1 = mbw.checkBuffer();
-    v.echoLoadSuccess(img,true);
+    v.echoLoadSuccess(img, true);
     String out2 = mbw.checkBuffer();
     assertEquals("", out1);
     assertEquals("Image loaded sucessfully.\n", out2);
@@ -102,9 +104,9 @@ public class ViewTest {
   @Test
   public void getSaveSuccess() {
     v.toggleVerbose();
-    v.echoSaveSuccess(img,false);
+    v.echoSaveSuccess(img, false);
     String out1 = mbw.checkBuffer();
-    v.echoSaveSuccess(img,true);
+    v.echoSaveSuccess(img, true);
     String out2 = mbw.checkBuffer();
     assertEquals("", out1);
     assertEquals("Image saved successfully.\n", out2);
@@ -124,9 +126,9 @@ public class ViewTest {
   @Test
   public void getBrightenSuccess() {
     v.toggleVerbose();
-    v.echoBrightenSuccess(img,false);
+    v.echoBrightenSuccess(img, false);
     String out1 = mbw.checkBuffer();
-    v.echoBrightenSuccess(img,true);
+    v.echoBrightenSuccess(img, true);
     String out2 = mbw.checkBuffer();
     assertEquals("", out1);
     assertEquals("Image brightened successfully.\n", out2);
@@ -135,9 +137,9 @@ public class ViewTest {
   @Test
   public void getFlipSuccess() {
     v.toggleVerbose();
-    v.echoFlipSuccess(img,false);
+    v.echoFlipSuccess(img, false);
     String out1 = mbw.checkBuffer();
-    v.echoFlipSuccess(img,true);
+    v.echoFlipSuccess(img, true);
     String out2 = mbw.checkBuffer();
     assertEquals("", out1);
     assertEquals("Image flipped successfully.\n", out2);
@@ -147,9 +149,9 @@ public class ViewTest {
   public void getSplitSuccess() {
     ImageObj[] imgs = {null, null};
     v.toggleVerbose();
-    v.echoSplitSuccess(imgs,false);
+    v.echoSplitSuccess(imgs, false);
     String out1 = mbw.checkBuffer();
-    v.echoSplitSuccess(imgs,true);
+    v.echoSplitSuccess(imgs, true);
     String out2 = mbw.checkBuffer();
     assertEquals("", out1);
     assertEquals("Image split successfully.\n", out2);
@@ -158,9 +160,9 @@ public class ViewTest {
   @Test
   public void getCombineSuccess() {
     v.toggleVerbose();
-    v.echoCombineSuccess(img,false);
+    v.echoCombineSuccess(img, false);
     String out1 = mbw.checkBuffer();
-    v.echoCombineSuccess(img,true);
+    v.echoCombineSuccess(img, true);
     String out2 = mbw.checkBuffer();
     assertEquals("", out1);
     assertEquals("Image combined successfully.\n", out2);

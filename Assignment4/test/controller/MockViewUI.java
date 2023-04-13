@@ -3,7 +3,11 @@ package controller;
 import model.ImageObj;
 import view.IViewAdvanced;
 
+/**
+ * This class represents the mock of the ViewUI class that needs to be used for testing.
+ */
 public class MockViewUI extends MockView implements IViewAdvanced {
+
   private void print(String msg, boolean verboseOveride) {
     if (this.verbose || verboseOveride) {
       System.out.println(msg);
