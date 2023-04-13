@@ -9,8 +9,6 @@ import view.IViewAdvanced;
 
 public class ImgControllerImplScript extends ImgControllerImplAdvanced {
 
-  private IViewAdvanced view;
-  private final IImageAdvanced model;
   private String filePath;
   private CustomSystemIn in = new CustomSystemIn();
   private BufferedReader origIn;
@@ -26,8 +24,6 @@ public class ImgControllerImplScript extends ImgControllerImplAdvanced {
   public ImgControllerImplScript(IImageAdvanced model, IViewAdvanced view,
       BufferedReader in, String[] args) {
     super(model, view, in);
-    this.view = view;
-    this.model = model;
     this.filePath = args[1];
     this.origIn = in;
   }

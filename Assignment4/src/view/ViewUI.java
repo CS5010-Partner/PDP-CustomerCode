@@ -410,7 +410,7 @@ public class ViewUI extends ViewAdvanced implements IViewUI {
         "Select" + " an option", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
     String selectedOption = "";
     if (result == JOptionPane.OK_OPTION) {
-      selectedOption = (String) splitChooserDropdown.getSelectedItem();
+      selectedOption = (String) combineChooserDropdown.getSelectedItem();
     }
     return selectedOption.equals(combineChooserOptions[0]);
   }
