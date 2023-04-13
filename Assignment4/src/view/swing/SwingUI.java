@@ -77,10 +77,12 @@ public class SwingUI extends ViewAdvanced {
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //closes when clicked on X
     frame.setSize(1200, 800);
     String welcomeText =
-        "<html><br><br><br><br><br><nr><br><div style='text-align: center; font-size: 20px; font-weight: bold; "
+        "<html><br><br><br><br><br><nr><br><div style='text-align: center; font-size: 20px; font-"
+            + "weight: bold; "
             + "font-family: Arial, sans-serif;'>Welcome to Image Transformation Application!</div>"
             + "<br>"
-            + "<p> Please Select the Load Button to Start Applying Image Transformations on the Selected Image</p></html>";
+            + "<p> Please Select the Load Button to Start Applying Image Transformations on the "
+            + "Selected Image</p></html>";
 
     histoLabel = new JLabel(welcomeText);
     histoLabel1 = new ImageLabel(null, "RED HISTOGRAM");
