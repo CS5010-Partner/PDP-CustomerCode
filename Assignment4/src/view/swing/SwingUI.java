@@ -73,9 +73,8 @@ public class SwingUI extends ViewAdvanced {
     histoLabel3=new ImageLabel(null,"BLUE HISTOGRAM");
     histoLabel4=new ImageLabel(null,"INTENSITY HISTOGRAM");
 
-    histoLabel.setText(welcomeText);
-    histoLabel1.setVerticalAlignment(SwingConstants.CENTER);
-    histoLabel1.setHorizontalAlignment(SwingConstants.CENTER);
+    histoLabel.setVerticalAlignment(SwingConstants.CENTER);
+    histoLabel.setHorizontalAlignment(SwingConstants.CENTER);
     histoLabel1.setVisible(false);
 
     histoLabel2.setVisible(false);
@@ -194,19 +193,19 @@ public class SwingUI extends ViewAdvanced {
 
   private void initButtons() {
     btnMap = new HashMap<>();
-    btnMap.put("load", new JButton("Load"));
-    btnMap.put("save",new JButton("save"));
+    btnMap.put("load", new JButton("LOAD"));
+    btnMap.put("save",new JButton("SAVE"));
 
-    btnMap.put("hFlip",new JButton("Horizontal Flip"));
-    btnMap.put("vFlip",new JButton("Vertical Flip"));
-    btnMap.put("bright",new JButton("Brighten"));
-    btnMap.put("grey-normal",new JButton("Grey"));
-    btnMap.put("split",new JButton("RGB Split"));
-    btnMap.put("combine",new JButton("RGB Combine"));
-    btnMap.put("blur",new JButton("Blur"));
-    btnMap.put("sepia",new JButton("Sepia"));
-    btnMap.put("sharpen",new JButton("Sharpen"));
-    btnMap.put("dither",new JButton("Dither"));
+    btnMap.put("hFlip",new JButton("HORIZONTAL FLIP"));
+    btnMap.put("vFlip",new JButton("VERTICAL FLIP"));
+    btnMap.put("bright",new JButton("BRIGHTEN"));
+    btnMap.put("grey-normal",new JButton("GRAY"));
+    btnMap.put("split",new JButton("RGB SPLIT"));
+    btnMap.put("combine",new JButton("RGB COMBINE"));
+    btnMap.put("blur",new JButton("BLUR"));
+    btnMap.put("sepia",new JButton("SEPIA"));
+    btnMap.put("sharpen",new JButton("SHARPEN"));
+    btnMap.put("dither",new JButton("DITHER"));
   }
   public void show()
   {
