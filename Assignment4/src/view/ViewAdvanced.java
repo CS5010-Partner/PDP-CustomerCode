@@ -19,7 +19,7 @@ public class ViewAdvanced extends View implements IViewAdvanced {
   }
 
   @Override
-  public void echoFilterBlurSuccess(ImageObj img,boolean b) {
+  public void echoFilterBlurSuccess(ImageObj img, boolean b) {
     print("Image Blurred successfully.", b);
   }
 

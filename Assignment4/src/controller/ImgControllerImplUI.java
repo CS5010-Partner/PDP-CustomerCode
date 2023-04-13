@@ -253,6 +253,10 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
       @Override
       public void actionPerformed(ActionEvent e) {
         String[] filePaths = view.fileChooser(1);
+        if(filePaths[0]==null)
+        {
+          return;
+        }
         String[] fileType=filePaths[0].split("\\.");
         if((!fileType[1].equals("jpg")) &&
             (!fileType[1].equals("png")) &&
@@ -326,7 +330,13 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
         String input= view.popUpInput();
         int increment=0;
         if(!input.equals("not clicked")){
-          increment=Integer.parseInt(input);
+          try {
+            increment = Integer.parseInt(input);
+          }catch (NumberFormatException exception)
+          {
+            view.setBrightException();
+            return;
+          }
         }
         String[] params = new String[] { String.valueOf(increment),currentImgs.get(currentImgs.size()-1),imgName};
         currentImgs.add(imgName);
