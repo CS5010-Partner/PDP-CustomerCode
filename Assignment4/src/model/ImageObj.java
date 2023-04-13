@@ -440,31 +440,49 @@ public class ImageObj {
         }
       }
 
+      for (int i=0; i<255; i++) {
+        for (int j=0; j<255; j++) {
+          newImgArr[i][j][0] = 45;
+          newImgArr[i][j][1] = 15;
+          newImgArr[i][j][2] = 93;
+          if (j%64 == 0) {
+            newImgArr[i][j][0] = 69;
+            newImgArr[i][j][1] = 69;
+            newImgArr[i][j][2] = 69;
+          }
+          if (i%64 == 0) {
+            newImgArr[i][j][0] = 69;
+            newImgArr[i][j][1] = 69;
+            newImgArr[i][j][2] = 69;
+          }
+        }
+      }
+
       for (int i=1; i<255; i++) {
         int j1 = 255 - (int)(((map.get(i-1) - 0.0) / maxVal)*255.0);
         int j2 = 255 - (int)(((map.get(i) - 0.0) / maxVal)*255.0);
 
-        newImgArr[j1][i-1][0] = 255;
-        newImgArr[j1][i][0] = 255;
+        newImgArr[j1][i-1][0] = 245;
+        newImgArr[j1][i][0] = 245;
 
-        newImgArr[j1][i-1][1] = 255;
-        newImgArr[j1][i][1] = 255;
+        newImgArr[j1][i-1][1] = 243;
+        newImgArr[j1][i][1] = 243;
 
-        newImgArr[j1][i-1][2] = 255;
-        newImgArr[j1][i][2] = 255;
+        newImgArr[j1][i-1][2] = 193;
+        newImgArr[j1][i][2] = 193;
 
         if (j1>j2) {
           for (int c=j2; c<j1; c++) {
-            newImgArr[c][i][0] = 100;
-            newImgArr[c][i][1] = 100;
-            newImgArr[c][i][2] = 100;
+            newImgArr[c][i][0] = 205;
+            newImgArr[c][i][1] = 193;
+            newImgArr[c][i][2] = 143;
           }
         }
         else {
           for (int c=j1; c<j2; c++) {
-            newImgArr[c][i][0] = 100;
-            newImgArr[c][i][1] = 100;
-            newImgArr[c][i][2] = 100;
+            newImgArr[c][i][0] = 205;
+            newImgArr[c][i][1] = 193;
+            newImgArr[c][i][2] = 143;
           }
         }
 
