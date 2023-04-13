@@ -39,9 +39,10 @@ public class MainUI {
     }
 
     if (args[0].equals("-file") && args.length >= 2) {
+      CustomSystemIn in = new CustomSystemIn();
       IViewAdvanced view = new ViewAdvanced(new BufferedWriter(new OutputStreamWriter(System.out)));
       ImgControllerImplScript controller = new ImgControllerImplScript(model, view,
-          new BufferedReader(new InputStreamReader(System.in)), args);
+          new BufferedReader(new InputStreamReader(in)), args);
       controller.run();
     }
     else if (args[0].equals("-text")) {

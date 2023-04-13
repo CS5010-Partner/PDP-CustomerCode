@@ -22,6 +22,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
   private Map<String, String> formulateMap;
   private ViewUI view;
   private ArrayList<String> currentImgs;
+  private BufferedReader origIn;
 
 
   /**
@@ -35,6 +36,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     super(model, view, new BufferedReader(in));
     formulateMap = new HashMap<String, String>();
     this.view = view;
+    this.origIn  = in;
     currentImgs = new ArrayList();
   }
 

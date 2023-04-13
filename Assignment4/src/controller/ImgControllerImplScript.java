@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import model.IImageAdvanced;
 import view.IViewAdvanced;
 
@@ -10,6 +13,7 @@ public class ImgControllerImplScript extends ImgControllerImplAdvanced {
   private final IImageAdvanced model;
   private String filePath;
   private CustomSystemIn in = new CustomSystemIn();
+  private BufferedReader origIn;
 
 
   /**
@@ -25,18 +29,25 @@ public class ImgControllerImplScript extends ImgControllerImplAdvanced {
     this.view = view;
     this.model = model;
     this.filePath = args[1];
-//    this.in = new BufferedReader(new StringReader("run"));
-;
+    this.origIn = in;
   }
 
   private void actionHelper() {
-    String cmd = "run ";
-    cmd += this.filePath;
-    cmd += " ";
-    cmd += "\n#\n";
-    System.out.println(cmd);
-    in.addInput(cmd);
-    super.commandExecution();
+    try {
+      BufferedReader br = new BufferedReader(new FileReader(this.filePath));
+      StringBuilder commands = new StringBuilder();
+      for (String line; (line = br.readLine()) != null; ) {
+        commands.append(line).append(" \n");
+      }
+      in.addInput(commands.toString());
+      super.commandExecution();
+    }
+    catch (FileNotFoundException e) {
+      System.out.println("File not found!");
+    } catch (IOException e) {
+      System.out.println("File not found!");
+    }
+
   }
 
   @Override

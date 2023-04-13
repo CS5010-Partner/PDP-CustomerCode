@@ -49,10 +49,10 @@ public class ImgControllerImpl extends Helper implements ImgController {
     this.in = in;
     this.tempIn = in;
     cMap = new HashMap<>();
-    initCommands(this.in);
+    initCommands();
   }
 
-  private void initCommands(BufferedReader in) {
+  private void initCommands() {
     ACommand load = new Load(model, view, in);
     ACommand save = new Save(model, view, in);
     ACommand greyscale = new GreyScale(model, view, in);
@@ -94,7 +94,7 @@ public class ImgControllerImpl extends Helper implements ImgController {
           BufferedReader overrideIn = new BufferedReader(new StringReader(commands.toString()));
           this.tempIn = this.in;
           this.in = overrideIn;
-          initCommands(this.in);
+          initCommands();
           switchHelper("run");
         } else {
           switchHelper(cmd);
