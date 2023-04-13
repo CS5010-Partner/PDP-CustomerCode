@@ -49,7 +49,6 @@ public class ImgControllerImpl extends Helper implements ImgController {
     this.in = in;
     this.tempIn = in;
     cMap = new HashMap<>();
-
     initCommands();
   }
 
@@ -84,7 +83,7 @@ public class ImgControllerImpl extends Helper implements ImgController {
           BufferedReader br = new BufferedReader(new FileReader(scriptPath));
           StringBuilder commands = new StringBuilder();
           for (String line; (line = br.readLine()) != null; ) {
-            commands.append(line).append("\n");
+            commands.append(line).append(" \n");
           }
           commands.append("_run-end## ");
           br.close();
@@ -92,13 +91,14 @@ public class ImgControllerImpl extends Helper implements ImgController {
           BufferedReader overrideIn = new BufferedReader(new StringReader(commands.toString()));
           this.tempIn = this.in;
           this.in = overrideIn;
+          initCommands();
           switchHelper("run");
         } else {
           switchHelper(cmd);
         }
 
       } catch (CloseCmdLineException e) {
-        this.view.echoCloseCmd(false);
+        this.view.echoCloseCmd(true);
         break;
       } catch (IOException e) {
         this.view.echoIoError(e.toString(), true);

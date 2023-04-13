@@ -33,7 +33,6 @@ public class LoadAdvanced extends ACommandAdvanced {
   public void execute()
       throws IllegalStateException, FileHandlingException, IOException, CloseCmdLineException,
       ImageNameAlreadyExistsException, ImageNotFoundException, WrongCommandException {
-    System.out.println(in);
     String imagePath = this.getInput(in);
     String imageName = this.getInput(in);
     ImageObj img = model.load(imagePathHelper(imagePath), imageName);

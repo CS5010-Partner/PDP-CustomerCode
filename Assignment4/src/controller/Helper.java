@@ -11,7 +11,7 @@ import java.io.IOException;
 public abstract class Helper {
 
   protected String getInput(BufferedReader sc) throws CloseCmdLineException, IOException {
-    StringBuilder input = new StringBuilder();
+    StringBuffer input = new StringBuffer();
 
     while (true) {
       char ch = (char) sc.read();

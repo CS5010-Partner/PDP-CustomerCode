@@ -41,7 +41,6 @@ public class ViewAdvanced extends View implements IViewAdvanced {
 
   @Override
   public void echoHistogramSuccess(ImageObj[] imgs, boolean b) {
-    System.out.println("adasdas");
     print("Histograms generated successfully.", b);
   }
 
