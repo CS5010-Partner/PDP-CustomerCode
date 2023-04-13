@@ -430,10 +430,6 @@ public class ImageObj {
         }
       }
 
-//      map.put(100, 200);
-//      map.put(150, 10);
-//      maxVal = 255;
-
       for (int i=0; i<255; i++) {
         if (!map.containsKey(i)) {
           map.put(i, 0);

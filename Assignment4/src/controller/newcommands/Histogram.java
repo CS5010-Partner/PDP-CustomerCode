@@ -33,7 +33,6 @@ public class Histogram extends ACommandAdvanced {
   public void execute()
       throws CloseCmdLineException, IOException, ImageNameAlreadyExistsException,
       ImageNotFoundException {
-    System.out.println("histttt");
     String sourceName = getInput(in);
     String redHistName = getInput(in);
     String greenHistName = getInput(in);
@@ -41,7 +40,6 @@ public class Histogram extends ACommandAdvanced {
     String intHistName = getInput(in);
 
     ImageObj[] imgs = this.model.histogram(sourceName, redHistName, greenHistName, blueHistName, intHistName);
-    System.out.println("cominggg");
     this.view.echoHistogramSuccess(imgs,false);
   }
 }

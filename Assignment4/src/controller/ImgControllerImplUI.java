@@ -34,7 +34,6 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     formulateMap = new HashMap<String, String>();
     this.view = view;
     currentImgs = new ArrayList();
-    currentImgs = new ArrayList();
 //    super.commandExecution();
   }
 

@@ -21,7 +21,6 @@ import model.ImageObj;
 import view.ViewAdvanced;
 
 public class MainWindow extends ViewAdvanced {
-  private ImageObj img;
   private JFrame frame;
   private JPanel panel,histoPanel,topPanel, operationPanel;
   private JLabel imageLabel, histoLabel1,histoLabel2,histoLabel3,histoLabel4, currentOperation;
@@ -45,7 +44,6 @@ public class MainWindow extends ViewAdvanced {
 
 
     frame.setMinimumSize(new Dimension(700, 500));
-//    imageLabel.setSize(new Dimension(500,500));
     frame.setTitle("Image Transformations");
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //closes when clicked on X
     frame.setSize(800,600);
@@ -185,9 +183,6 @@ public class MainWindow extends ViewAdvanced {
 
 
     panel.add(btnMap.get("grey-normal"));
-
-
-//    panel.add(btnMap.get("grey"));
     panel.add(btnMap.get("vFlip"));
     panel.add(btnMap.get("hFlip"));
    panel.add(btnMap.get("split"));
@@ -222,13 +217,11 @@ public class MainWindow extends ViewAdvanced {
     if (scrollPane != null) {
       frame.remove(scrollPane);
     }
-
     // Create a new scroll pane with the updated label
     scrollPane = new JScrollPane(imageLabel);
     scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
     scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     frame.add(scrollPane, BorderLayout.CENTER);
-
     // Repaint the frame to show the updated contents
     frame.revalidate();
     frame.repaint();
