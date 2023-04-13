@@ -25,6 +25,8 @@ public class ImgControllerImplScript extends ImgControllerImplAdvanced {
     this.view = view;
     this.model = model;
     this.filePath = args[1];
+//    this.in = new BufferedReader(new StringReader("run"));
+;
   }
 
   private void actionHelper() {

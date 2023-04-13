@@ -49,10 +49,10 @@ public class ImgControllerImpl extends Helper implements ImgController {
     this.in = in;
     this.tempIn = in;
     cMap = new HashMap<>();
-    initCommands();
+    initCommands(this.in);
   }
 
-  private void initCommands() {
+  private void initCommands(BufferedReader in) {
     ACommand load = new Load(model, view, in);
     ACommand save = new Save(model, view, in);
     ACommand greyscale = new GreyScale(model, view, in);
@@ -77,7 +77,9 @@ public class ImgControllerImpl extends Helper implements ImgController {
       this.view.echoGetCommand(false);
       try {
         String cmd = getInput(in);
+
         if (cmd.equals("run")) {
+
           this.view.toggleVerbose();
           String scriptPath = this.getInput(in);
           BufferedReader br = new BufferedReader(new FileReader(scriptPath));
@@ -85,13 +87,14 @@ public class ImgControllerImpl extends Helper implements ImgController {
           for (String line; (line = br.readLine()) != null; ) {
             commands.append(line).append(" \n");
           }
+          System.out.println(commands);
           commands.append("_run-end## ");
           br.close();
 
           BufferedReader overrideIn = new BufferedReader(new StringReader(commands.toString()));
           this.tempIn = this.in;
           this.in = overrideIn;
-          initCommands();
+          initCommands(this.in);
           switchHelper("run");
         } else {
           switchHelper(cmd);
