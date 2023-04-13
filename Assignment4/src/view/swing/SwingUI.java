@@ -24,6 +24,7 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import model.ImageObj;
 import view.ViewAdvanced;
+import view.IViewUI;
 
 /**
  * SwingUI class has the necessary structure for the Java Swing Application and also the methods
@@ -489,5 +490,10 @@ public class SwingUI extends ViewAdvanced {
       size.height += getFontMetrics(getFont()).getHeight();
       return size;
     }
+  }
+  @Override
+  public void setBrightException()
+  {
+    currentOperation.setText("Please give an integer input for brightening");
   }
 }

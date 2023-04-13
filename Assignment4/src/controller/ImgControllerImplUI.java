@@ -327,7 +327,6 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     return a;
   }
 
-
   private ActionListener brightActionListner() {
     ActionListener a = new ActionListener() {
       @Override
@@ -393,7 +392,6 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
         cmd += params[1];
         break;
     }
-
     cmd += "\n#\n";
     in.addInput(cmd);
     super.commandExecution();
