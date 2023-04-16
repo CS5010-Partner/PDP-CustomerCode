@@ -1,7 +1,5 @@
 package model;
 
-import static model.Kernels.*;
-
 import exceptions.ImageNameAlreadyExistsException;
 import exceptions.ImageNotFoundException;
 
@@ -14,7 +12,7 @@ public class ImageSetAdvanced extends ImageSet implements IImageAdvanced {
   public ImageObj filterBlur(String imageName, String destImageName)
       throws ImageNameAlreadyExistsException, ImageNotFoundException {
     checkName(new String[]{imageName}, new String[]{destImageName});
-    double[][] kernel = getImageBlurKernel();
+    double[][] kernel = Kernels.getImageBlurKernel();
     ImageObj img = map.get(imageName).filtering(kernel);
     map.put(destImageName, img);
     return img;
@@ -24,7 +22,7 @@ public class ImageSetAdvanced extends ImageSet implements IImageAdvanced {
   public ImageObj filterSharpen(String imageName, String destImageName)
       throws ImageNameAlreadyExistsException, ImageNotFoundException {
     checkName(new String[]{imageName}, new String[]{destImageName});
-    double[][] kernel = getImageSharpenKernel();
+    double[][] kernel = Kernels.getImageSharpenKernel();
     ImageObj img = map.get(imageName).filtering(kernel);
     map.put(destImageName, img);
     return img;

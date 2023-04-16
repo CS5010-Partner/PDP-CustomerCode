@@ -29,8 +29,9 @@ public class ImgControllerImplTest {
 
   @Test
   public void loadTest() {
-    String test = "load code/ant.ppm ant\n \n";
-    BufferedReader reader = new BufferedReader(new InputStreamReader(new CustomSystemIn()));
+    String test = "load code/ant.ppm ant\n#\n";
+    Reader inputString = new StringReader(test);
+    BufferedReader reader = new BufferedReader(inputString);
     this.controller = new ImgControllerImpl(this.model, this.view, reader);
     this.controller.run();
 

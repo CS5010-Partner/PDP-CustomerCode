@@ -92,7 +92,6 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
       public void actionPerformed(ActionEvent e) {
         String newImgName;
         boolean isLoadMemory = view.combineChooser();
-        System.out.println(isLoadMemory);
         if (!isLoadMemory) {
           String[] params;
           String[] filePaths = view.fileChooser(3);

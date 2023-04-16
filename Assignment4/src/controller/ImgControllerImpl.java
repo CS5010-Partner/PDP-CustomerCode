@@ -87,7 +87,6 @@ public class ImgControllerImpl extends Helper implements ImgController {
           for (String line; (line = br.readLine()) != null; ) {
             commands.append(line).append(" \n");
           }
-          System.out.println(commands);
           commands.append("_run-end## ");
           br.close();
 

@@ -23,9 +23,9 @@ public class MainUI {
    * @param args takes the input from the terminal.
    */
   public static void main(String[] args) {
-    for (String i : args) {
-      System.out.println(i);
-    }
+//    for (String i : args) {
+//      System.out.println(i);
+//    }
 
     ImageSetAdvanced model = new ImageSetAdvanced();
 
