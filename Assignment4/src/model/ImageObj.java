@@ -503,7 +503,18 @@ public class ImageObj {
   }
 
   public ImageObj mosaic(int seedValue) {
-    return this;
+    int[][][] image = new int[height][width][3];
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
+        for (int k = 0; k < 3; k++) {
+          int val = this.image[i][j][k] + seedValue;
+          val = Math.max(val, 0);
+          val = Math.min(val, this.maxValue);
+          image[i][j][k] = val;
+        }
+      }
+    }
+    return new ImageObj(image, this.width, this.height, this.maxValue);
   }
 }
 

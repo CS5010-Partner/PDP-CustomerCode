@@ -74,8 +74,8 @@ public class ImageSetAdvanced extends ImageSet implements IImageAdvanced {
   /**
    * mosaic form of the source image and store as the desination image name.
    *
-   * @param sourceName source image name.
-   * @param destName   destination image name.
+   * @param imageName source image name.
+   * @param destImageName   destination image name.
    * @param seedValue  How many seeds to use for mosaic operation.
    * @return the image object of the mosaic image.
    */
