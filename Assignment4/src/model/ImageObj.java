@@ -502,6 +502,12 @@ public class ImageObj {
     return hist;
   }
 
+  /**
+   * Method to create a mosaic image from the current image.
+   *
+   * @param seedValue the number of seeds to use for the mosaic.
+   * @return The mosaic image.
+   */
   public ImageObj mosaic(int seedValue) {
     int[][][] image = new int[height][width][3];
     for (int i = 0; i < height; i++) {

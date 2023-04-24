@@ -50,7 +50,7 @@ public class MainTest {
       ImageObj obj2 = model.load(img2, ref2);
 
       if (obj1.getHeight() != obj2.getHeight()
-         || obj1.getWidth() != obj2.getWidth()) {
+          || obj1.getWidth() != obj2.getWidth()) {
         return false;
       }
 

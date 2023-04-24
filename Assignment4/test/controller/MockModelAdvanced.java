@@ -51,7 +51,7 @@ public class MockModelAdvanced extends MockModel implements IImageAdvanced {
       String greenHistImgname, String intHistImgName)
       throws ImageNameAlreadyExistsException, ImageNotFoundException {
     super.sb.append("dither | " + sourceName + " | " + redHistImgName + " | " + greenHistImgname
-       + " | " + blueHistImgName + " | " + intHistImgName + "\n");
+        + " | " + blueHistImgName + " | " + intHistImgName + "\n");
     return null;
   }
 
