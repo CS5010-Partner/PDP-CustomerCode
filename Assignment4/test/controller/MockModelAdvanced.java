@@ -50,8 +50,24 @@ public class MockModelAdvanced extends MockModel implements IImageAdvanced {
   public ImageObj[] histogram(String sourceName, String redHistImgName, String blueHistImgName,
       String greenHistImgname, String intHistImgName)
       throws ImageNameAlreadyExistsException, ImageNotFoundException {
-    super.sb.append("dither | " + sourceName + " | " + redHistImgName + " | " + greenHistImgname +
-        " | " + blueHistImgName + " | " + intHistImgName + "\n");
+    super.sb.append("dither | " + sourceName + " | " + redHistImgName + " | " + greenHistImgname
+       + " | " + blueHistImgName + " | " + intHistImgName + "\n");
+    return null;
+  }
+
+  /**
+   * mosaic form of the source image and store as the desination image name.
+   *
+   * @param sourceName source image name.
+   * @param destName   destination image name.
+   * @param seedValue  How many seeds to use for mosaic operation.
+   * @return the image object of the mosaic image.
+   */
+  @Override
+  public ImageObj mosaic(String sourceName, String destName, int seedValue)
+      throws ImageNameAlreadyExistsException, ImageNotFoundException {
+    super.sb.append("mosaic | ").append(seedValue).append(" | ").append(sourceName).append(" | ")
+        .append(destName).append("\n");
     return null;
   }
 }

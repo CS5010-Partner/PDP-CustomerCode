@@ -383,4 +383,17 @@ public class ImgControllerImplAdvancedTest {
     assertEquals("Get Cmd|Dither Success|Get Cmd|Close Cmd|", viewRet);
   }
 
+  @Test
+  public void  mosaicTest() {
+    String test = "mosaic 10 ant antMosaic\n#\n";
+    Reader inputString = new StringReader(test);
+    BufferedReader reader = new BufferedReader(inputString);
+    this.controller = new ImgControllerImplAdvanced(this.model, this.view, reader);
+    this.controller.run();
+    String modelRet = this.model.toString();
+    String viewRet = this.view.toString();
+    assertEquals("mosaic | 10 | ant | antMosaic\n", modelRet);
+    assertEquals("Get Cmd|Mosaic Success|Get Cmd|Close Cmd|", viewRet);
+  }
+
 }

@@ -7,11 +7,13 @@ import java.io.IOException;
 import model.IImageAdvanced;
 import view.IViewAdvanced;
 
+/**
+ * Class to run a script in the program.
+ */
 public class ImgControllerImplScript extends ImgControllerImplAdvanced {
 
   private String filePath;
   private CustomSystemIn in = new CustomSystemIn();
-  private BufferedReader origIn;
 
 
   /**
@@ -25,7 +27,6 @@ public class ImgControllerImplScript extends ImgControllerImplAdvanced {
       BufferedReader in, String[] args) {
     super(model, view, in);
     this.filePath = args[1];
-    this.origIn = in;
   }
 
   private void actionHelper() {

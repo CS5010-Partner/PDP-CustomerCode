@@ -218,7 +218,7 @@ public class ViewUI extends ViewAdvanced implements IViewUI {
   }
 
   @Override
-  public void echoMosaicSuccess(ImageObj img, boolean b){
+  public void echoMosaicSuccess(ImageObj img, boolean b) {
     currentOperation.setText("Mosaic Image Generated Successfully");
     showImage(img);
   }

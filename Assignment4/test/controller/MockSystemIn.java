@@ -9,8 +9,6 @@ import java.io.InputStream;
  */
 public class MockSystemIn extends InputStream {
 
-  private InputStream in;
-
 
   /**
    * Sets the input s to the System.in
@@ -18,7 +16,7 @@ public class MockSystemIn extends InputStream {
    * @param s the value to be set to the System.in
    */
   public void addInput(String s) {
-    in = new ByteArrayInputStream(s.getBytes());
+    InputStream in = new ByteArrayInputStream(s.getBytes());
     System.setIn(in);
 
   }

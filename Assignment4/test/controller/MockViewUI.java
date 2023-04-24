@@ -98,4 +98,10 @@ public class MockViewUI extends MockViewAdvanced implements IViewUI {
     print("bright exception Success", false);
 
   }
+
+
+  @Override
+  public void setMosaicSeedException() {
+    print("mosaic exception Success", false);
+  }
 }

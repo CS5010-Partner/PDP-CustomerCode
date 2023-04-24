@@ -23,10 +23,6 @@ public class MainUI {
    * @param args takes the input from the terminal.
    */
   public static void main(String[] args) {
-//    for (String i : args) {
-//      System.out.println(i);
-//    }
-
     ImageSetAdvanced model = new ImageSetAdvanced();
 
     if (args.length == 0) {
@@ -52,7 +48,7 @@ public class MainUI {
       controller.run();
       return;
     }
-      System.out.println("Enter a valid command!");
+    System.out.println("Enter a valid command!");
 
   }
 }

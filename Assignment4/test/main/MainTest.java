@@ -49,8 +49,8 @@ public class MainTest {
       ImageObj obj1 = model.load(img1, ref1);
       ImageObj obj2 = model.load(img2, ref2);
 
-      if (obj1.getHeight() != obj2.getHeight() ||
-          obj1.getWidth() != obj2.getWidth()) {
+      if (obj1.getHeight() != obj2.getHeight()
+         || obj1.getWidth() != obj2.getWidth()) {
         return false;
       }
 

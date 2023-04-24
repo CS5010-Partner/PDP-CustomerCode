@@ -3,7 +3,6 @@ package controller;
 import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
 import model.IImage;

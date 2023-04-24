@@ -95,8 +95,8 @@ public class ImageSetAdvancedTest {
       model.filterBlur("1orig", "1filter");
       fail("filter red failed");
     } catch (ImageNameAlreadyExistsException e) {
-      assertEquals("exceptions.ImageNameAlreadyExistsException: " +
-              "Image name already exists.",
+      assertEquals("exceptions.ImageNameAlreadyExistsException: "
+              + "Image name already exists.",
           e.toString());
     }
 
@@ -161,8 +161,8 @@ public class ImageSetAdvancedTest {
       model.filterSharpen("1orig", "1sharp");
       fail("sharp red failed");
     } catch (ImageNameAlreadyExistsException e) {
-      assertEquals("exceptions.ImageNameAlreadyExistsException: " +
-              "Image name already exists.",
+      assertEquals("exceptions.ImageNameAlreadyExistsException: "
+              + "Image name already exists.",
           e.toString());
     }
 
@@ -227,8 +227,8 @@ public class ImageSetAdvancedTest {
       model.transformGreyScale("1orig", "1grey");
       fail("grey transform failed");
     } catch (ImageNameAlreadyExistsException e) {
-      assertEquals("exceptions.ImageNameAlreadyExistsException: " +
-              "Image name already exists.",
+      assertEquals("exceptions.ImageNameAlreadyExistsException: "
+              + "Image name already exists.",
           e.toString());
     }
 
@@ -293,8 +293,8 @@ public class ImageSetAdvancedTest {
       model.transformSepia("1orig", "1sepia");
       fail("sepia transform failed");
     } catch (ImageNameAlreadyExistsException e) {
-      assertEquals("exceptions.ImageNameAlreadyExistsException: " +
-              "Image name already exists.",
+      assertEquals("exceptions.ImageNameAlreadyExistsException: "
+              + "Image name already exists.",
           e.toString());
     }
 
@@ -359,8 +359,8 @@ public class ImageSetAdvancedTest {
       model.dither("1orig", "1dither");
       fail("dither transform failed");
     } catch (ImageNameAlreadyExistsException e) {
-      assertEquals("exceptions.ImageNameAlreadyExistsException: " +
-              "Image name already exists.",
+      assertEquals("exceptions.ImageNameAlreadyExistsException: "
+              + "Image name already exists.",
           e.toString());
     }
 

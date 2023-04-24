@@ -7,11 +7,13 @@ import exceptions.ImageNotFoundException;
 import exceptions.WrongCommandException;
 import java.io.BufferedReader;
 import java.io.IOException;
-import model.IImage;
 import model.IImageAdvanced;
 import model.ImageObj;
 import view.IViewAdvanced;
 
+/**
+ * Class for a Mosaic command object.
+ */
 public class Mosaic extends ACommandAdvanced {
 
   private final IImageAdvanced model;
