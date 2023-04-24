@@ -1,6 +1,9 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 /**
  * This class represents the ImageObj which represents the image as an entity. Here the images are
@@ -509,19 +512,134 @@ public class ImageObj {
    * @return The mosaic image.
    */
   public ImageObj mosaic(int seedValue) {
-    int[][][] image = new int[height][width][3];
+    int height = this.height;
+    int width = this.width;
+    if (seedValue > height * width) {
+      throw new IllegalArgumentException("Seed too large for image.");
+    }
+
+    int counter = 0;
+    boolean[][] bArray = new boolean[height][width];
+    ImageObj[] rgbSplit = this.rgbSplit();
+    int[][] r = flattenArray(this, 0);
+    int[][] g = flattenArray(this, 1);
+    int[][] b = flattenArray(this, 2);
+    int[][] newR = new int[this.height][this.width];
+    int[][] newB = new int[this.height][this.width];
+    int[][] newG = new int[this.height][this.width];
+
+    int[][] seeds = getSeeds(seedValue, height, width);
+    //foreach seed, find all closest to it and set values.
+    for (int i = 0; i < seeds.length; i++) {
+      int sX = seeds[i][0];
+      int sY = seeds[i][1];
+      List<String> points = new ArrayList<>();
+      int avgG = 0;
+      int avgR = 0;
+      int avgB = 0;
+      for (int k = 0; k < height; k++) {
+        for (int l = 0; l < width; l++) {
+          if (bArray[k][l]) {
+            continue;
+          }
+          int[] point = {k, l};
+          int[] se = findClosestPoint(point, seeds);
+          if (se[0] == sX && se[1] == sY) {
+            String val = k + "," + l;
+            points.add(val);
+            avgG += g[k][l];
+            avgR += r[k][l];
+            avgB += b[k][l];
+            bArray[k][l] = true;
+          }
+        }
+      }
+      // find average and set all these values in the array
+//      System.out.println("size: " + points.size());
+      avgB = (int) Math.ceil((double) avgB / (double) points.size());
+      avgR = (int) Math.ceil((double) avgR / (double) points.size());
+      avgG = (int) Math.ceil((double) avgG / (double) points.size());
+      for (String s : points) {
+        int x = Integer.parseInt(s.split(",")[0]);
+        int y = Integer.parseInt(s.split(",")[1]);
+        newR[x][y] = avgR;
+        newG[x][y] = avgG;
+        newB[x][y] = avgB;
+      }
+    }
+    int[][][] imageArray = expandArray(newR, newG, newB);
+    return new ImageObj(imageArray, this.width, this.height, this.maxValue);
+  }
+
+  private static int[] findClosestPoint(int[] point, int[][] list) {
+    double dist = Double.MAX_VALUE;
+    int[] shortest = new int[2];
+    int x = point[0];
+    int y = point[1];
+    for (int i = 0; i < list.length; i++) {
+      int testX = list[i][0];
+      int testY = list[i][1];
+      double testDist = Math.sqrt(Math.pow(x - testX, 2) + Math.pow(y - testY, 2));
+
+      if (testDist < dist) {
+        dist = testDist;
+        shortest[0] = testX;
+        shortest[1] = testY;
+      }
+    }
+    return shortest;
+  }
+
+  private static int[][] getSeeds(int seed, int height, int width) {
+    int[][] seeds = new int[seed][2];
+    boolean[][] bArray = new boolean[height][width];
+    int counter = 0;
+    Random rand = new Random();
+    while (counter < seed) {
+      int rRow = rand.nextInt(width);
+      int rCol = rand.nextInt(height);
+      if (!bArray[rCol][rRow]) {
+        bArray[rCol][rRow] = true;
+        counter++;
+      }
+    }
+    counter = 0;
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
-        for (int k = 0; k < 3; k++) {
-          int val = this.image[i][j][k] + seedValue;
-          val = Math.max(val, 0);
-          val = Math.min(val, this.maxValue);
-          image[i][j][k] = val;
+        if (bArray[i][j]) {
+          seeds[counter][0] = i;
+          seeds[counter][1] = j;
+          counter = counter + 1;
         }
       }
     }
-    return new ImageObj(image, this.width, this.height, this.maxValue);
+    return seeds;
   }
+
+  private int[][] flattenArray(ImageObj image, int rgb) {
+    int[][][] oldArray = image.image;
+    int[][] newArray = new int[image.height][image.width];
+    for (int i = 0; i < image.height; i++) {
+      for (int j = 0; j < image.width; j++) {
+        for (int k = 0; k < 3; k++) {
+          newArray[i][j] = oldArray[i][j][rgb];
+        }
+      }
+
+    }
+    return newArray;
+  }
+
+  private int[][][] expandArray(int[][] redArray, int[][] greenArray, int[][] blueArray) {
+    int[][][] newArray = new int [redArray.length][redArray[0].length][3];
+    for (int i = 0; i < redArray.length; i++) {
+      for (int j = 0; j < redArray[0].length; j++) {
+        newArray[i][j][0] = redArray[i][j];
+        newArray[i][j][1] = greenArray[i][j];
+        newArray[i][j][2] = blueArray[i][j];
+      }
+    }
+    return newArray;
+  }
+
 }
-
-
