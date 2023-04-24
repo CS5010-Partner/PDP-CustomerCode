@@ -1,4 +1,4 @@
-package controller.commandsadvanced;
+package controller.commandsAdvanced;
 
 import controller.commandsAdvanced.ACommandAdvanced;
 import exceptions.CloseCmdLineException;

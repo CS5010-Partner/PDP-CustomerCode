@@ -63,4 +63,9 @@ public interface IViewUI {
    * Asks the user to enter integer input.
    */
   void setBrightException();
+
+  /**
+   * Asks the user for an integer input for the number of seeds for mosaic.
+   */
+  void setMosaicSeedException();
 }

@@ -84,4 +84,15 @@ public interface IImageAdvanced extends IImage {
   ImageObj[] histogram(String imageName, String redHistImgName, String blueHistImgName,
       String greenHistImgname, String intHistImgName)
       throws ImageNameAlreadyExistsException, ImageNotFoundException;
+
+  /**
+   * mosaic form of the source image and store as the desination image name.
+   *
+   * @param sourceName source image name.
+   * @param destName destination image name.
+   * @param seedValue How many seeds to use for mosaic operation.
+   * @return the image object of the mosaic image.
+   */
+  ImageObj mosaic(String sourceName, String destName, int seedValue)
+      throws ImageNameAlreadyExistsException, ImageNotFoundException;
 }

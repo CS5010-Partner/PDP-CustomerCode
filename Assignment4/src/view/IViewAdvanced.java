@@ -46,4 +46,13 @@ public interface IViewAdvanced extends IView {
    * @param b    checks if we can print or not.
    */
   void echoHistogramSuccess(ImageObj[] imgs, boolean b);
+
+
+  /**
+   * Prints the message for the image being transformed into a mosaic image.
+   *
+   * @param img image object returned by the controller.
+   * @param b decides whether to show the message to the user or not.
+   */
+  void echoMosaicSuccess(ImageObj img, boolean b);
 }

@@ -69,6 +69,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     formulateMap.put("sharpen", "sharpen ");
     formulateMap.put("dither", "dither ");
     formulateMap.put("hist", "histogram ");
+    formulateMap.put("mosaic", "mosaic ");
   }
 
   private void initActionListners() {
@@ -84,6 +85,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     view.btnMap.get("vFlip").addActionListener(vflipActionListner());
     view.btnMap.get("split").addActionListener(splitActionListner());
     view.btnMap.get("combine").addActionListener(combineActionListner());
+    view.btnMap.get("mosaic").addActionListener(mosaicActionListener());
   }
 
   private ActionListener combineActionListner() {
@@ -349,6 +351,31 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
     return a;
   }
 
+  private ActionListener mosaicActionListener() {
+    ActionListener a = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        String imgName = generateNewImageName();
+        String input = view.popUpInput();
+        int increment = 0;
+        if (!input.equals("not clicked")) {
+          try {
+            increment = Integer.parseInt(input);
+          } catch (NumberFormatException exception) {
+            view.setMosaicSeedException();
+            return;
+          }
+        }
+        String[] params = new String[]{String.valueOf(increment),
+            currentImgs.get(currentImgs.size() - 1), imgName};
+        currentImgs.add(imgName);
+        actionHelper(params, "mosaic");
+        histoGenerator();
+      }
+    };
+    return a;
+  }
+
   private void actionHelper(String[] params, String command) {
     String cmd = formulateMap.get(command);
 
@@ -366,6 +393,7 @@ public class ImgControllerImplUI extends ImgControllerImplAdvanced {
         }
         break;
       case "bright":
+      case "mosaic":
       case "grey-normal":
         cmd += params[0]; // brighten param
         cmd += " ";

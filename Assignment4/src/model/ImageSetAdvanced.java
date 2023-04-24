@@ -71,6 +71,23 @@ public class ImageSetAdvanced extends ImageSet implements IImageAdvanced {
     return histograms;
   }
 
+  /**
+   * mosaic form of the source image and store as the desination image name.
+   *
+   * @param sourceName source image name.
+   * @param destName   destination image name.
+   * @param seedValue  How many seeds to use for mosaic operation.
+   * @return the image object of the mosaic image.
+   */
+  @Override
+  public ImageObj mosaic(String imageName, String destImageName, int seedValue)
+      throws ImageNameAlreadyExistsException, ImageNotFoundException {
+    checkName(new String[]{imageName}, new String[] {destImageName});
+    ImageObj img = map.get(imageName).mosaic(seedValue);
+    map.put(destImageName, img);
+    return img;
+  }
+
   @Override
   public ImageObj[] rgbSplit(String imageName, String redDesImageName, String greenDesImageName,
       String blueDesImageName) throws ImageNotFoundException, ImageNameAlreadyExistsException {

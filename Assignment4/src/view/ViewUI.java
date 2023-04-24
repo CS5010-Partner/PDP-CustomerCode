@@ -145,6 +145,7 @@ public class ViewUI extends ViewAdvanced implements IViewUI {
     btnMap.get("sharpen").setVisible(true);
     btnMap.get("sepia").setVisible(true);
     btnMap.get("dither").setVisible(true);
+    btnMap.get("mosaic").setVisible(true);
     histoLabel.setVisible(false);
     histoLabel1.setVisible(true);
     histoLabel2.setVisible(true);
@@ -216,6 +217,12 @@ public class ViewUI extends ViewAdvanced implements IViewUI {
     showImage(imgs[0]);
   }
 
+  @Override
+  public void echoMosaicSuccess(ImageObj img, boolean b){
+    currentOperation.setText("Mosaic Image Generated Successfully");
+    showImage(img);
+  }
+
   private void initButtons() {
     btnMap = new HashMap<>();
     btnMap.put("load", new JButton("LOAD"));
@@ -231,6 +238,7 @@ public class ViewUI extends ViewAdvanced implements IViewUI {
     btnMap.put("sepia", new JButton("SEPIA"));
     btnMap.put("sharpen", new JButton("SHARPEN"));
     btnMap.put("dither", new JButton("DITHER"));
+    btnMap.put("mosaic", new JButton("MOSAIC"));
 
     Border blueBorder = BorderFactory.createLineBorder(new Color(0xB0DAFF), 2);
     for (String key : btnMap.keySet()) {
@@ -259,6 +267,7 @@ public class ViewUI extends ViewAdvanced implements IViewUI {
     panel.add(btnMap.get("sharpen"));
     panel.add(btnMap.get("sepia"));
     panel.add(btnMap.get("dither"));
+    panel.add(btnMap.get("mosaic"));
 
     btnMap.get("save").setVisible(false);
     btnMap.get("bright").setVisible(false);
@@ -271,6 +280,7 @@ public class ViewUI extends ViewAdvanced implements IViewUI {
     btnMap.get("sharpen").setVisible(false);
     btnMap.get("sepia").setVisible(false);
     btnMap.get("dither").setVisible(false);
+    btnMap.get("mosaic").setVisible(false);
 
     frame.add(panel, BorderLayout.WEST);
     frame.add(topPanel, BorderLayout.NORTH);
@@ -456,6 +466,11 @@ public class ViewUI extends ViewAdvanced implements IViewUI {
   @Override
   public void setBrightException() {
     currentOperation.setText("Please give an integer input for brightening");
+  }
+
+  @Override
+  public void setMosaicSeedException() {
+    currentOperation.setText("Please give an integer for the number of seeds");
   }
 
   /**

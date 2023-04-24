@@ -44,4 +44,10 @@ public class ViewAdvanced extends View implements IViewAdvanced {
     print("Histograms generated successfully.", b);
   }
 
+
+  @Override
+  public void echoMosaicSuccess(ImageObj img, boolean b) {
+    print("Image converted to Mosaic successfully.", b);
+  }
+
 }

@@ -502,6 +502,9 @@ public class ImageObj {
     return hist;
   }
 
+  public ImageObj mosaic(int seedValue) {
+    return this;
+  }
 }
 
 
