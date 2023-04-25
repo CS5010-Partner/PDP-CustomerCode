@@ -1,0 +1,26 @@
+
+Ted Banken and Brian Horner Design Critic
+
+Design and Code Strengths
+
+	The authors followed a lot of the Professors lecture advice in designing their application. First, the authors made sure that the view does not dictate anything other than its own operations. Their UI view allows the UI controller to deal with the actual commands recieved from the various ActionListeners, process the commands with the model and then instruct the view on how to proceed. As well they do use a command design pattern given by the professor which made it easier to add the mosaic command. Their design was different from our own in that they went with a true object oriented design. Their ImageObj class, used to represent the images, does each command on itself when called to from the model. This object oriented approach further cemented the isolation of the model, view, controller, and iamge object itself, which is a big strength in their design. They do provide different controllers and views for scripts, commands and UI which again follows the Professor's given designs. Their use of kernels and transformation classes for a more collected group of filtering operations was a positive. The authors delibrite adherence to the Professor's given designs are massive strengths for their application.
+
+Design and Code Limitations
+
+	The authors provided code is not without it's weaknesses. First their extensive use of extends does make it harder for a contributor to actually cotnribute. We found it was hard to follow along with the path of extensions and took a large chunk of working time for this assignment. As well their repository was a mess that caused us more problems in udnerstanding what was needed and what was extra. We also had trouble building a jar due to the nature of their project havign two modules nested inside eachother. This caused us to struggle with building a jar of the project up until submission. Implementation of the object oriented design for the Images, while a positive for keeping things isolated, does double the number of methods needed. Although some could say this a flaw we merely wanted to acknowledge the doubling of methods while also stating that it was a good design practice.
+
+Suggestions on How to Address Critics
+
+	In order to address our critics we suggest the follow. Cleaning up the github would be adevantageous not only for other contributors but for the authors themselves as we believe there must have been time spent understanding their own respository. Refactoring the extends into the base classes after implementation and testign would have been helpful for contributing. 
+
+Implementation critique
+
+	We did find flaws with their implementation. Implementing a new command was confusing as the repository had two new command packages. We were able to figure it out by implementing mosaic in both and seeing where ImageObj was not imported. As well we found problems with their greyscale operation in the UI menu. If  you do not select a greyscale option from the UI menu the application fails with the following operations, mosaic, brighten, vertical flip, horizontal flip, blur, sharpen, sepia, and dither. We were also nto able to exit out of RGB split unless the cancel button is pressed at minimum three times. The current image is transformed into a greyscale image. A quit command was also not avaliable with scripting.
+
+Documentation critique
+
+	We had no problems following their documentation as it was the best way to understand their design and how to add the mosaic operation. Without their documentation it would have taken significantly longer to understand their design.
+
+Conclusion
+
+	Overall 
