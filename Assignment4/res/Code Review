@@ -15,12 +15,10 @@ Suggestions on How to Address Critics
 
 Implementation critique
 
-	We did find flaws with their implementation. Implementing a new command was confusing as the repository had two new command packages. We were able to figure it out by implementing mosaic in both and seeing where ImageObj was not imported. As well we found problems with their greyscale operation in the UI menu. If  you do not select a greyscale option from the UI menu the application fails with the following operations, mosaic, brighten, vertical flip, horizontal flip, blur, sharpen, sepia, and dither. We were also nto able to exit out of RGB split unless the cancel button is pressed at minimum three times. The current image is transformed into a greyscale image. A quit command was also not avaliable with scripting.
+	We did find flaws with their implementation. Implementing a new command was confusing as the repository had two new command packages. We were able to figure it out by implementing mosaic in both and seeing where ImageObj was not imported. As well we found problems with their greyscale operation in the UI menu. If  you do not select a greyscale option from the UI menu the application fails with the following operations, mosaic, brighten, vertical flip, horizontal flip, blur, sharpen, sepia, and dither. We were also not able to exit out of RGB split unless the cancel button is pressed at minimum three times. The current image is transformed into a recycle image. A quit command was also not available with scripting.
 
 Documentation critique
 
 	We had no problems following their documentation as it was the best way to understand their design and how to add the mosaic operation. Without their documentation it would have taken significantly longer to understand their design.
 
-Conclusion
 
-	Overall 
